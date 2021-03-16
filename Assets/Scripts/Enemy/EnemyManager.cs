@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager Instance;
-    public List<EnemyData> enemyDataList=new List<EnemyData>();
-    public List<Enemy> InGameEnemyList = new List<Enemy>();
+    public static EnemyManager Instance;//单例
+    public List<EnemyData> enemyDataList=new List<EnemyData>();//敌人数据列表
+    public List<Enemy> InGameEnemyList = new List<Enemy>();//战斗中的敌人列表
     private void Awake()
     {
         Instance = this;

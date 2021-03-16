@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class CardManager : MonoBehaviour
 {
     public static CardManager Instance;
-    public Card selectedCard;
+    public Card selectedCard;//选中的卡牌
     public GameObject cardPrefab; //手牌预制体
     public GameObject showCard;//用来展示的卡牌
     #region 各种牌库
@@ -63,10 +63,9 @@ public class CardManager : MonoBehaviour
         }
 
         drawCardList=RandomSortList(drawCardList);//随机打乱抽牌堆顺序
-        Debug.Log(drawCardList.Count);
 
     }
-    public List<T> RandomSortList<T>(List<T> ListT)
+    public List<T> RandomSortList<T>(List<T> ListT)//对列表进行随机排序
     {
         System.Random random = new System.Random();
         List<T> newList = new List<T>();
@@ -76,12 +75,7 @@ public class CardManager : MonoBehaviour
         }
         return newList;
     }
-    public void DrawCardDemo()//测试用
-    {
-        GetCards(Random.Range(0, 2));
-        RotateAngel();
-        AddCardAnimations();
-    }
+    
     private void Update()
     {
         UpdateUIState();
@@ -96,10 +90,10 @@ public class CardManager : MonoBehaviour
         {
             InitDrawCardList();
         }
-
         var newCard = handCardGo.GetComponent<Card>();
-        newCard.InitCard(drawCardList[0]);
-        drawCardList.Remove(drawCardList[0]);
+        newCard.InitCard(drawCardList[0]);//根据抽牌堆的第一张卡牌数据来初始化卡牌
+        drawCardList.Remove(drawCardList[0]);//将卡牌移除抽牌堆
+
         handCardGo.transform.position = BeginPos.transform.position;
         handCardGo.transform.SetParent(transform);
 
@@ -111,7 +105,7 @@ public class CardManager : MonoBehaviour
         //播放抽卡动画
         AddCardAnimations();
     }
-    public void GetCards(int cardNo)//获取指定卡牌
+    public void GetCards(int cardNo)//根据卡牌的序号获取指定卡牌
     {
         //克隆预设
         var handCardGo = Instantiate(cardPrefab) as GameObject;

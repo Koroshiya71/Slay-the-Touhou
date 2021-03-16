@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class CardEffectManager : MonoBehaviour
 {
-    public static CardEffectManager Instance;
-    public Enemy targetEnemy;
+    public static CardEffectManager Instance;//单例
+    public Enemy targetEnemy;//卡牌的
     private void Awake()
     {
         Instance = this;
     }
-    public void UseThisCard(Card card)
+    public void UseThisCard(Card card)//触发卡牌效果
     {
         if (Player.Instance.energy<card.cardCost||BattleManager.Instance.turnHasEnd)
         {
             return;
         }
-        switch (card.cardID)
+        switch (card.cardID)//根据卡牌的ID触发效果
         {
             case "0001"://斩击
                 Attack(card,1);
@@ -63,13 +63,13 @@ public class CardEffectManager : MonoBehaviour
             }
         }
         Player.Instance.PlayAttackAnim();//播放攻击动画
-        for (int i = 0; i < times; i++)
+        for (int i = 0; i < times; i++)//攻击times次
         {
-            Player.Instance.getShield(card.valueDic[Value.ValueType.Shield]);
+            Player.Instance.GetShield(card.valueDic[Value.ValueType.Shield]);
         }
-        CardManager.Instance.UseCard();
-        Player.Instance.energy -= card.cardCost;
-        CardManager.Instance.Discard(card);
+        CardManager.Instance.UseCard();//使用卡牌
+        Player.Instance.energy -= card.cardCost;//消耗费用
+        CardManager.Instance.Discard(card);//弃牌
 
     }
 }

@@ -7,25 +7,41 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public enum CardType
+    public enum CardType//卡牌类型
     {
         Attack,
         Skill,
         Power
     }
 
-
-    private GameObject showGo ;
+    #region 基本属性
+    //展示用卡牌的游戏物体
+    private GameObject showGo;
+    //卡牌类型
     public CardType type;
+    //卡牌消耗
     public int cardCost;
+    //卡牌序号
     public string cardID;
-    public Text nameText;
-    public Text desText;
-    public Text costText;
-    public Image img;
+    //是否需要设置使用目标
     public bool needTarget;
-    public bool isShowCard;//是否是用于展示的卡牌
-    public Dictionary<Value.ValueType, int> valueDic=new Dictionary<Value.ValueType, int>();//效果字典
+    //是否是用于展示的卡牌
+    public bool isShowCard;
+    //效果字典
+    public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
+    #endregion
+
+    #region UI引用
+    //卡名文本
+    public Text nameText;
+    //卡牌描述文本
+    public Text desText;
+    //能量消耗文本
+    public Text costText;
+    //卡图
+    public Image img;
+    #endregion
+    
     private void OnMouseDown()
     {
         if (isShowCard)//如果是展示用的卡牌则不进行检测
@@ -41,8 +57,8 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        showGo.SetActive(true);
-        foreach (var data in CardManager.Instance.cardDataList)
+        showGo.SetActive(true);//展示卡牌
+        foreach (var data in CardManager.Instance.cardDataList)//根据选中卡牌的ID初始化展示用卡牌
         {
             if (data.cardID==cardID)
             {
@@ -65,7 +81,7 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        if (Input.mousePosition.y>-0.5)
+        if (Input.mousePosition.y>-0.5)//当鼠标拖拽卡牌到一定位置以上才算进行了卡牌的使用
         {
             CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard);
         }
@@ -76,7 +92,7 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void InitCard(CardData data)
+    public void InitCard(CardData data)//根据CardData初始化卡牌
     {
         valueDic = new Dictionary<Value.ValueType, int>();
         type = data.type;

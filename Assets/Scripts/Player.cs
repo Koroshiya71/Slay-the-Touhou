@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     #endregion
 
     #region UI引用
-
     public Text hpText;//血条数值文本
     public Slider hpSlider;//血条图片滑动条
     public GameObject shieldImg;//护盾图片
@@ -29,11 +28,9 @@ public class Player : MonoBehaviour
     public Text energyText;//能量值文本
     #endregion
     #region 动画相关
-
     public Animator animController;//动画控制器
-
     #endregion
-    public void getShield(int shield)//获得护盾
+    public void GetShield(int shield)//获得护盾
     {
         this.shield += shield;
     }
@@ -50,10 +47,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetShield(int value)
-    {
-        shield += value;
-    }//增加护盾
+   
     void UpdateUIState()//更新UI组件状态
     {
         if (shield>0)
@@ -93,6 +87,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        UpdateUIState();
+        UpdateUIState();//更新UI状态
     }
 }

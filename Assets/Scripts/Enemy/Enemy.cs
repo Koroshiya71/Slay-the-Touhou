@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     public GameObject actionImg;//行动类型图示
     public Text actionValueText;//行动数值
     #endregion
-
+    //初始化敌人
     public void InitEnemy()
     {
         actionNo = 0;

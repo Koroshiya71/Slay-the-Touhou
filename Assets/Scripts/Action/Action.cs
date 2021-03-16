@@ -11,7 +11,7 @@ public class Action : MonoBehaviour
     {
         
     }
-
+    //初始化行为
     public void InitAction(ActionData data)
     {
         this.data = data;

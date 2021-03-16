@@ -6,6 +6,7 @@ using UnityEngine;
 public class ActionController : MonoBehaviour
 {
     public static ActionController Instance;
+    //行动数据列表
     public List<ActionData> actionDataList = new List<ActionData>();
 
     public enum ActionType
@@ -24,6 +25,7 @@ public class ActionController : MonoBehaviour
     {
     }
 
+    //实行行动
     public void TakeAction(Action a, Enemy thisEnemy)
     {
         switch (a.data.ActID)
