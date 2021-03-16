@@ -36,14 +36,12 @@ public class Enemy : MonoBehaviour
         hp = data.initHp;
         shield = data.initShield;
         Name = data.Name;
-        Debug.Log(data.ActionIdList.Count);
         foreach (var id in data.ActionIdList)
         {
             foreach (var a in ActionController.Instance.actionDataList)
             {
                 if (id==a.ActID)
                 {
-                    Debug.Log(0);
                     Action newAction = shieldImg.AddComponent<Action>();
                     newAction.InitAction(a);
                     actionList.Add(newAction);

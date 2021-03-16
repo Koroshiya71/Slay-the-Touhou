@@ -30,12 +30,17 @@ public class Card : MonoBehaviour
     {
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
+        showGo.SetActive(false);
+
         CardManager.Instance.selectedCard = this;
     }
 
     private void OnMouseEnter()
     {
-        
+        if (isShowCard)//如果是展示用的卡牌则不进行检测
+        {
+            return;
+        }
         showGo.SetActive(true);
         foreach (var data in CardManager.Instance.cardDataList)
         {

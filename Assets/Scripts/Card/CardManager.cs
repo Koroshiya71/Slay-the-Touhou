@@ -25,7 +25,8 @@ public class CardManager : MonoBehaviour
     public List<Sprite> spriteList=new List<Sprite>();
     public List<CardData> cardDataList=new List<CardData>();
 
-    public Text DrawCardNumText;//抽牌堆卡牌数量的文本
+    public Text discardNumText;//弃牌堆卡牌数量的文本
+    public Text drawCardNumText;//抽牌堆卡牌数量的文本
     private void Start()
     {
         showCard.SetActive(false);
@@ -37,11 +38,12 @@ public class CardManager : MonoBehaviour
         {
             foreach (var dCard in discardList)
             {
-                discardList.Remove(dCard);
                 drawCardList.Add(dCard);
             }
-        }
 
+            discardList = new List<CardData>();//然后初始化弃牌堆
+        }
+        
         if (drawCardList.Count==0)//如果此时抽牌堆依然为空，那么说明是第一次从牌库初始化抽牌堆
         {
             foreach (var cardId in cardDeskList)//然后根据牌库中每张牌的ID号查找数据
@@ -61,6 +63,7 @@ public class CardManager : MonoBehaviour
         }
 
         drawCardList=RandomSortList(drawCardList);//随机打乱抽牌堆顺序
+        Debug.Log(drawCardList.Count);
 
     }
     public List<T> RandomSortList<T>(List<T> ListT)
@@ -126,7 +129,8 @@ public class CardManager : MonoBehaviour
 
     public void UpdateUIState() //更新UI组件状态
     {
-        DrawCardNumText.text = drawCardList.Count+"";
+        drawCardNumText.text = drawCardList.Count+"";
+        discardNumText.text = discardList.Count + "";
     }
     //为手牌添加动画
     private void HandCardAnimation(GameObject GO, float Vec3_Z)
@@ -175,8 +179,9 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < handCardList.Count; i++)
         {
+            Discard(handCardList[i].GetComponent<Card>());
             Destroy(handCardList[i]);
-
+            
             //TODO:制作和播放弃牌动画
         }
 
@@ -190,7 +195,16 @@ public class CardManager : MonoBehaviour
         rotateAngel = 55F / (float) handCardList.Count / (float) handCardList.Count;
     }
 
-
+    public void Discard(Card card) //弃牌
+    {
+        foreach (var data in cardDataList)
+        {
+            if (data.cardID == card.cardID)
+            {
+                discardList.Add(data);
+            }
+        }
+    }
     private void Awake()
     {
         Instance = this;
