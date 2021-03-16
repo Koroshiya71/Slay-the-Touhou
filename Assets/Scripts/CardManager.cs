@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour
     public static CardManager Instance;
     public Card selectedCard;
     public GameObject cardPrefab; //手牌预制体
-
+    public GameObject showCard;//用来展示的卡牌
     #region 各种牌库
     public List<CardData> discardList=new List<CardData>();//弃牌堆
     public List<CardData> drawCardList = new List<CardData>();//抽牌堆
@@ -28,6 +28,7 @@ public class CardManager : MonoBehaviour
     public Text DrawCardNumText;//抽牌堆卡牌数量的文本
     private void Start()
     {
+        showCard.SetActive(false);
     }
     
     public void InitDrawCardList()
@@ -80,7 +81,7 @@ public class CardManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        UpdateUIState();
     }
 
     public void DrawCard() //从抽牌堆抽卡

@@ -12,7 +12,6 @@ public class CardEffectManager : MonoBehaviour
     {
         Instance = this;
     }
-
     public void UseThisCard(Card card)
     {
         if (Player.Instance.energy<card.cardCost||BattleManager.Instance.turnHasEnd)
