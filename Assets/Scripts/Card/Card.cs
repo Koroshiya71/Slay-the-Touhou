@@ -39,6 +39,10 @@ public class Card : MonoBehaviour
     
     private void OnMouseDown()
     {
+        if (MenuEventManager.Instance.isShow)//如果正在进行卡牌预览则不进行事件的检测
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         showGo.SetActive(false);
@@ -48,6 +52,10 @@ public class Card : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (MenuEventManager.Instance.isShow)//如果正在进行卡牌预览则不进行事件的检测
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
         {
             return;
@@ -59,11 +67,19 @@ public class Card : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (MenuEventManager.Instance.isShow)//如果正在进行卡牌预览则不进行事件的检测
+        {
+            return;
+        }
         showGo.SetActive(false);
     }
 
     private void OnMouseUp()
     {
+        if (MenuEventManager.Instance.isShow)//如果正在进行卡牌预览则不进行事件的检测
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         if (CardManager.Instance.selectedCard==null)

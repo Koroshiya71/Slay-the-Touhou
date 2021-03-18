@@ -6,8 +6,13 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public bool turnHasEnd;
-    public void TurnEnd()
+    
+    public void TurnEnd()//回合结束事件
     {
+        if (MenuEventManager.Instance.isShow)//如果正在进行卡牌预览则不进行事件的检测
+        {
+            return;
+        }
         if (turnHasEnd)
         {
             return;
