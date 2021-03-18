@@ -23,6 +23,7 @@ public class CardData
     public List<Value> valueList;//数值列表
     public int spriteID;//卡图ID
     public bool needTarget;//是否需要目标
+    public int times;//卡牌效果触发的次数
 }
 [Serializable]
 public class ActionData

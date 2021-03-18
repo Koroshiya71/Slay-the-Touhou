@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
 
     //是否是用于展示的卡牌
     public bool isShowCard;
-
+    //卡牌数据
     public CardData cardData;
     //效果字典
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
@@ -41,29 +41,52 @@ public class Card : MonoBehaviour
     {
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
-        showGo.SetActive(false);
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
+        showGo.SetActive(false);//取消卡牌展示
+        CardManager.Instance.hasShow = false;
 
         CardManager.Instance.selectedCard = this;
     }
 
     private void OnMouseEnter()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
+        if (CardManager.Instance.hasShow)
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
         {
             return;
         }
         showGo.SetActive(true);//展示卡牌
         showGo.GetComponent<Card>().InitCard(cardData);
-
+        CardManager.Instance.hasShow = true;
     }
 
     private void OnMouseExit()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
         showGo.SetActive(false);
+        CardManager.Instance.hasShow = false;
+
     }
 
     private void OnMouseUp()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         if (CardManager.Instance.selectedCard==null)
@@ -87,12 +110,40 @@ public class Card : MonoBehaviour
         cardData = data;
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
-        desText.text = cardData.des;
         img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
         
-        foreach (var v in cardData.valueList)
+        foreach (var v in cardData.valueList)//初始化卡牌效果字典
         {
             valueDic.Add(v.type,v.value);
+        }
+
+        cardData.des = "";
+        InitDes();//初始化文本描述
+        desText.text = cardData.des;
+
+    }
+
+    public void InitDes()//根据卡牌效果字典初始化描述文本
+    {
+        if (valueDic.ContainsKey(Value.ValueType.Damage))//如果有DamageKEY的情况
+        {
+            cardData.des += "造成"+valueDic[Value.ValueType.Damage]+"点伤害";
+            if (cardData.times>1)
+            {
+                cardData.des += cardData.times + "次";
+            }
+        }
+        if (valueDic.ContainsKey(Value.ValueType.Shield))//如果有ShieldKEY的情况
+        {
+            if (cardData.des!=null)
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "获得" + valueDic[Value.ValueType.Shield] + "点护甲";
+            if (cardData.times > 1)
+            {
+                cardData.des += cardData.times + "次";
+            }
         }
     }
     private void Start()

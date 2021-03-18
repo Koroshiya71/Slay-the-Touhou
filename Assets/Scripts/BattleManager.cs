@@ -8,7 +8,11 @@ public class BattleManager : MonoBehaviour
     public bool turnHasEnd;
     public void TurnEnd()
     {
-        if (turnHasEnd)
+        if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
+        {
+            return;
+        }
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
         }
