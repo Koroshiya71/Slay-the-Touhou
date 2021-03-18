@@ -191,13 +191,8 @@ public class CardManager : MonoBehaviour
 
     public void Discard(Card card) //ÆúÅÆ
     {
-        foreach (var data in cardDataList)
-        {
-            if (data.cardID == card.cardID)
-            {
-                discardList.Add(data);
-            }
-        }
+        discardList.Add(card.cardData);
+
     }
     private void Awake()
     {

@@ -17,16 +17,11 @@ public class Card : MonoBehaviour
     #region 基本属性
     //展示用卡牌的游戏物体
     private GameObject showGo;
-    //卡牌类型
-    public CardType type;
-    //卡牌消耗
-    public int cardCost;
-    //卡牌序号
-    public string cardID;
-    //是否需要设置使用目标
-    public bool needTarget;
+
     //是否是用于展示的卡牌
     public bool isShowCard;
+
+    public CardData cardData;
     //效果字典
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
     #endregion
@@ -58,14 +53,8 @@ public class Card : MonoBehaviour
             return;
         }
         showGo.SetActive(true);//展示卡牌
-        foreach (var data in CardManager.Instance.cardDataList)//根据选中卡牌的ID初始化展示用卡牌
-        {
-            if (data.cardID==cardID)
-            {
-                showGo.GetComponent<Card>().InitCard(data);
-                break;
-            }
-        }
+        showGo.GetComponent<Card>().InitCard(cardData);
+
     }
 
     private void OnMouseExit()
@@ -95,15 +84,13 @@ public class Card : MonoBehaviour
     public void InitCard(CardData data)//根据CardData初始化卡牌
     {
         valueDic = new Dictionary<Value.ValueType, int>();
-        type = data.type;
-        cardID = data.cardID;
-        desText.text = data.des;
-        nameText.text = data.name;
-        costText.text = ""+data.cost;
-        cardCost = data.cost;
-        img.sprite = CardManager.Instance.spriteList[data.spriteID];
-        needTarget = data.needTarget;
-        foreach (var v in data.valueList)
+        cardData = data;
+        costText.text = ""+cardData.cost;
+        nameText.text = cardData.name;
+        desText.text = cardData.des;
+        img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
+        
+        foreach (var v in cardData.valueList)
         {
             valueDic.Add(v.type,v.value);
         }

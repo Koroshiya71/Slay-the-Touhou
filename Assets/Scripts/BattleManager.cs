@@ -41,7 +41,7 @@ public class BattleManager : MonoBehaviour
         TurnStart();
     }
 
-    void Update()
+    void Update() 
     {
         
     }
