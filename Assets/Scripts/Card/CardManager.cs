@@ -24,7 +24,7 @@ public class CardManager : MonoBehaviour
     private float rotateAngel; //手牌动画旋转的角度
     public List<Sprite> spriteList=new List<Sprite>();
     public List<CardData> cardDataList=new List<CardData>();
-
+    public bool hasShow;//是否已经展示了卡牌
     public Text discardNumText;//弃牌堆卡牌数量的文本
     public Text drawCardNumText;//抽牌堆卡牌数量的文本
     private void Start()

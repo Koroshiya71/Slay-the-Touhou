@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
 
     //是否是用于展示的卡牌
     public bool isShowCard;
-
+    //卡牌数据
     public CardData cardData;
     //效果字典
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
@@ -41,29 +41,52 @@ public class Card : MonoBehaviour
     {
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
-        showGo.SetActive(false);
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
+        showGo.SetActive(false);//取消卡牌展示
+        CardManager.Instance.hasShow = false;
 
         CardManager.Instance.selectedCard = this;
     }
 
     private void OnMouseEnter()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
+        if (CardManager.Instance.hasShow)
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
         {
             return;
         }
         showGo.SetActive(true);//展示卡牌
         showGo.GetComponent<Card>().InitCard(cardData);
-
+        CardManager.Instance.hasShow = true;
     }
 
     private void OnMouseExit()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
         showGo.SetActive(false);
+        CardManager.Instance.hasShow = false;
+
     }
 
     private void OnMouseUp()
     {
+        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
+        {
+            return;
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         if (CardManager.Instance.selectedCard==null)
