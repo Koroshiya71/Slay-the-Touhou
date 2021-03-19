@@ -1,0 +1,19 @@
+<CardData>
+    <CardList>
+        <Card CardID="0001" Type="攻击" Name="斩击" Cost="1" SpriteID="0" NeedTarget="1" Times="1">
+            <Values>
+                <value Type="Damage" value="6"></value>
+            </Values>
+        </Card>
+        <Card CardID="0002" Type="技能" Name="格挡" Cost="1" SpriteID="1" NeedTarget="1" Times="1">
+            <Values>
+                <value Type="Shield" value="5"></value>
+            </Values>
+        </Card>
+        <Card CardID="0003" Type="攻击" Name="三连斩" Cost="1" SpriteID="2" NeedTarget="1" Times="3">
+            <Values>
+                <value Type="Damage" value="3"></value>
+            </Values>
+        </Card>
+    </CardList>
+</CardData>
