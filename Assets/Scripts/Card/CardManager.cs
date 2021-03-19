@@ -30,6 +30,7 @@ public class CardManager : MonoBehaviour
     private void Start()
     {
         showCard.SetActive(false);
+        cardDataList = DataManager.Instance.LoadCardData();
     }
     
     public void InitDrawCardList()

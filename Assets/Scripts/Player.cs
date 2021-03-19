@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     public void PlayAttackAnim()//播放攻击动画
     {
         animController.SetTrigger("Attack");
+        
     }
     public void InitEnergy()//初始化能量
     {

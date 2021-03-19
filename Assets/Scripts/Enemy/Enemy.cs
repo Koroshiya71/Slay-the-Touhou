@@ -16,9 +16,10 @@ public class Enemy : MonoBehaviour
     public Action currentAction;
     public List<Sprite> actionSpriteList = new List<Sprite>();
     public int enemyID;
-
+    
     #endregion
 
+    public Animator animController;//动画控制器
     #region UI引用
     public Text hpText;//血条数值文本
     public Slider hpSlider;//血条图片滑动条

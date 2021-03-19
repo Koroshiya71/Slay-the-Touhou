@@ -26,6 +26,7 @@ public class DataManager : MonoBehaviour
         foreach (XmlNode cardNode in cardListNode)//根据表中数据添加卡牌数据
         {
             CardData data = new CardData();
+            data.valueList = new List<Value>();
             XmlAttributeCollection cardAttributes=cardNode.Attributes;
             data.cardID = cardAttributes["CardID"].InnerText;
             switch (cardAttributes["Type"].InnerText)
@@ -37,6 +38,40 @@ public class DataManager : MonoBehaviour
                     data.type = Card.CardType.Skill;
                     break;
             }
+
+            data.name = cardAttributes["Name"].InnerText;
+            data.cost = int.Parse(cardAttributes["Cost"].InnerText);
+            data.spriteID = int.Parse(cardAttributes["SpriteID"].InnerText);
+            if (cardAttributes["NeedTarget"].InnerText=="1")
+            {
+                data.needTarget = true;
+            }
+            else
+            {
+                data.needTarget = false;
+            }
+
+            data.times = Int32.Parse(cardAttributes["Times"].InnerText);
+
+            XmlNode ValuesNode = cardNode.FirstChild;
+            foreach (XmlNode valueNode in ValuesNode)
+            {
+                Value newValue = new Value();
+                var valueAttributes = valueNode.Attributes;
+                switch (valueAttributes["Type"].InnerText)
+                {
+                    case "Damage":
+                        newValue.type = Value.ValueType.Damage;
+                        break;
+                    case "Shield":
+                        newValue.type = Value.ValueType.Shield;
+                        break;
+                }
+
+                newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);
+                data.valueList.Add(newValue);
+            }
+            cardDataList.Add(data);
         }
         return cardDataList;
     }

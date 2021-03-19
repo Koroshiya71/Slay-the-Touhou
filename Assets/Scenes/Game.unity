@@ -1305,6 +1305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71e92753b058b814d9ed8fd94f0afeb3, type: 3}
+--- !u!95 &556271571 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 933716910, guid: 6511081904b59004886b3436cbba71b4, type: 3}
+  m_PrefabInstance: {fileID: 921853712533457090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &613428350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5877,6 +5882,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 412782857}
     m_Modifications:
+    - target: {fileID: 921853713089430657, guid: 6511081904b59004886b3436cbba71b4, type: 3}
+      propertyPath: animController
+      value: 
+      objectReference: {fileID: 556271571}
     - target: {fileID: 921853713089430780, guid: 6511081904b59004886b3436cbba71b4, type: 3}
       propertyPath: m_Name
       value: Enemy
