@@ -2626,10 +2626,6 @@ MonoBehaviour:
   showCardList: []
   cardDisplayCanvas: {fileID: 2061652033}
   displayContent: {fileID: 1463371693}
-  isShow: 0
---- !u!1001 &974224553
-PrefabInstance:
-  displayContent: {fileID: 1463371693}
   isPreviewing: 0
 --- !u!1001 &974224553
 PrefabInstance:
@@ -3034,6 +3030,8 @@ MonoBehaviour:
       value: 4
     spriteID: 2
     needTarget: 1
+    times: 2
+  hasShow: 0
   discardNumText: {fileID: 731486778}
   drawCardNumText: {fileID: 675849005}
 --- !u!114 &1054356228
@@ -3963,7 +3961,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7144945438387254655}
+  - {fileID: 8559692044948002855}
   - {fileID: 677773735}
   - {fileID: 1385231883}
   - {fileID: 261413559}
@@ -3989,10 +3987,39 @@ RectTransform:
   - {fileID: 1136500799}
   - {fileID: 646463343}
   - {fileID: 1539050292}
-  - {fileID: 1150598485}
+  - {fileID: 7144945438387254655}
   - {fileID: 1446050547}
   - {fileID: 619933334}
   - {fileID: 192214474}
+  - {fileID: 7144945437411803080}
+  - {fileID: 7144945438290010531}
+  - {fileID: 7144945438386497789}
+  - {fileID: 7144945438198827385}
+  - {fileID: 7144945438682290087}
+  - {fileID: 7144945438800296862}
+  - {fileID: 7144945437851516500}
+  - {fileID: 7144945438405451353}
+  - {fileID: 7144945438488486390}
+  - {fileID: 7144945438511939251}
+  - {fileID: 7144945438476633876}
+  - {fileID: 7144945438954745449}
+  - {fileID: 7144945437723241128}
+  - {fileID: 7144945438516959634}
+  - {fileID: 7144945438069455072}
+  - {fileID: 7144945437775757407}
+  - {fileID: 7144945437640414097}
+  - {fileID: 7144945438040121634}
+  - {fileID: 7144945437894487495}
+  - {fileID: 7144945437225804039}
+  - {fileID: 7144945437507928654}
+  - {fileID: 7144945438601885529}
+  - {fileID: 7144945438334031611}
+  - {fileID: 7144945438045862424}
+  - {fileID: 7144945437992411511}
+  - {fileID: 7144945438121055256}
+  - {fileID: 7144945438467890997}
+  - {fileID: 7144945438844686481}
+  - {fileID: 7144945437808381301}
   m_Father: {fileID: 799657156}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4302,7 +4329,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 17701516}
-  - {fileID: 1255965015}
+  - {fileID: 1627069526}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4674,6 +4701,138 @@ MonoBehaviour:
     valueList:
     - type: 0
       value: 15
+--- !u!1 &1627069525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627069526}
+  - component: {fileID: 1627069528}
+  - component: {fileID: 1627069527}
+  - component: {fileID: 1627069529}
+  m_Layer: 5
+  m_Name: deskButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1627069526
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627069525}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1527341464}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1650, y: -38.29001}
+  m_SizeDelta: {x: 1057, y: 1554}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1627069527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627069525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 88b15ebd517c27746a061c26b1398bad, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1627069528
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627069525}
+  m_CullTransparentMesh: 1
+--- !u!114 &1627069529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627069525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1627069527}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 945618423}
+        m_TargetAssemblyTypeName: MenuEventManager, Assembly-CSharp
+        m_MethodName: ShowDeskButtonDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1707111154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6808,9 +6967,7 @@ GameObject:
   - component: {fileID: 7144945437225804039}
   - component: {fileID: 7144945437225804038}
   - component: {fileID: 7144945437225804040}
-  - component: {fileID: 5301815309018756757}
   - component: {fileID: 7207755411778566957}
-  - component: {fileID: 176665229}
   m_Layer: 5
   m_Name: ShowCard (20)
   m_TagString: Untagged
@@ -6857,7 +7014,7 @@ RectTransform:
   - {fileID: 7144945438650353045}
   - {fileID: 7144945438070047743}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 20
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6876,10 +7033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -6890,6 +7043,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438488243311}
   desText: {fileID: 7144945438070047712}
   costText: {fileID: 7144945438650353046}
@@ -8679,10 +8833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -8693,6 +8843,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438305399456}
   desText: {fileID: 7144945437716815151}
   costText: {fileID: 7144945438466202457}
@@ -8715,7 +8866,7 @@ RectTransform:
   - {fileID: 7144945438466202458}
   - {fileID: 7144945437716815152}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 1
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8754,9 +8905,7 @@ GameObject:
   - component: {fileID: 7144945437411803080}
   - component: {fileID: 7144945437411803081}
   - component: {fileID: 7144945437411803079}
-  - component: {fileID: 5301815309237512282}
   - component: {fileID: 7207755411593356770}
-  - component: {fileID: 530164802}
   m_Layer: 5
   m_Name: ShowCard (1)
   m_TagString: Untagged
@@ -9933,10 +10082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -9947,6 +10092,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438275309350}
   desText: {fileID: 7144945437754499241}
   costText: {fileID: 7144945438361937631}
@@ -9962,9 +10108,7 @@ GameObject:
   - component: {fileID: 7144945437507928654}
   - component: {fileID: 7144945437507928655}
   - component: {fileID: 7144945437507928641}
-  - component: {fileID: 5301815309267326428}
   - component: {fileID: 7207755411488036964}
-  - component: {fileID: 433492420}
   m_Layer: 5
   m_Name: ShowCard (21)
   m_TagString: Untagged
@@ -9990,7 +10134,7 @@ RectTransform:
   - {fileID: 7144945438361937628}
   - {fileID: 7144945437754499254}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 21
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -10981,7 +11125,7 @@ RectTransform:
   - {fileID: 7144945438229264131}
   - {fileID: 7144945437886656873}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 17
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -10999,9 +11143,7 @@ GameObject:
   - component: {fileID: 7144945437640414097}
   - component: {fileID: 7144945437640414096}
   - component: {fileID: 7144945437640414110}
-  - component: {fileID: 5301815309134775299}
   - component: {fileID: 7207755411620579771}
-  - component: {fileID: 301531163}
   m_Layer: 5
   m_Name: ShowCard (17)
   m_TagString: Untagged
@@ -11021,10 +11163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -11035,6 +11173,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438408122105}
   desText: {fileID: 7144945437886656886}
   costText: {fileID: 7144945438229264128}
@@ -11821,10 +11960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -11835,6 +11970,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945439128512448}
   desText: {fileID: 7144945437434726479}
   costText: {fileID: 7144945439218044473}
@@ -11857,7 +11993,7 @@ RectTransform:
   - {fileID: 7144945439218044474}
   - {fileID: 7144945437434726480}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 13
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -11896,9 +12032,7 @@ GameObject:
   - component: {fileID: 7144945437723241128}
   - component: {fileID: 7144945437723241129}
   - component: {fileID: 7144945437723241127}
-  - component: {fileID: 5301815308378750266}
   - component: {fileID: 7207755412343042178}
-  - component: {fileID: 753498402}
   m_Layer: 5
   m_Name: ShowCard (13)
   m_TagString: Untagged
@@ -11997,10 +12131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -12011,6 +12141,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945439080172855}
   desText: {fileID: 7144945437487588024}
   costText: {fileID: 7144945439165719758}
@@ -12026,9 +12157,7 @@ GameObject:
   - component: {fileID: 7144945437775757407}
   - component: {fileID: 7144945437775757406}
   - component: {fileID: 7144945437775757392}
-  - component: {fileID: 5301815308460365773}
   - component: {fileID: 7207755412294965877}
-  - component: {fileID: 701486037}
   m_Layer: 5
   m_Name: ShowCard (16)
   m_TagString: Untagged
@@ -12075,7 +12204,7 @@ RectTransform:
   - {fileID: 7144945439165719757}
   - {fileID: 7144945437487588007}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 16
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12168,9 +12297,7 @@ GameObject:
   - component: {fileID: 7144945437808381301}
   - component: {fileID: 7144945437808381300}
   - component: {fileID: 7144945437808381306}
-  - component: {fileID: 5301815308295854823}
   - component: {fileID: 7207755412526618463}
-  - component: {fileID: 670965503}
   m_Layer: 5
   m_Name: ShowCard (29)
   m_TagString: Untagged
@@ -12217,7 +12344,7 @@ RectTransform:
   - {fileID: 7144945439135295975}
   - {fileID: 7144945437585125261}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 29
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12236,10 +12363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -12250,6 +12373,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945439246778397}
   desText: {fileID: 7144945437585125266}
   costText: {fileID: 7144945439135295972}
@@ -12265,9 +12389,7 @@ GameObject:
   - component: {fileID: 7144945437851516500}
   - component: {fileID: 7144945437851516501}
   - component: {fileID: 7144945437851516507}
-  - component: {fileID: 5301815308250638790}
   - component: {fileID: 7207755412487955582}
-  - component: {fileID: 625749470}
   m_Layer: 5
   m_Name: ShowCard (7)
   m_TagString: Untagged
@@ -12293,7 +12415,7 @@ RectTransform:
   - {fileID: 7144945439107111622}
   - {fileID: 7144945437546192044}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 7
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12333,10 +12455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -12347,6 +12465,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945439272874812}
   desText: {fileID: 7144945437546192051}
   costText: {fileID: 7144945439107111621}
@@ -12516,9 +12635,7 @@ GameObject:
   - component: {fileID: 7144945437894487495}
   - component: {fileID: 7144945437894487494}
   - component: {fileID: 7144945437894487496}
-  - component: {fileID: 5301815308343949909}
   - component: {fileID: 7207755412444952557}
-  - component: {fileID: 584875597}
   m_Layer: 5
   m_Name: ShowCard (19)
   m_TagString: Untagged
@@ -12565,7 +12682,7 @@ RectTransform:
   - {fileID: 7144945439049419093}
   - {fileID: 7144945437670985535}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 19
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12584,10 +12701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -12598,6 +12711,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945439164883119}
   desText: {fileID: 7144945437670985504}
   costText: {fileID: 7144945439049419094}
@@ -12842,9 +12956,7 @@ GameObject:
   - component: {fileID: 7144945437992411511}
   - component: {fileID: 7144945437992411510}
   - component: {fileID: 7144945437992411512}
-  - component: {fileID: 5301815308648707813}
   - component: {fileID: 7207755412073118557}
-  - component: {fileID: 1022767869}
   m_Layer: 5
   m_Name: ShowCard (25)
   m_TagString: Untagged
@@ -12891,7 +13003,7 @@ RectTransform:
   - {fileID: 7144945438951261669}
   - {fileID: 7144945437165159311}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 25
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12910,10 +13022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -12924,6 +13032,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438860389407}
   desText: {fileID: 7144945437165159312}
   costText: {fileID: 7144945438951261670}
@@ -13100,7 +13209,7 @@ RectTransform:
   - {fileID: 7144945438926620080}
   - {fileID: 7144945437256909786}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 18
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13139,9 +13248,7 @@ GameObject:
   - component: {fileID: 7144945438040121634}
   - component: {fileID: 7144945438040121635}
   - component: {fileID: 7144945438040121645}
-  - component: {fileID: 5301815308741506736}
   - component: {fileID: 7207755412039039752}
-  - component: {fileID: 974009000}
   m_Layer: 5
   m_Name: ShowCard (18)
   m_TagString: Untagged
@@ -13161,10 +13268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -13175,6 +13278,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438748716106}
   desText: {fileID: 7144945437256909765}
   costText: {fileID: 7144945438926620083}
@@ -13191,10 +13295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -13205,6 +13305,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438804850544}
   desText: {fileID: 7144945437212383487}
   costText: {fileID: 7144945438904049289}
@@ -13227,7 +13328,7 @@ RectTransform:
   - {fileID: 7144945438904049290}
   - {fileID: 7144945437212383456}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 24
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13266,9 +13367,7 @@ GameObject:
   - component: {fileID: 7144945438045862424}
   - component: {fileID: 7144945438045862425}
   - component: {fileID: 7144945438045862423}
-  - component: {fileID: 5301815308735704458}
   - component: {fileID: 7207755412028055602}
-  - component: {fileID: 967223698}
   m_Layer: 5
   m_Name: ShowCard (24)
   m_TagString: Untagged
@@ -13448,7 +13547,7 @@ RectTransform:
   - {fileID: 7144945438888844402}
   - {fileID: 7144945437227588120}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 15
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13487,9 +13586,7 @@ GameObject:
   - component: {fileID: 7144945438069455072}
   - component: {fileID: 7144945438069455073}
   - component: {fileID: 7144945438069455087}
-  - component: {fileID: 5301815308703723378}
   - component: {fileID: 7207755412001317578}
-  - component: {fileID: 944679786}
   m_Layer: 5
   m_Name: ShowCard (15)
   m_TagString: Untagged
@@ -13509,10 +13606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -13523,6 +13616,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438786499976}
   desText: {fileID: 7144945437227588103}
   costText: {fileID: 7144945438888844401}
@@ -13772,10 +13866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -13786,6 +13876,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438998075760}
   desText: {fileID: 7144945437270750975}
   costText: {fileID: 7144945438845169801}
@@ -13808,7 +13899,7 @@ RectTransform:
   - {fileID: 7144945438845169802}
   - {fileID: 7144945437270750944}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 26
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13847,9 +13938,7 @@ GameObject:
   - component: {fileID: 7144945438121055256}
   - component: {fileID: 7144945438121055257}
   - component: {fileID: 7144945438121055255}
-  - component: {fileID: 5301815308526207882}
   - component: {fileID: 7207755412220759602}
-  - component: {fileID: 891488146}
   m_Layer: 5
   m_Name: ShowCard (26)
   m_TagString: Untagged
@@ -14252,10 +14341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -14266,6 +14351,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438924489745}
   desText: {fileID: 7144945437365070750}
   costText: {fileID: 7144945438750846440}
@@ -14309,7 +14395,7 @@ RectTransform:
   - {fileID: 7144945438750846443}
   - {fileID: 7144945437365070721}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 4
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -14327,9 +14413,7 @@ GameObject:
   - component: {fileID: 7144945438198827385}
   - component: {fileID: 7144945438198827384}
   - component: {fileID: 7144945438198827382}
-  - component: {fileID: 5301815308582756075}
   - component: {fileID: 7207755412147409747}
-  - component: {fileID: 813718259}
   m_Layer: 5
   m_Name: ShowCard (4)
   m_TagString: Untagged
@@ -14534,7 +14618,7 @@ RectTransform:
   - {fileID: 7144945437604824369}
   - {fileID: 7144945439115051867}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 2
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -14552,7 +14636,6 @@ GameObject:
   - component: {fileID: 7144945438290010531}
   - component: {fileID: 7144945438290010530}
   - component: {fileID: 7144945438290010540}
-  - component: {fileID: 5301815307956713009}
   - component: {fileID: 7207755410709904265}
   - component: {fileID: 1261515305}
   m_Layer: 5
@@ -14574,10 +14657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -14588,6 +14667,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437421939915}
   desText: {fileID: 7144945439115051844}
   costText: {fileID: 7144945437604824370}
@@ -14833,10 +14913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -14847,6 +14923,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437449214867}
   desText: {fileID: 7144945439108789276}
   costText: {fileID: 7144945437544002154}
@@ -14890,7 +14967,7 @@ RectTransform:
   - {fileID: 7144945437544002153}
   - {fileID: 7144945439108789251}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 23
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -14908,7 +14985,6 @@ GameObject:
   - component: {fileID: 7144945438334031611}
   - component: {fileID: 7144945438334031610}
   - component: {fileID: 7144945438334031604}
-  - component: {fileID: 5301815307912642921}
   - component: {fileID: 7207755410670030033}
   - component: {fileID: 1217480049}
   m_Layer: 5
@@ -15234,10 +15310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -15248,6 +15320,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437660997013}
   desText: {fileID: 7144945439152917018}
   costText: {fileID: 7144945437499853932}
@@ -15263,7 +15336,6 @@ GameObject:
   - component: {fileID: 7144945438386497789}
   - component: {fileID: 7144945438386497788}
   - component: {fileID: 7144945438386497778}
-  - component: {fileID: 5301815307717656431}
   - component: {fileID: 7207755410873430743}
   - component: {fileID: 1165032311}
   m_Layer: 5
@@ -15312,7 +15384,7 @@ RectTransform:
   - {fileID: 7144945437499853935}
   - {fileID: 7144945439152916997}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 3
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15331,10 +15403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -15345,6 +15413,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437661296663}
   desText: {fileID: 7144945439153608600}
   costText: {fileID: 7144945437499691502}
@@ -15360,7 +15429,6 @@ GameObject:
   - component: {fileID: 7144945438387254655}
   - component: {fileID: 7144945438387254654}
   - component: {fileID: 7144945438387254640}
-  - component: {fileID: 5301815307716829933}
   - component: {fileID: 7207755410874249045}
   - component: {fileID: 1165846261}
   m_Layer: 5
@@ -15409,7 +15477,7 @@ RectTransform:
   - {fileID: 7144945437499691501}
   - {fileID: 7144945439153608583}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 0
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15428,10 +15496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -15442,6 +15506,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437646230321}
   desText: {fileID: 7144945439172115646}
   costText: {fileID: 7144945437481204424}
@@ -15485,7 +15550,7 @@ RectTransform:
   - {fileID: 7144945437481204427}
   - {fileID: 7144945439172115617}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 8
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15503,7 +15568,6 @@ GameObject:
   - component: {fileID: 7144945438405451353}
   - component: {fileID: 7144945438405451352}
   - component: {fileID: 7144945438405451350}
-  - component: {fileID: 5301815307698588107}
   - component: {fileID: 7207755410858951795}
   - component: {fileID: 1146588627}
   m_Layer: 5
@@ -15832,9 +15896,7 @@ GameObject:
   - component: {fileID: 7144945438467890997}
   - component: {fileID: 7144945438467890996}
   - component: {fileID: 7144945438467891002}
-  - component: {fileID: 5301815307776755879}
   - component: {fileID: 7207755410805916959}
-  - component: {fileID: 1083100351}
   m_Layer: 5
   m_Name: ShowCard (27)
   m_TagString: Untagged
@@ -15881,7 +15943,7 @@ RectTransform:
   - {fileID: 7144945437408246695}
   - {fileID: 7144945439245073869}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 27
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15900,10 +15962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -15914,6 +15972,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437582742109}
   desText: {fileID: 7144945439245073874}
   costText: {fileID: 7144945437408246692}
@@ -15929,9 +15988,7 @@ GameObject:
   - component: {fileID: 7144945438476633876}
   - component: {fileID: 7144945438476633877}
   - component: {fileID: 7144945438476633883}
-  - component: {fileID: 5301815307770040454}
   - component: {fileID: 7207755410795863358}
-  - component: {fileID: 1074877598}
   m_Layer: 5
   m_Name: ShowCard (11)
   m_TagString: Untagged
@@ -15957,7 +16014,7 @@ RectTransform:
   - {fileID: 7144945437418169222}
   - {fileID: 7144945439234614764}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 11
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15997,10 +16054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16011,6 +16064,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437575039612}
   desText: {fileID: 7144945439234614771}
   costText: {fileID: 7144945437418169221}
@@ -16105,9 +16159,7 @@ GameObject:
   - component: {fileID: 7144945438488486390}
   - component: {fileID: 7144945438488486391}
   - component: {fileID: 7144945438488486393}
-  - component: {fileID: 5301815308150470244}
   - component: {fileID: 7207755410507758556}
-  - component: {fileID: 1598337660}
   m_Layer: 5
   m_Name: ShowCard (9)
   m_TagString: Untagged
@@ -16133,7 +16185,7 @@ RectTransform:
   - {fileID: 7144945437396321636}
   - {fileID: 7144945438787207950}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 9
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16173,10 +16225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16187,6 +16235,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437225561246}
   desText: {fileID: 7144945438787207953}
   costText: {fileID: 7144945437396321639}
@@ -16309,7 +16358,7 @@ RectTransform:
   - {fileID: 7144945437355809313}
   - {fileID: 7144945438760623179}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 10
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16327,9 +16376,7 @@ GameObject:
   - component: {fileID: 7144945438511939251}
   - component: {fileID: 7144945438511939250}
   - component: {fileID: 7144945438511939260}
-  - component: {fileID: 5301815308126988577}
   - component: {fileID: 7207755410480866457}
-  - component: {fileID: 1575939385}
   m_Layer: 5
   m_Name: ShowCard (10)
   m_TagString: Untagged
@@ -16349,10 +16396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16363,6 +16406,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437266080731}
   desText: {fileID: 7144945438760623188}
   costText: {fileID: 7144945437355809314}
@@ -16385,7 +16429,7 @@ RectTransform:
   - {fileID: 7144945437360848128}
   - {fileID: 7144945438755076970}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 14
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16424,9 +16468,7 @@ GameObject:
   - component: {fileID: 7144945438516959634}
   - component: {fileID: 7144945438516959635}
   - component: {fileID: 7144945438516959645}
-  - component: {fileID: 5301815308132535808}
   - component: {fileID: 7207755410483725240}
-  - component: {fileID: 1572473368}
   m_Layer: 5
   m_Name: ShowCard (14)
   m_TagString: Untagged
@@ -16446,10 +16488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16460,6 +16498,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437263140090}
   desText: {fileID: 7144945438755076981}
   costText: {fileID: 7144945437360848131}
@@ -16705,10 +16744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16719,6 +16754,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437180328497}
   desText: {fileID: 7144945438842115518}
   costText: {fileID: 7144945437273789384}
@@ -16762,7 +16798,7 @@ RectTransform:
   - {fileID: 7144945437273789387}
   - {fileID: 7144945438842115489}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 22
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16780,9 +16816,7 @@ GameObject:
   - component: {fileID: 7144945438601885529}
   - component: {fileID: 7144945438601885528}
   - component: {fileID: 7144945438601885526}
-  - component: {fileID: 5301815308179710155}
   - component: {fileID: 7207755410402979187}
-  - component: {fileID: 1485464787}
   m_Layer: 5
   m_Name: ShowCard (22)
   m_TagString: Untagged
@@ -16880,9 +16914,7 @@ GameObject:
   - component: {fileID: 7144945438682290087}
   - component: {fileID: 7144945438682290086}
   - component: {fileID: 7144945438682290088}
-  - component: {fileID: 5301815308092866613}
   - component: {fileID: 7207755410582080909}
-  - component: {fileID: 1406616621}
   m_Layer: 5
   m_Name: ShowCard (5)
   m_TagString: Untagged
@@ -16929,7 +16961,7 @@ RectTransform:
   - {fileID: 7144945437187617589}
   - {fileID: 7144945438995936607}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 5
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16948,10 +16980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -16962,6 +16990,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437302282959}
   desText: {fileID: 7144945438995936576}
   costText: {fileID: 7144945437187617590}
@@ -17981,10 +18010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -17995,6 +18020,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438057756406}
   desText: {fileID: 7144945438510012793}
   costText: {fileID: 7144945438143291151}
@@ -18010,9 +18036,7 @@ GameObject:
   - component: {fileID: 7144945438800296862}
   - component: {fileID: 7144945438800296863}
   - component: {fileID: 7144945438800296849}
-  - component: {fileID: 5301815307303857164}
   - component: {fileID: 7207755411270443444}
-  - component: {fileID: 1826547732}
   m_Layer: 5
   m_Name: ShowCard (6)
   m_TagString: Untagged
@@ -18038,7 +18062,7 @@ RectTransform:
   - {fileID: 7144945438143291148}
   - {fileID: 7144945438510012774}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 6
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18638,7 +18662,7 @@ RectTransform:
   - {fileID: 7144945438121767939}
   - {fileID: 7144945438598132329}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 28
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18656,9 +18680,7 @@ GameObject:
   - component: {fileID: 7144945438844686481}
   - component: {fileID: 7144945438844686480}
   - component: {fileID: 7144945438844686494}
-  - component: {fileID: 5301815307399890691}
   - component: {fileID: 7207755411233114811}
-  - component: {fileID: 1778467611}
   m_Layer: 5
   m_Name: ShowCard (28)
   m_TagString: Untagged
@@ -18678,10 +18700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -18692,6 +18710,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945437943094777}
   desText: {fileID: 7144945438598132342}
   costText: {fileID: 7144945438121767936}
@@ -19561,10 +19580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  cardCost: 0
-  cardID: 0
-  needTarget: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -19575,6 +19590,7 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
   nameText: {fileID: 7144945438103577345}
   desText: {fileID: 7144945438723083406}
   costText: {fileID: 7144945437996796664}
@@ -19618,7 +19634,7 @@ RectTransform:
   - {fileID: 7144945437996796667}
   - {fileID: 7144945438723083409}
   m_Father: {fileID: 1463371693}
-  m_RootOrder: 12
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -19636,9 +19652,7 @@ GameObject:
   - component: {fileID: 7144945438954745449}
   - component: {fileID: 7144945438954745448}
   - component: {fileID: 7144945438954745446}
-  - component: {fileID: 5301815307292113403}
   - component: {fileID: 7207755411391280195}
-  - component: {fileID: 1670528483}
   m_Layer: 5
   m_Name: ShowCard (12)
   m_TagString: Untagged
@@ -23389,3 +23403,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71e92753b058b814d9ed8fd94f0afeb3, type: 3}
+--- !u!224 &8559692044948002855 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1625244114738200733, guid: 71e92753b058b814d9ed8fd94f0afeb3, type: 3}
+  m_PrefabInstance: {fileID: 8559692044948002854}
+  m_PrefabAsset: {fileID: 0}

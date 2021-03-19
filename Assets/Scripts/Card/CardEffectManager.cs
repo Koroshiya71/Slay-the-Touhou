@@ -47,7 +47,6 @@ public class CardEffectManager : MonoBehaviour
             targetEnemy.TakeDamage(card.valueDic[Value.ValueType.Damage]);
         }
         CardManager.Instance.UseCard();
-        
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
 
