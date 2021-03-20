@@ -20,10 +20,11 @@ public class CardData
     public string cardID;//卡牌ID
     public int cost;//卡牌消耗
     public string des;//卡牌描述
-    public List<Value> valueList;//数值列表
+    public List<Value> valueList;//效果列表
     public int spriteID;//卡图ID
     public bool needTarget;//是否需要目标
     public int times;//卡牌效果触发的次数
+    public List<CanXin> canXinList;//残心列表
 }
 [Serializable]
 public class ActionData
@@ -38,12 +39,19 @@ public class Value
 {
     public enum ValueType//数值类型的枚举类
     {
-        伤害,//伤害
-        护甲,//护盾值
-        二刀流//双刀
+        伤害,
+        护甲,
+        二刀流,
+        回费
     }
     public ValueType type;
     public int value;
 
     
+}
+[Serializable]
+public class CanXin
+{
+    public Value CanXinValue;
+    public bool IsTurnEnd;//是否是回合结束触发
 }

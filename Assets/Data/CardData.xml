@@ -25,7 +25,7 @@
                 <Value Type="伤害" Value="8"></Value>
             </Values>
             <CanXinList>
-                <CanXin Type="回费" Time="NextTurnStart " Value="1"></CanXin>
+                <CanXin Type="回费" Time="0" Value="1"></CanXin>
             </CanXinList>
         </Card>
     </CardList>

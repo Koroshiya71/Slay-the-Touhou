@@ -114,7 +114,7 @@ public class Card : MonoBehaviour
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
         img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-
+        
         foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
             valueDic.Add(v.type, v.value);

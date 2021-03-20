@@ -27,7 +27,9 @@ public class DataManager : MonoBehaviour
         {
             CardData data = new CardData();
             data.valueList = new List<Value>();
-            XmlAttributeCollection cardAttributes=cardNode.Attributes;
+            data.canXinList= new List<CanXin>();
+
+            XmlAttributeCollection cardAttributes =cardNode.Attributes;
             data.cardID = cardAttributes["CardID"].InnerText;
             switch (cardAttributes["Type"].InnerText)
             {
@@ -86,6 +88,36 @@ public class DataManager : MonoBehaviour
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);
                 data.valueList.Add(newValue);
             }
+            XmlNode CanXinListNode = cardNode.LastChild;
+            if (CanXinListNode!=cardNode.FirstChild)//如果有残心列表的话
+            {
+                foreach (XmlNode CanXinNode in CanXinListNode)
+                {
+                    CanXin newCanXin = new CanXin();
+                    newCanXin.CanXinValue = new Value();
+                    var canXinAttributes = CanXinNode.Attributes;
+                    switch (canXinAttributes["Type"].InnerText)
+                    {
+                        case "伤害":
+                            newCanXin.CanXinValue.type = Value.ValueType.伤害;
+                            break;
+                        case "护甲":
+                            newCanXin.CanXinValue.type = Value.ValueType.护甲;
+                            break;
+                        case "二刀流":
+                            newCanXin.CanXinValue.type = Value.ValueType.二刀流;
+                            break;
+                        case "回费":
+                            newCanXin.CanXinValue.type = Value.ValueType.回费;
+                            break;
+                    }
+                    newCanXin.CanXinValue.value = Int32.Parse(canXinAttributes["Value"].InnerText);
+                    newCanXin.IsTurnEnd = canXinAttributes["Time"].InnerText == "1";
+                    data.canXinList.Add(newCanXin);
+
+                }
+            }
+            Debug.Log(data.cardID);
             cardDataList.Add(data);
         }
         return cardDataList;
