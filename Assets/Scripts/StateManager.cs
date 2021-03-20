@@ -22,7 +22,7 @@ public class StateManager : MonoBehaviour
         Player.Instance.stateList.Add(newValue);
     }
 
-    public static void CleanState() //清除状态列表中的无效状态
+    public static void CleanPlayerState() //清除状态列表中的无效状态
     {
         List<Value> emptyList = new List<Value>();
         foreach (var state in Player.Instance.stateList)

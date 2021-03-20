@@ -15,10 +15,18 @@
                 <Value Type="伤害" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="1" SpriteID="3" NeedTarget="0" Times="1">
+        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="2" SpriteID="3" NeedTarget="0" Times="1">
             <Values>
                 <Value Type="二刀流" Value="1"></Value>
             </Values>
+        </Card>
+        <Card CardID="0005" Type="体术" Name="残月斩" Cost="1" SpriteID="4" NeedTarget="1" Times="1">
+            <Values>
+                <Value Type="伤害" Value="8"></Value>
+            </Values>
+            <CanXinList>
+                <CanXin Type="回费" Time="NextTurnStart " Value="1"></CanXin>
+            </CanXinList>
         </Card>
     </CardList>
 </CardData>

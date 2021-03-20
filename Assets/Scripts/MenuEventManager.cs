@@ -41,8 +41,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
         List<string> deskList = CardManager.Instance.cardDeskList;
         cardDisplayCanvas.SetActive(true);
-        displayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,//根据弃牌牌堆的卡牌数量动态调整content大小
-            340 + (deskList.Count % 5 - 2) * 420);
+        displayContent.sizeDelta = new Vector2(1835, 939 + (deskList.Count / 5 - 1) * 420);
         for (int i = 0; i < deskList.Count; i++)
         {
             showCardList[i].gameObject.SetActive(true);//将等同于弃牌堆数量的展示卡牌初始化并显示出来
@@ -68,8 +67,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
         List<CardData> drawCardList = CardManager.Instance.RandomSortList(CardManager.Instance.drawCardList);
         cardDisplayCanvas.SetActive(true);
-        displayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,//根据抽牌堆的卡牌数量动态调整content大小
-            340+(drawCardList.Count%5-2)*420);
+        displayContent.sizeDelta = new Vector2(1835, 939 + (drawCardList.Count / 5 - 2) * 420);
         for (int i = 0; i < drawCardList.Count; i++)
         {
             showCardList[i].gameObject.SetActive(true);//将等同于抽牌堆数量的展示卡牌初始化并显示出来
@@ -88,8 +86,8 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
         List<CardData> discardList = CardManager.Instance.discardList;
         cardDisplayCanvas.SetActive(true);
-        displayContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,//根据弃牌牌堆的卡牌数量动态调整content大小
-            340 + (discardList.Count % 5 - 2) * 420);
+        displayContent.sizeDelta=new Vector2(1835, 939 + (discardList.Count / 5 - 2) * 420);
+       
         for (int i = 0; i < discardList.Count; i++)
         {
             showCardList[i].gameObject.SetActive(true);//将等同于弃牌堆数量的展示卡牌初始化并显示出来

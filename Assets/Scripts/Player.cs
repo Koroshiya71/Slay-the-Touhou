@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public GameObject shieldImg;//护盾图片
     public Text shieldText;//护盾值文本
     public Text energyText;//能量值文本
-    public Text doubleBladeText;//二刀文本
+    public GameObject doubleBladeText;//二刀文本
     #endregion
     #region 动画相关
     public Animator animController;//动画控制器
@@ -35,6 +35,11 @@ public class Player : MonoBehaviour
     public void GetShield(int shield)//获得护盾
     {
         this.shield += shield;
+    }
+
+    public void GetEnergy(int value)//获得能量
+    {
+        energy += value;
     }
     public void TakeDamage(int damage)//结算受到的伤害
     {
@@ -74,12 +79,14 @@ public class Player : MonoBehaviour
 
         if (DoubleBlade())
         {
-            doubleBladeText.enabled = true;
+            doubleBladeText.SetActive(true);
         }
         else
         {
-            doubleBladeText.enabled = false;
+            doubleBladeText.SetActive(false);
+
         }
+
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
         energyText.text = energy + "/" + maxEnergy;

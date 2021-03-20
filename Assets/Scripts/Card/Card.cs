@@ -126,6 +126,19 @@ public class Card : MonoBehaviour
 
     }
 
+    public void UpdateCardState() //更新卡牌状态
+    {
+        switch (this.cardData.cardID)
+        {
+            case "0004"://二刀的心得
+                if (BattleManager.Instance.hasCanXin)
+                {
+                    cardData.cost -= 1;
+                    InitCard(cardData);
+                }
+                break;
+        }
+    }
     public void InitDes()//根据卡牌效果字典初始化描述文本
     {
         if (valueDic.ContainsKey(Value.ValueType.伤害))//如果有伤害KEY的情况

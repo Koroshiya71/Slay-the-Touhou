@@ -16,10 +16,6 @@ public class CardEffectManager : MonoBehaviour
     public void UseThisCard(Card card)//触发卡牌效果
     {
         
-        if (Player.Instance.energy<card.cardData.cost||BattleManager.Instance.turnHasEnd)
-        {
-            return;
-        }
         switch (card.cardData.cardID)//根据卡牌的ID触发效果
         {
             case "0001"://斩击
@@ -34,12 +30,27 @@ public class CardEffectManager : MonoBehaviour
             case "0004"://二刀的心得
                 Skill(card,1);
                 break;
+            case "0005"://残月斩
+                TiShu(card,1);
+                if (Player.Instance.energy==0)
+                {
+                    BattleManager.Instance.actionsTurnStart.Add((() =>
+                    {
+                        Player.Instance.GetEnergy(1);
+                        BattleManager.Instance.hasCanXin = true;
+                    }));
+                }
+                
+                break;
         }
     }
 
     void TiShu(Card card,int times)//体术卡的通用方法
     {
-        
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd)//如果费用不够则使用失败
+        {
+            return;
+        }
         if (card.cardData.needTarget)
         {
             if (targetEnemy==null)//如果需要目标但是目标敌人为空时使用失败
@@ -53,7 +64,7 @@ public class CardEffectManager : MonoBehaviour
         {
             for (int i = 0; i < card.cardData.times*2; i++)//进行多次攻击
             {
-                targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]/2);
+                targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
             }
         }
 
@@ -73,6 +84,10 @@ public class CardEffectManager : MonoBehaviour
 
     void Skill(Card card, int times) //技能卡的通用方法
     {
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd)//如果费用不够则使用失败
+        {
+            return;
+        }
         if (card.cardData.needTarget)
         {
             if (targetEnemy == null)//如果需要目标但是目标敌人为空时使用失败
@@ -101,6 +116,10 @@ public class CardEffectManager : MonoBehaviour
     }
     void Defend(Card card,int times) //防御卡的通用方法
     {
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd)//如果费用不够则使用失败
+        {
+            return;
+        }
         if (card.cardData.needTarget)
         {
             if (targetEnemy == null)//如果需要目标但是目标敌人为空时使用失败
@@ -116,6 +135,5 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.UseCard();//使用卡牌
         Player.Instance.energy -= card.cardData.cost;//消耗费用
         CardManager.Instance.Discard(card);//弃牌
-
     }
 }

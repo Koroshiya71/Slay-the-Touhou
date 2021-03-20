@@ -26,7 +26,7 @@ public class ActionController : MonoBehaviour
     }
 
     //实行行动
-    public void TakeAction(Action a, Enemy thisEnemy)
+    public void TakeAction(EnemyAction a, Enemy thisEnemy)
     {
         switch (a.data.ActID)
         {
