@@ -128,7 +128,7 @@ public class Card : MonoBehaviour
 
     public void InitDes()//根据卡牌效果字典初始化描述文本
     {
-        if (valueDic.ContainsKey(Value.ValueType.伤害))//如果有DamageKEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.伤害))//如果有伤害KEY的情况
         {
             cardData.des += "造成"+valueDic[Value.ValueType.伤害]+"点伤害";
             if (cardData.times>1)
@@ -136,7 +136,7 @@ public class Card : MonoBehaviour
                 cardData.des += cardData.times + "次";
             }
         }
-        if (valueDic.ContainsKey(Value.ValueType.护甲))//如果有ShieldKEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.护甲))//如果有护甲KEY的情况
         {
             if (cardData.des!=null)
             {
@@ -147,6 +147,14 @@ public class Card : MonoBehaviour
             {
                 cardData.des += cardData.times + "次";
             }
+        }
+        if (valueDic.ContainsKey(Value.ValueType.二刀流))//如果有二刀流Key的情况下
+        {
+            if (cardData.des != null)
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "本回合获得二刀流状态";
         }
     }
     private void Start()

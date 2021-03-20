@@ -32,6 +32,7 @@ public class CardEffectManager : MonoBehaviour
                 TiShu(card,1);
                 break;
             case "0004"://二刀的心得
+                Skill(card,1);
                 break;
         }
     }
@@ -79,8 +80,20 @@ public class CardEffectManager : MonoBehaviour
                 return;
             }
         }
-        
 
+        foreach (var value in card.valueDic)
+        {
+            Value newValue = new Value();
+            newValue.type = value.Key;
+            newValue.value = value.Value;
+            switch (value.Key)
+            {
+                case Value.ValueType.二刀流:
+                    StateManager.AddStateToPlayer(newValue);
+                    break;
+            }
+        }
+        
         Player.Instance.PlayAttackAnim();//播放攻击动画
         CardManager.Instance.UseCard();//使用卡牌
         Player.Instance.energy -= card.cardData.cost;//消耗费用

@@ -402,7 +402,7 @@ RectTransform:
   m_GameObject: {fileID: 921853713089430780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 921853711650253673}
   - {fileID: 921853712233520988}
@@ -438,6 +438,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cabad65308474144dacdc7ebd28366c0, type: 3}
   - {fileID: 21300000, guid: 81baf15c496ae7c4088c2322b2a87676, type: 3}
   enemyID: 0
+  animController: {fileID: 933716910}
   hpText: {fileID: 921853712913196448}
   hpSlider: {fileID: 921853712233520989}
   shieldImg: {fileID: 4756913925208547155}
@@ -580,7 +581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 58.1, y: -74.9}
+  m_AnchoredPosition: {x: 58.1, y: -74.899994}
   m_SizeDelta: {x: -153.61566, y: -157.61098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4756913925208547156
@@ -648,7 +649,7 @@ RectTransform:
   m_GameObject: {fileID: 4756913926769390406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 4756913926958254692}
   m_Father: {fileID: 921853713089430781}
@@ -731,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000022888184, y: 0.0000076293945}
+  m_AnchoredPosition: {x: -0.000022888184, y: 0}
   m_SizeDelta: {x: 76.600006, y: -91.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4756913926880125287
@@ -810,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.13110676}
   m_AnchorMax: {x: 1, y: 0.79343766}
-  m_AnchoredPosition: {x: 22.998276, y: 0.268898}
+  m_AnchoredPosition: {x: 22.998276, y: 0.26889038}
   m_SizeDelta: {x: 169.24559, y: 0.14355421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4756913926958254694

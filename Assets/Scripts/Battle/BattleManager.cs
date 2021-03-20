@@ -19,7 +19,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (var state in Player.Instance.stateList)
         {
-            if (state.type==Value.ValueType.Ë«µ¶Á÷)
+            if (state.type==Value.ValueType.¶þµ¶Á÷)
             {
                 state.value -= 1;
             }

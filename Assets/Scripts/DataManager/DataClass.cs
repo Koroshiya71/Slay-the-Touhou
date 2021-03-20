@@ -40,7 +40,7 @@ public class Value
     {
         伤害,//伤害
         护甲,//护盾值
-        双刀流//双刀
+        二刀流//双刀
     }
     public ValueType type;
     public int value;
