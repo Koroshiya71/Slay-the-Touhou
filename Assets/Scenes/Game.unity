@@ -2997,12 +2997,14 @@ MonoBehaviour:
   - 0002
   - 0003
   - 0003
+  - 0004
   handCardList: []
   BeginPos: {fileID: 1842011544}
   spriteList:
   - {fileID: 21300000, guid: 4721a0fe3e10d9b4ca2697b9d7ebb0ae, type: 3}
   - {fileID: 6617054453133534921, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: -9207974613074989830, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: 7978944729772225970, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   cardDataList:
   - type: 0
     name: "\u65A9\u51FB"
@@ -3015,7 +3017,7 @@ MonoBehaviour:
     spriteID: 0
     needTarget: 1
     times: 1
-  - type: 1
+  - type: 4
     name: "\u683C\u6321"
     cardID: 0002
     cost: 1
@@ -3026,7 +3028,7 @@ MonoBehaviour:
     spriteID: 1
     needTarget: 0
     times: 1
-  - type: 1
+  - type: 0
     name: "\u4EBA\u7B26\u300C\u73B0\u4E16\u65A9\u300D"
     cardID: 0003
     cost: 1
@@ -3053,6 +3055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetEnemy: {fileID: 0}
+  attackTimes: 0
 --- !u!1001 &1056345512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6119,6 +6122,18 @@ PrefabInstance:
       propertyPath: energyText
       value: 
       objectReference: {fileID: 1984593336}
+    - target: {fileID: 6846625277815732927, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: stateList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846625277815732927, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: stateList.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846625277815732927, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: stateList.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
 --- !u!114 &7144945437152622584

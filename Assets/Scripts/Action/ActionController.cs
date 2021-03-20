@@ -31,13 +31,13 @@ public class ActionController : MonoBehaviour
         switch (a.data.ActID)
         {
             case "0001": //sakuya攻击1
-                Player.Instance.TakeDamage(a.valueDic[Value.ValueType.Damage]);
+                Player.Instance.TakeDamage(a.valueDic[Value.ValueType.伤害]);
                 break;
             case "0002": //sakuya格挡1
-                thisEnemy.shield += a.valueDic[Value.ValueType.Shield];
+                thisEnemy.shield += a.valueDic[Value.ValueType.护甲];
                 break;
             case "0003": //sakuya攻击2
-                Player.Instance.TakeDamage(a.valueDic[Value.ValueType.Damage]);
+                Player.Instance.TakeDamage(a.valueDic[Value.ValueType.伤害]);
                 break;
         }
 

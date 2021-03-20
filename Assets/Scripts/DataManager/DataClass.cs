@@ -38,8 +38,9 @@ public class Value
 {
     public enum ValueType//数值类型的枚举类
     {
-        Damage,//伤害
-        Shield,//护盾值
+        伤害,//伤害
+        护甲,//护盾值
+        双刀流//双刀
     }
     public ValueType type;
     public int value;

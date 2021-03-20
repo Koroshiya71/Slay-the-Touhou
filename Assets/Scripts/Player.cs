@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public int drawCardNum;//每回合抽牌数
     public int energy;//当前能量值
     public int maxEnergy;//能量值上限
+    public List<Value> stateList=new List<Value>();//状态列表
     #endregion
 
     #region UI引用
@@ -47,7 +48,17 @@ public class Player : MonoBehaviour
         }
     }
 
-   
+    public bool DoubleBlade() //是否处于二刀流状态
+    {
+        foreach (var state in stateList)
+        {
+            if (state.type==Value.ValueType.双刀流&&state.value>0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     void UpdateUIState()//更新UI组件状态
     {
         if (shield>0)

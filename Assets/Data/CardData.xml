@@ -1,18 +1,23 @@
 <CardData>
     <CardList>
-        <Card CardID="0001" Type="攻击" Name="斩击" Cost="1" SpriteID="0" NeedTarget="1" Times="1">
+        <Card CardID="0001" Type="体术" Name="斩击" Cost="1" SpriteID="0" NeedTarget="1" Times="1">
             <Values>
-                <Value Type="Damage" Value="6"></Value>
+                <Value Type="伤害" Value="6"></Value>
             </Values>
         </Card>
-        <Card CardID="0002" Type="技能" Name="格挡" Cost="1" SpriteID="1" NeedTarget="0" Times="1">
+        <Card CardID="0002" Type="防御" Name="格挡" Cost="1" SpriteID="1" NeedTarget="0" Times="1">
             <Values>
-                <Value Type="Shield" Value="5"></Value>
+                <Value Type="护甲" Value="5"></Value>
             </Values>
         </Card>
-        <Card CardID="0003" Type="攻击" Name="三连斩" Cost="1" SpriteID="2" NeedTarget="1" Times="3">
+        <Card CardID="0003" Type="体术" Name="三连斩" Cost="1" SpriteID="2" NeedTarget="1" Times="3">
             <Values>
-                <Value Type="Damage" Value="3"></Value>
+                <Value Type="伤害" Value="3"></Value>
+            </Values>
+        </Card>
+        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="1" SpriteID="3" NeedTarget="0" Times="1">
+            <Values>
+                <Value Type="二刀流" Value="1"></Value>
             </Values>
         </Card>
     </CardList>

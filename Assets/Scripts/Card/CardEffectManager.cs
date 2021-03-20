@@ -8,12 +8,14 @@ public class CardEffectManager : MonoBehaviour
 {
     public static CardEffectManager Instance;//单例
     public Enemy targetEnemy;//卡牌的
+    public int attackTimes;//体术的攻击次数
     private void Awake()
     {
         Instance = this;
     }
     public void UseThisCard(Card card)//触发卡牌效果
     {
+        
         if (Player.Instance.energy<card.cardData.cost||BattleManager.Instance.turnHasEnd)
         {
             return;
@@ -21,19 +23,22 @@ public class CardEffectManager : MonoBehaviour
         switch (card.cardData.cardID)//根据卡牌的ID触发效果
         {
             case "0001"://斩击
-                Attack(card);
+                TiShu(card,1);
                 break;
             case "0002"://格挡
-                Skill(card);
+                Defend(card,1);
                 break;
             case "0003"://现世斩
-                Attack(card);
+                TiShu(card,1);
+                break;
+            case "0004"://二刀的心得
                 break;
         }
     }
 
-    void Attack(Card card)//攻击卡的通用方法：卡牌对象;进行几次伤害
+    void TiShu(Card card,int times)//体术卡的通用方法
     {
+        
         if (card.cardData.needTarget)
         {
             if (targetEnemy==null)//如果需要目标但是目标敌人为空时使用失败
@@ -42,17 +47,46 @@ public class CardEffectManager : MonoBehaviour
             }
         }
         Player.Instance.PlayAttackAnim();//播放攻击动画
-        for (int i = 0; i < card.cardData.times; i++)//进行多次攻击
+
+        if (Player.Instance.DoubleBlade())//如果有二刀流的情况
         {
-            targetEnemy.TakeDamage(card.valueDic[Value.ValueType.Damage]);
+            for (int i = 0; i < card.cardData.times*2; i++)//进行多次攻击
+            {
+                targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]/2);
+            }
         }
+
+        else
+        {
+            for (int i = 0; i < card.cardData.times; i++) //进行多次攻击
+            {
+                targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+            }
+        }
+
         CardManager.Instance.UseCard();
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
 
     }
 
-    void Skill(Card card) //技能卡的通用方法
+    void Skill(Card card, int times) //技能卡的通用方法
+    {
+        if (card.cardData.needTarget)
+        {
+            if (targetEnemy == null)//如果需要目标但是目标敌人为空时使用失败
+            {
+                return;
+            }
+        }
+        
+
+        Player.Instance.PlayAttackAnim();//播放攻击动画
+        CardManager.Instance.UseCard();//使用卡牌
+        Player.Instance.energy -= card.cardData.cost;//消耗费用
+        CardManager.Instance.Discard(card);//弃牌
+    }
+    void Defend(Card card,int times) //防御卡的通用方法
     {
         if (card.cardData.needTarget)
         {
@@ -64,7 +98,7 @@ public class CardEffectManager : MonoBehaviour
         Player.Instance.PlayAttackAnim();//播放攻击动画
         for (int i = 0; i < card.cardData.times; i++)//获得护盾times次
         {
-            Player.Instance.GetShield(card.valueDic[Value.ValueType.Shield]);
+            Player.Instance.GetShield(card.valueDic[Value.ValueType.护甲]);
         }
         CardManager.Instance.UseCard();//使用卡牌
         Player.Instance.energy -= card.cardData.cost;//消耗费用

@@ -9,9 +9,12 @@ public class Card : MonoBehaviour
 {
     public enum CardType//卡牌类型
     {
-        Attack,
-        Skill,
-        Power
+        体术,//体术
+        弹幕,//弹幕
+        技能,//技能
+        法术,//法术
+        防御,//防御
+        符卡//符卡
     }
 
     #region 基本属性
@@ -111,10 +114,10 @@ public class Card : MonoBehaviour
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
         img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-        
-        foreach (var v in cardData.valueList)//初始化卡牌效果字典
+
+        foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
-            valueDic.Add(v.type,v.value);
+            valueDic.Add(v.type, v.value);
         }
 
         cardData.des = "";
@@ -125,21 +128,21 @@ public class Card : MonoBehaviour
 
     public void InitDes()//根据卡牌效果字典初始化描述文本
     {
-        if (valueDic.ContainsKey(Value.ValueType.Damage))//如果有DamageKEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.伤害))//如果有DamageKEY的情况
         {
-            cardData.des += "造成"+valueDic[Value.ValueType.Damage]+"点伤害";
+            cardData.des += "造成"+valueDic[Value.ValueType.伤害]+"点伤害";
             if (cardData.times>1)
             {
                 cardData.des += cardData.times + "次";
             }
         }
-        if (valueDic.ContainsKey(Value.ValueType.Shield))//如果有ShieldKEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.护甲))//如果有ShieldKEY的情况
         {
             if (cardData.des!=null)
             {
                 cardData.des += "\n";
             }
-            cardData.des += "获得" + valueDic[Value.ValueType.Shield] + "点护甲";
+            cardData.des += "获得" + valueDic[Value.ValueType.护甲] + "点护甲";
             if (cardData.times > 1)
             {
                 cardData.des += cardData.times + "次";

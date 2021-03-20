@@ -77,13 +77,13 @@ public class Enemy : MonoBehaviour
                 case ActionController.ActionType.Attack:
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Attack];
-                    actionValueText.text = "" + currentAction.valueDic[Value.ValueType.Damage];
+                    actionValueText.text = "" + currentAction.valueDic[Value.ValueType.伤害];
                     break;
                 case ActionController.ActionType.Defend:
 
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Defend];
-                    actionValueText.text = "" + currentAction.valueDic[Value.ValueType.Shield];
+                    actionValueText.text = "" + currentAction.valueDic[Value.ValueType.护甲];
                     break;
             }
             

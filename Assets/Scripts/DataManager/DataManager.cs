@@ -31,11 +31,23 @@ public class DataManager : MonoBehaviour
             data.cardID = cardAttributes["CardID"].InnerText;
             switch (cardAttributes["Type"].InnerText)
             {
-                case "攻击":
-                    data.type = Card.CardType.Attack;
+                case "体术":
+                    data.type = Card.CardType.体术;
+                    break;
+                case "弹幕":
+                    data.type = Card.CardType.弹幕;
+                    break;
+                case "防御":
+                    data.type = Card.CardType.防御;
                     break;
                 case "技能":
-                    data.type = Card.CardType.Skill;
+                    data.type = Card.CardType.技能;
+                    break;
+                case "法术":
+                    data.type = Card.CardType.法术;
+                    break;
+                case "符卡":
+                    data.type = Card.CardType.符卡;
                     break;
             }
 
@@ -60,11 +72,11 @@ public class DataManager : MonoBehaviour
                 var valueAttributes = valueNode.Attributes;
                 switch (valueAttributes["Type"].InnerText)
                 {
-                    case "Damage":
-                        newValue.type = Value.ValueType.Damage;
+                    case "伤害":
+                        newValue.type = Value.ValueType.伤害;
                         break;
-                    case "Shield":
-                        newValue.type = Value.ValueType.Shield;
+                    case "护甲":
+                        newValue.type = Value.ValueType.护甲;
                         break;
                 }
 

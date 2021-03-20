@@ -16,6 +16,14 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
+
+        foreach (var state in Player.Instance.stateList)
+        {
+            if (state.type==Value.ValueType.Ë«µ¶Á÷)
+            {
+                state.value -= 1;
+            }
+        }
         foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
         {
             enemy.shield = 0;
