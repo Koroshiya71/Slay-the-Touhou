@@ -28,5 +28,21 @@
                 <CanXin Type="回费" Time="0" Value="1"></CanXin>
             </CanXinList>
         </Card>
+        <Card CardID="0006" Type="弹幕" Name="剑气" Cost="0" SpriteID="5" NeedTarget="1" Times="1">
+            <Values>
+                <Value Type="伤害" Value="3"></Value>
+            </Values>
+        </Card>
+        <Card CardID="0007" Type="技能" Name="剑与弹幕" Cost="1" SpriteID="6" NeedTarget="0" Times="1">
+            <Values>
+                <Value Type="伤害" Value="5"></Value>
+            </Values>
+            <CanXinList>
+                <CanXin Type="护甲" Time="1" Value="4"></CanXin>
+            </CanXinList>
+            <ComboList>
+                <Combo Type="伤害" Combo="2" Value="3"></Combo>
+            </ComboList>
+        </Card>
     </CardList>
 </CardData>

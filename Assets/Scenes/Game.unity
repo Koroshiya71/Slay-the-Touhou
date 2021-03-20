@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dda0ff4d594d964aa1a6cb2f3e1b6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardDataPath: Assets/Data/CardData.xml
+  cardDataPath: /StreamingAssets/Data/CardData.xml
 --- !u!1 &80123157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,6 +3060,10 @@ MonoBehaviour:
   - 0004
   - 0005
   - 0005
+  - 0006
+  - 0006
+  - 0007
+  - 0007
   handCardList: []
   BeginPos: {fileID: 1842011544}
   spriteList:
@@ -3068,6 +3072,9 @@ MonoBehaviour:
   - {fileID: -9207974613074989830, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 7978944729772225970, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: -4842632001811595421, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: 3136674407341065451, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: -1152913956037955581, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: 4984821371399345000, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   cardDataList:
   - type: 0
     name: "\u65A9\u51FB"
@@ -3082,6 +3089,7 @@ MonoBehaviour:
     times: 1
     canXinList: []
     keepChangeInBattle: 0
+    comboList: []
   - type: 4
     name: "\u683C\u6321"
     cardID: 0002
@@ -3095,6 +3103,7 @@ MonoBehaviour:
     times: 1
     canXinList: []
     keepChangeInBattle: 0
+    comboList: []
   - type: 0
     name: "\u4EBA\u7B26\u300C\u73B0\u4E16\u65A9\u300D"
     cardID: 0003
@@ -3108,6 +3117,7 @@ MonoBehaviour:
     times: 2
     canXinList: []
     keepChangeInBattle: 0
+    comboList: []
   hasShow: 0
   discardNumText: {fileID: 731486778}
   drawCardNumText: {fileID: 675849005}
@@ -5209,6 +5219,7 @@ MonoBehaviour:
   turnHasEnd: 0
   hasCanXin: 0
   effectTimes: 0
+  cardCombo: 0
 --- !u!1 &1916872747
 GameObject:
   m_ObjectHideFlags: 0
@@ -6122,6 +6133,7 @@ MonoBehaviour:
     times: 0
     canXinList: []
     keepChangeInBattle: 0
+    comboList: []
   nameText: {fileID: 1625244115439003942}
   desText: {fileID: 1625244113745741481}
   costText: {fileID: 1625244115285819615}

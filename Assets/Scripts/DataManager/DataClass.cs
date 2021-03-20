@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 [Serializable]
@@ -26,7 +27,7 @@ public class CardData
     public int times;//卡牌效果触发的次数
     public List<CanXin> canXinList;//残心列表
     public bool keepChangeInBattle;//在战斗中保留对其的更改
-
+    public List<Combo> comboList;//连斩列表
     public static CardData Clone(CardData target)
     {
         CardData newData = new CardData();
@@ -41,8 +42,10 @@ public class CardData
         newData.times = target.times;
         newData.canXinList = target.canXinList;
         newData.keepChangeInBattle= target.keepChangeInBattle;
-        return newData;
+        newData.comboList = target.comboList;
 
+        return newData;
+        
     }
 }
 [Serializable]
@@ -69,8 +72,14 @@ public class Value
     
 }
 [Serializable]
-public class CanXin
+public class CanXin//残心
 {
     public Value CanXinValue;
     public bool IsTurnEnd;//是否是回合结束触发
+}
+[Serializable]
+public class Combo//连斩
+{
+    public Value comboValue;
+    public int comboNum;//连斩数
 }

@@ -11,7 +11,7 @@ public class BattleManager : MonoBehaviour
     public List<Action> actionsTurnStart=new List<Action>();//回合开始时触发的效果
     public bool hasCanXin;//上回合是否触发过残心
     public int effectTimes;//卡牌效果触发的次数
-
+    public int cardCombo;//本回合使用的卡牌数量
     public void TurnEnd()
     {
         if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
@@ -50,6 +50,7 @@ public class BattleManager : MonoBehaviour
         Invoke(nameof(TurnStart), 1);
         CardManager.Instance.DropAllCard();
         turnHasEnd = true;
+        cardCombo = 0;
     }
 
     public void TurnStart()

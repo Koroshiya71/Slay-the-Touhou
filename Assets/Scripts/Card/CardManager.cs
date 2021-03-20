@@ -31,8 +31,9 @@ public class CardManager : MonoBehaviour
     {
         showCard.SetActive(false);
         cardDataList = DataManager.Instance.LoadCardData();
+
     }
-    
+
     public void InitDrawCardList()
     {
         if (discardList.Count>0)//如果是在弃牌堆有卡牌的情况下初始化抽牌堆，则将所有弃牌堆的卡牌加入抽牌堆
@@ -76,7 +77,6 @@ public class CardManager : MonoBehaviour
     private void Update()
     {
         UpdateUIState();
-        Debug.Log(cardDataList[3].cost);
     }
 
     public void DrawCard() //从抽牌堆抽卡
@@ -164,7 +164,8 @@ public class CardManager : MonoBehaviour
                     HandCardAnimation(handCardList[handCardList.Count - 1], -27.5F + rotateAngel);
                 }
         }
-        
+
+        BattleManager.Instance.cardCombo++;
     }
 
     public void DropAllCard() //丢弃所有手牌
@@ -205,5 +206,6 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
     }
 }

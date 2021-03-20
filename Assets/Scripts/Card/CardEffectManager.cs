@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CardEffectManager : MonoBehaviour
@@ -18,28 +17,33 @@ public class CardEffectManager : MonoBehaviour
 
     public void UseThisCard(Card card) //触发卡牌效果
     {
-        switch (card.cardData.type) //根据卡牌的类型触发效果
+        switch (card.cardData.cardID)
         {
-            case Card.CardType.体术:
-                TiShu(card,1);
+            case "0001":
+                Attack(card,1);
                 break;
-            case Card.CardType.防御:
+            case "0002":
                 Defend(card, 1);
                 break;
-            case Card.CardType.技能:
-                Skill(card, 1);
+            case "0003":
+                Attack(card, 1);
                 break;
-            case Card.CardType.法术:
-                TiShu(card, 1);
+            case "0004":
+                Buff(card, 1);
                 break;
-            case Card.CardType.弹幕:
-                TiShu(card, 1);
+            case "0005":
+                Attack(card, 1);
                 break;
-
+            case "0006":
+                Attack(card, 1);
+                break;
+            case "0007":
+                AttackAll(card, 1);
+                break;
         }
     }
 
-    private void TiShu(Card card, int times) //体术卡的通用方法
+    private void AttackAll(Card card,int times)
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
@@ -51,13 +55,157 @@ public class CardEffectManager : MonoBehaviour
 
         if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
         {
-            for (var i = 0; i < card.cardData.times; i++) 
-                targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+            for (var i = 0; i < card.cardData.times; i++)
+                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                {
+                    enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+
+                }
         }
 
         for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
         {
-            if (card.cardData.canXinList.Count>0 && card.cardData.cost == Player.Instance.energy)//残心检测
+            if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
+            {
+                for (var t = 0; t < card.cardData.times; t++)
+                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                    {
+                        enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+
+                    }
+            }
+            //残心检测
+            if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy)
+            {
+                foreach (var canXin in card.cardData.canXinList)
+                {
+                    switch (canXin.CanXinValue.type)
+                    {
+                        case Value.ValueType.伤害:
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                    {
+                                        enemy.TakeDamage(canXin.CanXinValue.value);
+
+                                    }
+                                    BattleManager.Instance.hasCanXin = true;
+
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    BattleManager.Instance.hasCanXin = true;
+
+                                }));
+                            }
+                            break;
+                        case Value.ValueType.护甲:
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    Player.Instance.GetShield(canXin.CanXinValue.value);
+                                    BattleManager.Instance.hasCanXin = true;
+
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    Player.Instance.GetShield(canXin.CanXinValue.value);
+                                    BattleManager.Instance.hasCanXin = true;
+
+                                }));
+                            }
+                            break;
+                        case Value.ValueType.回费:
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    Player.Instance.GetEnergy(canXin.CanXinValue.value);
+                                    BattleManager.Instance.hasCanXin = true;
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    Player.Instance.GetEnergy(canXin.CanXinValue.value);
+                                    BattleManager.Instance.hasCanXin = true;
+
+
+                                }));
+                            }
+
+                            break;
+                    }
+
+                }
+            }
+            //连斩检测
+            if (card.cardData.comboList.Count>0)
+            {
+                foreach (var combo in card.cardData.comboList)
+                {
+                    if (BattleManager.Instance.cardCombo>=combo.comboNum)
+                    {
+                        switch (combo.comboValue.type)
+                        {
+                            case Value.ValueType.伤害:
+                                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                {
+                                    enemy.TakeDamage(combo.comboValue.value);
+                                }
+                                break;
+                            case Value.ValueType.护甲:
+                                Player.Instance.GetShield(combo.comboValue.value);
+                                break;
+                            case Value.ValueType.回费:
+                                Player.Instance.GetEnergy(combo.comboValue.value);
+
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        CardManager.Instance.UseCard();
+        Player.Instance.energy -= card.cardData.cost;
+        CardManager.Instance.Discard(card);
+    }
+    private void Attack(Card card, int times) //攻击的通用方法
+    {
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+            return;
+        if (card.cardData.needTarget)
+            if (targetEnemy == null) //如果需要目标但是目标敌人为空时使用失败
+                return;
+        Player.Instance.PlayAttackAnim(); //播放攻击动画
+        var time = Player.Instance.DoubleBlade() ? 2 : 1;
+
+        
+
+        for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
+        {
+            if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
+            {
+                for (var t = 0; t< card.cardData.times; t++)
+                    targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+            }
+            //残心检测
+            if (card.cardData.canXinList.Count>0 && card.cardData.cost == Player.Instance.energy)
             {
                 foreach (var canXin in card.cardData.canXinList)
                 {
@@ -131,7 +279,29 @@ public class CardEffectManager : MonoBehaviour
 
                 }
             }
+            //连斩检测
+            if (card.cardData.comboList.Count > 0)
+            {
+                foreach (var combo in card.cardData.comboList)
+                {
+                    if (BattleManager.Instance.cardCombo >= combo.comboNum)
+                    {
+                        switch (combo.comboValue.type)
+                        {
+                            case Value.ValueType.伤害:
+                                targetEnemy.TakeDamage(combo.comboValue.value);
+                                break;
+                            case Value.ValueType.护甲:
+                                Player.Instance.GetShield(combo.comboValue.value);
+                                break;
+                            case Value.ValueType.回费:
+                                Player.Instance.GetEnergy(combo.comboValue.value);
 
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         CardManager.Instance.UseCard();
@@ -139,7 +309,7 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.Discard(card);
     }
 
-    private void Skill(Card card, int times) //技能卡的通用方法
+    private void Buff(Card card, int times) //状态卡的通用方法
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
