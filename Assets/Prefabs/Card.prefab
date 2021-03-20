@@ -364,6 +364,9 @@ MonoBehaviour:
     valueList: []
     spriteID: 0
     needTarget: 0
+    times: 0
+    canXinList: []
+    keepChangeInBattle: 0
   nameText: {fileID: 7144945437419215281}
   desText: {fileID: 7144945439148521022}
   costText: {fileID: 7144945437571903560}
@@ -674,7 +677,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5601339cce332474799102a8a4f7a03d, type: 3}
-    m_FontSize: 120
+    m_FontSize: 90
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0

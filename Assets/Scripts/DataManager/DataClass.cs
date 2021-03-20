@@ -25,6 +25,25 @@ public class CardData
     public bool needTarget;//是否需要目标
     public int times;//卡牌效果触发的次数
     public List<CanXin> canXinList;//残心列表
+    public bool keepChangeInBattle;//在战斗中保留对其的更改
+
+    public static CardData Clone(CardData target)
+    {
+        CardData newData = new CardData();
+        newData.type = target.type;
+        newData.name = target.name;
+        newData.cardID = target.cardID;
+        newData.cost = target.cost;
+        newData.des = target.des;
+        newData.valueList = target.valueList;
+        newData.spriteID = target.spriteID;
+        newData.needTarget = target.needTarget;
+        newData.times = target.times;
+        newData.canXinList = target.canXinList;
+        newData.keepChangeInBattle= target.keepChangeInBattle;
+        return newData;
+
+    }
 }
 [Serializable]
 public class ActionData

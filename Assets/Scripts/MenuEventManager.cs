@@ -27,7 +27,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         {
             showCardList.Add(card);//将所有预制卡牌加入管理列表
         }
-        
+
     }
 
     public void ExitDisplayButtonDown() //取消预览卡牌按钮的回调事件

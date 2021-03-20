@@ -109,18 +109,21 @@ public class Card : MonoBehaviour
 
     public void InitCard(CardData data)//根据CardData初始化卡牌
     {
+        cardData = CardData.Clone(data);
         valueDic = new Dictionary<Value.ValueType, int>();
-        cardData = data;
+        
+        cardData.keepChangeInBattle = false;
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
         img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-        
+
         foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
             valueDic.Add(v.type, v.value);
         }
 
         cardData.des = "";
+
         InitDes();//初始化文本描述
         desText.text = cardData.des;
 
@@ -128,20 +131,27 @@ public class Card : MonoBehaviour
 
     public void UpdateCardState() //更新卡牌状态
     {
-        switch (this.cardData.cardID)
+        switch (cardData.cardID)
         {
             case "0004"://二刀的心得
                 if (BattleManager.Instance.hasCanXin)
                 {
                     cardData.cost -= 1;
                     InitCard(cardData);
+                    Debug.Log(CardManager.Instance.cardDataList[3].cost);
                 }
                 break;
         }
     }
     public void InitDes()//根据卡牌效果字典初始化描述文本
     {
-        if (valueDic.ContainsKey(Value.ValueType.伤害))//如果有伤害KEY的情况
+        if (cardData.cardID=="0004")
+        {
+            cardData.des = "获得一层二刀的心得，如果上回合触发过残心，费用-1";
+            return;
+        }
+        //如果有伤害KEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.伤害))
         {
             cardData.des += "造成"+valueDic[Value.ValueType.伤害]+"点伤害";
             if (cardData.times>1)
@@ -149,9 +159,10 @@ public class Card : MonoBehaviour
                 cardData.des += cardData.times + "次";
             }
         }
-        if (valueDic.ContainsKey(Value.ValueType.护甲))//如果有护甲KEY的情况
+        //如果有护甲KEY的情况
+        if (valueDic.ContainsKey(Value.ValueType.护甲))
         {
-            if (cardData.des!=null)
+            if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
@@ -161,13 +172,48 @@ public class Card : MonoBehaviour
                 cardData.des += cardData.times + "次";
             }
         }
-        if (valueDic.ContainsKey(Value.ValueType.二刀流))//如果有二刀流Key的情况下
+        //如果有二刀流Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.二刀流))
         {
-            if (cardData.des != null)
+            if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
             cardData.des += "本回合获得二刀流状态";
+        }
+        //如果有残心的情况下
+        if (cardData.canXinList.Count>0)
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+
+            cardData.des += "残心：";
+            foreach (var canXin in cardData.canXinList)
+            {
+                if (!canXin.IsTurnEnd&& cardData.canXinList.IndexOf(canXin) == 0)
+                {
+                    cardData.des += "在下个回合开始时,";
+                }
+                if (cardData.canXinList.IndexOf(canXin) > 0)
+                {
+                    cardData.des += ",";
+                }
+                switch (canXin.CanXinValue.type)
+                {
+                    case Value.ValueType.伤害:
+                        cardData.des += "造成"+canXin.CanXinValue.value+"点伤害";
+                        break;
+                    case Value.ValueType.护甲:
+                        cardData.des += "获得" + canXin.CanXinValue.value + "点护甲";
+                        break;
+                    case Value.ValueType.回费:
+                        cardData.des += "获得" + canXin.CanXinValue.value + "点能量";
+                        break;
+                }
+            }
+            
         }
     }
     private void Start()

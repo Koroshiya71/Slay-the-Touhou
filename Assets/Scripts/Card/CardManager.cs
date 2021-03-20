@@ -56,13 +56,9 @@ public class CardManager : MonoBehaviour
                         drawCardList.Add(cardData);
                         break;
                     }
-
                 }
-                
-
             }
         }
-
         drawCardList=RandomSortList(drawCardList);//随机打乱抽牌堆顺序
 
     }
@@ -80,6 +76,7 @@ public class CardManager : MonoBehaviour
     private void Update()
     {
         UpdateUIState();
+        Debug.Log(cardDataList[3].cost);
     }
 
     public void DrawCard() //从抽牌堆抽卡
@@ -192,6 +189,16 @@ public class CardManager : MonoBehaviour
 
     public void Discard(Card card) //弃牌
     {
+        if (!card.cardData.keepChangeInBattle)//如果对卡牌的修改不是可持续的
+        {
+            foreach (var data in cardDataList)
+            {
+                if (card.cardData.cardID==data.cardID)
+                {
+                    card.cardData = data;
+                }
+            }
+        }
         discardList.Add(card.cardData);
 
     }

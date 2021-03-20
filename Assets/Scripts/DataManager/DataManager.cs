@@ -117,7 +117,6 @@ public class DataManager : MonoBehaviour
 
                 }
             }
-            Debug.Log(data.cardID);
             cardDataList.Add(data);
         }
         return cardDataList;

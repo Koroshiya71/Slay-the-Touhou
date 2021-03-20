@@ -10,7 +10,7 @@ public class BattleManager : MonoBehaviour
     public List<Action> actionsEndTurn=new List<Action>();//回合结束时触发的效果
     public List<Action> actionsTurnStart=new List<Action>();//回合开始时触发的效果
     public bool hasCanXin;//上回合是否触发过残心
-
+    public int effectTimes;//卡牌效果触发的次数
 
     public void TurnEnd()
     {
