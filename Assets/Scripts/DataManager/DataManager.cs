@@ -97,6 +97,15 @@ public class DataManager : MonoBehaviour
                     case "流转":
                         newValue.type = Value.ValueType.流转;
                         break;
+                    case "额外回合":
+                        newValue.type = Value.ValueType.额外回合;
+                        break;
+                    case "无何有":
+                        newValue.type = Value.ValueType.无何有;
+                        break;
+                    case "体术限制":
+                        newValue.type = Value.ValueType.体术限制;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

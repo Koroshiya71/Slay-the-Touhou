@@ -17,6 +17,11 @@ public class CardEffectManager : MonoBehaviour
 
     public void UseThisCard(Card card) //触发卡牌效果
     {
+        //如果有体术限制状态，而该卡不是体术，则跳过检测
+        if (Player.Instance.CheckState(Value.ValueType.体术限制)&&card.cardData.type!=Card.CardType.体术)
+        {
+            return;
+        }
         switch (card.cardData.cardID)
         {
             case "0001"://斩击
@@ -43,6 +48,9 @@ public class CardEffectManager : MonoBehaviour
             case "0008"://紫电一闪
                 Buff(card, 1);
                 break;
+            case "0009"://两百由旬之一闪
+                Buff(card, 1);
+                break;
         }
     }
 
@@ -51,7 +59,7 @@ public class CardEffectManager : MonoBehaviour
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
-        var time = Player.Instance.DoubleBlade() ? 2 : 1;
+        var time = Player.Instance.CheckState(Value.ValueType.二刀流) ? 2 : 1;
 
         for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
         {
@@ -65,14 +73,15 @@ public class CardEffectManager : MonoBehaviour
                     }
             }
             //残心检测
-            if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy)
+            if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy)||card.canXin)
             {
+                card.canXin = true;
                 foreach (var canXin in card.cardData.canXinList)
                 {
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                 foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                                 {
@@ -107,7 +116,7 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.护甲:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                 Player.Instance.GetShield(canXin.CanXinValue.value);
 
@@ -134,7 +143,7 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.回费:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                 Player.Instance.GetEnergy(canXin.CanXinValue.value);
 
@@ -205,7 +214,7 @@ public class CardEffectManager : MonoBehaviour
         if (targetEnemy == null) //如果目标敌人为空则跳过
                 return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
-        var time = Player.Instance.DoubleBlade() ? 2 : 1;
+        var time = Player.Instance.CheckState(Value.ValueType.二刀流) ? 2 : 1;
 
         
 
@@ -217,14 +226,16 @@ public class CardEffectManager : MonoBehaviour
                     targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
             }
             //残心检测
-            if (card.cardData.canXinList.Count>0 && card.cardData.cost == Player.Instance.energy)
+            if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy) || card.canXin)
             {
+                card.canXin = true;
+                Debug.Log(card.cardData.name);
                 foreach (var canXin in card.cardData.canXinList)
                 {
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                     targetEnemy.TakeDamage(canXin.CanXinValue.value);
                                     break;
@@ -250,7 +261,7 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.护甲:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                 Player.Instance.GetShield(canXin.CanXinValue.value);
 
@@ -277,7 +288,7 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.回费:
-                            if (Player.Instance.LiuZhuan())
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
                                 Player.Instance.GetEnergy(canXin.CanXinValue.value);
                                 break;
@@ -355,6 +366,16 @@ public class CardEffectManager : MonoBehaviour
                     break;
                 case Value.ValueType.流转:
                     StateManager.AddStateToPlayer(newValue);
+                    break;
+                case Value.ValueType.额外回合:
+                    StateManager.AddStateToPlayer(newValue);
+                    if (card.valueDic.ContainsKey(Value.ValueType.体术限制))
+                    {
+                        BattleManager.Instance.actionsTurnStart.Add((() =>
+                        {
+                            StateManager.AddStateToPlayer(new Value(){type = Value.ValueType.体术限制,value=card.valueDic[Value.ValueType.体术限制]});
+                        }));
+                    }
                     break;
             }
         }

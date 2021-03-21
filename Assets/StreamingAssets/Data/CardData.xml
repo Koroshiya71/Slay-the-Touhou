@@ -47,6 +47,14 @@
         <Card CardID="0008" Type="法术" Name="紫电一闪" Cost="3" SpriteID="7" TargetType="自身" Times="1">
             <Values>
                 <Value Type="流转" Value="1"></Value>
+                <Value Type="无何有" Value="1"></Value>
+            </Values>
+        </Card>
+        <Card CardID="0009" Type="符卡" Name="狱界剑「二百由旬之一闪」" Cost="2" SpriteID="8" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="额外回合" Value="1"></Value>
+                <Value Type="体术限制" Value="1"></Value>
+                <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
     </CardList>

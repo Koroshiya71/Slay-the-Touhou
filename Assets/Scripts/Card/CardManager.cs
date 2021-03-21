@@ -149,7 +149,7 @@ public class CardManager : MonoBehaviour
     public void UseCard()
     {
         int index =handCardList.IndexOf(selectedCard.gameObject);
-
+        handCardList[index].GetComponent<Card>().hasUsed = true;
         if (handCardList[index]!=null)
         {
             Destroy(handCardList[index]);
@@ -164,7 +164,7 @@ public class CardManager : MonoBehaviour
                     HandCardAnimation(handCardList[handCardList.Count - 1], -27.5F + rotateAngel);
                 }
         }
-
+        
         BattleManager.Instance.cardCombo++;
     }
 
@@ -190,6 +190,10 @@ public class CardManager : MonoBehaviour
 
     public void Discard(Card card) //弃牌
     {
+        if (card.valueDic.ContainsKey(Value.ValueType.无何有)&&card.hasUsed)
+        {
+            return;
+        }
         if (!card.cardData.keepChangeInBattle)//如果对卡牌的修改不是可持续的
         {
             foreach (var data in cardDataList)

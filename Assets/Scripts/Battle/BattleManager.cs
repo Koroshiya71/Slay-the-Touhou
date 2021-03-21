@@ -22,15 +22,7 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
-
-        foreach (var state in Player.Instance.stateList)
-        {
-            if (state.type==Value.ValueType.二刀流)
-            {
-                state.value -= 1;
-            }
-        }
-        StateManager.CleanPlayerState();//清除Player身上的无效状态
+        
         hasCanXin = false;
 
         if (actionsEndTurn != null)
@@ -42,6 +34,12 @@ public class BattleManager : MonoBehaviour
 
             actionsEndTurn = new List<Action>();
         }
+        if (Player.Instance.CheckState(Value.ValueType.额外回合))//如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
+        {
+            TurnStart();
+            return;
+        }
+       
         foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
         {
             enemy.shield = 0;
@@ -57,7 +55,8 @@ public class BattleManager : MonoBehaviour
 
     public void TurnStart()
     {
-        
+        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
+
         turnHasEnd = false;
         Player.Instance.InitEnergy();
         Player.Instance.shield = 0;

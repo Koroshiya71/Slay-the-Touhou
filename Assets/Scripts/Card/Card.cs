@@ -20,7 +20,10 @@ public class Card : MonoBehaviour
     #region 基本属性
     //展示用卡牌的游戏物体
     private GameObject showGo;
-
+    //是否已经满足残心条件
+    public bool canXin;
+    //是否已经使用过了
+    public bool hasUsed;
     //是否是用于展示的卡牌
     public bool isShowCard;
     //卡牌数据
@@ -111,7 +114,8 @@ public class Card : MonoBehaviour
     {
         cardData = CardData.Clone(data);
         valueDic = new Dictionary<Value.ValueType, int>();
-        
+        canXin = false;
+        hasUsed = false;
         cardData.keepChangeInBattle = false;
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
@@ -150,8 +154,11 @@ public class Card : MonoBehaviour
                 cardData.des = "获得一层二刀的心得，如果上回合触发过残心，费用-1";
                 return;
             case "0008"://紫电一闪
-                cardData.des = "本场对战中，你获得流转状态（你的残心效果改为立即触发，而不是回合结束时触发）";
+                cardData.des = "本场对战中，你获得流转状态（你的残心效果改为立即触发，而不是回合结束时触发）\n无何有";
                 return;
+            case "0009"://狱界剑「二百由旬之一闪」
+                cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。\n无何有";
+                break;
         }
         
         //如果有伤害KEY的情况

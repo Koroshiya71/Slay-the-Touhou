@@ -71,7 +71,11 @@ public class Value
         护甲,
         二刀流,
         回费,
-        流转
+        流转,
+        额外回合,
+        额外回合with体术限制,
+        体术限制,
+        无何有
     }
     public ValueType type;
     public int value;

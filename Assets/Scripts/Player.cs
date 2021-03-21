@@ -54,28 +54,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool LiuZhuan() //是否处于流转状态
+    public bool CheckState(Value.ValueType stateType) //状态检测
     {
         foreach (var state in stateList)
         {
-            if (state.type == Value.ValueType.流转 && state.value > 0)
+            if (state.type==stateType&&state.value>0)
             {
                 return true;
             }
         }
+
         return false;
     }
-    public bool DoubleBlade() //是否处于二刀流状态
-    {
-        foreach (var state in stateList)
-        {
-            if (state.type==Value.ValueType.二刀流&&state.value>0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+
     void UpdateUIState()//更新UI组件状态
     {
         if (shield>0)
@@ -88,7 +79,7 @@ public class Player : MonoBehaviour
             shieldImg.SetActive(false);
         }
 
-        if (DoubleBlade())
+        if (CheckState(Value.ValueType.二刀流))
         {
             doubleBladeText.SetActive(true);
         }

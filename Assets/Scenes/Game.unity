@@ -3064,6 +3064,7 @@ MonoBehaviour:
   - 0006
   - 0007
   - 0007
+  - 0009
   handCardList: []
   BeginPos: {fileID: 1842011544}
   spriteList:
@@ -3075,6 +3076,7 @@ MonoBehaviour:
   - {fileID: 3136674407341065451, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: -1152913956037955581, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 4984821371399345000, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: 8499071943211013986, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   cardDataList:
   - type: 0
     name: "\u65A9\u51FB"
@@ -6120,6 +6122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canXin: 0
+  hasUsed: 0
   isShowCard: 1
   cardData:
     type: 0
