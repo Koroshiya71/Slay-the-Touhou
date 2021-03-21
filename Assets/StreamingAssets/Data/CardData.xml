@@ -44,5 +44,10 @@
                 <Combo Type="伤害" Combo="2" Value="3"></Combo>
             </ComboList>
         </Card>
+        <Card CardID="0008" Type="法术" Name="紫电一闪" Cost="3" SpriteID="7" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="流转" Value="1"></Value>
+            </Values>
+        </Card>
     </CardList>
 </CardData>

@@ -40,6 +40,9 @@ public class CardEffectManager : MonoBehaviour
             case "0007"://剑与弹幕
                 AttackAll(card, 1);
                 break;
+            case "0008"://紫电一闪
+                Buff(card, 1);
+                break;
         }
     }
 
@@ -69,8 +72,18 @@ public class CardEffectManager : MonoBehaviour
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                {
+                                    enemy.TakeDamage(canXin.CanXinValue.value);
+
+                                }
+                                break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
+                                
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
@@ -94,6 +107,12 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.护甲:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                Player.Instance.GetShield(canXin.CanXinValue.value);
+
+                                break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
@@ -115,6 +134,13 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.回费:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                Player.Instance.GetEnergy(canXin.CanXinValue.value);
+
+
+                                break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
@@ -198,6 +224,11 @@ public class CardEffectManager : MonoBehaviour
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
@@ -219,6 +250,12 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.护甲:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                Player.Instance.GetShield(canXin.CanXinValue.value);
+
+                                break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
@@ -240,6 +277,11 @@ public class CardEffectManager : MonoBehaviour
                             }
                             break;
                         case Value.ValueType.回费:
+                            if (Player.Instance.LiuZhuan())
+                            {
+                                Player.Instance.GetEnergy(canXin.CanXinValue.value);
+                                break;
+                            }
                             if (canXin.IsTurnEnd)
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
@@ -309,6 +351,9 @@ public class CardEffectManager : MonoBehaviour
             switch (value.Key)
             {
                 case Value.ValueType.二刀流:
+                    StateManager.AddStateToPlayer(newValue);
+                    break;
+                case Value.ValueType.流转:
                     StateManager.AddStateToPlayer(newValue);
                     break;
             }

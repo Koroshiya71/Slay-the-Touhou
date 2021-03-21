@@ -91,6 +91,12 @@ public class DataManager : MonoBehaviour
                     case "二刀流":
                         newValue.type = Value.ValueType.二刀流;
                         break;
+                    case "回费":
+                        newValue.type = Value.ValueType.回费;
+                        break;
+                    case "流转":
+                        newValue.type = Value.ValueType.流转;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

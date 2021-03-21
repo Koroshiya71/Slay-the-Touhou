@@ -3049,7 +3049,7 @@ MonoBehaviour:
   discardList: []
   drawCardList: []
   cardDeskList:
-  - 0001
+  - 0008
   - 0001
   - 0001
   - 0002
@@ -3085,7 +3085,7 @@ MonoBehaviour:
     - type: 0
       value: 6
     spriteID: 0
-    needTarget: 1
+    targetType: 0
     times: 1
     canXinList: []
     keepChangeInBattle: 0
@@ -3099,7 +3099,7 @@ MonoBehaviour:
     - type: 1
       value: 6
     spriteID: 1
-    needTarget: 0
+    targetType: 0
     times: 1
     canXinList: []
     keepChangeInBattle: 0
@@ -3113,7 +3113,7 @@ MonoBehaviour:
     - type: 0
       value: 4
     spriteID: 2
-    needTarget: 1
+    targetType: 0
     times: 2
     canXinList: []
     keepChangeInBattle: 0
@@ -6129,7 +6129,7 @@ MonoBehaviour:
     des: 
     valueList: []
     spriteID: 0
-    needTarget: 0
+    targetType: 0
     times: 0
     canXinList: []
     keepChangeInBattle: 0

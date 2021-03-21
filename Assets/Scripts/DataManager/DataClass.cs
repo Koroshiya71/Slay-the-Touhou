@@ -70,7 +70,8 @@ public class Value
         伤害,
         护甲,
         二刀流,
-        回费
+        回费,
+        流转
     }
     public ValueType type;
     public int value;

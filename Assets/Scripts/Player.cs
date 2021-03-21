@@ -54,6 +54,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool LiuZhuan() //是否处于流转状态
+    {
+        foreach (var state in stateList)
+        {
+            if (state.type == Value.ValueType.流转 && state.value > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public bool DoubleBlade() //是否处于二刀流状态
     {
         foreach (var state in stateList)

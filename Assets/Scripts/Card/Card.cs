@@ -144,11 +144,16 @@ public class Card : MonoBehaviour
     }
     public void InitDes()//根据卡牌效果字典初始化描述文本
     {
-        if (cardData.cardID=="0004")
+        switch (cardData.cardID)
         {
-            cardData.des = "获得一层二刀的心得，如果上回合触发过残心，费用-1";
-            return;
+            case "0004"://二刀的心得
+                cardData.des = "获得一层二刀的心得，如果上回合触发过残心，费用-1";
+                return;
+            case "0008"://紫电一闪
+                cardData.des = "本场对战中，你获得流转状态（你的残心效果改为立即触发，而不是回合结束时触发）";
+                return;
         }
+        
         //如果有伤害KEY的情况
         if (valueDic.ContainsKey(Value.ValueType.伤害))
         {
