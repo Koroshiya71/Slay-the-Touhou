@@ -214,6 +214,31 @@ public class Card : MonoBehaviour
             }
             
         }
+        //如果有连斩的情况下
+        if (cardData.comboList.Count > 0)
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+
+            foreach (var combo in cardData.comboList)
+            {
+                cardData.des += "连斩"+combo.comboNum+"：";
+                switch (combo.comboValue.type)
+                {
+                    case Value.ValueType.伤害:
+                        cardData.des += "造成" + combo.comboValue.value + "点伤害";
+                        break;
+                    case Value.ValueType.护甲:
+                        cardData.des += "获得" + combo.comboValue.value + "点护甲";
+                        break;
+                    case Value.ValueType.回费:
+                        cardData.des += "获得" + combo.comboValue.value + "点能量";
+                        break;
+                }
+            }
+        }
     }
     private void Start()
     {

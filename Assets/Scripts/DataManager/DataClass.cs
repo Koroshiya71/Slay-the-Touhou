@@ -16,6 +16,12 @@ public class EnemyData
 [Serializable]
 public class CardData
 {
+    public enum TargetType//目标类型
+    {
+        单体敌人,
+        自身,
+        全部敌人
+    }
     public Card.CardType type;//卡牌类型
     public string name;//卡牌名称
     public string cardID;//卡牌ID
@@ -23,7 +29,7 @@ public class CardData
     public string des;//卡牌描述
     public List<Value> valueList;//效果列表
     public int spriteID;//卡图ID
-    public bool needTarget;//是否需要目标
+    public TargetType targetType;//目标类型
     public int times;//卡牌效果触发的次数
     public List<CanXin> canXinList;//残心列表
     public bool keepChangeInBattle;//在战斗中保留对其的更改
@@ -38,7 +44,7 @@ public class CardData
         newData.des = target.des;
         newData.valueList = target.valueList;
         newData.spriteID = target.spriteID;
-        newData.needTarget = target.needTarget;
+        newData.targetType = target.targetType;
         newData.times = target.times;
         newData.canXinList = target.canXinList;
         newData.keepChangeInBattle= target.keepChangeInBattle;

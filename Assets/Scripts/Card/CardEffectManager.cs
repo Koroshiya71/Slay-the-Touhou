@@ -19,49 +19,36 @@ public class CardEffectManager : MonoBehaviour
     {
         switch (card.cardData.cardID)
         {
-            case "0001":
-                Attack(card,1);
+            case "0001"://斩击
+                SingleAttack(card,1);
                 break;
-            case "0002":
+            case "0002"://防御
                 Defend(card, 1);
                 break;
-            case "0003":
-                Attack(card, 1);
+            case "0003"://三连斩
+                SingleAttack(card, 1);
                 break;
-            case "0004":
+            case "0004"://二刀
                 Buff(card, 1);
                 break;
-            case "0005":
-                Attack(card, 1);
+            case "0005"://残月斩
+                SingleAttack(card, 1);
                 break;
-            case "0006":
-                Attack(card, 1);
+            case "0006"://剑气
+                SingleAttack(card, 1);
                 break;
-            case "0007":
+            case "0007"://剑与弹幕
                 AttackAll(card, 1);
                 break;
         }
     }
 
-    private void AttackAll(Card card,int times)
+    private void AttackAll(Card card,int times)//群体攻击的通用方法
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
-        if (card.cardData.needTarget)
-            if (targetEnemy == null) //如果需要目标但是目标敌人为空时使用失败
-                return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
         var time = Player.Instance.DoubleBlade() ? 2 : 1;
-
-        if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
-        {
-            for (var i = 0; i < card.cardData.times; i++)
-                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
-                {
-                    enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
-
-                }
-        }
 
         for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
         {
@@ -185,12 +172,11 @@ public class CardEffectManager : MonoBehaviour
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
     }
-    private void Attack(Card card, int times) //攻击的通用方法
+    private void SingleAttack(Card card, int times) //单体攻击的通用方法
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
-        if (card.cardData.needTarget)
-            if (targetEnemy == null) //如果需要目标但是目标敌人为空时使用失败
+        if (targetEnemy == null) //如果目标敌人为空则跳过
                 return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
         var time = Player.Instance.DoubleBlade() ? 2 : 1;
@@ -313,9 +299,7 @@ public class CardEffectManager : MonoBehaviour
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
-        if (card.cardData.needTarget)
-            if (targetEnemy == null) //如果需要目标但是目标敌人为空时使用失败
-                return;
+
         
         foreach (var value in card.valueDic)
         {
@@ -340,9 +324,7 @@ public class CardEffectManager : MonoBehaviour
     {
         if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
-        if (card.cardData.needTarget)
-            if (targetEnemy == null) //如果需要目标但是目标敌人为空时使用失败
-                return;
+        
         Player.Instance.PlayAttackAnim(); //播放攻击动画
         for (var i = 0; i < card.cardData.times; i++) //获得护盾times次
             Player.Instance.GetShield(card.valueDic[Value.ValueType.护甲]);

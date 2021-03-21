@@ -31,12 +31,8 @@ public class BattleManager : MonoBehaviour
             }
         }
         StateManager.CleanPlayerState();//清除Player身上的无效状态
-        foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
-        {
-            enemy.shield = 0;
-            enemy.TakeAction();
-        }
         hasCanXin = false;
+
         if (actionsEndTurn != null)
         {
             foreach (var action in actionsEndTurn)
@@ -46,6 +42,12 @@ public class BattleManager : MonoBehaviour
 
             actionsEndTurn = new List<Action>();
         }
+        foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+        {
+            enemy.shield = 0;
+            enemy.TakeAction();
+        }
+        
 
         Invoke(nameof(TurnStart), 1);
         CardManager.Instance.DropAllCard();

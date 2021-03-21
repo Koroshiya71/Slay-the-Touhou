@@ -1,26 +1,26 @@
 <CardData>
     <CardList>
-        <Card CardID="0001" Type="体术" Name="斩击" Cost="1" SpriteID="0" NeedTarget="1" Times="1">
+        <Card CardID="0001" Type="体术" Name="斩击" Cost="1" SpriteID="0" TargetType="单体敌人" Times="1">
             <Values>
                 <Value Type="伤害" Value="6"></Value>
             </Values>
         </Card>
-        <Card CardID="0002" Type="防御" Name="格挡" Cost="1" SpriteID="1" NeedTarget="0" Times="1">
+        <Card CardID="0002" Type="防御" Name="格挡" Cost="1" SpriteID="1" TargetType="自身" Times="1">
             <Values>
                 <Value Type="护甲" Value="5"></Value>
             </Values>
         </Card>
-        <Card CardID="0003" Type="体术" Name="三连斩" Cost="1" SpriteID="2" NeedTarget="1" Times="3">
+        <Card CardID="0003" Type="体术" Name="三连斩" Cost="1" SpriteID="2" TargetType="单体敌人" Times="3">
             <Values>
                 <Value Type="伤害" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="2" SpriteID="3" NeedTarget="0" Times="1">
+        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="2" SpriteID="3" TargetType="自身" Times="1">
             <Values>
                 <Value Type="二刀流" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0005" Type="体术" Name="残月斩" Cost="1" SpriteID="4" NeedTarget="1" Times="1">
+        <Card CardID="0005" Type="体术" Name="残月斩" Cost="1" SpriteID="4" TargetType="单体敌人" Times="1">
             <Values>
                 <Value Type="伤害" Value="8"></Value>
             </Values>
@@ -28,12 +28,12 @@
                 <CanXin Type="回费" Time="0" Value="1"></CanXin>
             </CanXinList>
         </Card>
-        <Card CardID="0006" Type="弹幕" Name="剑气" Cost="0" SpriteID="5" NeedTarget="1" Times="1">
+        <Card CardID="0006" Type="弹幕" Name="剑气" Cost="0" SpriteID="5" TargetType="单体敌人" Times="1">
             <Values>
                 <Value Type="伤害" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0007" Type="技能" Name="剑与弹幕" Cost="1" SpriteID="6" NeedTarget="0" Times="1">
+        <Card CardID="0007" Type="技能" Name="剑与弹幕" Cost="1" SpriteID="6" TargetType="全部敌人" Times="1">
             <Values>
                 <Value Type="伤害" Value="5"></Value>
             </Values>

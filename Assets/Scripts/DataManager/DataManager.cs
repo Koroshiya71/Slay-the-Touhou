@@ -58,13 +58,19 @@ public class DataManager : MonoBehaviour
             data.name = cardAttributes["Name"].InnerText;
             data.cost = int.Parse(cardAttributes["Cost"].InnerText);
             data.spriteID = int.Parse(cardAttributes["SpriteID"].InnerText);
-            if (cardAttributes["NeedTarget"].InnerText=="1")
+            switch (cardAttributes["TargetType"].InnerText)
             {
-                data.needTarget = true;
-            }
-            else
-            {
-                data.needTarget = false;
+                case "单体敌人":
+                    data.targetType = CardData.TargetType.单体敌人;
+                    break;
+                case "自身":
+                    data.targetType = CardData.TargetType.自身;
+
+                    break;
+                case "全部敌人":
+                    data.targetType = CardData.TargetType.全部敌人;
+
+                    break;
             }
 
             data.times = Int32.Parse(cardAttributes["Times"].InnerText);
