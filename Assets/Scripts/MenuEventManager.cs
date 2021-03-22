@@ -8,8 +8,8 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public List<Card> showCardList;//用于显示的卡牌列表
     public GameObject cardDisplayCanvas;//用来预览牌堆情况的画布
     public RectTransform displayContent;//滑动菜单的内容范围
-
     public bool isPreviewing;//是否正在显示卡牌
+
     private void Awake()
     {
         Instance = this;
@@ -30,6 +30,22 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
     }
 
+    
+    public void ChooseCardFromDesk()//从手牌外的范围进行卡牌选择
+    {
+        CardManager.Instance.isChoosing = true;
+        cardDisplayCanvas.SetActive(true);
+        List<CardData> optionalList= CardManager.Instance.optionalCardList;
+        for (int i = 0; i < optionalList.Count; i++)
+        {
+            showCardList[i].gameObject.SetActive(true);//将等同于抽牌堆数量的展示卡牌初始化并显示出来
+            showCardList[i].InitCard(optionalList[i]);
+        }
+        for (int i = optionalList.Count; i < showCardList.Count; i++)//将其他卡牌隐藏显示
+        {
+            showCardList[i].gameObject.SetActive(false);
+        }
+    }
     public void ExitDisplayButtonDown() //取消预览卡牌按钮的回调事件
     {
         isPreviewing = false;

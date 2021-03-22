@@ -57,5 +57,10 @@
                 <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
+        <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="抽牌" Value="3"></Value>
+            </Values>
+        </Card>
     </CardList>
 </CardData>

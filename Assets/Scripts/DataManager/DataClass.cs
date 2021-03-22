@@ -73,9 +73,9 @@ public class Value
         回费,
         流转,
         额外回合,
-        额外回合with体术限制,
         体术限制,
-        无何有
+        无何有,
+        抽牌
     }
     public ValueType type;
     public int value;

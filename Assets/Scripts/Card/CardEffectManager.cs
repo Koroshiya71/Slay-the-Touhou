@@ -25,32 +25,26 @@ public class CardEffectManager : MonoBehaviour
         switch (card.cardData.cardID)
         {
             case "0001"://斩击
+            case "0003"://三连斩
+            case "0005"://残月斩
+            case "0006"://剑气
                 SingleAttack(card,1);
                 break;
             case "0002"://防御
                 Defend(card, 1);
                 break;
-            case "0003"://三连斩
-                SingleAttack(card, 1);
-                break;
             case "0004"://二刀
+            case "0008"://紫电一闪
+            case "0009"://两百由旬之一闪
                 Buff(card, 1);
-                break;
-            case "0005"://残月斩
-                SingleAttack(card, 1);
-                break;
-            case "0006"://剑气
-                SingleAttack(card, 1);
                 break;
             case "0007"://剑与弹幕
                 AttackAll(card, 1);
                 break;
-            case "0008"://紫电一闪
-                Buff(card, 1);
+            case "0010"://冥想
+
                 break;
-            case "0009"://两百由旬之一闪
-                Buff(card, 1);
-                break;
+
         }
     }
 
@@ -69,7 +63,6 @@ public class CardEffectManager : MonoBehaviour
                     foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                     {
                         enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
-
                     }
             }
             //残心检测
@@ -219,7 +212,7 @@ public class CardEffectManager : MonoBehaviour
         
 
         for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
-        {
+        {   
             if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
             {
                 for (var t = 0; t< card.cardData.times; t++)
@@ -229,7 +222,6 @@ public class CardEffectManager : MonoBehaviour
             if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy) || card.canXin)
             {
                 card.canXin = true;
-                Debug.Log(card.cardData.name);
                 foreach (var canXin in card.cardData.canXinList)
                 {
                     switch (canXin.CanXinValue.type)

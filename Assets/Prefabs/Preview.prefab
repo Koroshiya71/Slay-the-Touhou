@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1625244114738200733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a5c5034493a14c9ce3dda7073c182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canXin: 0
+  hasUsed: 0
   isShowCard: 1
   cardData:
     type: 0
@@ -321,10 +323,11 @@ MonoBehaviour:
     des: 
     valueList: []
     spriteID: 0
-    needTarget: 0
+    targetType: 0
     times: 0
     canXinList: []
     keepChangeInBattle: 0
+    comboList: []
   nameText: {fileID: 1625244113349905909}
   desText: {fileID: 1625244115045261946}
   costText: {fileID: 1625244113516028940}

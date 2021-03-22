@@ -106,6 +106,9 @@ public class DataManager : MonoBehaviour
                     case "体术限制":
                         newValue.type = Value.ValueType.体术限制;
                         break;
+                    case "抽牌":
+                        newValue.type = Value.ValueType.抽牌;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

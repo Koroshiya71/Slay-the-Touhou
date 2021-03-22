@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     public bool hasCanXin;//上回合是否触发过残心
     public int effectTimes;//卡牌效果触发的次数
     public int cardCombo;//本回合使用的卡牌数量
+    public bool extraTurn;//该回合是否是额外回合
     public void TurnEnd()
     {
         if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
@@ -36,6 +37,7 @@ public class BattleManager : MonoBehaviour
         }
         if (Player.Instance.CheckState(Value.ValueType.额外回合))//如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
         {
+            extraTurn = true;
             TurnStart();
             return;
         }
@@ -59,8 +61,12 @@ public class BattleManager : MonoBehaviour
 
         turnHasEnd = false;
         Player.Instance.InitEnergy();
-        Player.Instance.shield = 0;
-        
+        if (!extraTurn)//如果是额外回合，则不清除护甲
+        {
+            Player.Instance.shield = 0;
+        }
+
+        extraTurn = false;
         for (int i = 0; i < Player.Instance.drawCardNum; i++)
         {
             CardManager.Instance.DrawCard();

@@ -17,6 +17,7 @@ public class Card : MonoBehaviour
         符卡//符卡
     }
 
+    public Transform outLook;//外观的位置
     #region 基本属性
     //展示用卡牌的游戏物体
     private GameObject showGo;
@@ -42,9 +43,15 @@ public class Card : MonoBehaviour
     //卡图
     public Image img;
     #endregion
-    
-    private void OnMouseDown()
+
+    public Vector3 selectPos;
+    public void OnPointerDown()
     {
+
+        if (CardManager.Instance.isChoosing)//如果正在选择卡牌
+        {
+            CardManager.Instance.chosenCardList.Add(this.cardData);       
+        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
@@ -53,17 +60,14 @@ public class Card : MonoBehaviour
         }
         showGo.SetActive(false);//取消卡牌展示
         CardManager.Instance.hasShow = false;
-
+ 
         CardManager.Instance.selectedCard = this;
     }
 
-    private void OnMouseEnter()
+    public void OnPointerEnter()
     {
+        Debug.Log("Enter" );
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
-        {
-            return;
-        }
-        if (CardManager.Instance.hasShow)
         {
             return;
         }
@@ -74,20 +78,26 @@ public class Card : MonoBehaviour
         showGo.SetActive(true);//展示卡牌
         showGo.GetComponent<Card>().InitCard(cardData);
         CardManager.Instance.hasShow = true;
+        outLook.transform.position = new Vector3(outLook.transform.position.x, outLook.transform.position.y + 0.5f);
+
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit()
     {
+        Debug.Log("exit");
+
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
         }
+
+
         showGo.SetActive(false);
         CardManager.Instance.hasShow = false;
-
+        outLook.transform.position = new Vector3(outLook.transform.position.x, outLook.transform.position.y - 0.5f);
     }
 
-    private void OnMouseUp()
+    public  void OnPointerUp()
     {
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
@@ -99,7 +109,7 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        if (Input.mousePosition.y>-0.5)//当鼠标拖拽卡牌到一定位置以上才算进行了卡牌的使用
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -2)//当鼠标拖拽卡牌到一定位置以上才算进行了卡牌的使用
         {
             CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard);
         }
@@ -109,6 +119,8 @@ public class Card : MonoBehaviour
 
         }
     }
+
+    
 
     public void InitCard(CardData data)//根据CardData初始化卡牌
     {

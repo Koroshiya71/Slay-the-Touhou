@@ -18,7 +18,8 @@ public class CardManager : MonoBehaviour
     public List<CardData> drawCardList = new List<CardData>();//抽牌堆
     public List<string> cardDeskList=new List<string>();//牌库
     public List<GameObject> handCardList = new List<GameObject>(); //手牌列表
-#endregion
+    #endregion
+    public bool isChoosing;//是否正在选择卡牌
 
     public GameObject BeginPos; //生成手牌的最开始的位
     private float rotateAngel; //手牌动画旋转的角度
@@ -27,11 +28,13 @@ public class CardManager : MonoBehaviour
     public bool hasShow;//是否已经展示了卡牌
     public Text discardNumText;//弃牌堆卡牌数量的文本
     public Text drawCardNumText;//抽牌堆卡牌数量的文本
+    public List<CardData> chosenCardList=new List<CardData>();//被选中的卡牌列表
+    public List<CardData> optionalCardList=new List<CardData>();//可选卡牌列表
+
     private void Start()
     {
         showCard.SetActive(false);
         cardDataList = DataManager.Instance.LoadCardData();
-
     }
 
     public void InitDrawCardList()
@@ -73,7 +76,20 @@ public class CardManager : MonoBehaviour
         }
         return newList;
     }
-    
+    public IEnumerator ChooseCardFromHand(int num,bool must) //从手牌进行卡牌选择
+    {
+        
+        chosenCardList = new List<CardData>();
+        isChoosing = true;
+        while (isChoosing)
+        {
+            if (chosenCardList.Count==num)
+            {
+                isChoosing = false;
+            }
+        }
+        yield return 0;
+    }
     private void Update()
     {
         UpdateUIState();
