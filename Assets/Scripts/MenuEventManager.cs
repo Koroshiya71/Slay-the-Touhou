@@ -61,7 +61,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         for (int i = 0; i < deskList.Count; i++)
         {
             showCardList[i].gameObject.SetActive(true);//将等同于弃牌堆数量的展示卡牌初始化并显示出来
-            foreach (var data in CardManager.Instance.cardDataList)
+            foreach (var data in CardManager.Instance.CardDataList)
             {
                 if (data.cardID == deskList[i])
                 {

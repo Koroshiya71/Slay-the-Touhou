@@ -15,12 +15,12 @@ public class CardEffectManager : MonoBehaviour
         Instance = this;
     }
 
-    public void UseThisCard(Card card) //触发卡牌效果
+    public IEnumerator UseThisCard(Card card) //触发卡牌效果
     {
         //如果有体术限制状态，而该卡不是体术，则跳过检测
         if (Player.Instance.CheckState(Value.ValueType.体术限制)&&card.cardData.type!=Card.CardType.体术)
         {
-            return;
+            yield break;
         }
         switch (card.cardData.cardID)
         {
@@ -42,7 +42,18 @@ public class CardEffectManager : MonoBehaviour
                 AttackAll(card, 1);
                 break;
             case "0010"://冥想
+                for (int i = 0; i < card.valueDic[Value.ValueType.抽牌]; i++)
+                {
+                    CardManager.Instance.DrawCard();
+                }
+                Player.Instance.PlayAttackAnim(); //播放攻击动画
+                CardManager.Instance.UseCard(card.gameObject); //使用卡牌
+                Player.Instance.energy -= card.cardData.cost; //消耗费用
+                CardManager.Instance.Discard(card);
 
+                StartCoroutine(CardManager.Instance.ChooseCardFromHand(2, true,card));
+               
+                
                 break;
 
         }

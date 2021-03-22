@@ -3065,8 +3065,9 @@ MonoBehaviour:
   - 0007
   - 0007
   - 0009
+  - 0010
   handCardList: []
-  isChoosing: 0
+  isChoosingFromHand: 0
   BeginPos: {fileID: 1842011544}
   spriteList:
   - {fileID: 21300000, guid: 4721a0fe3e10d9b4ca2697b9d7ebb0ae, type: 3}
@@ -6145,7 +6146,7 @@ MonoBehaviour:
     canXinList: []
     keepChangeInBattle: 0
     comboList: []
-  localPosition: {x: 0, y: 0, z: 0}
+  posY: 0
   nameText: {fileID: 1625244115439003942}
   desText: {fileID: 1625244113745741481}
   costText: {fileID: 1625244115285819615}

@@ -138,7 +138,7 @@ public class Card : MonoBehaviour
         }
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -2)//当鼠标拖拽卡牌到一定位置以上才算进行了卡牌的使用
         {
-            CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard);
+            StartCoroutine(CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard));
         }
         else
         {
@@ -151,6 +151,10 @@ public class Card : MonoBehaviour
 
     public void InitCard(CardData data)//根据CardData初始化卡牌
     {
+        if (!cardData.keepChangeInBattle) //如果对卡牌的修改不是可持续的
+            foreach (var originalData in CardManager.Instance.CardDataList)
+                if (cardData.cardID == originalData.cardID)
+                    cardData=CardData.Clone(originalData);
         cardData = CardData.Clone(data);
         valueDic = new Dictionary<Value.ValueType, int>();
         canXin = false;
@@ -163,6 +167,10 @@ public class Card : MonoBehaviour
         foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
             valueDic.Add(v.type, v.value);
+            if (v.type==Value.ValueType.无何有)
+            {
+                Debug.Log(cardData.name);
+            }
         }
 
         cardData.des = "";
@@ -198,6 +206,9 @@ public class Card : MonoBehaviour
             case "0009"://狱界剑「二百由旬之一闪」
                 cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。\n无何有";
                 break;
+            case "0010"://冥想
+                cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有";
+                break;
         }
         
         //如果有伤害KEY的情况
@@ -230,6 +241,15 @@ public class Card : MonoBehaviour
                 cardData.des += "\n";
             }
             cardData.des += "本回合获得二刀流状态";
+        }
+        //如果有无何有词条的情况下
+        if (valueDic.ContainsKey(Value.ValueType.无何有))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "无何有";
         }
         //如果有残心的情况下
         if (cardData.canXinList.Count>0)

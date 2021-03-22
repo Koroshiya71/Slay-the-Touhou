@@ -42,14 +42,25 @@ public class CardData
         newData.cardID = target.cardID;
         newData.cost = target.cost;
         newData.des = target.des;
-        newData.valueList = target.valueList;
+        newData.valueList = new List<Value>();
+        foreach (var val in target.valueList)
+        {
+            newData.valueList.Add(val);
+        }
         newData.spriteID = target.spriteID;
         newData.targetType = target.targetType;
         newData.times = target.times;
-        newData.canXinList = target.canXinList;
+        newData.canXinList = new List<CanXin>();
+        foreach (var val in target.canXinList)
+        {
+            newData.canXinList.Add(val);
+        }
         newData.keepChangeInBattle= target.keepChangeInBattle;
-        newData.comboList = target.comboList;
-
+        newData.comboList = new List<Combo>();
+        foreach (var val in target.comboList)
+        {
+            newData.comboList.Add(val);
+        }
         return newData;
         
     }
