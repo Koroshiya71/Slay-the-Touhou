@@ -68,5 +68,13 @@
                 <Value Type="击杀回费" Value="2"></Value>
             </Values>
         </Card>
+        <Card CardID="0012" Type="弹幕" Name="散华" Cost="2" SpriteID="11" TargetType="随机敌人" Times="2">
+            <Values>
+                <Value Type="伤害" Value="6"></Value>
+            </Values>
+            <CanXinList>
+                <CanXin Type="回血" Value="6" Time="1"></CanXin>
+            </CanXinList>
+        </Card>
     </CardList>
 </CardData>

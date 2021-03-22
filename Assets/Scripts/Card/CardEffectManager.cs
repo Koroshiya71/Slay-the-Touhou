@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CardEffectManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CardEffectManager : MonoBehaviour
 
     private void Awake()
     {
+        
         Instance = this;
     }
 
@@ -51,12 +53,11 @@ public class CardEffectManager : MonoBehaviour
                 CardManager.Instance.UseCard(card.gameObject); //使用卡牌
                 Player.Instance.energy -= card.cardData.cost; //消耗费用
                 CardManager.Instance.Discard(card);
-
                 StartCoroutine(CardManager.Instance.ChooseCardFromHand(2, true,card));
-               
-                
                 break;
-            
+            case "0012"://散华
+                RandomAttack(card,1);
+                break;
 
         }
     }
@@ -82,6 +83,12 @@ public class CardEffectManager : MonoBehaviour
             if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy)||card.canXin)
             {
                 card.canXin = true;
+                BattleManager.Instance.actionsTurnStart.Add(()=>
+                {
+
+                    BattleManager.Instance.hasCanXin = true;
+                });
+
                 foreach (var canXin in card.cardData.canXinList)
                 {
                     switch (canXin.CanXinValue.type)
@@ -106,7 +113,6 @@ public class CardEffectManager : MonoBehaviour
                                         enemy.TakeDamage(canXin.CanXinValue.value);
 
                                     }
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
 
@@ -116,7 +122,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
                             }
@@ -133,7 +138,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
 
@@ -143,7 +147,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
                             }
@@ -161,7 +164,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     Player.Instance.GetEnergy(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
                                 }));
 
                             }
@@ -170,7 +172,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     Player.Instance.GetEnergy(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
 
                                 }));
@@ -243,6 +244,11 @@ public class CardEffectManager : MonoBehaviour
             if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy) || card.canXin)
             {
                 card.canXin = true;
+                BattleManager.Instance.actionsTurnStart.Add((() =>
+                {
+                    BattleManager.Instance.hasCanXin = true;
+
+                }));
                 foreach (var canXin in card.cardData.canXinList)
                 {
                     switch (canXin.CanXinValue.type)
@@ -258,7 +264,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
 
@@ -268,7 +273,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
                             }
@@ -285,7 +289,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
 
@@ -295,7 +298,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
                                 }));
                             }
@@ -311,7 +313,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
                                     Player.Instance.GetEnergy(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
                                 }));
 
                             }
@@ -320,7 +321,6 @@ public class CardEffectManager : MonoBehaviour
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
                                     Player.Instance.GetEnergy(canXin.CanXinValue.value);
-                                    BattleManager.Instance.hasCanXin = true;
 
 
                                 }));
@@ -360,6 +360,180 @@ public class CardEffectManager : MonoBehaviour
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
     }
+    private void RandomAttack(Card card, int times) //随机攻击的通用方法
+    {
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+            return;
+
+        Player.Instance.PlayAttackAnim(); //播放攻击动画
+        var time = Player.Instance.CheckState(Value.ValueType.二刀流) ? 2 : 1;
+
+        for (int i = 0; i < time; i++)//如果有双刀则对卡牌效果结算2次
+        {
+            if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
+            {
+                for (var t = 0; t < card.cardData.times; t++)
+                {
+                    int n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
+                    EnemyManager.Instance.InGameEnemyList[n].TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                }
+            }
+
+            if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))
+            {
+                if (targetEnemy.hp <= 0)
+                {
+                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.击杀回费]);
+                }
+            }
+            //残心检测
+            if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy) || card.canXin)
+            {
+                card.canXin = true;
+                BattleManager.Instance.actionsTurnStart.Add((() =>
+                {
+                    BattleManager.Instance.hasCanXin = true;
+
+                }));
+
+                foreach (var canXin in card.cardData.canXinList)
+                {
+                    switch (canXin.CanXinValue.type)
+                    {
+                        case Value.ValueType.伤害:
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
+                            {
+                                targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                break;
+                            }
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+
+                                }));
+                            }
+                            break;
+                        case Value.ValueType.护甲:
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
+                            {
+                                Player.Instance.GetShield(canXin.CanXinValue.value);
+
+                                break;
+                            }
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    Player.Instance.GetShield(canXin.CanXinValue.value);
+
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    Player.Instance.GetShield(canXin.CanXinValue.value);
+
+                                }));
+                            }
+                            break;
+                        case Value.ValueType.回费:
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
+                            {
+                                Player.Instance.GetEnergy(canXin.CanXinValue.value);
+                                break;
+                            }
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    Player.Instance.GetEnergy(canXin.CanXinValue.value);
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    Player.Instance.GetEnergy(canXin.CanXinValue.value);
+
+
+                                }));
+                            }
+
+                            break;
+                        case Value.ValueType.回血:
+                            if (Player.Instance.CheckState(Value.ValueType.流转))
+                            {
+                                Player.Instance.Recover(canXin.CanXinValue.value);
+                                break;
+                            }
+                            if (canXin.IsTurnEnd)
+                            {
+                                BattleManager.Instance.actionsEndTurn.Add((() =>
+                                {
+                                    Player.Instance.Recover(canXin.CanXinValue.value);
+
+
+                                }));
+
+                            }
+                            else
+                            {
+                                BattleManager.Instance.actionsTurnStart.Add((() =>
+                                {
+                                    Player.Instance.Recover(canXin.CanXinValue.value);
+
+
+                                }));
+                            }
+                            break;
+                    }
+
+                }
+            }
+            //连斩检测
+            if (card.cardData.comboList.Count > 0)
+            {
+                foreach (var combo in card.cardData.comboList)
+                {
+                    if (BattleManager.Instance.cardCombo >= combo.comboNum)
+                    {
+                        switch (combo.comboValue.type)
+                        {
+                            case Value.ValueType.伤害:
+                                targetEnemy.TakeDamage(combo.comboValue.value);
+                                break;
+                            case Value.ValueType.护甲:
+                                Player.Instance.GetShield(combo.comboValue.value);
+                                break;
+                            case Value.ValueType.回费:
+                                Player.Instance.GetEnergy(combo.comboValue.value);
+
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        CardManager.Instance.UseCard();
+        Player.Instance.energy -= card.cardData.cost;
+        CardManager.Instance.Discard(card);
+    }
+
 
     private void Buff(Card card, int times) //状态卡的通用方法
     {

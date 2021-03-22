@@ -69,7 +69,9 @@ public class DataManager : MonoBehaviour
                     break;
                 case "全部敌人":
                     data.targetType = CardData.TargetType.全部敌人;
-
+                    break;
+                case "随机敌人":
+                    data.targetType = CardData.TargetType.随机敌人;
                     break;
             }
 
@@ -112,6 +114,9 @@ public class DataManager : MonoBehaviour
                     case "击杀回费":
                         newValue.type = Value.ValueType.击杀回费;
                         break;
+                    case "回血":
+                        newValue.type = Value.ValueType.回血;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);
@@ -139,6 +144,9 @@ public class DataManager : MonoBehaviour
                             break;
                         case "回费":
                             newCanXin.CanXinValue.type = Value.ValueType.回费;
+                            break;
+                        case "回血":
+                            newCanXin.CanXinValue.type = Value.ValueType.回血;
                             break;
                     }
                     newCanXin.CanXinValue.value = Int32.Parse(canXinAttributes["Value"].InnerText);

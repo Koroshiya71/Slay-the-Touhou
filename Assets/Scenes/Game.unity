@@ -3066,6 +3066,8 @@ MonoBehaviour:
   - 0009
   - 0010
   - 0011
+  - 0012
+  - 0012
   handCardList: []
   isChoosingFromHand: 0
   BeginPos: {fileID: 1842011544}
@@ -3081,6 +3083,18 @@ MonoBehaviour:
   - {fileID: 8499071943211013986, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 6833251430204051630, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 3455646051117652853, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
+  - {fileID: -7848837342427269678, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 3903226149742870184, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: -779701428108321384, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 3903226149742870184, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: -5697852513351508018, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 9169983308653473112, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: -3491893701513705659, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 7063604743340300926, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: -5504211923724148349, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 2368952850279119278, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  - {fileID: 3582358190282298198, guid: 1744db6a754736548a5abc540ac74f67, type: 3}
+  CardDataList: []
   hasShow: 0
   discardNumText: {fileID: 731486778}
   drawCardNumText: {fileID: 675849005}

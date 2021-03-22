@@ -103,6 +103,15 @@ public class Player : MonoBehaviour
     {
         energy = maxEnergy;
     }
+
+    public void Recover(int value) //回血
+    {
+        hp += value;
+        if (hp>maxHp)
+        {
+            hp = maxHp;
+        }
+    }
     private void Awake()
     {
         Instance = this;

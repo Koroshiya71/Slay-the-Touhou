@@ -212,6 +212,10 @@ public class Card : MonoBehaviour
         //如果有伤害KEY的情况
         if (valueDic.ContainsKey(Value.ValueType.伤害))
         {
+            if (cardData.targetType==CardData.TargetType.随机敌人)
+            {
+                cardData.des += "随机";
+            }
             cardData.des += "造成"+valueDic[Value.ValueType.伤害]+"点伤害";
             if (cardData.times>1)
             {
@@ -271,6 +275,9 @@ public class Card : MonoBehaviour
                     case Value.ValueType.回费:
                         cardData.des += "获得" + canXin.CanXinValue.value + "点能量";
                         break;
+                    case Value.ValueType.回血:
+                        cardData.des += "回复" + canXin.CanXinValue.value + "点生命";
+                        break;
                 }
             }
             
@@ -296,6 +303,9 @@ public class Card : MonoBehaviour
                         break;
                     case Value.ValueType.回费:
                         cardData.des += "获得" + combo.comboValue.value + "点能量";
+                        break;
+                    case Value.ValueType.回血:
+                        cardData.des += "回复" + combo.comboValue.value + "点生命";
                         break;
                 }
             }

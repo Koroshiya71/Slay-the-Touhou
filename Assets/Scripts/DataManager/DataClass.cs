@@ -20,7 +20,8 @@ public class CardData
     {
         单体敌人,
         自身,
-        全部敌人
+        全部敌人,
+        随机敌人
     }
     public Card.CardType type;//卡牌类型
     public string name;//卡牌名称
@@ -87,7 +88,8 @@ public class Value
         体术限制,
         无何有,
         抽牌,
-        击杀回费
+        击杀回费,
+        回血
     }
     public ValueType type;
     public int value;
