@@ -53,6 +53,7 @@ public class BattleManager : MonoBehaviour
         CardManager.Instance.DropAllCard();
         turnHasEnd = true;
         cardCombo = 0;
+
     }
 
     public void TurnStart()

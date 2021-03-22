@@ -31,8 +31,8 @@ public class Card : MonoBehaviour
     public CardData cardData;
     //效果字典
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
+    public float posY;
     #endregion
-
     #region UI引用
     //卡名文本
     public Text nameText;
@@ -48,15 +48,29 @@ public class Card : MonoBehaviour
     public void OnPointerDown()
     {
 
-        if (CardManager.Instance.isChoosing)//如果正在选择卡牌
-        {
-            CardManager.Instance.chosenCardList.Add(this.cardData);       
-        }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
+        }
+
+        if (CardManager.Instance.isChoosingFromHand)//如果正在从手牌选择卡牌
+        {
+            var localPosition = outLook.localPosition;
+            posY = localPosition.y;
+            if (CardManager.Instance.chosenCardList.Contains(this))
+            {
+                CardManager.Instance.chosenCardList.Remove(this);
+                localPosition = new Vector3(localPosition.x, posY );
+                return;
+
+            }
+            CardManager.Instance.chosenCardList.Add(this);
+
+            
+            localPosition = new Vector3(localPosition.x, posY+15);
+            outLook.localPosition = localPosition;
         }
         showGo.SetActive(false);//取消卡牌展示
         CardManager.Instance.hasShow = false;
@@ -66,7 +80,11 @@ public class Card : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        Debug.Log("Enter" );
+
+        if (CardManager.Instance.isChoosingFromHand)//如果正在选择卡牌则不进行检测
+        {
+            return;
+        }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
@@ -78,13 +96,20 @@ public class Card : MonoBehaviour
         showGo.SetActive(true);//展示卡牌
         showGo.GetComponent<Card>().InitCard(cardData);
         CardManager.Instance.hasShow = true;
-        outLook.transform.localPosition = new Vector3(outLook.transform.localPosition.x, outLook.transform.localPosition.y + 15);
+
+        var localPosition = outLook.localPosition;
+        posY = localPosition.y;
+        localPosition = new Vector3(localPosition.x, posY+15);
+        outLook.localPosition = localPosition;
     }
 
     public void OnPointerExit()
     {
-        Debug.Log("exit");
 
+        if (CardManager.Instance.isChoosingFromHand)//如果正在选择卡牌则不进行检测
+        {
+            return;
+        }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
@@ -93,7 +118,9 @@ public class Card : MonoBehaviour
 
         showGo.SetActive(false);
         CardManager.Instance.hasShow = false;
-        outLook.transform.localPosition = new Vector3(outLook.transform.localPosition.x, outLook.transform.localPosition.y  -15);
+        var localPosition = outLook.localPosition;
+        localPosition = new Vector3(localPosition.x, posY);
+        outLook.localPosition = localPosition;
 
     }
 

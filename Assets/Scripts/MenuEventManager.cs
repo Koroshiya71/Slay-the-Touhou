@@ -33,7 +33,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     
     public void ChooseCardFromDesk()//从手牌外的范围进行卡牌选择
     {
-        CardManager.Instance.isChoosing = true;
+        CardManager.Instance.isChoosingFromHand = true;
         cardDisplayCanvas.SetActive(true);
         List<CardData> optionalList= CardManager.Instance.optionalCardList;
         for (int i = 0; i < optionalList.Count; i++)

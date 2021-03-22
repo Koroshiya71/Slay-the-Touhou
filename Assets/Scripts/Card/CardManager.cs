@@ -19,8 +19,7 @@ public class CardManager : MonoBehaviour
     public List<string> cardDeskList=new List<string>();//牌库
     public List<GameObject> handCardList = new List<GameObject>(); //手牌列表
     #endregion
-    public bool isChoosing;//是否正在选择卡牌
-
+    public bool isChoosingFromHand;//是否正在选择卡牌
     public GameObject BeginPos; //生成手牌的最开始的位
     private float rotateAngel; //手牌动画旋转的角度
     public List<Sprite> spriteList=new List<Sprite>();
@@ -28,13 +27,15 @@ public class CardManager : MonoBehaviour
     public bool hasShow;//是否已经展示了卡牌
     public Text discardNumText;//弃牌堆卡牌数量的文本
     public Text drawCardNumText;//抽牌堆卡牌数量的文本
-    public List<CardData> chosenCardList=new List<CardData>();//被选中的卡牌列表
+    public List<Card> chosenCardList=new List<Card>();//被选中的卡牌列表
     public List<CardData> optionalCardList=new List<CardData>();//可选卡牌列表
 
     private void Start()
     {
         showCard.SetActive(false);
         cardDataList = DataManager.Instance.LoadCardData();
+        StartCoroutine(ChooseCardFromHand(2, true));
+
     }
 
     public void InitDrawCardList()
@@ -79,16 +80,26 @@ public class CardManager : MonoBehaviour
     public IEnumerator ChooseCardFromHand(int num,bool must) //从手牌进行卡牌选择
     {
         
-        chosenCardList = new List<CardData>();
-        isChoosing = true;
-        while (isChoosing)
+        chosenCardList = new List<Card>();
+        isChoosingFromHand = true;
+        while (true)
         {
-            if (chosenCardList.Count==num)
+            if (chosenCardList.Count == num)
             {
-                isChoosing = false;
+                isChoosingFromHand = false;
+                foreach (var card in chosenCardList)
+                {
+                    var localPosition = card.outLook.localPosition;
+                    localPosition = new Vector3(localPosition.x, card.posY);
+                    card.outLook.localPosition = localPosition;
+                }
+                yield break;
             }
+            yield return new WaitForSeconds(0.1f);
+
         }
-        yield return 0;
+
+
     }
     private void Update()
     {
