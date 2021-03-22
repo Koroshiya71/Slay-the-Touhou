@@ -109,6 +109,9 @@ public class DataManager : MonoBehaviour
                     case "³éÅÆ":
                         newValue.type = Value.ValueType.³éÅÆ;
                         break;
+                    case "»÷É±»Ø·Ñ":
+                        newValue.type = Value.ValueType.»÷É±»Ø·Ñ;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

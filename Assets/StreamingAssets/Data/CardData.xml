@@ -38,10 +38,10 @@
                 <Value Type="伤害" Value="5"></Value>
             </Values>
             <CanXinList>
-                <CanXin Type="护甲" Time="1" Value="4"></CanXin>
+                <CanXin Type="伤害" Time="1" Value="3"></CanXin>
             </CanXinList>
             <ComboList>
-                <Combo Type="伤害" Combo="2" Value="3"></Combo>
+                <Combo Type="护甲" Combo="2" Value="4"></Combo>
             </ComboList>
         </Card>
         <Card CardID="0008" Type="法术" Name="紫电一闪" Cost="3" SpriteID="7" TargetType="自身" Times="1">
@@ -60,6 +60,12 @@
         <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Times="1">
             <Values>
                 <Value Type="抽牌" Value="3"></Value>
+            </Values>
+        </Card>
+        <Card CardID="0011" Type="符卡" Name="断命剑「冥想斩」" Cost="3" SpriteID="10" TargetType="单体敌人" Times="1">
+            <Values>
+                <Value Type="伤害" Value="28"></Value>
+                <Value Type="击杀回费" Value="2"></Value>
             </Values>
         </Card>
     </CardList>

@@ -86,7 +86,8 @@ public class Value
         额外回合,
         体术限制,
         无何有,
-        抽牌
+        抽牌,
+        击杀回费
     }
     public ValueType type;
     public int value;

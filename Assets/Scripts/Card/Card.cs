@@ -167,10 +167,7 @@ public class Card : MonoBehaviour
         foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
             valueDic.Add(v.type, v.value);
-            if (v.type==Value.ValueType.无何有)
-            {
-                Debug.Log(cardData.name);
-            }
+            
         }
 
         cardData.des = "";
@@ -205,10 +202,11 @@ public class Card : MonoBehaviour
                 return;
             case "0009"://狱界剑「二百由旬之一闪」
                 cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。\n无何有";
-                break;
+                return;
             case "0010"://冥想
                 cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有";
-                break;
+                return;
+                
         }
         
         //如果有伤害KEY的情况
@@ -242,15 +240,7 @@ public class Card : MonoBehaviour
             }
             cardData.des += "本回合获得二刀流状态";
         }
-        //如果有无何有词条的情况下
-        if (valueDic.ContainsKey(Value.ValueType.无何有))
-        {
-            if (cardData.des != "")
-            {
-                cardData.des += "\n";
-            }
-            cardData.des += "无何有";
-        }
+        
         //如果有残心的情况下
         if (cardData.canXinList.Count>0)
         {
@@ -309,6 +299,24 @@ public class Card : MonoBehaviour
                         break;
                 }
             }
+        }
+        //如果有无何有词条的情况下
+        if (valueDic.ContainsKey(Value.ValueType.无何有))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "无何有";
+        }
+
+        if (valueDic.ContainsKey(Value.ValueType.击杀回费))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "如果这个单位因此死去，则回复"+valueDic[Value.ValueType.击杀回费]+"点能量";
         }
     }
     private void Start()

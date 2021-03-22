@@ -27,7 +27,7 @@ public class CardManager : MonoBehaviour
     public GameObject BeginPos; //生成手牌的最开始的位
     private float rotateAngel; //手牌动画旋转的角度
     public List<Sprite> spriteList = new List<Sprite>();
-    public List<CardData> CardDataList { get; private set; }
+    public List<CardData> CardDataList = new List<CardData>();
     public bool hasShow; //是否已经展示了卡牌
     public Text discardNumText; //弃牌堆卡牌数量的文本
     public Text drawCardNumText; //抽牌堆卡牌数量的文本

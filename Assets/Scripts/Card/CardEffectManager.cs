@@ -28,6 +28,7 @@ public class CardEffectManager : MonoBehaviour
             case "0003"://三连斩
             case "0005"://残月斩
             case "0006"://剑气
+            case "0011"://冥想斩
                 SingleAttack(card,1);
                 break;
             case "0002"://防御
@@ -55,6 +56,7 @@ public class CardEffectManager : MonoBehaviour
                
                 
                 break;
+            
 
         }
     }
@@ -228,6 +230,14 @@ public class CardEffectManager : MonoBehaviour
             {
                 for (var t = 0; t< card.cardData.times; t++)
                     targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+            }
+
+            if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))
+            {
+                if (targetEnemy.hp<=0)
+                {
+                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.击杀回费]);
+                }
             }
             //残心检测
             if ((card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy) || card.canXin)

@@ -3054,7 +3054,6 @@ MonoBehaviour:
   - 0001
   - 0002
   - 0002
-  - 0002
   - 0003
   - 0003
   - 0004
@@ -3066,6 +3065,7 @@ MonoBehaviour:
   - 0007
   - 0009
   - 0010
+  - 0011
   handCardList: []
   isChoosingFromHand: 0
   BeginPos: {fileID: 1842011544}
@@ -3081,49 +3081,6 @@ MonoBehaviour:
   - {fileID: 8499071943211013986, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 6833251430204051630, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
   - {fileID: 3455646051117652853, guid: 24b87fa33cd452a43b2ee89011ce8889, type: 3}
-  cardDataList:
-  - type: 0
-    name: "\u65A9\u51FB"
-    cardID: 0001
-    cost: 1
-    des: 
-    valueList:
-    - type: 0
-      value: 6
-    spriteID: 0
-    targetType: 0
-    times: 1
-    canXinList: []
-    keepChangeInBattle: 0
-    comboList: []
-  - type: 4
-    name: "\u683C\u6321"
-    cardID: 0002
-    cost: 1
-    des: 
-    valueList:
-    - type: 1
-      value: 6
-    spriteID: 1
-    targetType: 0
-    times: 1
-    canXinList: []
-    keepChangeInBattle: 0
-    comboList: []
-  - type: 0
-    name: "\u4EBA\u7B26\u300C\u73B0\u4E16\u65A9\u300D"
-    cardID: 0003
-    cost: 1
-    des: 
-    valueList:
-    - type: 0
-      value: 4
-    spriteID: 2
-    targetType: 0
-    times: 2
-    canXinList: []
-    keepChangeInBattle: 0
-    comboList: []
   hasShow: 0
   discardNumText: {fileID: 731486778}
   drawCardNumText: {fileID: 675849005}
