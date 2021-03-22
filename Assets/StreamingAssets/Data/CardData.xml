@@ -76,5 +76,13 @@
                 <CanXin Type="回血" Value="6" Time="1"></CanXin>
             </CanXinList>
         </Card>
+        <Card CardID="0013" Type="体术" Name="居合" Cost="2" SpriteID="12" TargetType="单体敌人" Times="1">
+            <Values>
+                <Value Type="伤害" Value="8"></Value>
+            </Values>
+            <CanXinList>
+                <CanXin Type="伤害" Value="16" Time="1"></CanXin>
+            </CanXinList>
+        </Card>
     </CardList>
 </CardData>

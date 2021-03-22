@@ -58,6 +58,9 @@ public class CardEffectManager : MonoBehaviour
             case "0012"://散华
                 RandomAttack(card,1);
                 break;
+            case "0013"://居合
+                SingleAttack(card,1);
+                break;
 
         }
     }
@@ -220,6 +223,7 @@ public class CardEffectManager : MonoBehaviour
             return;
         if (targetEnemy == null) //如果目标敌人为空则跳过
                 return;
+        Enemy attackedEnemy = targetEnemy;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
         var time = Player.Instance.CheckState(Value.ValueType.二刀流) ? 2 : 1;
 
@@ -229,8 +233,17 @@ public class CardEffectManager : MonoBehaviour
         {   
             if (card.valueDic.ContainsKey(Value.ValueType.伤害))//伤害结算
             {
-                for (var t = 0; t< card.cardData.times; t++)
+                for (var t = 0; t < card.cardData.times; t++)
+                {
+                    if (card.cardData.cardID=="0013")//居合
+                    {
+                        if (BattleManager.Instance.tiShuCardCombo>0)
+                        {
+                            break;
+                        }
+                    }
                     targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                }
             }
 
             if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))
@@ -263,7 +276,7 @@ public class CardEffectManager : MonoBehaviour
                             {
                                 BattleManager.Instance.actionsEndTurn.Add((() =>
                                 {
-                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    attackedEnemy.TakeDamage(canXin.CanXinValue.value);
 
                                 }));
 
@@ -272,7 +285,8 @@ public class CardEffectManager : MonoBehaviour
                             {
                                 BattleManager.Instance.actionsTurnStart.Add((() =>
                                 {
-                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    attackedEnemy.TakeDamage(canXin.CanXinValue.value);
+
 
                                 }));
                             }

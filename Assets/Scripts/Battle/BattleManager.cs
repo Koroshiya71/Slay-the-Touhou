@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     public int effectTimes;//卡牌效果触发的次数
     public int cardCombo;//本回合使用的卡牌数量
     public bool extraTurn;//该回合是否是额外回合
+    public int tiShuCardCombo;//本回合使用的体术牌数量
     public void TurnEnd()
     {
         if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
@@ -53,7 +54,7 @@ public class BattleManager : MonoBehaviour
         CardManager.Instance.DropAllCard();
         turnHasEnd = true;
         cardCombo = 0;
-
+        tiShuCardCombo = 0;
     }
 
     public void TurnStart()

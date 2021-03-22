@@ -3068,6 +3068,8 @@ MonoBehaviour:
   - 0011
   - 0012
   - 0012
+  - 0013
+  - 0013
   handCardList: []
   isChoosingFromHand: 0
   BeginPos: {fileID: 1842011544}
@@ -5200,6 +5202,7 @@ MonoBehaviour:
   effectTimes: 0
   cardCombo: 0
   extraTurn: 0
+  tiShuCardCombo: 0
 --- !u!1 &1916872747
 GameObject:
   m_ObjectHideFlags: 0

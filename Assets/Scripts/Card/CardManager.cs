@@ -212,6 +212,10 @@ public class CardManager : MonoBehaviour
         }
 
         BattleManager.Instance.cardCombo++;
+        if (card.GetComponent<Card>().cardData.type==Card.CardType.体术)
+        {
+            BattleManager.Instance.tiShuCardCombo++;
+        }
     }
 
     public void DropAllCard() //丢弃所有手牌

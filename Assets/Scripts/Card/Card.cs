@@ -206,9 +206,12 @@ public class Card : MonoBehaviour
             case "0010"://冥想
                 cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有";
                 return;
-                
+            case "0013"://居合
+                cardData.des += "如果该牌为本回合使用的第一张体术牌，造成"+valueDic[Value.ValueType.伤害]+"点伤害";
+                cardData.des += "\n残心：造成"+cardData.canXinList[0].CanXinValue.value+"点伤害";
+                return;
         }
-        
+
         //如果有伤害KEY的情况
         if (valueDic.ContainsKey(Value.ValueType.伤害))
         {
