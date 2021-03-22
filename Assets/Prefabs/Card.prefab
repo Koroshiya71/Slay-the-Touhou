@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 7144945437571903563}
   - {fileID: 7144945439148520993}
   m_Father: {fileID: 7144945438295872729}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 7144945438295872726}
   - component: {fileID: 7207755410701143795}
   - component: {fileID: 1255114579}
-  - component: {fileID: 2220398688486558090}
+  - component: {fileID: 4789041949729343008}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -305,6 +305,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children:
+  - {fileID: 2266761285846636255}
   - {fileID: 6720600407704753602}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2220398688486558090
+--- !u!114 &4789041949729343008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -717,3 +718,38 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u9020\u62106\u70B9\u4F24\u5BB3"
+--- !u!1 &7480379916657889128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2266761285846636255}
+  m_Layer: 5
+  m_Name: Card
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2266761285846636255
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480379916657889128}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7144945438295872729}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 31.87667, y: -297.51956}
+  m_SizeDelta: {x: 63.7529, y: 99.1732}
+  m_Pivot: {x: 0.5, y: -2}

@@ -78,8 +78,7 @@ public class Card : MonoBehaviour
         showGo.SetActive(true);//Õ¹Ê¾¿¨ÅÆ
         showGo.GetComponent<Card>().InitCard(cardData);
         CardManager.Instance.hasShow = true;
-        outLook.transform.position = new Vector3(outLook.transform.position.x, outLook.transform.position.y + 0.5f);
-
+        outLook.transform.localPosition = new Vector3(outLook.transform.localPosition.x, outLook.transform.localPosition.y + 15);
     }
 
     public void OnPointerExit()
@@ -94,7 +93,8 @@ public class Card : MonoBehaviour
 
         showGo.SetActive(false);
         CardManager.Instance.hasShow = false;
-        outLook.transform.position = new Vector3(outLook.transform.position.x, outLook.transform.position.y - 0.5f);
+        outLook.transform.localPosition = new Vector3(outLook.transform.localPosition.x, outLook.transform.localPosition.y  -15);
+
     }
 
     public  void OnPointerUp()
