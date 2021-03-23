@@ -44,6 +44,14 @@ public class Card : MonoBehaviour
     public Image img;
     #endregion
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            CardManager.Instance.selectedCard=null;
+        }
+    }
+
     public Vector3 selectPos;
     public void OnPointerDown()
     {
@@ -62,7 +70,7 @@ public class Card : MonoBehaviour
             if (CardManager.Instance.chosenCardList.Contains(this))
             {
                 CardManager.Instance.chosenCardList.Remove(this);
-                localPosition = new Vector3(localPosition.x, posY );
+                outLook.localPosition = new Vector3(localPosition.x, posY-15 );
                 return;
 
             }
@@ -72,6 +80,8 @@ public class Card : MonoBehaviour
             localPosition = new Vector3(localPosition.x, posY+15);
             outLook.localPosition = localPosition;
         }
+
+        
         showGo.SetActive(false);//取消卡牌展示
         CardManager.Instance.hasShow = false;
  
@@ -136,6 +146,11 @@ public class Card : MonoBehaviour
         {
             return;
         }
+
+        if (CardManager.Instance.isChoosingFromHand)
+        {
+            return;
+        }
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -2)//当鼠标拖拽卡牌到一定位置以上才算进行了卡牌的使用
         {
             StartCoroutine(CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard));
@@ -195,7 +210,7 @@ public class Card : MonoBehaviour
         switch (cardData.cardID)
         {
             case "0004"://二刀的心得
-                cardData.des = "获得一层二刀的心得，如果上回合触发过残心，费用-1";
+                cardData.des = "获得2层二刀的心得，如果上回合触发过残心，费用-1";
                 return;
             case "0008"://紫电一闪
                 cardData.des = "本场对战中，你获得流转状态（你的残心效果改为立即触发，而不是回合结束时触发）\n无何有";
@@ -218,6 +233,10 @@ public class Card : MonoBehaviour
             if (cardData.targetType==CardData.TargetType.随机敌人)
             {
                 cardData.des += "随机";
+            }
+            if (cardData.targetType == CardData.TargetType.全部敌人)
+            {
+                cardData.des += "对所有敌人";
             }
             cardData.des += "造成"+valueDic[Value.ValueType.伤害]+"点伤害";
             if (cardData.times>1)
@@ -270,7 +289,7 @@ public class Card : MonoBehaviour
                 switch (canXin.CanXinValue.type)
                 {
                     case Value.ValueType.伤害:
-                        cardData.des += "造成"+canXin.CanXinValue.value+"点伤害";
+                        cardData.des += "再造成"+canXin.CanXinValue.value+"点伤害";
                         break;
                     case Value.ValueType.护甲:
                         cardData.des += "获得" + canXin.CanXinValue.value + "点护甲";
@@ -280,6 +299,9 @@ public class Card : MonoBehaviour
                         break;
                     case Value.ValueType.回血:
                         cardData.des += "回复" + canXin.CanXinValue.value + "点生命";
+                        break;
+                    case Value.ValueType.惊吓:
+                        cardData.des += "给予" + canXin.CanXinValue.value + "层惊吓";
                         break;
                 }
             }
@@ -299,7 +321,7 @@ public class Card : MonoBehaviour
                 switch (combo.comboValue.type)
                 {
                     case Value.ValueType.伤害:
-                        cardData.des += "造成" + combo.comboValue.value + "点伤害";
+                        cardData.des += "再造成" + combo.comboValue.value + "点伤害";
                         break;
                     case Value.ValueType.护甲:
                         cardData.des += "获得" + combo.comboValue.value + "点护甲";

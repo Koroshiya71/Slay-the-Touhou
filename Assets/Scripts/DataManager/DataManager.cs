@@ -117,6 +117,9 @@ public class DataManager : MonoBehaviour
                     case "»ØÑª":
                         newValue.type = Value.ValueType.»ØÑª;
                         break;
+                    case "¾ªÏÅ":
+                        newValue.type = Value.ValueType.¾ªÏÅ;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);
@@ -147,6 +150,9 @@ public class DataManager : MonoBehaviour
                             break;
                         case "»ØÑª":
                             newCanXin.CanXinValue.type = Value.ValueType.»ØÑª;
+                            break;
+                        case "¾ªÏÅ":
+                            newCanXin.CanXinValue.type = Value.ValueType.¾ªÏÅ;
                             break;
                     }
                     newCanXin.CanXinValue.value = Int32.Parse(canXinAttributes["Value"].InnerText);

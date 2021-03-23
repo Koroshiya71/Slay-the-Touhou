@@ -16,7 +16,8 @@ public class Enemy : MonoBehaviour
     public EnemyAction currentEnemyAction;
     public List<Sprite> actionSpriteList = new List<Sprite>();
     public int enemyID;
-    
+    public List<Value> stateList = new List<Value>();
+    public int actualValue;
     #endregion
 
     public Animator animController;//动画控制器
@@ -29,6 +30,18 @@ public class Enemy : MonoBehaviour
     public Text actionValueText;//行动数值
     #endregion
     //初始化敌人
+    public bool CheckState(Value.ValueType stateType) //状态检测
+    {
+        foreach (var state in stateList)
+        {
+            if (state.type == stateType && state.value > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void InitEnemy()
     {
         actionNo = 0;
@@ -77,13 +90,16 @@ public class Enemy : MonoBehaviour
                 case ActionController.ActionType.Attack:
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Attack];
-                    actionValueText.text = "" + currentEnemyAction.valueDic[Value.ValueType.伤害];
+                    actualValue = CheckState(Value.ValueType.惊吓)
+                        ? Convert.ToInt32(currentEnemyAction.valueDic[Value.ValueType.伤害] * 0.7)
+                        : currentEnemyAction.valueDic[Value.ValueType.伤害];
+                    actionValueText.text = "" + actualValue;
                     break;
                 case ActionController.ActionType.Defend:
 
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Defend];
-                    actionValueText.text = "" + currentEnemyAction.valueDic[Value.ValueType.护甲];
+                    actionValueText.text = "" + actualValue;
                     break;
             }
             

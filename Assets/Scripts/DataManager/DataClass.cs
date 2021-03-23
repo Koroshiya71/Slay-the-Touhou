@@ -89,7 +89,8 @@ public class Value
         无何有,
         抽牌,
         击杀回费,
-        回血
+        回血,
+        惊吓
     }
     public ValueType type;
     public int value;

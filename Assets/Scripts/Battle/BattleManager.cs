@@ -60,7 +60,7 @@ public class BattleManager : MonoBehaviour
     public void TurnStart()
     {
         StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
-
+        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
         turnHasEnd = false;
         Player.Instance.InitEnergy();
         if (!extraTurn)//如果是额外回合，则不清除护甲
