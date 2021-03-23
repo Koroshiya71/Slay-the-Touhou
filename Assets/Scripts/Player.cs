@@ -66,6 +66,10 @@ public class Player : MonoBehaviour
         {
             if (state.type==stateType&&state.value>0)
             {
+                if (state.type==Value.ValueType.起势)
+                {
+                    state.value--;
+                }
                 return true;
             }
         }

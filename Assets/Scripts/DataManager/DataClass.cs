@@ -91,7 +91,8 @@ public class Value
         击杀回费,
         回血,
         惊吓,
-        背水一战
+        背水一战,
+        起势
     }
     public ValueType type;
     public int value;

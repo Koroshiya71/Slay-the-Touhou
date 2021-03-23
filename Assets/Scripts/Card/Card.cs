@@ -293,6 +293,15 @@ public class Card : MonoBehaviour
             }
             cardData.des += "获得「背水一战」（本场战斗无法再获得护甲）";
         }
+        //如果有起势Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.起势))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "获得"+valueDic[Value.ValueType.起势]+"层起势（触发连斩时，效果额外触发一次，消耗一层起势）";
+        }
         //如果有残心的情况下
         if (cardData.canXinList.Count>0)
         {

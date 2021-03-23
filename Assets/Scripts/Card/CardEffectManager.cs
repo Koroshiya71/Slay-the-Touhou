@@ -40,6 +40,7 @@ public class CardEffectManager : MonoBehaviour
             case "0008"://紫电一闪
             case "0009"://两百由旬之一闪
             case "0015"://背水一战
+            case "0016":
                 Buff(card, 1);
                 break;
             case "0007"://剑与弹幕
@@ -236,21 +237,26 @@ public class CardEffectManager : MonoBehaviour
                 {
                     if (BattleManager.Instance.cardCombo>=combo.comboNum)
                     {
-                        switch (combo.comboValue.type)
-                        {
-                            case Value.ValueType.伤害:
-                                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
-                                {
-                                    enemy.TakeDamage(combo.comboValue.value);
-                                }
-                                break;
-                            case Value.ValueType.护甲:
-                                Player.Instance.GetShield(combo.comboValue.value);
-                                break;
-                            case Value.ValueType.回费:
-                                Player.Instance.GetEnergy(combo.comboValue.value);
+                        int comboTimes = Player.Instance.CheckState(Value.ValueType.起势) ? 2 : 1;
 
-                                break;
+                        for (int j = 0; j < comboTimes; j++)
+                        {
+                            switch (combo.comboValue.type)
+                            {
+                                case Value.ValueType.伤害:
+                                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                    {
+                                        enemy.TakeDamage(combo.comboValue.value);
+                                    }
+                                    break;
+                                case Value.ValueType.护甲:
+                                    Player.Instance.GetShield(combo.comboValue.value);
+                                    break;
+                                case Value.ValueType.回费:
+                                    Player.Instance.GetEnergy(combo.comboValue.value);
+
+                                    break;
+                            }
                         }
                     }
                 }
@@ -402,18 +408,23 @@ public class CardEffectManager : MonoBehaviour
                 {
                     if (BattleManager.Instance.cardCombo >= combo.comboNum)
                     {
-                        switch (combo.comboValue.type)
-                        {
-                            case Value.ValueType.伤害:
-                                targetEnemy.TakeDamage(combo.comboValue.value);
-                                break;
-                            case Value.ValueType.护甲:
-                                Player.Instance.GetShield(combo.comboValue.value);
-                                break;
-                            case Value.ValueType.回费:
-                                Player.Instance.GetEnergy(combo.comboValue.value);
+                        int comboTimes = Player.Instance.CheckState(Value.ValueType.起势) ? 2 : 1;
 
-                                break;
+                        for (int j = 0; j < comboTimes; j++)
+                        {
+                            switch (combo.comboValue.type)
+                            {
+                                case Value.ValueType.伤害:
+                                    targetEnemy.TakeDamage(combo.comboValue.value);
+                                    break;
+                                case Value.ValueType.护甲:
+                                    Player.Instance.GetShield(combo.comboValue.value);
+                                    break;
+                                case Value.ValueType.回费:
+                                    Player.Instance.GetEnergy(combo.comboValue.value);
+
+                                    break;
+                            }
                         }
                     }
                 }
@@ -580,18 +591,23 @@ public class CardEffectManager : MonoBehaviour
                 {
                     if (BattleManager.Instance.cardCombo >= combo.comboNum)
                     {
-                        switch (combo.comboValue.type)
-                        {
-                            case Value.ValueType.伤害:
-                                targetEnemy.TakeDamage(combo.comboValue.value);
-                                break;
-                            case Value.ValueType.护甲:
-                                Player.Instance.GetShield(combo.comboValue.value);
-                                break;
-                            case Value.ValueType.回费:
-                                Player.Instance.GetEnergy(combo.comboValue.value);
+                        int comboTimes = Player.Instance.CheckState(Value.ValueType.起势) ? 2 : 1;
 
-                                break;
+                        for (int j = 0; j < comboTimes; j++)
+                        {
+                            switch (combo.comboValue.type)
+                            {
+                                case Value.ValueType.伤害:
+                                    targetEnemy.TakeDamage(combo.comboValue.value);
+                                    break;
+                                case Value.ValueType.护甲:
+                                    Player.Instance.GetShield(combo.comboValue.value);
+                                    break;
+                                case Value.ValueType.回费:
+                                    Player.Instance.GetEnergy(combo.comboValue.value);
+
+                                    break;
+                            }
                         }
                     }
                 }
@@ -648,6 +664,9 @@ public class CardEffectManager : MonoBehaviour
                     Player.Instance.GetEnergy(value.Value);
                     break;
                 case Value.ValueType.背水一战:
+                    StateManager.AddStateToPlayer(newValue);
+                    break;
+                case Value.ValueType.起势:
                     StateManager.AddStateToPlayer(newValue);
                     break;
             }

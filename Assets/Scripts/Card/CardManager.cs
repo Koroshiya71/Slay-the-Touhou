@@ -96,8 +96,11 @@ public class CardManager : MonoBehaviour
                     {
                         foreach (var c in Instance.chosenCardList)
                         {
-                            c.cardData.valueList.Add(new Value() {type = Value.ValueType.无何有, value = 1});
-                            c.cardData.keepChangeInBattle = true;
+                            if (!c.valueDic.ContainsKey(Value.ValueType.无何有))
+                            {
+                                c.cardData.valueList.Add(new Value() { type = Value.ValueType.无何有, value = 1 });
+                                c.cardData.keepChangeInBattle = true;
+                            }
                             UseCard(c.gameObject);
                             drawCardList.Add(c.cardData);
                             Shuffle();
