@@ -34,11 +34,17 @@ public class Player : MonoBehaviour
     #endregion
     public void GetShield(int shield)//获得护盾
     {
+        //如果拥有背水一战状态，则无法获得护甲
+        if (CheckState(Value.ValueType.背水一战))
+        {
+            return;
+        }
         this.shield += shield;
     }
 
     public void GetEnergy(int value)//获得能量
     {
+        
         energy += value;
     }
     public void TakeDamage(int damage)//结算受到的伤害

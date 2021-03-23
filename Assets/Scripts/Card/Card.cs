@@ -210,10 +210,10 @@ public class Card : MonoBehaviour
         switch (cardData.cardID)
         {
             case "0004"://二刀的心得
-                cardData.des = "获得2层二刀的心得，如果上回合触发过残心，费用-1";
+                cardData.des = "获得2层「二刀流」，如果上回合触发过残心，费用-1";
                 return;
             case "0008"://紫电一闪
-                cardData.des = "本场对战中，你获得流转状态（你的残心效果改为立即触发，而不是回合结束时触发）\n无何有";
+                cardData.des = "本场对战中，你获得「流转」状态（你的残心效果改为立即触发，而不是回合结束时触发）\n无何有";
                 return;
             case "0009"://狱界剑「二百由旬之一闪」
                 cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。\n无何有";
@@ -264,9 +264,35 @@ public class Card : MonoBehaviour
             {
                 cardData.des += "\n";
             }
-            cardData.des += "本回合获得二刀流状态";
+            cardData.des += "本回合获得「二刀流」状态";
         }
-        
+        //如果有抽牌Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.抽牌))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "抽"+valueDic[Value.ValueType.抽牌]+"张牌";
+        }
+        //如果有回费Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.回费))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "回复" + valueDic[Value.ValueType.回费] + "点能量";
+        }
+        //如果有背水一战Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.背水一战))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "获得「背水一战」（本场战斗无法再获得护甲）";
+        }
         //如果有残心的情况下
         if (cardData.canXinList.Count>0)
         {

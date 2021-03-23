@@ -90,7 +90,8 @@ public class Value
         抽牌,
         击杀回费,
         回血,
-        惊吓
+        惊吓,
+        背水一战
     }
     public ValueType type;
     public int value;

@@ -92,5 +92,13 @@
                 <CanXin Type="惊吓" Value="1" Time="1"></CanXin>
             </CanXinList>
         </Card>
+        <Card CardID="0015" Type="技能" Name="背水一战" Cost="0" SpriteID="15" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="抽牌" Value="3"></Value>
+                <Value Type="回费" Value="3"></Value>
+                <Value Type="无何有" Value="1"></Value>
+                <Value Type="背水一战" Value="1"></Value>
+            </Values>
+        </Card>
     </CardList>
 </CardData>

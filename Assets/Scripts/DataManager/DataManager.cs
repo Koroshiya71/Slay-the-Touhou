@@ -120,6 +120,9 @@ public class DataManager : MonoBehaviour
                     case "惊吓":
                         newValue.type = Value.ValueType.惊吓;
                         break;
+                    case "背水一战":
+                        newValue.type = Value.ValueType.背水一战;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

@@ -39,6 +39,7 @@ public class CardEffectManager : MonoBehaviour
             case "0004"://二刀
             case "0008"://紫电一闪
             case "0009"://两百由旬之一闪
+            case "0015"://背水一战
                 Buff(card, 1);
                 break;
             case "0007"://剑与弹幕
@@ -636,6 +637,18 @@ public class CardEffectManager : MonoBehaviour
                             StateManager.AddStateToPlayer(new Value(){type = Value.ValueType.体术限制,value=card.valueDic[Value.ValueType.体术限制]});
                         }));
                     }
+                    break;
+                case Value.ValueType.抽牌:
+                    for (int i = 0; i < value.Value; i++)
+                    {
+                         CardManager.Instance.DrawCard();
+                    }
+                    break;
+                case Value.ValueType.回费:
+                    Player.Instance.GetEnergy(value.Value);
+                    break;
+                case Value.ValueType.背水一战:
+                    StateManager.AddStateToPlayer(newValue);
                     break;
             }
         }
