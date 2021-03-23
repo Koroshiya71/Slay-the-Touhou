@@ -92,7 +92,9 @@ public class Value
         回血,
         惊吓,
         背水一战,
-        起势
+        起势,
+        保留手牌,
+        六根清净
     }
     public ValueType type;
     public int value;

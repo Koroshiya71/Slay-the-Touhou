@@ -33,7 +33,7 @@ public class CardManager : MonoBehaviour
     public Text drawCardNumText; //抽牌堆卡牌数量的文本
     public List<Card> chosenCardList = new List<Card>(); //被选中的卡牌列表
     public List<CardData> optionalCardList = new List<CardData>(); //可选卡牌列表
-
+    public bool hasInit;//是否已经从牌库初始化过抽牌堆了
     private void Start()
     {
         showCard.SetActive(false);
@@ -50,7 +50,9 @@ public class CardManager : MonoBehaviour
             discardList = new List<CardData>(); //然后初始化弃牌堆
         }
 
-        if (drawCardList.Count == 0) //如果此时抽牌堆依然为空，那么说明是第一次从牌库初始化抽牌堆
+        if (drawCardList.Count == 0 && !hasInit) //如果此时抽牌堆依然为空，那么说明是第一次从牌库初始化抽牌堆
+        {
+            hasInit = true;
             foreach (var cardId in cardDeskList) //然后根据牌库中每张牌的ID号查找数据
             foreach (var cardData in CardDataList)
                 if (cardId == cardData.cardID) //查找对应ID的卡牌数据
@@ -58,6 +60,8 @@ public class CardManager : MonoBehaviour
                     drawCardList.Add(cardData);
                     break;
                 }
+        }
+
         Shuffle();
     }
 
@@ -129,9 +133,43 @@ public class CardManager : MonoBehaviour
         //TODO 后续优化对象池
         //克隆预设
         var handCardGo = Instantiate(cardPrefab) as GameObject;
+        var newCard = handCardGo.GetComponent<Card>();
+
         if (drawCardList.Count == 0) //如果无牌可抽，则初始化抽牌堆
             InitDrawCardList();
-        var newCard = handCardGo.GetComponent<Card>();
+        if (drawCardList.Count == 0 && Player.Instance.CheckState(Value.ValueType.六根清净))//如果有六根清净状态
+        {
+            CardData newData = CardData.Clone(CardDataList[Random.Range(0, CardDataList.Count)]);
+            bool isHad = false;
+            foreach (var value in newData.valueList)
+            {
+                if (value.type == Value.ValueType.无何有)
+                {
+                    isHad = true;
+                    break;
+                }
+            }
+            if (!isHad)
+            {
+                newData.valueList.Add(new Value() { type = Value.ValueType.无何有, value = 1 });
+                newData.keepChangeInBattle = true;
+            }
+            newCard.InitCard(newData);
+            handCardGo.transform.position = BeginPos.transform.position;
+            handCardGo.transform.SetParent(transform);
+
+            //将新手牌添加到手牌列表
+            handCardList.Add(handCardGo);
+
+            //计算动画需要旋转的角度
+            RotateAngel();
+            //播放抽卡动画
+            AddCardAnimations();
+            return;
+        }
+        if(drawCardList.Count == 0 && !Player.Instance.CheckState(Value.ValueType.六根清净)) //如果依旧无牌可抽，且不具有六根清净状态则跳过抽牌
+            return;
+        
         newCard.InitCard(drawCardList[0]); //根据抽牌堆的第一张卡牌数据来初始化卡牌
         drawCardList.Remove(drawCardList[0]); //将卡牌移除抽牌堆
 

@@ -48,6 +48,7 @@ public class StateManager : MonoBehaviour
                 case Value.ValueType.额外回合:
                 case Value.ValueType.体术限制:
                 case Value.ValueType.惊吓:
+                case Value.ValueType.保留手牌:
 
                     state.value--;
                     break;

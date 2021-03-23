@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 30
   m_Viewport: {fileID: 799657156}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -3073,6 +3073,8 @@ MonoBehaviour:
   - 0014
   - 0015
   - 0016
+  - 0017
+  - 0018
   handCardList: []
   isChoosingFromHand: 0
   BeginPos: {fileID: 1842011544}

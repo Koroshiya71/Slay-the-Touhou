@@ -225,6 +225,10 @@ public class Card : MonoBehaviour
                 cardData.des += "如果该牌为本回合使用的第一张体术牌，造成"+valueDic[Value.ValueType.伤害]+"点伤害";
                 cardData.des += "\n残心：造成"+cardData.canXinList[0].CanXinValue.value+"点伤害";
                 return;
+            case "0018"://
+                cardData.des = "你的所有牌获得无何有，当你的抽牌堆为空时，抽牌改为随机获得一张妖梦牌\n无何有";
+
+                return;
         }
 
         //如果有伤害KEY的情况
@@ -301,6 +305,15 @@ public class Card : MonoBehaviour
                 cardData.des += "\n";
             }
             cardData.des += "获得"+valueDic[Value.ValueType.起势]+"层起势（触发连斩时，效果额外触发一次，消耗一层起势）";
+        }
+        //如果有保留手牌Key的情况下
+        if (valueDic.ContainsKey(Value.ValueType.保留手牌))
+        {
+            if (cardData.des != "")
+            {
+                cardData.des += "\n";
+            }
+            cardData.des += "本回合结束时保留你的手牌";
         }
         //如果有残心的情况下
         if (cardData.canXinList.Count>0)

@@ -51,7 +51,11 @@ public class BattleManager : MonoBehaviour
         
 
         Invoke(nameof(TurnStart), 1);
-        CardManager.Instance.DropAllCard();
+        if (!Player.Instance.CheckState(Value.ValueType.±£¡Ù ÷≈∆))
+        {
+            CardManager.Instance.DropAllCard();
+
+        }
         turnHasEnd = true;
         cardCombo = 0;
         tiShuCardCombo = 0;

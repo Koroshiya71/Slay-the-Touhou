@@ -106,5 +106,17 @@
                 <Value Type="抽牌" Value="1"></Value>
             </Values>
         </Card>
+        <Card CardID="0017" Type="法术" Name="庭师的智慧" Cost="1" SpriteID="17" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="保留手牌" Value="1"></Value>
+                <Value Type="抽牌" Value="1"></Value>
+            </Values>
+        </Card>
+        <Card CardID="0018" Type="法术" Name="六根清净" Cost="3" SpriteID="18" TargetType="自身" Times="1">
+            <Values>
+                <Value Type="六根清净" Value="1"></Value>
+                <Value Type="无何有" Value="1"></Value>
+            </Values>
+        </Card>
     </CardList>
 </CardData>
