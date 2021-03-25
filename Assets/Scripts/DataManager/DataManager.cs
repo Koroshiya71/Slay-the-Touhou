@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,7 +8,7 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-    //¿¨ÅÆÊı¾İÎÄ¼şÂ·¾¶
+    //å¡ç‰Œæ•°æ®æ–‡ä»¶è·¯å¾„
     public string cardDataPath;
 
     private void Awake()
@@ -17,15 +17,15 @@ public class DataManager : MonoBehaviour
         cardDataPath = Application.dataPath+"/StreamingAssets/Data/CardData.xml";
     }   
 
-    public  List<CardData> LoadCardData()//´ÓxmlÊı¾İÎÄ¼şÖĞ¶ÁÈ¡¿¨ÅÆÊı¾İÁĞ±í
+    public  List<CardData> LoadCardData()//ä»xmlæ•°æ®æ–‡ä»¶ä¸­è¯»å–å¡ç‰Œæ•°æ®åˆ—è¡¨
     {
         var cardDataList = new List<CardData>();
 
         var xmlDoc = new XmlDocument();
-        xmlDoc.Load(cardDataPath);//¶ÁÈ¡Êı¾İÎÄ¼ş
+        xmlDoc.Load(cardDataPath);//è¯»å–æ•°æ®æ–‡ä»¶
 
         var cardListNode = xmlDoc.FirstChild.FirstChild;
-        foreach (XmlNode cardNode in cardListNode)//¸ù¾İ±íÖĞÊı¾İÌí¼Ó¿¨ÅÆÊı¾İ
+        foreach (XmlNode cardNode in cardListNode)//æ ¹æ®è¡¨ä¸­æ•°æ®æ·»åŠ å¡ç‰Œæ•°æ®
         {
             CardData data = new CardData();
             data.valueList = new List<Value>();
@@ -33,25 +33,39 @@ public class DataManager : MonoBehaviour
             data.comboList = new List<Combo>();
             XmlAttributeCollection cardAttributes =cardNode.Attributes;
             data.cardID = cardAttributes["CardID"].InnerText;
+            switch (cardAttributes["Rare"].InnerText)
+            {
+
+                case "Normal":
+                    data.rare = CardData.CardRare.Normal;
+
+                    break;
+                case "Rare":
+                    data.rare = CardData.CardRare.Rare;
+                    break;
+                case "Epic":
+                    data.rare = CardData.CardRare.Epic;
+                    break;
+            }
             switch (cardAttributes["Type"].InnerText)
             {
-                case "ÌåÊõ":
-                    data.type = Card.CardType.ÌåÊõ;
+                case "ä½“æœ¯":
+                    data.type = Card.CardType.ä½“æœ¯;
                     break;
-                case "µ¯Ä»":
-                    data.type = Card.CardType.µ¯Ä»;
+                case "å¼¹å¹•":
+                    data.type = Card.CardType.å¼¹å¹•;
                     break;
-                case "·ÀÓù":
-                    data.type = Card.CardType.·ÀÓù;
+                case "é˜²å¾¡":
+                    data.type = Card.CardType.é˜²å¾¡;
                     break;
-                case "¼¼ÄÜ":
-                    data.type = Card.CardType.¼¼ÄÜ;
+                case "æŠ€èƒ½":
+                    data.type = Card.CardType.æŠ€èƒ½;
                     break;
-                case "·¨Êõ":
-                    data.type = Card.CardType.·¨Êõ;
+                case "æ³•æœ¯":
+                    data.type = Card.CardType.æ³•æœ¯;
                     break;
-                case "·û¿¨":
-                    data.type = Card.CardType.·û¿¨;
+                case "ç¬¦å¡":
+                    data.type = Card.CardType.ç¬¦å¡;
                     break;
             }
 
@@ -60,18 +74,18 @@ public class DataManager : MonoBehaviour
             data.spriteID = int.Parse(cardAttributes["SpriteID"].InnerText);
             switch (cardAttributes["TargetType"].InnerText)
             {
-                case "µ¥ÌåµĞÈË":
-                    data.targetType = CardData.TargetType.µ¥ÌåµĞÈË;
+                case "å•ä½“æ•Œäºº":
+                    data.targetType = CardData.TargetType.å•ä½“æ•Œäºº;
                     break;
-                case "×ÔÉí":
-                    data.targetType = CardData.TargetType.×ÔÉí;
+                case "è‡ªèº«":
+                    data.targetType = CardData.TargetType.è‡ªèº«;
 
                     break;
-                case "È«²¿µĞÈË":
-                    data.targetType = CardData.TargetType.È«²¿µĞÈË;
+                case "å…¨éƒ¨æ•Œäºº":
+                    data.targetType = CardData.TargetType.å…¨éƒ¨æ•Œäºº;
                     break;
-                case "Ëæ»úµĞÈË":
-                    data.targetType = CardData.TargetType.Ëæ»úµĞÈË;
+                case "éšæœºæ•Œäºº":
+                    data.targetType = CardData.TargetType.éšæœºæ•Œäºº;
                     break;
             }
 
@@ -84,53 +98,53 @@ public class DataManager : MonoBehaviour
                 var valueAttributes = valueNode.Attributes;
                 switch (valueAttributes["Type"].InnerText)
                 {
-                    case "ÉËº¦":
-                        newValue.type = Value.ValueType.ÉËº¦;
+                    case "ä¼¤å®³":
+                        newValue.type = Value.ValueType.ä¼¤å®³;
                         break;
-                    case "»¤¼×":
-                        newValue.type = Value.ValueType.»¤¼×;
+                    case "æŠ¤ç”²":
+                        newValue.type = Value.ValueType.æŠ¤ç”²;
                         break;
-                    case "¶şµ¶Á÷":
-                        newValue.type = Value.ValueType.¶şµ¶Á÷;
+                    case "äºŒåˆ€æµ":
+                        newValue.type = Value.ValueType.äºŒåˆ€æµ;
                         break;
-                    case "»Ø·Ñ":
-                        newValue.type = Value.ValueType.»Ø·Ñ;
+                    case "å›è´¹":
+                        newValue.type = Value.ValueType.å›è´¹;
                         break;
-                    case "Á÷×ª":
-                        newValue.type = Value.ValueType.Á÷×ª;
+                    case "æµè½¬":
+                        newValue.type = Value.ValueType.æµè½¬;
                         break;
-                    case "¶îÍâ»ØºÏ":
-                        newValue.type = Value.ValueType.¶îÍâ»ØºÏ;
+                    case "é¢å¤–å›åˆ":
+                        newValue.type = Value.ValueType.é¢å¤–å›åˆ;
                         break;
-                    case "ÎŞºÎÓĞ":
-                        newValue.type = Value.ValueType.ÎŞºÎÓĞ;
+                    case "æ— ä½•æœ‰":
+                        newValue.type = Value.ValueType.æ— ä½•æœ‰;
                         break;
-                    case "ÌåÊõÏŞÖÆ":
-                        newValue.type = Value.ValueType.ÌåÊõÏŞÖÆ;
+                    case "ä½“æœ¯é™åˆ¶":
+                        newValue.type = Value.ValueType.ä½“æœ¯é™åˆ¶;
                         break;
-                    case "³éÅÆ":
-                        newValue.type = Value.ValueType.³éÅÆ;
+                    case "æŠ½ç‰Œ":
+                        newValue.type = Value.ValueType.æŠ½ç‰Œ;
                         break;
-                    case "»÷É±»Ø·Ñ":
-                        newValue.type = Value.ValueType.»÷É±»Ø·Ñ;
+                    case "å‡»æ€å›è´¹":
+                        newValue.type = Value.ValueType.å‡»æ€å›è´¹;
                         break;
-                    case "»ØÑª":
-                        newValue.type = Value.ValueType.»ØÑª;
+                    case "å›è¡€":
+                        newValue.type = Value.ValueType.å›è¡€;
                         break;
-                    case "¾ªÏÅ":
-                        newValue.type = Value.ValueType.¾ªÏÅ;
+                    case "æƒŠå“":
+                        newValue.type = Value.ValueType.æƒŠå“;
                         break;
-                    case "±³Ë®Ò»Õ½":
-                        newValue.type = Value.ValueType.±³Ë®Ò»Õ½;
+                    case "èƒŒæ°´ä¸€æˆ˜":
+                        newValue.type = Value.ValueType.èƒŒæ°´ä¸€æˆ˜;
                         break;
-                    case "ÆğÊÆ":
-                        newValue.type = Value.ValueType.ÆğÊÆ;
+                    case "èµ·åŠ¿":
+                        newValue.type = Value.ValueType.èµ·åŠ¿;
                         break;
-                    case "±£ÁôÊÖÅÆ":
-                        newValue.type = Value.ValueType.±£ÁôÊÖÅÆ;
+                    case "ä¿ç•™æ‰‹ç‰Œ":
+                        newValue.type = Value.ValueType.ä¿ç•™æ‰‹ç‰Œ;
                         break;
-                    case "Áù¸ùÇå¾»":
-                        newValue.type = Value.ValueType.Áù¸ùÇå¾»;
+                    case "å…­æ ¹æ¸…å‡€":
+                        newValue.type = Value.ValueType.å…­æ ¹æ¸…å‡€;
                         break;
                 }
 
@@ -139,7 +153,7 @@ public class DataManager : MonoBehaviour
             }
 
             XmlNode CanXinListNode = cardNode["CanXinList"];
-            if (CanXinListNode!=null)//Èç¹ûÓĞ²ĞĞÄÁĞ±íµÄ»°
+            if (CanXinListNode!=null)//å¦‚æœæœ‰æ®‹å¿ƒåˆ—è¡¨çš„è¯
             {
                 foreach (XmlNode CanXinNode in CanXinListNode)
                 {
@@ -148,23 +162,23 @@ public class DataManager : MonoBehaviour
                     var canXinAttributes = CanXinNode.Attributes;
                     switch (canXinAttributes["Type"].InnerText)
                     {
-                        case "ÉËº¦":
-                            newCanXin.CanXinValue.type = Value.ValueType.ÉËº¦;
+                        case "ä¼¤å®³":
+                            newCanXin.CanXinValue.type = Value.ValueType.ä¼¤å®³;
                             break;
-                        case "»¤¼×":
-                            newCanXin.CanXinValue.type = Value.ValueType.»¤¼×;
+                        case "æŠ¤ç”²":
+                            newCanXin.CanXinValue.type = Value.ValueType.æŠ¤ç”²;
                             break;
-                        case "¶şµ¶Á÷":
-                            newCanXin.CanXinValue.type = Value.ValueType.¶şµ¶Á÷;
+                        case "äºŒåˆ€æµ":
+                            newCanXin.CanXinValue.type = Value.ValueType.äºŒåˆ€æµ;
                             break;
-                        case "»Ø·Ñ":
-                            newCanXin.CanXinValue.type = Value.ValueType.»Ø·Ñ;
+                        case "å›è´¹":
+                            newCanXin.CanXinValue.type = Value.ValueType.å›è´¹;
                             break;
-                        case "»ØÑª":
-                            newCanXin.CanXinValue.type = Value.ValueType.»ØÑª;
+                        case "å›è¡€":
+                            newCanXin.CanXinValue.type = Value.ValueType.å›è¡€;
                             break;
-                        case "¾ªÏÅ":
-                            newCanXin.CanXinValue.type = Value.ValueType.¾ªÏÅ;
+                        case "æƒŠå“":
+                            newCanXin.CanXinValue.type = Value.ValueType.æƒŠå“;
                             break;
                     }
                     newCanXin.CanXinValue.value = Int32.Parse(canXinAttributes["Value"].InnerText);
@@ -174,7 +188,7 @@ public class DataManager : MonoBehaviour
                 }
             }
             XmlNode ComboListNode = cardNode["ComboList"];
-            if (ComboListNode != null)//Èç¹ûÓĞÁ¬Õ¶ÁĞ±íµÄ»°
+            if (ComboListNode != null)//å¦‚æœæœ‰è¿æ–©åˆ—è¡¨çš„è¯
             {
                 foreach (XmlNode comboNode in ComboListNode)
                 {
@@ -183,17 +197,17 @@ public class DataManager : MonoBehaviour
                     var comboAttributes = comboNode.Attributes;
                     switch (comboAttributes["Type"].InnerText)
                     {
-                        case "ÉËº¦":
-                            newCombo.comboValue.type = Value.ValueType.ÉËº¦;
+                        case "ä¼¤å®³":
+                            newCombo.comboValue.type = Value.ValueType.ä¼¤å®³;
                             break;
-                        case "»¤¼×":
-                            newCombo.comboValue.type = Value.ValueType.»¤¼×;
+                        case "æŠ¤ç”²":
+                            newCombo.comboValue.type = Value.ValueType.æŠ¤ç”²;
                             break;
-                        case "¶şµ¶Á÷":
-                            newCombo.comboValue.type = Value.ValueType.¶şµ¶Á÷;
+                        case "äºŒåˆ€æµ":
+                            newCombo.comboValue.type = Value.ValueType.äºŒåˆ€æµ;
                             break;
-                        case "»Ø·Ñ":
-                            newCombo.comboValue.type = Value.ValueType.»Ø·Ñ;
+                        case "å›è´¹":
+                            newCombo.comboValue.type = Value.ValueType.å›è´¹;
                             break;
                     }
                     newCombo.comboValue.value = Int32.Parse(comboAttributes["Value"].InnerText);

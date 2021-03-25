@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,41 +7,46 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public enum CardType//¿¨ÅÆÀàĞÍ
+    public enum CardType//å¡ç‰Œç±»å‹
     {
-        ÌåÊõ,//ÌåÊõ
-        µ¯Ä»,//µ¯Ä»
-        ¼¼ÄÜ,//¼¼ÄÜ
-        ·¨Êõ,//·¨Êõ
-        ·ÀÓù,//·ÀÓù
-        ·û¿¨//·û¿¨
+        ä½“æœ¯,//ä½“æœ¯
+        å¼¹å¹•,//å¼¹å¹•
+        æŠ€èƒ½,//æŠ€èƒ½
+        æ³•æœ¯,//æ³•æœ¯
+        é˜²å¾¡,//é˜²å¾¡
+        ç¬¦å¡//ç¬¦å¡
     }
 
-    public Transform outLook;//Íâ¹ÛµÄÎ»ÖÃ
-    #region »ù±¾ÊôĞÔ
-    //Õ¹Ê¾ÓÃ¿¨ÅÆµÄÓÎÏ·ÎïÌå
+    public Transform outLook;//å¤–è§‚çš„ä½ç½®
+    #region åŸºæœ¬å±æ€§
+    //å±•ç¤ºç”¨å¡ç‰Œçš„æ¸¸æˆç‰©ä½“
     private GameObject showGo;
-    //ÊÇ·ñÒÑ¾­Âú×ã²ĞĞÄÌõ¼ş
+    //æ˜¯å¦å·²ç»æ»¡è¶³æ®‹å¿ƒæ¡ä»¶
     public bool canXin;
-    //ÊÇ·ñÒÑ¾­Ê¹ÓÃ¹ıÁË
+    //æ˜¯å¦å·²ç»ä½¿ç”¨è¿‡äº†
     public bool hasUsed;
-    //ÊÇ·ñÊÇÓÃÓÚÕ¹Ê¾µÄ¿¨ÅÆ
+    //æ˜¯å¦æ˜¯ç”¨äºå±•ç¤ºçš„å¡ç‰Œ
     public bool isShowCard;
-    //¿¨ÅÆÊı¾İ
+    //å¡ç‰Œæ•°æ®
     public CardData cardData;
-    //Ğ§¹û×Öµä
+    //æ•ˆæœå­—å…¸
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
     public float posY;
+    public List<Sprite> cardBackGroundSprites = new List<Sprite>();
     #endregion
-    #region UIÒıÓÃ
-    //¿¨ÃûÎÄ±¾
+    #region UIå¼•ç”¨
+    //å¡åæ–‡æœ¬
     public Text nameText;
-    //¿¨ÅÆÃèÊöÎÄ±¾
+    //å¡ç‰Œæè¿°æ–‡æœ¬
     public Text desText;
-    //ÄÜÁ¿ÏûºÄÎÄ±¾
+    //èƒ½é‡æ¶ˆè€—æ–‡æœ¬
     public Text costText;
-    //¿¨Í¼
+    //èƒ½é‡æ¶ˆè€—æ–‡æœ¬
+    public Text typeText;
+    //å¡å›¾
     public Image img;
+    //èƒŒæ™¯æ¡†å›¾
+    public Image backGround;
     #endregion
 
     private void Update()
@@ -56,14 +61,14 @@ public class Card : MonoBehaviour
     public void OnPointerDown()
     {
 
-        if (isShowCard)//Èç¹ûÊÇÕ¹Ê¾ÓÃµÄ¿¨ÅÆÔò²»½øĞĞ¼ì²â
+        if (isShowCard)//å¦‚æœæ˜¯å±•ç¤ºç”¨çš„å¡ç‰Œåˆ™ä¸è¿›è¡Œæ£€æµ‹
             return;
-        if (MenuEventManager.Instance.isPreviewing)//Èç¹ûÕıÔÚ½øĞĞ¿¨ÅÆÔ¤ÀÀÔò²»½øĞĞ¼ì²â
+        if (MenuEventManager.Instance.isPreviewing)//å¦‚æœæ­£åœ¨è¿›è¡Œå¡ç‰Œé¢„è§ˆåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
 
-        if (CardManager.Instance.isChoosingFromHand)//Èç¹ûÕıÔÚ´ÓÊÖÅÆÑ¡Ôñ¿¨ÅÆ
+        if (CardManager.Instance.isChoosingFromHand)//å¦‚æœæ­£åœ¨ä»æ‰‹ç‰Œé€‰æ‹©å¡ç‰Œ
         {
             var localPosition = outLook.localPosition;
             posY = localPosition.y;
@@ -82,7 +87,7 @@ public class Card : MonoBehaviour
         }
 
         
-        showGo.SetActive(false);//È¡Ïû¿¨ÅÆÕ¹Ê¾
+        showGo.SetActive(false);//å–æ¶ˆå¡ç‰Œå±•ç¤º
         CardManager.Instance.hasShow = false;
  
         CardManager.Instance.selectedCard = this;
@@ -91,19 +96,19 @@ public class Card : MonoBehaviour
     public void OnPointerEnter()
     {
 
-        if (CardManager.Instance.isChoosingFromHand)//Èç¹ûÕıÔÚÑ¡Ôñ¿¨ÅÆÔò²»½øĞĞ¼ì²â
+        if (CardManager.Instance.isChoosingFromHand)//å¦‚æœæ­£åœ¨é€‰æ‹©å¡ç‰Œåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
-        if (MenuEventManager.Instance.isPreviewing)//Èç¹ûÕıÔÚ½øĞĞ¿¨ÅÆÔ¤ÀÀÔò²»½øĞĞ¼ì²â
+        if (MenuEventManager.Instance.isPreviewing)//å¦‚æœæ­£åœ¨è¿›è¡Œå¡ç‰Œé¢„è§ˆåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
-        if (isShowCard)//Èç¹ûÊÇÕ¹Ê¾ÓÃµÄ¿¨ÅÆÔò²»½øĞĞ¼ì²â
+        if (isShowCard)//å¦‚æœæ˜¯å±•ç¤ºç”¨çš„å¡ç‰Œåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
-        showGo.SetActive(true);//Õ¹Ê¾¿¨ÅÆ
+        showGo.SetActive(true);//å±•ç¤ºå¡ç‰Œ
         showGo.GetComponent<Card>().InitCard(cardData);
         CardManager.Instance.hasShow = true;
 
@@ -116,11 +121,11 @@ public class Card : MonoBehaviour
     public void OnPointerExit()
     {
 
-        if (CardManager.Instance.isChoosingFromHand)//Èç¹ûÕıÔÚÑ¡Ôñ¿¨ÅÆÔò²»½øĞĞ¼ì²â
+        if (CardManager.Instance.isChoosingFromHand)//å¦‚æœæ­£åœ¨é€‰æ‹©å¡ç‰Œåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
-        if (MenuEventManager.Instance.isPreviewing)//Èç¹ûÕıÔÚ½øĞĞ¿¨ÅÆÔ¤ÀÀÔò²»½øĞĞ¼ì²â
+        if (MenuEventManager.Instance.isPreviewing)//å¦‚æœæ­£åœ¨è¿›è¡Œå¡ç‰Œé¢„è§ˆåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
@@ -136,11 +141,11 @@ public class Card : MonoBehaviour
 
     public  void OnPointerUp()
     {
-        if (MenuEventManager.Instance.isPreviewing)//Èç¹ûÕıÔÚ½øĞĞ¿¨ÅÆÔ¤ÀÀÔò²»½øĞĞ¼ì²â
+        if (MenuEventManager.Instance.isPreviewing)//å¦‚æœæ­£åœ¨è¿›è¡Œå¡ç‰Œé¢„è§ˆåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
-        if (isShowCard)//Èç¹ûÊÇÕ¹Ê¾ÓÃµÄ¿¨ÅÆÔò²»½øĞĞ¼ì²â
+        if (isShowCard)//å¦‚æœæ˜¯å±•ç¤ºç”¨çš„å¡ç‰Œåˆ™ä¸è¿›è¡Œæ£€æµ‹
             return;
         if (CardManager.Instance.selectedCard==null)
         {
@@ -151,7 +156,7 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -2)//µ±Êó±êÍÏ×§¿¨ÅÆµ½Ò»¶¨Î»ÖÃÒÔÉÏ²ÅËã½øĞĞÁË¿¨ÅÆµÄÊ¹ÓÃ
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -2)//å½“é¼ æ ‡æ‹–æ‹½å¡ç‰Œåˆ°ä¸€å®šä½ç½®ä»¥ä¸Šæ‰ç®—è¿›è¡Œäº†å¡ç‰Œçš„ä½¿ç”¨
         {
             StartCoroutine(CardEffectManager.Instance.UseThisCard(CardManager.Instance.selectedCard));
         }
@@ -164,9 +169,9 @@ public class Card : MonoBehaviour
 
     
 
-    public void InitCard(CardData data)//¸ù¾İCardData³õÊ¼»¯¿¨ÅÆ
+    public void InitCard(CardData data)//æ ¹æ®CardDataåˆå§‹åŒ–å¡ç‰Œ
     {
-        if (!cardData.keepChangeInBattle) //Èç¹û¶Ô¿¨ÅÆµÄĞŞ¸Ä²»ÊÇ¿É³ÖĞøµÄ
+        if (!cardData.keepChangeInBattle) //å¦‚æœå¯¹å¡ç‰Œçš„ä¿®æ”¹ä¸æ˜¯å¯æŒç»­çš„
             foreach (var originalData in CardManager.Instance.CardDataList)
                 if (cardData.cardID == originalData.cardID)
                     cardData=CardData.Clone(originalData);
@@ -177,9 +182,10 @@ public class Card : MonoBehaviour
         cardData.keepChangeInBattle = false;
         costText.text = ""+cardData.cost;
         nameText.text = cardData.name;
+        typeText.text = "å¦–æ¢¦Â·" + cardData.type;
         img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-
-        foreach (var v in cardData.valueList) //³õÊ¼»¯¿¨ÅÆĞ§¹û×Öµä
+        backGround.sprite = cardBackGroundSprites[(int) cardData.rare];
+        foreach (var v in cardData.valueList) //åˆå§‹åŒ–å¡ç‰Œæ•ˆæœå­—å…¸
         {
             valueDic.Add(v.type, v.value);
             
@@ -187,16 +193,16 @@ public class Card : MonoBehaviour
 
         cardData.des = "";
 
-        InitDes();//³õÊ¼»¯ÎÄ±¾ÃèÊö
+        InitDes();//åˆå§‹åŒ–æ–‡æœ¬æè¿°
         desText.text = cardData.des;
 
     }
 
-    public void UpdateCardState() //¸üĞÂ¿¨ÅÆ×´Ì¬
+    public void UpdateCardState() //æ›´æ–°å¡ç‰ŒçŠ¶æ€
     {
         switch (cardData.cardID)
         {
-            case "0004"://¶şµ¶µÄĞÄµÃ
+            case "0004"://äºŒåˆ€çš„å¿ƒå¾—
                 if (BattleManager.Instance.hasCanXin)
                 {
                     cardData.cost -= 1;
@@ -205,117 +211,117 @@ public class Card : MonoBehaviour
                 break;
         }
     }
-    public void InitDes()//¸ù¾İ¿¨ÅÆĞ§¹û×Öµä³õÊ¼»¯ÃèÊöÎÄ±¾
+    public void InitDes()//æ ¹æ®å¡ç‰Œæ•ˆæœå­—å…¸åˆå§‹åŒ–æè¿°æ–‡æœ¬
     {
         switch (cardData.cardID)
         {
-            case "0004"://¶şµ¶µÄĞÄµÃ
-                cardData.des = "»ñµÃ2²ã¡¸¶şµ¶Á÷¡¹£¬Èç¹ûÉÏ»ØºÏ´¥·¢¹ı²ĞĞÄ£¬·ÑÓÃ-1";
+            case "0004"://äºŒåˆ€çš„å¿ƒå¾—
+                cardData.des = "è·å¾—2å±‚ã€ŒäºŒåˆ€æµã€ï¼Œå¦‚æœä¸Šå›åˆè§¦å‘è¿‡æ®‹å¿ƒï¼Œè´¹ç”¨-1";
                 return;
-            case "0008"://×ÏµçÒ»ÉÁ
-                cardData.des = "±¾³¡¶ÔÕ½ÖĞ£¬Äã»ñµÃ¡¸Á÷×ª¡¹×´Ì¬£¨ÄãµÄ²ĞĞÄĞ§¹û¸ÄÎªÁ¢¼´´¥·¢£¬¶ø²»ÊÇ»ØºÏ½áÊøÊ±´¥·¢£©\nÎŞºÎÓĞ";
+            case "0008"://ç´«ç”µä¸€é—ª
+                cardData.des = "æœ¬åœºå¯¹æˆ˜ä¸­ï¼Œä½ è·å¾—ã€Œæµè½¬ã€çŠ¶æ€ï¼ˆä½ çš„æ®‹å¿ƒæ•ˆæœæ”¹ä¸ºç«‹å³è§¦å‘ï¼Œè€Œä¸æ˜¯å›åˆç»“æŸæ—¶è§¦å‘ï¼‰\næ— ä½•æœ‰";
                 return;
-            case "0009"://Óü½ç½£¡¸¶ş°ÙÓÉÑ®Ö®Ò»ÉÁ¡¹
-                cardData.des = "»ñµÃÒ»¸ö¶îÍâµÄ»ØºÏ¡£ÔÚ¶îÍâµÄ»ØºÏ£¬Ö»ÄÜÊ¹ÓÃÌåÊõÅÆ¡£\nÎŞºÎÓĞ";
+            case "0009"://ç‹±ç•Œå‰‘ã€ŒäºŒç™¾ç”±æ—¬ä¹‹ä¸€é—ªã€
+                cardData.des = "è·å¾—ä¸€ä¸ªé¢å¤–çš„å›åˆã€‚åœ¨é¢å¤–çš„å›åˆï¼Œåªèƒ½ä½¿ç”¨ä½“æœ¯ç‰Œã€‚\næ— ä½•æœ‰";
                 return;
-            case "0010"://Ú¤Ïë
-                cardData.des = "³éÈıÕÅÅÆ£¬È»ºóÑ¡ÔñÁ½ÕÅÅÆÏ´»ØÅÆ¿â£¬ÄÇÁ½ÕÅÅÆ»ñµÃÎŞºÎÓĞ";
+            case "0010"://å†¥æƒ³
+                cardData.des = "æŠ½ä¸‰å¼ ç‰Œï¼Œç„¶åé€‰æ‹©ä¸¤å¼ ç‰Œæ´—å›ç‰Œåº“ï¼Œé‚£ä¸¤å¼ ç‰Œè·å¾—æ— ä½•æœ‰";
                 return;
-            case "0013"://¾ÓºÏ
-                cardData.des += "Èç¹û¸ÃÅÆÎª±¾»ØºÏÊ¹ÓÃµÄµÚÒ»ÕÅÌåÊõÅÆ£¬Ôì³É"+valueDic[Value.ValueType.ÉËº¦]+"µãÉËº¦";
-                cardData.des += "\n²ĞĞÄ£ºÔì³É"+cardData.canXinList[0].CanXinValue.value+"µãÉËº¦";
+            case "0013"://å±…åˆ
+                cardData.des += "å¦‚æœè¯¥ç‰Œä¸ºæœ¬å›åˆä½¿ç”¨çš„ç¬¬ä¸€å¼ ä½“æœ¯ç‰Œï¼Œé€ æˆ"+valueDic[Value.ValueType.ä¼¤å®³]+"ç‚¹ä¼¤å®³";
+                cardData.des += "\næ®‹å¿ƒï¼šé€ æˆ"+cardData.canXinList[0].CanXinValue.value+"ç‚¹ä¼¤å®³";
                 return;
             case "0018"://
-                cardData.des = "ÄãµÄËùÓĞÅÆ»ñµÃÎŞºÎÓĞ£¬µ±ÄãµÄ³éÅÆ¶ÑÎª¿ÕÊ±£¬³éÅÆ¸ÄÎªËæ»ú»ñµÃÒ»ÕÅÑıÃÎÅÆ\nÎŞºÎÓĞ";
+                cardData.des = "ä½ çš„æ‰€æœ‰ç‰Œè·å¾—æ— ä½•æœ‰ï¼Œå½“ä½ çš„æŠ½ç‰Œå †ä¸ºç©ºæ—¶ï¼ŒæŠ½ç‰Œæ”¹ä¸ºéšæœºè·å¾—ä¸€å¼ å¦–æ¢¦ç‰Œ\næ— ä½•æœ‰";
 
                 return;
         }
 
-        //Èç¹ûÓĞÉËº¦KEYµÄÇé¿ö
-        if (valueDic.ContainsKey(Value.ValueType.ÉËº¦))
+        //å¦‚æœæœ‰ä¼¤å®³KEYçš„æƒ…å†µ
+        if (valueDic.ContainsKey(Value.ValueType.ä¼¤å®³))
         {
-            if (cardData.targetType==CardData.TargetType.Ëæ»úµĞÈË)
+            if (cardData.targetType==CardData.TargetType.éšæœºæ•Œäºº)
             {
-                cardData.des += "Ëæ»ú";
+                cardData.des += "éšæœº";
             }
-            if (cardData.targetType == CardData.TargetType.È«²¿µĞÈË)
+            if (cardData.targetType == CardData.TargetType.å…¨éƒ¨æ•Œäºº)
             {
-                cardData.des += "¶ÔËùÓĞµĞÈË";
+                cardData.des += "å¯¹æ‰€æœ‰æ•Œäºº";
             }
-            cardData.des += "Ôì³É"+valueDic[Value.ValueType.ÉËº¦]+"µãÉËº¦";
+            cardData.des += "é€ æˆ"+valueDic[Value.ValueType.ä¼¤å®³]+"ç‚¹ä¼¤å®³";
             if (cardData.times>1)
             {
-                cardData.des += cardData.times + "´Î";
+                cardData.des += cardData.times + "æ¬¡";
             }
         }
-        //Èç¹ûÓĞ»¤¼×KEYµÄÇé¿ö
-        if (valueDic.ContainsKey(Value.ValueType.»¤¼×))
+        //å¦‚æœæœ‰æŠ¤ç”²KEYçš„æƒ…å†µ
+        if (valueDic.ContainsKey(Value.ValueType.æŠ¤ç”²))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "»ñµÃ" + valueDic[Value.ValueType.»¤¼×] + "µã»¤¼×";
+            cardData.des += "è·å¾—" + valueDic[Value.ValueType.æŠ¤ç”²] + "ç‚¹æŠ¤ç”²";
             if (cardData.times > 1)
             {
-                cardData.des += cardData.times + "´Î";
+                cardData.des += cardData.times + "æ¬¡";
             }
         }
-        //Èç¹ûÓĞ¶şµ¶Á÷KeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.¶şµ¶Á÷))
+        //å¦‚æœæœ‰äºŒåˆ€æµKeyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.äºŒåˆ€æµ))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "±¾»ØºÏ»ñµÃ¡¸¶şµ¶Á÷¡¹×´Ì¬";
+            cardData.des += "æœ¬å›åˆè·å¾—ã€ŒäºŒåˆ€æµã€çŠ¶æ€";
         }
-        //Èç¹ûÓĞ³éÅÆKeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.³éÅÆ))
+        //å¦‚æœæœ‰æŠ½ç‰ŒKeyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.æŠ½ç‰Œ))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "³é"+valueDic[Value.ValueType.³éÅÆ]+"ÕÅÅÆ";
+            cardData.des += "æŠ½"+valueDic[Value.ValueType.æŠ½ç‰Œ]+"å¼ ç‰Œ";
         }
-        //Èç¹ûÓĞ»Ø·ÑKeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.»Ø·Ñ))
+        //å¦‚æœæœ‰å›è´¹Keyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.å›è´¹))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "»Ø¸´" + valueDic[Value.ValueType.»Ø·Ñ] + "µãÄÜÁ¿";
+            cardData.des += "å›å¤" + valueDic[Value.ValueType.å›è´¹] + "ç‚¹èƒ½é‡";
         }
-        //Èç¹ûÓĞ±³Ë®Ò»Õ½KeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.±³Ë®Ò»Õ½))
+        //å¦‚æœæœ‰èƒŒæ°´ä¸€æˆ˜Keyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.èƒŒæ°´ä¸€æˆ˜))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "»ñµÃ¡¸±³Ë®Ò»Õ½¡¹£¨±¾³¡Õ½¶·ÎŞ·¨ÔÙ»ñµÃ»¤¼×£©";
+            cardData.des += "è·å¾—ã€ŒèƒŒæ°´ä¸€æˆ˜ã€ï¼ˆæœ¬åœºæˆ˜æ–—æ— æ³•å†è·å¾—æŠ¤ç”²ï¼‰";
         }
-        //Èç¹ûÓĞÆğÊÆKeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.ÆğÊÆ))
+        //å¦‚æœæœ‰èµ·åŠ¿Keyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.èµ·åŠ¿))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "»ñµÃ"+valueDic[Value.ValueType.ÆğÊÆ]+"²ãÆğÊÆ£¨´¥·¢Á¬Õ¶Ê±£¬Ğ§¹û¶îÍâ´¥·¢Ò»´Î£¬ÏûºÄÒ»²ãÆğÊÆ£©";
+            cardData.des += "è·å¾—"+valueDic[Value.ValueType.èµ·åŠ¿]+"å±‚èµ·åŠ¿ï¼ˆè§¦å‘è¿æ–©æ—¶ï¼Œæ•ˆæœé¢å¤–è§¦å‘ä¸€æ¬¡ï¼Œæ¶ˆè€—ä¸€å±‚èµ·åŠ¿ï¼‰";
         }
-        //Èç¹ûÓĞ±£ÁôÊÖÅÆKeyµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.±£ÁôÊÖÅÆ))
+        //å¦‚æœæœ‰ä¿ç•™æ‰‹ç‰ŒKeyçš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.ä¿ç•™æ‰‹ç‰Œ))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "±¾»ØºÏ½áÊøÊ±±£ÁôÄãµÄÊÖÅÆ";
+            cardData.des += "æœ¬å›åˆç»“æŸæ—¶ä¿ç•™ä½ çš„æ‰‹ç‰Œ";
         }
-        //Èç¹ûÓĞ²ĞĞÄµÄÇé¿öÏÂ
+        //å¦‚æœæœ‰æ®‹å¿ƒçš„æƒ…å†µä¸‹
         if (cardData.canXinList.Count>0)
         {
             if (cardData.des != "")
@@ -323,12 +329,12 @@ public class Card : MonoBehaviour
                 cardData.des += "\n";
             }
 
-            cardData.des += "²ĞĞÄ£º";
+            cardData.des += "æ®‹å¿ƒï¼š";
             foreach (var canXin in cardData.canXinList)
             {
                 if (!canXin.IsTurnEnd&& cardData.canXinList.IndexOf(canXin) == 0)
                 {
-                    cardData.des += "ÔÚÏÂ¸ö»ØºÏ¿ªÊ¼Ê±,";
+                    cardData.des += "åœ¨ä¸‹ä¸ªå›åˆå¼€å§‹æ—¶,";
                 }
                 if (cardData.canXinList.IndexOf(canXin) > 0)
                 {
@@ -336,26 +342,26 @@ public class Card : MonoBehaviour
                 }
                 switch (canXin.CanXinValue.type)
                 {
-                    case Value.ValueType.ÉËº¦:
-                        cardData.des += "ÔÙÔì³É"+canXin.CanXinValue.value+"µãÉËº¦";
+                    case Value.ValueType.ä¼¤å®³:
+                        cardData.des += "å†é€ æˆ"+canXin.CanXinValue.value+"ç‚¹ä¼¤å®³";
                         break;
-                    case Value.ValueType.»¤¼×:
-                        cardData.des += "»ñµÃ" + canXin.CanXinValue.value + "µã»¤¼×";
+                    case Value.ValueType.æŠ¤ç”²:
+                        cardData.des += "è·å¾—" + canXin.CanXinValue.value + "ç‚¹æŠ¤ç”²";
                         break;
-                    case Value.ValueType.»Ø·Ñ:
-                        cardData.des += "»ñµÃ" + canXin.CanXinValue.value + "µãÄÜÁ¿";
+                    case Value.ValueType.å›è´¹:
+                        cardData.des += "è·å¾—" + canXin.CanXinValue.value + "ç‚¹èƒ½é‡";
                         break;
-                    case Value.ValueType.»ØÑª:
-                        cardData.des += "»Ø¸´" + canXin.CanXinValue.value + "µãÉúÃü";
+                    case Value.ValueType.å›è¡€:
+                        cardData.des += "å›å¤" + canXin.CanXinValue.value + "ç‚¹ç”Ÿå‘½";
                         break;
-                    case Value.ValueType.¾ªÏÅ:
-                        cardData.des += "¸øÓè" + canXin.CanXinValue.value + "²ã¾ªÏÅ";
+                    case Value.ValueType.æƒŠå“:
+                        cardData.des += "ç»™äºˆ" + canXin.CanXinValue.value + "å±‚æƒŠå“";
                         break;
                 }
             }
             
         }
-        //Èç¹ûÓĞÁ¬Õ¶µÄÇé¿öÏÂ
+        //å¦‚æœæœ‰è¿æ–©çš„æƒ…å†µä¸‹
         if (cardData.comboList.Count > 0)
         {
             if (cardData.des != "")
@@ -365,41 +371,41 @@ public class Card : MonoBehaviour
 
             foreach (var combo in cardData.comboList)
             {
-                cardData.des += "Á¬Õ¶"+combo.comboNum+"£º";
+                cardData.des += "è¿æ–©"+combo.comboNum+"ï¼š";
                 switch (combo.comboValue.type)
                 {
-                    case Value.ValueType.ÉËº¦:
-                        cardData.des += "ÔÙÔì³É" + combo.comboValue.value + "µãÉËº¦";
+                    case Value.ValueType.ä¼¤å®³:
+                        cardData.des += "å†é€ æˆ" + combo.comboValue.value + "ç‚¹ä¼¤å®³";
                         break;
-                    case Value.ValueType.»¤¼×:
-                        cardData.des += "»ñµÃ" + combo.comboValue.value + "µã»¤¼×";
+                    case Value.ValueType.æŠ¤ç”²:
+                        cardData.des += "è·å¾—" + combo.comboValue.value + "ç‚¹æŠ¤ç”²";
                         break;
-                    case Value.ValueType.»Ø·Ñ:
-                        cardData.des += "»ñµÃ" + combo.comboValue.value + "µãÄÜÁ¿";
+                    case Value.ValueType.å›è´¹:
+                        cardData.des += "è·å¾—" + combo.comboValue.value + "ç‚¹èƒ½é‡";
                         break;
-                    case Value.ValueType.»ØÑª:
-                        cardData.des += "»Ø¸´" + combo.comboValue.value + "µãÉúÃü";
+                    case Value.ValueType.å›è¡€:
+                        cardData.des += "å›å¤" + combo.comboValue.value + "ç‚¹ç”Ÿå‘½";
                         break;
                 }
             }
         }
-        //Èç¹ûÓĞÎŞºÎÓĞ´ÊÌõµÄÇé¿öÏÂ
-        if (valueDic.ContainsKey(Value.ValueType.ÎŞºÎÓĞ))
+        //å¦‚æœæœ‰æ— ä½•æœ‰è¯æ¡çš„æƒ…å†µä¸‹
+        if (valueDic.ContainsKey(Value.ValueType.æ— ä½•æœ‰))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "ÎŞºÎÓĞ";
+            cardData.des += "æ— ä½•æœ‰";
         }
 
-        if (valueDic.ContainsKey(Value.ValueType.»÷É±»Ø·Ñ))
+        if (valueDic.ContainsKey(Value.ValueType.å‡»æ€å›è´¹))
         {
             if (cardData.des != "")
             {
                 cardData.des += "\n";
             }
-            cardData.des += "Èç¹ûÕâ¸öµ¥Î»Òò´ËËÀÈ¥£¬Ôò»Ø¸´"+valueDic[Value.ValueType.»÷É±»Ø·Ñ]+"µãÄÜÁ¿";
+            cardData.des += "å¦‚æœè¿™ä¸ªå•ä½å› æ­¤æ­»å»ï¼Œåˆ™å›å¤"+valueDic[Value.ValueType.å‡»æ€å›è´¹]+"ç‚¹èƒ½é‡";
         }
     }
     private void Start()

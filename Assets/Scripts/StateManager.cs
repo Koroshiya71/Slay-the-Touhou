@@ -1,54 +1,54 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public static void AddStateToPlayer(Value state)//¸øÍæ¼ÒÌí¼Ó¶ÔÓ¦ÀàĞÍ£¬²ãÊıµÄ×´Ì¬
+    public static void AddStateToPlayer(Value state)//ç»™ç©å®¶æ·»åŠ å¯¹åº”ç±»å‹ï¼Œå±‚æ•°çš„çŠ¶æ€
     {
-        foreach (var s in Player.Instance.stateList)//²éÕÒÍæ¼ÒÏÖÓĞµÄ×´Ì¬ÁĞ±í
+        foreach (var s in Player.Instance.stateList)//æŸ¥æ‰¾ç©å®¶ç°æœ‰çš„çŠ¶æ€åˆ—è¡¨
         {
-            if (s.type==state.type)//Èç¹ûÒÑÓĞÕâ¸ö×´Ì¬£¬ÄÇÃ´Ôö¼ÓËüµÄ²ãÊı
+            if (s.type==state.type)//å¦‚æœå·²æœ‰è¿™ä¸ªçŠ¶æ€ï¼Œé‚£ä¹ˆå¢åŠ å®ƒçš„å±‚æ•°
             {
                 s.value += state.value;
                 return;
             }
         }
-        //·ñÔò¾Í½«Õâ¸ö×´Ì¬¼ÓÈëÁĞ±í
+        //å¦åˆ™å°±å°†è¿™ä¸ªçŠ¶æ€åŠ å…¥åˆ—è¡¨
         Value newValue = new Value();
         newValue.type = state.type;
         newValue.value = state.value;
         Player.Instance.stateList.Add(newValue);
     }
-    public static void AddStateToEnemy(Value state,Enemy target)//¸øÍæ¼ÒÌí¼Ó¶ÔÓ¦ÀàĞÍ£¬²ãÊıµÄ×´Ì¬
+    public static void AddStateToEnemy(Value state,Enemy target)//ç»™ç©å®¶æ·»åŠ å¯¹åº”ç±»å‹ï¼Œå±‚æ•°çš„çŠ¶æ€
     {
-        foreach (var s in target.stateList)//²éÕÒÍæ¼ÒÏÖÓĞµÄ×´Ì¬ÁĞ±í
+        foreach (var s in target.stateList)//æŸ¥æ‰¾ç©å®¶ç°æœ‰çš„çŠ¶æ€åˆ—è¡¨
         {
-            if (s.type == state.type)//Èç¹ûÒÑÓĞÕâ¸ö×´Ì¬£¬ÄÇÃ´Ôö¼ÓËüµÄ²ãÊı
+            if (s.type == state.type)//å¦‚æœå·²æœ‰è¿™ä¸ªçŠ¶æ€ï¼Œé‚£ä¹ˆå¢åŠ å®ƒçš„å±‚æ•°
             {
                 s.value += state.value;
                 return;
             }
         }
-        //·ñÔò¾Í½«Õâ¸ö×´Ì¬¼ÓÈëÁĞ±í
+        //å¦åˆ™å°±å°†è¿™ä¸ªçŠ¶æ€åŠ å…¥åˆ—è¡¨
         Value newValue = new Value();
         newValue.type = state.type;
         newValue.value = state.value;
         target.stateList.Add(newValue);
     }
-    public static void UpdatePlayerState() //Çå³ı×´Ì¬ÁĞ±íÖĞµÄÎŞĞ§×´Ì¬
+    public static void UpdatePlayerState() //æ¸…é™¤çŠ¶æ€åˆ—è¡¨ä¸­çš„æ— æ•ˆçŠ¶æ€
     {
         List<Value> emptyList = new List<Value>();
         foreach (var state in Player.Instance.stateList)
         {
             switch (state.type)
             {
-                case Value.ValueType.¶şµ¶Á÷:
-                case Value.ValueType.¶îÍâ»ØºÏ:
-                case Value.ValueType.ÌåÊõÏŞÖÆ:
-                case Value.ValueType.¾ªÏÅ:
-                case Value.ValueType.±£ÁôÊÖÅÆ:
+                case Value.ValueType.äºŒåˆ€æµ:
+                case Value.ValueType.é¢å¤–å›åˆ:
+                case Value.ValueType.ä½“æœ¯é™åˆ¶:
+                case Value.ValueType.æƒŠå“:
+                case Value.ValueType.ä¿ç•™æ‰‹ç‰Œ:
 
                     state.value--;
                     break;
@@ -68,7 +68,7 @@ public class StateManager : MonoBehaviour
             Player.Instance.stateList.Remove(emptyState);
         }
     }
-    public static void UpdateEnemiesState() //Çå³ıËùÓĞµĞÈË×´Ì¬ÁĞ±íÖĞµÄÎŞĞ§×´Ì¬
+    public static void UpdateEnemiesState() //æ¸…é™¤æ‰€æœ‰æ•ŒäººçŠ¶æ€åˆ—è¡¨ä¸­çš„æ— æ•ˆçŠ¶æ€
     {
         foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
         {
@@ -77,10 +77,10 @@ public class StateManager : MonoBehaviour
             {
                 switch (state.type)
                 {
-                    case Value.ValueType.¶şµ¶Á÷:
-                    case Value.ValueType.¶îÍâ»ØºÏ:
-                    case Value.ValueType.ÌåÊõÏŞÖÆ:
-                    case Value.ValueType.¾ªÏÅ:
+                    case Value.ValueType.äºŒåˆ€æµ:
+                    case Value.ValueType.é¢å¤–å›åˆ:
+                    case Value.ValueType.ä½“æœ¯é™åˆ¶:
+                    case Value.ValueType.æƒŠå“:
                         state.value--;
                         break;
 

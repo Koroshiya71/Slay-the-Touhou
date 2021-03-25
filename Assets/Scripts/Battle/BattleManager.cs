@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +7,22 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public bool turnHasEnd;
-    public List<Action> actionsEndTurn=new List<Action>();//»ØºÏ½áÊøÊ±´¥·¢µÄĞ§¹û
-    public List<Action> actionsTurnStart=new List<Action>();//»ØºÏ¿ªÊ¼Ê±´¥·¢µÄĞ§¹û
-    public bool hasCanXin;//ÉÏ»ØºÏÊÇ·ñ´¥·¢¹ı²ĞĞÄ
-    public int effectTimes;//¿¨ÅÆĞ§¹û´¥·¢µÄ´ÎÊı
-    public int cardCombo;//±¾»ØºÏÊ¹ÓÃµÄ¿¨ÅÆÊıÁ¿
-    public bool extraTurn;//¸Ã»ØºÏÊÇ·ñÊÇ¶îÍâ»ØºÏ
-    public int tiShuCardCombo;//±¾»ØºÏÊ¹ÓÃµÄÌåÊõÅÆÊıÁ¿
+    public List<Action> actionsEndTurn=new List<Action>();//å›åˆç»“æŸæ—¶è§¦å‘çš„æ•ˆæœ
+    public List<Action> actionsTurnStart=new List<Action>();//å›åˆå¼€å§‹æ—¶è§¦å‘çš„æ•ˆæœ
+    public bool hasCanXin;//ä¸Šå›åˆæ˜¯å¦è§¦å‘è¿‡æ®‹å¿ƒ
+    public int effectTimes;//å¡ç‰Œæ•ˆæœè§¦å‘çš„æ¬¡æ•°
+    public int cardCombo;//æœ¬å›åˆä½¿ç”¨çš„å¡ç‰Œæ•°é‡
+    public bool extraTurn;//è¯¥å›åˆæ˜¯å¦æ˜¯é¢å¤–å›åˆ
+    public int tiShuCardCombo;//æœ¬å›åˆä½¿ç”¨çš„ä½“æœ¯ç‰Œæ•°é‡
+    public GameObject enemyPrefab;//æ•Œäººé¢„åˆ¶ä½“
+    public List<BattleData> battleDataList = new List<BattleData>();//ä¿å­˜æ‰€æœ‰æˆ˜æ–—åœºæ™¯æ•°æ®çš„åˆ—è¡¨
     public void TurnEnd()
     {
-        if (turnHasEnd)//Èç¹û»ØºÏÒÑ½áÊøÔÚ½øĞĞÔËĞĞÆäËû·½·¨Ê±Ìø¹ı¼ì²â
+        if (turnHasEnd)//å¦‚æœå›åˆå·²ç»“æŸåœ¨è¿›è¡Œè¿è¡Œå…¶ä»–æ–¹æ³•æ—¶è·³è¿‡æ£€æµ‹
         {
             return;
         }
-        if (MenuEventManager.Instance.isPreviewing)//Èç¹ûÕıÔÚ½øĞĞ¿¨ÅÆÔ¤ÀÀÔò²»½øĞĞ¼ì²â
+        if (MenuEventManager.Instance.isPreviewing)//å¦‚æœæ­£åœ¨è¿›è¡Œå¡ç‰Œé¢„è§ˆåˆ™ä¸è¿›è¡Œæ£€æµ‹
         {
             return;
         }
@@ -36,7 +38,7 @@ public class BattleManager : MonoBehaviour
 
             actionsEndTurn = new List<Action>();
         }
-        if (Player.Instance.CheckState(Value.ValueType.¶îÍâ»ØºÏ))//Èç¹ûÍæ¼ÒÓµÓĞ¶îÍâ»ØºÏÌø¹ıµĞÈËĞĞ¶¯Ö±½Ó¿ªÊ¼ĞÂµÄÍæ¼Ò»ØºÏ
+        if (Player.Instance.CheckState(Value.ValueType.é¢å¤–å›åˆ))//å¦‚æœç©å®¶æ‹¥æœ‰é¢å¤–å›åˆè·³è¿‡æ•Œäººè¡ŒåŠ¨ç›´æ¥å¼€å§‹æ–°çš„ç©å®¶å›åˆ
         {
             extraTurn = true;
             TurnStart();
@@ -51,7 +53,7 @@ public class BattleManager : MonoBehaviour
         
 
         Invoke(nameof(TurnStart), 1);
-        if (!Player.Instance.CheckState(Value.ValueType.±£ÁôÊÖÅÆ))
+        if (!Player.Instance.CheckState(Value.ValueType.ä¿ç•™æ‰‹ç‰Œ))
         {
             CardManager.Instance.DropAllCard();
 
@@ -63,11 +65,11 @@ public class BattleManager : MonoBehaviour
 
     public void TurnStart()
     {
-        StateManager.UpdatePlayerState();//¶ÔÍæ¼ÒÉíÉÏµÄ×´Ì¬½øĞĞ¸üĞÂ
-        StateManager.UpdateEnemiesState();//¶ÔµĞÈËÉíÉÏµÄ×´Ì¬½øĞĞ¸üĞÂ
+        StateManager.UpdatePlayerState();//å¯¹ç©å®¶èº«ä¸Šçš„çŠ¶æ€è¿›è¡Œæ›´æ–°
+        StateManager.UpdateEnemiesState();//å¯¹æ•Œäººèº«ä¸Šçš„çŠ¶æ€è¿›è¡Œæ›´æ–°
         turnHasEnd = false;
         Player.Instance.InitEnergy();
-        if (!extraTurn)//Èç¹ûÊÇ¶îÍâ»ØºÏ£¬Ôò²»Çå³ı»¤¼×
+        if (!extraTurn)//å¦‚æœæ˜¯é¢å¤–å›åˆï¼Œåˆ™ä¸æ¸…é™¤æŠ¤ç”²å¹¶ä¿ç•™æ‰‹ç‰Œ
         {
             Player.Instance.shield = 0;
         }
@@ -93,13 +95,32 @@ public class BattleManager : MonoBehaviour
             card.UpdateCardState();
         }
     }
-    void Start()
+
+    private void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
+        
+    }
+
+    public void BattleStart(BattleData data)//æˆ˜æ–—å¼€å§‹
+    {
         CardManager.Instance.InitDrawCardList();
+        CreateEnemies(data.enemyDataList);
         TurnStart();
     }
 
+    public void CreateEnemies(List<EnemyData> enemyDataList) //åˆ›å»ºæ•Œäºº
+    {
+        foreach (var enemyData in enemyDataList)
+        {
+            Enemy newNEnemy = Instantiate(enemyPrefab,enemyData.position,Quaternion.identity).GetComponent<Enemy>();
+            newNEnemy.InitEnemy(enemyData);
+        }
+    }
     void Update() 
     {
         

@@ -15,9 +15,9 @@ public class Enemy : MonoBehaviour
     private int actionNo=0;
     public EnemyAction currentEnemyAction;
     public List<Sprite> actionSpriteList = new List<Sprite>();
-    public int enemyID;
     public List<Value> stateList = new List<Value>();
     public int actualValue;
+    public EnemyData enemyData;//敌人数据
     #endregion
 
     public Animator animController;//动画控制器
@@ -29,7 +29,6 @@ public class Enemy : MonoBehaviour
     public GameObject actionImg;//行动类型图示
     public Text actionValueText;//行动数值
     #endregion
-    //初始化敌人
     public bool CheckState(Value.ValueType stateType) //状态检测
     {
         foreach (var state in stateList)
@@ -41,11 +40,10 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
-
-    public void InitEnemy()
+    //初始化敌人
+    public void InitEnemy(EnemyData data)
     {
         actionNo = 0;
-        EnemyData data = EnemyManager.Instance.enemyDataList[enemyID];
         maxHp = data.maxHp;
         hp = data.initHp;
         shield = data.initShield;
@@ -99,6 +97,7 @@ public class Enemy : MonoBehaviour
 
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Defend];
+                    actualValue = currentEnemyAction.valueDic[Value.ValueType.护甲];
                     actionValueText.text = "" + actualValue;
                     break;
             }
@@ -118,8 +117,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        InitEnemy();
-
+        InitEnemy(EnemyManager.Instance.enemyDataList[0]);
     }
     public void TakeAction()
     {

@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
+public class MenuEventManager : MonoBehaviour//ç”¨æ¥ç®¡ç†ä¸€ç³»åˆ—UIäº‹ä»¶
 {
     public static MenuEventManager Instance;
-    public List<Card> showCardList;//ÓÃÓÚÏÔÊ¾µÄ¿¨ÅÆÁĞ±í
-    public GameObject cardDisplayCanvas;//ÓÃÀ´Ô¤ÀÀÅÆ¶ÑÇé¿öµÄ»­²¼
-    public RectTransform displayContent;//»¬¶¯²Ëµ¥µÄÄÚÈİ·¶Î§
-    public bool isPreviewing;//ÊÇ·ñÕıÔÚÏÔÊ¾¿¨ÅÆ
+    public List<Card> showCardList;//ç”¨äºæ˜¾ç¤ºçš„å¡ç‰Œåˆ—è¡¨
+    public GameObject cardDisplayCanvas;//ç”¨æ¥é¢„è§ˆç‰Œå †æƒ…å†µçš„ç”»å¸ƒ
+    public RectTransform displayContent;//æ»‘åŠ¨èœå•çš„å†…å®¹èŒƒå›´
+    public bool isPreviewing;//æ˜¯å¦æ­£åœ¨æ˜¾ç¤ºå¡ç‰Œ
 
     private void Awake()
     {
@@ -19,39 +19,39 @@ public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
         InitShowCardCanvas();
     }
 
-    void InitShowCardCanvas() //¶Ô¿¨ÅÆÔ¤ÀÀ½çÃæ½øĞĞ³õÊ¼»¯
+    void InitShowCardCanvas() //å¯¹å¡ç‰Œé¢„è§ˆç•Œé¢è¿›è¡Œåˆå§‹åŒ–
     {
-        cardDisplayCanvas.SetActive(false);//È¡ÏûÏÔÊ¾
+        cardDisplayCanvas.SetActive(false);//å–æ¶ˆæ˜¾ç¤º
         Card[] showCards = cardDisplayCanvas.GetComponentsInChildren<Card>();
         foreach (var card in showCards)
         {
-            showCardList.Add(card);//½«ËùÓĞÔ¤ÖÆ¿¨ÅÆ¼ÓÈë¹ÜÀíÁĞ±í
+            showCardList.Add(card);//å°†æ‰€æœ‰é¢„åˆ¶å¡ç‰ŒåŠ å…¥ç®¡ç†åˆ—è¡¨
         }
 
     }
 
     
-    public void ChooseCardFromDesk()//´ÓÊÖÅÆÍâµÄ·¶Î§½øĞĞ¿¨ÅÆÑ¡Ôñ
+    public void ChooseCardFromDesk()//ä»æ‰‹ç‰Œå¤–çš„èŒƒå›´è¿›è¡Œå¡ç‰Œé€‰æ‹©
     {
         CardManager.Instance.isChoosingFromHand = true;
         cardDisplayCanvas.SetActive(true);
         List<CardData> optionalList= CardManager.Instance.optionalCardList;
         for (int i = 0; i < optionalList.Count; i++)
         {
-            showCardList[i].gameObject.SetActive(true);//½«µÈÍ¬ÓÚ³éÅÆ¶ÑÊıÁ¿µÄÕ¹Ê¾¿¨ÅÆ³õÊ¼»¯²¢ÏÔÊ¾³öÀ´
+            showCardList[i].gameObject.SetActive(true);//å°†ç­‰åŒäºæŠ½ç‰Œå †æ•°é‡çš„å±•ç¤ºå¡ç‰Œåˆå§‹åŒ–å¹¶æ˜¾ç¤ºå‡ºæ¥
             showCardList[i].InitCard(optionalList[i]);
         }
-        for (int i = optionalList.Count; i < showCardList.Count; i++)//½«ÆäËû¿¨ÅÆÒş²ØÏÔÊ¾
+        for (int i = optionalList.Count; i < showCardList.Count; i++)//å°†å…¶ä»–å¡ç‰Œéšè—æ˜¾ç¤º
         {
             showCardList[i].gameObject.SetActive(false);
         }
     }
-    public void ExitDisplayButtonDown() //È¡ÏûÔ¤ÀÀ¿¨ÅÆ°´Å¥µÄ»Øµ÷ÊÂ¼ş
+    public void ExitDisplayButtonDown() //å–æ¶ˆé¢„è§ˆå¡ç‰ŒæŒ‰é’®çš„å›è°ƒäº‹ä»¶
     {
         isPreviewing = false;
         cardDisplayCanvas.SetActive(false);
     }
-    public void ShowDeskButtonDown() //²é¿´ÅÆ¿â°´Å¥°´ÏÂµÄ»Øµ÷ÊÂ¼ş
+    public void ShowDeskButtonDown() //æŸ¥çœ‹ç‰Œåº“æŒ‰é’®æŒ‰ä¸‹çš„å›è°ƒäº‹ä»¶
     {
         isPreviewing = true;
 
@@ -60,7 +60,7 @@ public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
         displayContent.sizeDelta = new Vector2(1835, 939 + (deskList.Count / 5 - 1) * 420);
         for (int i = 0; i < deskList.Count; i++)
         {
-            showCardList[i].gameObject.SetActive(true);//½«µÈÍ¬ÓÚÆúÅÆ¶ÑÊıÁ¿µÄÕ¹Ê¾¿¨ÅÆ³õÊ¼»¯²¢ÏÔÊ¾³öÀ´
+            showCardList[i].gameObject.SetActive(true);//å°†ç­‰åŒäºå¼ƒç‰Œå †æ•°é‡çš„å±•ç¤ºå¡ç‰Œåˆå§‹åŒ–å¹¶æ˜¾ç¤ºå‡ºæ¥
             foreach (var data in CardManager.Instance.CardDataList)
             {
                 if (data.cardID == deskList[i])
@@ -71,13 +71,13 @@ public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
             }
         }
 
-        for (int i = deskList.Count; i < showCardList.Count; i++)//½«ÆäËû¿¨ÅÆÒş²ØÏÔÊ¾
+        for (int i = deskList.Count; i < showCardList.Count; i++)//å°†å…¶ä»–å¡ç‰Œéšè—æ˜¾ç¤º
         {
             showCardList[i].gameObject.SetActive(false);
         }
 
     }
-    public void ShowDrawCardButtonDown() //²é¿´³éÅÆ¶Ñ°´Å¥°´ÏÂµÄ»Øµ÷ÊÂ¼ş
+    public void ShowDrawCardButtonDown() //æŸ¥çœ‹æŠ½ç‰Œå †æŒ‰é’®æŒ‰ä¸‹çš„å›è°ƒäº‹ä»¶
     {
         isPreviewing = true;
 
@@ -86,17 +86,17 @@ public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
         displayContent.sizeDelta = new Vector2(1835, 939 + (drawCardList.Count / 5 - 2) * 420);
         for (int i = 0; i < drawCardList.Count; i++)
         {
-            showCardList[i].gameObject.SetActive(true);//½«µÈÍ¬ÓÚ³éÅÆ¶ÑÊıÁ¿µÄÕ¹Ê¾¿¨ÅÆ³õÊ¼»¯²¢ÏÔÊ¾³öÀ´
+            showCardList[i].gameObject.SetActive(true);//å°†ç­‰åŒäºæŠ½ç‰Œå †æ•°é‡çš„å±•ç¤ºå¡ç‰Œåˆå§‹åŒ–å¹¶æ˜¾ç¤ºå‡ºæ¥
             showCardList[i].InitCard(drawCardList[i]);
         }
 
-        for (int i = drawCardList.Count; i < showCardList.Count; i++)//½«ÆäËû¿¨ÅÆÒş²ØÏÔÊ¾
+        for (int i = drawCardList.Count; i < showCardList.Count; i++)//å°†å…¶ä»–å¡ç‰Œéšè—æ˜¾ç¤º
         {
             showCardList[i].gameObject.SetActive(false);
         }
         
     }
-    public void ShowDiscardButtonDown() //²é¿´ÆúÅÆ¶Ñ¶Ñ°´Å¥°´ÏÂµÄ»Øµ÷ÊÂ¼ş
+    public void ShowDiscardButtonDown() //æŸ¥çœ‹å¼ƒç‰Œå †å †æŒ‰é’®æŒ‰ä¸‹çš„å›è°ƒäº‹ä»¶
     {
         isPreviewing = true;
 
@@ -106,18 +106,18 @@ public class MenuEventManager : MonoBehaviour//ÓÃÀ´¹ÜÀíÒ»ÏµÁĞUIÊÂ¼ş
        
         for (int i = 0; i < discardList.Count; i++)
         {
-            showCardList[i].gameObject.SetActive(true);//½«µÈÍ¬ÓÚÆúÅÆ¶ÑÊıÁ¿µÄÕ¹Ê¾¿¨ÅÆ³õÊ¼»¯²¢ÏÔÊ¾³öÀ´
+            showCardList[i].gameObject.SetActive(true);//å°†ç­‰åŒäºå¼ƒç‰Œå †æ•°é‡çš„å±•ç¤ºå¡ç‰Œåˆå§‹åŒ–å¹¶æ˜¾ç¤ºå‡ºæ¥
             showCardList[i].InitCard(discardList[i]);
         }
 
-        for (int i = discardList.Count; i < showCardList.Count; i++)//½«ÆäËû¿¨ÅÆÒş²ØÏÔÊ¾
+        for (int i = discardList.Count; i < showCardList.Count; i++)//å°†å…¶ä»–å¡ç‰Œéšè—æ˜¾ç¤º
         {
             showCardList[i].gameObject.SetActive(false);
         }
 
     }
 
-    public void NotShowButtonDown() //È¡Ïû¿¨ÅÆÔ¤ÀÀ°´Å¥°´ÏÂµÄ»Øµ÷ÊÂ¼ş
+    public void NotShowButtonDown() //å–æ¶ˆå¡ç‰Œé¢„è§ˆæŒ‰é’®æŒ‰ä¸‹çš„å›è°ƒäº‹ä»¶
     {
 
     }

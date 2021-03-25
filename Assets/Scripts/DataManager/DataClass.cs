@@ -7,11 +7,30 @@ using UnityEngine;
 [Serializable]
 public class EnemyData
 {
+    public int ID;
     public string Name;//名字
     public int maxHp;//最大生命值
     public int initHp;//初始生命值
     public int initShield;//初始护盾值
     public List<string> ActionIdList = new List<string>();//该Enemy所有行为的ID
+    public Vector2 position;//敌人的生成位置
+
+    public static EnemyData Clone(EnemyData data)
+    {
+        EnemyData newData = new EnemyData();
+        newData.ID = data.ID;
+        newData.Name = data.Name;
+        newData.maxHp = data.maxHp;
+        newData.initHp = data.maxHp;
+        newData.initShield = data.initShield;
+        newData.ActionIdList = new List<string>();
+        newData.position = data.position;
+        foreach (var action in data.ActionIdList)
+        {
+         newData.ActionIdList.Add(action);   
+        }
+        return newData;
+    }
 }
 [Serializable]
 public class CardData
@@ -35,6 +54,13 @@ public class CardData
     public List<CanXin> canXinList;//残心列表
     public bool keepChangeInBattle;//在战斗中保留对其的更改
     public List<Combo> comboList;//连斩列表
+    public CardRare rare;
+    public enum CardRare//稀有度
+    {
+        Normal,//普通
+        Rare,//稀有
+        Epic//史诗
+    }
     public static CardData Clone(CardData target)
     {
         CardData newData = new CardData();
@@ -44,6 +70,7 @@ public class CardData
         newData.cost = target.cost;
         newData.des = target.des;
         newData.valueList = new List<Value>();
+        newData.rare = target.rare;
         foreach (var val in target.valueList)
         {
             newData.valueList.Add(val);
@@ -112,4 +139,18 @@ public class Combo//连斩
 {
     public Value comboValue;
     public int comboNum;//连斩数
+}
+
+[Serializable]
+public class BattleData
+{
+    public List<EnemyData> enemyDataList;
+
+}
+
+[Serializable]
+public class SceneData
+{
+    public SceneManager.SceneType type;//场景类型
+    public BattleData battleData;//当前场景的战斗数据
 }

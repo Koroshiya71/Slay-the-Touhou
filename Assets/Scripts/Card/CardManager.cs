@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -10,30 +10,30 @@ using Random = UnityEngine.Random;
 public class CardManager : MonoBehaviour
 {
     public static CardManager Instance;
-    public Card selectedCard; //Ñ¡ÖĞµÄ¿¨ÅÆ
-    public GameObject cardPrefab; //ÊÖÅÆÔ¤ÖÆÌå
-    public GameObject showCard; //ÓÃÀ´Õ¹Ê¾µÄ¿¨ÅÆ
+    public Card selectedCard; //é€‰ä¸­çš„å¡ç‰Œ
+    public GameObject cardPrefab; //æ‰‹ç‰Œé¢„åˆ¶ä½“
+    public GameObject showCard; //ç”¨æ¥å±•ç¤ºçš„å¡ç‰Œ
 
-    #region ¸÷ÖÖÅÆ¿â
+    #region å„ç§ç‰Œåº“
 
-    public List<CardData> discardList = new List<CardData>(); //ÆúÅÆ¶Ñ
-    public List<CardData> drawCardList = new List<CardData>(); //³éÅÆ¶Ñ
-    public List<string> cardDeskList = new List<string>(); //ÅÆ¿â
-    public List<GameObject> handCardList = new List<GameObject>(); //ÊÖÅÆÁĞ±í
+    public List<CardData> discardList = new List<CardData>(); //å¼ƒç‰Œå †
+    public List<CardData> drawCardList = new List<CardData>(); //æŠ½ç‰Œå †
+    public List<string> cardDeskList = new List<string>(); //ç‰Œåº“
+    public List<GameObject> handCardList = new List<GameObject>(); //æ‰‹ç‰Œåˆ—è¡¨
 
     #endregion
 
-    public bool isChoosingFromHand; //ÊÇ·ñÕıÔÚÑ¡Ôñ¿¨ÅÆ
-    public GameObject BeginPos; //Éú³ÉÊÖÅÆµÄ×î¿ªÊ¼µÄÎ»
-    private float rotateAngel; //ÊÖÅÆ¶¯»­Ğı×ªµÄ½Ç¶È
+    public bool isChoosingFromHand; //æ˜¯å¦æ­£åœ¨é€‰æ‹©å¡ç‰Œ
+    public GameObject BeginPos; //ç”Ÿæˆæ‰‹ç‰Œçš„æœ€å¼€å§‹çš„ä½
+    private float rotateAngel; //æ‰‹ç‰ŒåŠ¨ç”»æ—‹è½¬çš„è§’åº¦
     public List<Sprite> spriteList = new List<Sprite>();
     public List<CardData> CardDataList = new List<CardData>();
-    public bool hasShow; //ÊÇ·ñÒÑ¾­Õ¹Ê¾ÁË¿¨ÅÆ
-    public Text discardNumText; //ÆúÅÆ¶Ñ¿¨ÅÆÊıÁ¿µÄÎÄ±¾
-    public Text drawCardNumText; //³éÅÆ¶Ñ¿¨ÅÆÊıÁ¿µÄÎÄ±¾
-    public List<Card> chosenCardList = new List<Card>(); //±»Ñ¡ÖĞµÄ¿¨ÅÆÁĞ±í
-    public List<CardData> optionalCardList = new List<CardData>(); //¿ÉÑ¡¿¨ÅÆÁĞ±í
-    public bool hasInit;//ÊÇ·ñÒÑ¾­´ÓÅÆ¿â³õÊ¼»¯¹ı³éÅÆ¶ÑÁË
+    public bool hasShow; //æ˜¯å¦å·²ç»å±•ç¤ºäº†å¡ç‰Œ
+    public Text discardNumText; //å¼ƒç‰Œå †å¡ç‰Œæ•°é‡çš„æ–‡æœ¬
+    public Text drawCardNumText; //æŠ½ç‰Œå †å¡ç‰Œæ•°é‡çš„æ–‡æœ¬
+    public List<Card> chosenCardList = new List<Card>(); //è¢«é€‰ä¸­çš„å¡ç‰Œåˆ—è¡¨
+    public List<CardData> optionalCardList = new List<CardData>(); //å¯é€‰å¡ç‰Œåˆ—è¡¨
+    public bool hasInit;//æ˜¯å¦å·²ç»ä»ç‰Œåº“åˆå§‹åŒ–è¿‡æŠ½ç‰Œå †äº†
     private void Start()
     {
         showCard.SetActive(false);
@@ -42,20 +42,20 @@ public class CardManager : MonoBehaviour
 
     public void InitDrawCardList()
     {
-        if (discardList.Count > 0) //Èç¹ûÊÇÔÚÆúÅÆ¶ÑÓĞ¿¨ÅÆµÄÇé¿öÏÂ³õÊ¼»¯³éÅÆ¶Ñ£¬Ôò½«ËùÓĞÆúÅÆ¶ÑµÄ¿¨ÅÆ¼ÓÈë³éÅÆ¶Ñ
+        if (discardList.Count > 0) //å¦‚æœæ˜¯åœ¨å¼ƒç‰Œå †æœ‰å¡ç‰Œçš„æƒ…å†µä¸‹åˆå§‹åŒ–æŠ½ç‰Œå †ï¼Œåˆ™å°†æ‰€æœ‰å¼ƒç‰Œå †çš„å¡ç‰ŒåŠ å…¥æŠ½ç‰Œå †
         {
             foreach (var dCard in discardList)
             { drawCardList.Add(dCard);}
 
-            discardList = new List<CardData>(); //È»ºó³õÊ¼»¯ÆúÅÆ¶Ñ
+            discardList = new List<CardData>(); //ç„¶ååˆå§‹åŒ–å¼ƒç‰Œå †
         }
 
-        if (drawCardList.Count == 0 && !hasInit) //Èç¹û´ËÊ±³éÅÆ¶ÑÒÀÈ»Îª¿Õ£¬ÄÇÃ´ËµÃ÷ÊÇµÚÒ»´Î´ÓÅÆ¿â³õÊ¼»¯³éÅÆ¶Ñ
+        if (drawCardList.Count == 0 && !hasInit) //å¦‚æœæ­¤æ—¶æŠ½ç‰Œå †ä¾ç„¶ä¸ºç©ºï¼Œé‚£ä¹ˆè¯´æ˜æ˜¯ç¬¬ä¸€æ¬¡ä»ç‰Œåº“åˆå§‹åŒ–æŠ½ç‰Œå †
         {
             hasInit = true;
-            foreach (var cardId in cardDeskList) //È»ºó¸ù¾İÅÆ¿âÖĞÃ¿ÕÅÅÆµÄIDºÅ²éÕÒÊı¾İ
+            foreach (var cardId in cardDeskList) //ç„¶åæ ¹æ®ç‰Œåº“ä¸­æ¯å¼ ç‰Œçš„IDå·æŸ¥æ‰¾æ•°æ®
             foreach (var cardData in CardDataList)
-                if (cardId == cardData.cardID) //²éÕÒ¶ÔÓ¦IDµÄ¿¨ÅÆÊı¾İ
+                if (cardId == cardData.cardID) //æŸ¥æ‰¾å¯¹åº”IDçš„å¡ç‰Œæ•°æ®
                 {
                     drawCardList.Add(cardData);
                     break;
@@ -65,12 +65,12 @@ public class CardManager : MonoBehaviour
         Shuffle();
     }
 
-    public void Shuffle() //Ï´ÅÆ
+    public void Shuffle() //æ´—ç‰Œ
     {
-        drawCardList = RandomSortList(drawCardList); //Ëæ»ú´òÂÒ³éÅÆ¶ÑË³Ğò
+        drawCardList = RandomSortList(drawCardList); //éšæœºæ‰“ä¹±æŠ½ç‰Œå †é¡ºåº
 
     }
-    public List<T> RandomSortList<T>(List<T> ListT) //¶ÔÁĞ±í½øĞĞËæ»úÅÅĞò
+    public List<T> RandomSortList<T>(List<T> ListT) //å¯¹åˆ—è¡¨è¿›è¡Œéšæœºæ’åº
     {
         var random = new System.Random();
         var newList = new List<T>();
@@ -78,7 +78,7 @@ public class CardManager : MonoBehaviour
         return newList;
     }
 
-    public IEnumerator ChooseCardFromHand(int num, bool must, Card reason) //´ÓÊÖÅÆ½øĞĞ¿¨ÅÆÑ¡Ôñ
+    public IEnumerator ChooseCardFromHand(int num, bool must, Card reason) //ä»æ‰‹ç‰Œè¿›è¡Œå¡ç‰Œé€‰æ‹©
     {
         chosenCardList = new List<Card>();
         isChoosingFromHand = true;
@@ -96,13 +96,13 @@ public class CardManager : MonoBehaviour
 
                 if (Instance.chosenCardList.Count == 2)
                 {
-                    if (reason.cardData.cardID == "0010") //Ú¤Ïë
+                    if (reason.cardData.cardID == "0010") //å†¥æƒ³
                     {
                         foreach (var c in Instance.chosenCardList)
                         {
-                            if (!c.valueDic.ContainsKey(Value.ValueType.ÎŞºÎÓĞ))
+                            if (!c.valueDic.ContainsKey(Value.ValueType.æ— ä½•æœ‰))
                             {
-                                c.cardData.valueList.Add(new Value() { type = Value.ValueType.ÎŞºÎÓĞ, value = 1 });
+                                c.cardData.valueList.Add(new Value() { type = Value.ValueType.æ— ä½•æœ‰, value = 1 });
                                 c.cardData.keepChangeInBattle = true;
                             }
                             UseCard(c.gameObject);
@@ -128,22 +128,22 @@ public class CardManager : MonoBehaviour
         UpdateUIState();
     }
 
-    public void DrawCard() //´Ó³éÅÆ¶Ñ³é¿¨
+    public void DrawCard() //ä»æŠ½ç‰Œå †æŠ½å¡
     {
-        //TODO ºóĞøÓÅ»¯¶ÔÏó³Ø
-        //¿ËÂ¡Ô¤Éè
+        //TODO åç»­ä¼˜åŒ–å¯¹è±¡æ± 
+        //å…‹éš†é¢„è®¾
         var handCardGo = Instantiate(cardPrefab) as GameObject;
         var newCard = handCardGo.GetComponent<Card>();
 
-        if (drawCardList.Count == 0) //Èç¹ûÎŞÅÆ¿É³é£¬Ôò³õÊ¼»¯³éÅÆ¶Ñ
+        if (drawCardList.Count == 0) //å¦‚æœæ— ç‰Œå¯æŠ½ï¼Œåˆ™åˆå§‹åŒ–æŠ½ç‰Œå †
             InitDrawCardList();
-        if (drawCardList.Count == 0 && Player.Instance.CheckState(Value.ValueType.Áù¸ùÇå¾»))//Èç¹ûÓĞÁù¸ùÇå¾»×´Ì¬
+        if (drawCardList.Count == 0 && Player.Instance.CheckState(Value.ValueType.å…­æ ¹æ¸…å‡€))//å¦‚æœæœ‰å…­æ ¹æ¸…å‡€çŠ¶æ€
         {
             CardData newData = CardData.Clone(CardDataList[Random.Range(0, CardDataList.Count)]);
             bool isHad = false;
             foreach (var value in newData.valueList)
             {
-                if (value.type == Value.ValueType.ÎŞºÎÓĞ)
+                if (value.type == Value.ValueType.æ— ä½•æœ‰)
                 {
                     isHad = true;
                     break;
@@ -151,43 +151,43 @@ public class CardManager : MonoBehaviour
             }
             if (!isHad)
             {
-                newData.valueList.Add(new Value() { type = Value.ValueType.ÎŞºÎÓĞ, value = 1 });
+                newData.valueList.Add(new Value() { type = Value.ValueType.æ— ä½•æœ‰, value = 1 });
                 newData.keepChangeInBattle = true;
             }
             newCard.InitCard(newData);
             handCardGo.transform.position = BeginPos.transform.position;
             handCardGo.transform.SetParent(transform);
 
-            //½«ĞÂÊÖÅÆÌí¼Óµ½ÊÖÅÆÁĞ±í
+            //å°†æ–°æ‰‹ç‰Œæ·»åŠ åˆ°æ‰‹ç‰Œåˆ—è¡¨
             handCardList.Add(handCardGo);
 
-            //¼ÆËã¶¯»­ĞèÒªĞı×ªµÄ½Ç¶È
+            //è®¡ç®—åŠ¨ç”»éœ€è¦æ—‹è½¬çš„è§’åº¦
             RotateAngel();
-            //²¥·Å³é¿¨¶¯»­
+            //æ’­æ”¾æŠ½å¡åŠ¨ç”»
             AddCardAnimations();
             return;
         }
-        if(drawCardList.Count == 0 && !Player.Instance.CheckState(Value.ValueType.Áù¸ùÇå¾»)) //Èç¹ûÒÀ¾ÉÎŞÅÆ¿É³é£¬ÇÒ²»¾ßÓĞÁù¸ùÇå¾»×´Ì¬ÔòÌø¹ı³éÅÆ
+        if(drawCardList.Count == 0 && !Player.Instance.CheckState(Value.ValueType.å…­æ ¹æ¸…å‡€)) //å¦‚æœä¾æ—§æ— ç‰Œå¯æŠ½ï¼Œä¸”ä¸å…·æœ‰å…­æ ¹æ¸…å‡€çŠ¶æ€åˆ™è·³è¿‡æŠ½ç‰Œ
             return;
         
-        newCard.InitCard(drawCardList[0]); //¸ù¾İ³éÅÆ¶ÑµÄµÚÒ»ÕÅ¿¨ÅÆÊı¾İÀ´³õÊ¼»¯¿¨ÅÆ
-        drawCardList.Remove(drawCardList[0]); //½«¿¨ÅÆÒÆ³ı³éÅÆ¶Ñ
+        newCard.InitCard(drawCardList[0]); //æ ¹æ®æŠ½ç‰Œå †çš„ç¬¬ä¸€å¼ å¡ç‰Œæ•°æ®æ¥åˆå§‹åŒ–å¡ç‰Œ
+        drawCardList.Remove(drawCardList[0]); //å°†å¡ç‰Œç§»é™¤æŠ½ç‰Œå †
 
         handCardGo.transform.position = BeginPos.transform.position;
         handCardGo.transform.SetParent(transform);
 
-        //½«ĞÂÊÖÅÆÌí¼Óµ½ÊÖÅÆÁĞ±í
+        //å°†æ–°æ‰‹ç‰Œæ·»åŠ åˆ°æ‰‹ç‰Œåˆ—è¡¨
         handCardList.Add(handCardGo);
 
-        //¼ÆËã¶¯»­ĞèÒªĞı×ªµÄ½Ç¶È
+        //è®¡ç®—åŠ¨ç”»éœ€è¦æ—‹è½¬çš„è§’åº¦
         RotateAngel();
-        //²¥·Å³é¿¨¶¯»­
+        //æ’­æ”¾æŠ½å¡åŠ¨ç”»
         AddCardAnimations();
     }
 
-    public void GetCards(int cardNo) //¸ù¾İ¿¨ÅÆµÄĞòºÅ»ñÈ¡Ö¸¶¨¿¨ÅÆ
+    public void GetCards(int cardNo) //æ ¹æ®å¡ç‰Œçš„åºå·è·å–æŒ‡å®šå¡ç‰Œ
     {
-        //¿ËÂ¡Ô¤Éè
+        //å…‹éš†é¢„è®¾
         var handCardGo = Instantiate(cardPrefab) as GameObject;
         var newCard = handCardGo.GetComponent<Card>();
         newCard.InitCard(CardDataList[cardNo]);
@@ -195,25 +195,25 @@ public class CardManager : MonoBehaviour
         handCardGo.transform.position = BeginPos.transform.position;
         handCardGo.transform.SetParent(transform);
 
-        //½«ĞÂÊÖÅÆÌí¼Óµ½ÊÖÅÆÁĞ±í
+        //å°†æ–°æ‰‹ç‰Œæ·»åŠ åˆ°æ‰‹ç‰Œåˆ—è¡¨
         handCardList.Add(handCardGo);
-        //¼ÆËã¶¯»­ĞèÒªĞı×ªµÄ½Ç¶È
+        //è®¡ç®—åŠ¨ç”»éœ€è¦æ—‹è½¬çš„è§’åº¦
         RotateAngel();
     }
 
-    public void UpdateUIState() //¸üĞÂUI×é¼ş×´Ì¬
+    public void UpdateUIState() //æ›´æ–°UIç»„ä»¶çŠ¶æ€
     {
         drawCardNumText.text = drawCardList.Count + "";
         discardNumText.text = discardList.Count + "";
     }
 
-    //ÎªÊÖÅÆÌí¼Ó¶¯»­
+    //ä¸ºæ‰‹ç‰Œæ·»åŠ åŠ¨ç”»
     private void HandCardAnimation(GameObject GO, float Vec3_Z)
     {
         GO.transform.DORotate(new Vector3(0, 0, Vec3_Z), 0.3F, RotateMode.Fast);
     }
 
-    //Ôö¼ÓÊÖÅÆÊ±²¥·ÅµÄ¶¯»­
+    //å¢åŠ æ‰‹ç‰Œæ—¶æ’­æ”¾çš„åŠ¨ç”»
     private void AddCardAnimations()
     {
         if (handCardList.Count == 1)
@@ -228,7 +228,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    //Ê¹ÓÃÊÖÅÆÊ±²¥·ÅµÄ¶¯»­
+    //ä½¿ç”¨æ‰‹ç‰Œæ—¶æ’­æ”¾çš„åŠ¨ç”»
     public void UseCard(GameObject card = null)
     {
         if (card == null)
@@ -254,28 +254,28 @@ public class CardManager : MonoBehaviour
         
     }
 
-    public void DropAllCard() //¶ªÆúËùÓĞÊÖÅÆ
+    public void DropAllCard() //ä¸¢å¼ƒæ‰€æœ‰æ‰‹ç‰Œ
     {
         for (var i = 0; i < handCardList.Count; i++)
         {
             Discard(handCardList[i].GetComponent<Card>());
             Destroy(handCardList[i]);
 
-            //TODO:ÖÆ×÷ºÍ²¥·ÅÆúÅÆ¶¯»­
+            //TODO:åˆ¶ä½œå’Œæ’­æ”¾å¼ƒç‰ŒåŠ¨ç”»
         }
 
         handCardList = new List<GameObject>();
     }
 
-    //¼ÆËãĞèÒªĞı×ªµÄ½Ç¶È
+    //è®¡ç®—éœ€è¦æ—‹è½¬çš„è§’åº¦
     private void RotateAngel()
     {
         rotateAngel = 55F / (float) handCardList.Count / (float) handCardList.Count;
     }
 
-    public void Discard(Card card) //ÆúÅÆ
+    public void Discard(Card card) //å¼ƒç‰Œ
     {
-        if (card.valueDic.ContainsKey(Value.ValueType.ÎŞºÎÓĞ) && card.hasUsed) return;
+        if (card.valueDic.ContainsKey(Value.ValueType.æ— ä½•æœ‰) && card.hasUsed) return;
         
         discardList.Add(card.cardData);
     }

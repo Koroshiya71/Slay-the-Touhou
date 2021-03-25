@@ -1,26 +1,26 @@
 <CardData>
     <CardList>
-        <Card CardID="0001" Type="体术" Name="斩击" Cost="1" SpriteID="0" TargetType="单体敌人" Times="1">
+        <Card CardID="0001" Type="体术" Name="斩击" Cost="1" SpriteID="0" TargetType="单体敌人" Rare="Normal" Times="1"> 
             <Values>
                 <Value Type="伤害" Value="6"></Value>
             </Values>
         </Card>
-        <Card CardID="0002" Type="防御" Name="格挡" Cost="1" SpriteID="1" TargetType="自身" Times="1">
+        <Card CardID="0002" Type="防御" Name="格挡" Cost="1" SpriteID="1" TargetType="自身" Rare="Normal" Times="1">
             <Values>
                 <Value Type="护甲" Value="5"></Value>
             </Values>
         </Card>
-        <Card CardID="0003" Type="体术" Name="三连斩" Cost="1" SpriteID="2" TargetType="单体敌人" Times="3">
+        <Card CardID="0003" Type="体术" Name="三连斩" Cost="1" SpriteID="2" TargetType="单体敌人" Rare="Rare" Times="3">
             <Values>
                 <Value Type="伤害" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="2" SpriteID="3" TargetType="自身" Times="1">
+        <Card CardID="0004" Type="技能" Name="二刀的心得" Cost="2" SpriteID="3" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="二刀流" Value="2"></Value>
             </Values>
         </Card>
-        <Card CardID="0005" Type="体术" Name="残月斩" Cost="1" SpriteID="4" TargetType="单体敌人" Times="1">
+        <Card CardID="0005" Type="体术" Name="残月斩" Cost="1" SpriteID="4" TargetType="单体敌人" Rare="Rare" Times="1">
             <Values>
                 <Value Type="伤害" Value="8"></Value>
             </Values>
@@ -28,12 +28,12 @@
                 <CanXin Type="回费" Time="0" Value="1"></CanXin>
             </CanXinList>
         </Card>
-        <Card CardID="0006" Type="弹幕" Name="剑气" Cost="0" SpriteID="5" TargetType="单体敌人" Times="1">
+        <Card CardID="0006" Type="弹幕" Name="剑气" Cost="0" SpriteID="5" TargetType="单体敌人" Rare="Normal" Times="1">
             <Values>
                 <Value Type="伤害" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0007" Type="技能" Name="剑与弹幕" Cost="1" SpriteID="6" TargetType="全部敌人" Times="1">
+        <Card CardID="0007" Type="技能" Name="剑与弹幕" Cost="1" SpriteID="6" TargetType="全部敌人" Rare="Rare" Times="1">
             <Values>
                 <Value Type="伤害" Value="5"></Value>
             </Values>
@@ -44,31 +44,31 @@
                 <Combo Type="护甲" Combo="2" Value="4"></Combo>
             </ComboList>
         </Card>
-        <Card CardID="0008" Type="法术" Name="紫电一闪" Cost="3" SpriteID="7" TargetType="自身" Times="1">
+        <Card CardID="0008" Type="法术" Name="紫电一闪" Cost="3" SpriteID="7" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="流转" Value="1"></Value>
                 <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0009" Type="符卡" Name="狱界剑「二百由旬之一闪」" Cost="2" SpriteID="8" TargetType="自身" Times="1">
+        <Card CardID="0009" Type="符卡" Name="狱界剑「二百由旬之一闪」" Cost="2" SpriteID="8" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="额外回合" Value="1"></Value>
                 <Value Type="体术限制" Value="1"></Value>
                 <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Times="1">
+        <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Rare="Rare" Times="1">
             <Values>
                 <Value Type="抽牌" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0011" Type="符卡" Name="断命剑「冥想斩」" Cost="3" SpriteID="10" TargetType="单体敌人" Times="1">
+        <Card CardID="0011" Type="符卡" Name="断命剑「冥想斩」" Cost="3" SpriteID="10" TargetType="单体敌人" Rare="Epic" Times="1">
             <Values>
                 <Value Type="伤害" Value="28"></Value>
                 <Value Type="击杀回费" Value="2"></Value>
             </Values>
         </Card>
-        <Card CardID="0012" Type="弹幕" Name="散华" Cost="2" SpriteID="11" TargetType="随机敌人" Times="2">
+        <Card CardID="0012" Type="弹幕" Name="散华" Cost="2" SpriteID="11" TargetType="随机敌人" Rare="Normal" Times="2">
             <Values>
                 <Value Type="伤害" Value="6"></Value>
             </Values>
@@ -76,7 +76,7 @@
                 <CanXin Type="回血" Value="6" Time="1"></CanXin>
             </CanXinList>
         </Card>
-        <Card CardID="0013" Type="体术" Name="居合" Cost="2" SpriteID="12" TargetType="单体敌人" Times="1">
+        <Card CardID="0013" Type="体术" Name="居合" Cost="2" SpriteID="12" TargetType="单体敌人" Rare="Normal" Times="1">
             <Values>
                 <Value Type="伤害" Value="8"></Value>
             </Values>
@@ -84,7 +84,7 @@
                 <CanXin Type="伤害" Value="16" Time="1"></CanXin>
             </CanXinList>
         </Card>
-        <Card CardID="0014" Type="弹幕" Name="快速剑弹" Cost="1" SpriteID="13" TargetType="全部敌人" Times="1">
+        <Card CardID="0014" Type="弹幕" Name="快速剑弹" Cost="1" SpriteID="13" TargetType="全部敌人" Rare="Normal" Times="1">
             <Values>
                 <Value Type="伤害" Value="4"></Value>
             </Values>
@@ -92,7 +92,7 @@
                 <CanXin Type="惊吓" Value="1" Time="1"></CanXin>
             </CanXinList>
         </Card>
-        <Card CardID="0015" Type="技能" Name="背水一战" Cost="0" SpriteID="15" TargetType="自身" Times="1">
+        <Card CardID="0015" Type="技能" Name="背水一战" Cost="0" SpriteID="15" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="抽牌" Value="3"></Value>
                 <Value Type="回费" Value="3"></Value>
@@ -100,19 +100,19 @@
                 <Value Type="背水一战" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0016" Type="法术" Name="起势" Cost="1" SpriteID="16" TargetType="自身" Times="1">
+        <Card CardID="0016" Type="法术" Name="起势" Cost="1" SpriteID="16" TargetType="自身" Rare="Normal" Times="1">
             <Values>
                 <Value Type="起势" Value="2"></Value>
                 <Value Type="抽牌" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0017" Type="法术" Name="庭师的智慧" Cost="1" SpriteID="17" TargetType="自身" Times="1">
+        <Card CardID="0017" Type="法术" Name="庭师的智慧" Cost="1" SpriteID="17" TargetType="自身" Rare="Rare" Times="1">
             <Values>
                 <Value Type="保留手牌" Value="1"></Value>
                 <Value Type="抽牌" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0018" Type="法术" Name="六根清净" Cost="3" SpriteID="18" TargetType="自身" Times="1">
+        <Card CardID="0018" Type="法术" Name="六根清净" Cost="3" SpriteID="18" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="六根清净" Value="1"></Value>
                 <Value Type="无何有" Value="1"></Value>

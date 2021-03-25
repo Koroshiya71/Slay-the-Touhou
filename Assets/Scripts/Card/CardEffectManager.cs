@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,64 +7,64 @@ using Random = UnityEngine.Random;
 
 public class CardEffectManager : MonoBehaviour
 {
-    public static CardEffectManager Instance; //µ¥Àı
-    public Enemy targetEnemy; //¿¨ÅÆµÄ
-    public int attackTimes; //ÌåÊõµÄ¹¥»÷´ÎÊı
+    public static CardEffectManager Instance; //å•ä¾‹
+    public Enemy targetEnemy; //å¡ç‰Œçš„
+    public int attackTimes; //ä½“æœ¯çš„æ”»å‡»æ¬¡æ•°
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public IEnumerator UseThisCard(Card card) //´¥·¢¿¨ÅÆĞ§¹û
+    public IEnumerator UseThisCard(Card card) //è§¦å‘å¡ç‰Œæ•ˆæœ
     {
-        //Èç¹ûÓĞÌåÊõÏŞÖÆ×´Ì¬£¬¶ø¸Ã¿¨²»ÊÇÌåÊõ£¬ÔòÌø¹ı¼ì²â
-        if (Player.Instance.CheckState(Value.ValueType.ÌåÊõÏŞÖÆ) && card.cardData.type != Card.CardType.ÌåÊõ) yield break;
+        //å¦‚æœæœ‰ä½“æœ¯é™åˆ¶çŠ¶æ€ï¼Œè€Œè¯¥å¡ä¸æ˜¯ä½“æœ¯ï¼Œåˆ™è·³è¿‡æ£€æµ‹
+        if (Player.Instance.CheckState(Value.ValueType.ä½“æœ¯é™åˆ¶) && card.cardData.type != Card.CardType.ä½“æœ¯) yield break;
         switch (card.cardData.cardID)
         {
-            case "0001": //Õ¶»÷
-            case "0003": //ÈıÁ¬Õ¶
-            case "0005": //²ĞÔÂÕ¶
-            case "0006": //½£Æø
-            case "0011": //Ú¤ÏëÕ¶
-            case "0013": //¾ÓºÏ
+            case "0001": //æ–©å‡»
+            case "0003": //ä¸‰è¿æ–©
+            case "0005": //æ®‹æœˆæ–©
+            case "0006": //å‰‘æ°”
+            case "0011": //å†¥æƒ³æ–©
+            case "0013": //å±…åˆ
                 SingleAttack(card, 1);
                 break;
-            case "0002": //·ÀÓù
+            case "0002": //é˜²å¾¡
                 Defend(card, 1);
                 break;
-            case "0004": //¶şµ¶
-            case "0008": //×ÏµçÒ»ÉÁ
-            case "0009": //Á½°ÙÓÉÑ®Ö®Ò»ÉÁ
-            case "0015": //±³Ë®Ò»Õ½
-            case "0016": //ÆğÊÆ
-            case "0017": //Í¥Ê¦µÄÖÇ»Û
+            case "0004": //äºŒåˆ€
+            case "0008": //ç´«ç”µä¸€é—ª
+            case "0009": //ä¸¤ç™¾ç”±æ—¬ä¹‹ä¸€é—ª
+            case "0015": //èƒŒæ°´ä¸€æˆ˜
+            case "0016": //èµ·åŠ¿
+            case "0017": //åº­å¸ˆçš„æ™ºæ…§
                 Buff(card, 1);
                 break;
-            case "0007": //½£Óëµ¯Ä»
-            case "0014": //¿ìËÙ½£µ¯
+            case "0007": //å‰‘ä¸å¼¹å¹•
+            case "0014": //å¿«é€Ÿå‰‘å¼¹
                 AttackAll(card, 1);
                 break;
-            case "0012": //É¢»ª
+            case "0012": //æ•£å
                 RandomAttack(card, 1);
                 break;
-            case "0010": //Ú¤Ïë
+            case "0010": //å†¥æƒ³
                 if (Player.Instance.energy < card.cardData.cost) break;
-                for (var i = 0; i < card.valueDic[Value.ValueType.³éÅÆ]; i++) CardManager.Instance.DrawCard();
-                Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-                CardManager.Instance.UseCard(card.gameObject); //Ê¹ÓÃ¿¨ÅÆ
-                Player.Instance.energy -= card.cardData.cost; //ÏûºÄ·ÑÓÃ
+                for (var i = 0; i < card.valueDic[Value.ValueType.æŠ½ç‰Œ]; i++) CardManager.Instance.DrawCard();
+                Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+                CardManager.Instance.UseCard(card.gameObject); //ä½¿ç”¨å¡ç‰Œ
+                Player.Instance.energy -= card.cardData.cost; //æ¶ˆè€—è´¹ç”¨
                 CardManager.Instance.Discard(card);
                 StartCoroutine(CardManager.Instance.ChooseCardFromHand(2, true, card));
                 break;
-            case "0018": //Áù¸ùÇå¾»
+            case "0018": //å…­æ ¹æ¸…å‡€
                 if (Player.Instance.energy < card.cardData.cost) break;
                 foreach (var c in CardManager.Instance.drawCardList)
                 {
                     bool isHad = false;
                     foreach (var value in c.valueList)
                     {
-                        if (value.type==Value.ValueType.ÎŞºÎÓĞ)
+                        if (value.type==Value.ValueType.æ— ä½•æœ‰)
                         {
                             isHad = true;
                             break;
@@ -72,7 +72,7 @@ public class CardEffectManager : MonoBehaviour
                     }
                     if (!isHad)
                     {
-                        c.valueList.Add(new Value() { type = Value.ValueType.ÎŞºÎÓĞ, value = 1 });
+                        c.valueList.Add(new Value() { type = Value.ValueType.æ— ä½•æœ‰, value = 1 });
                         c.keepChangeInBattle = true;
                     }
                 }
@@ -81,7 +81,7 @@ public class CardEffectManager : MonoBehaviour
                     bool isHad = false;
                     foreach (var value in c.valueList)
                     {
-                        if (value.type == Value.ValueType.ÎŞºÎÓĞ)
+                        if (value.type == Value.ValueType.æ— ä½•æœ‰)
                         {
                             isHad = true;
                             break;
@@ -89,7 +89,7 @@ public class CardEffectManager : MonoBehaviour
                     }
                     if (!isHad)
                     {
-                        c.valueList.Add(new Value() { type = Value.ValueType.ÎŞºÎÓĞ, value = 1 });
+                        c.valueList.Add(new Value() { type = Value.ValueType.æ— ä½•æœ‰, value = 1 });
                         c.keepChangeInBattle = true;
                     }
                 }
@@ -99,7 +99,7 @@ public class CardEffectManager : MonoBehaviour
                     Card cd = c.GetComponent<Card>();
                     foreach (var value in cd.cardData.valueList)
                     {
-                        if (value.type == Value.ValueType.ÎŞºÎÓĞ)
+                        if (value.type == Value.ValueType.æ— ä½•æœ‰)
                         {
                             isHad = true;
                             break;
@@ -107,35 +107,35 @@ public class CardEffectManager : MonoBehaviour
                     }
                     if (!isHad)
                     {
-                        cd.cardData.valueList.Add(new Value() { type = Value.ValueType.ÎŞºÎÓĞ, value = 1 });
+                        cd.cardData.valueList.Add(new Value() { type = Value.ValueType.æ— ä½•æœ‰, value = 1 });
                         cd.cardData.keepChangeInBattle = true;
                         cd.InitCard(cd.cardData);
                     }
                 }
-                StateManager.AddStateToPlayer(new Value() {type = Value.ValueType.Áù¸ùÇå¾», value = 1});
-                Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-                CardManager.Instance.UseCard(card.gameObject); //Ê¹ÓÃ¿¨ÅÆ
-                Player.Instance.energy -= card.cardData.cost; //ÏûºÄ·ÑÓÃ
+                StateManager.AddStateToPlayer(new Value() {type = Value.ValueType.å…­æ ¹æ¸…å‡€, value = 1});
+                Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+                CardManager.Instance.UseCard(card.gameObject); //ä½¿ç”¨å¡ç‰Œ
+                Player.Instance.energy -= card.cardData.cost; //æ¶ˆè€—è´¹ç”¨
                 CardManager.Instance.Discard(card);
 
                 break;
         }
     }
 
-    private void AttackAll(Card card, int times) //ÈºÌå¹¥»÷µÄÍ¨ÓÃ·½·¨
+    private void AttackAll(Card card, int times) //ç¾¤ä½“æ”»å‡»çš„é€šç”¨æ–¹æ³•
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //Èç¹û·ÑÓÃ²»¹»ÔòÊ¹ÓÃÊ§°Ü
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //å¦‚æœè´¹ç”¨ä¸å¤Ÿåˆ™ä½¿ç”¨å¤±è´¥
             return;
-        Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-        var time = Player.Instance.CheckState(Value.ValueType.¶şµ¶Á÷) ? 2 : 1;
+        Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+        var time = Player.Instance.CheckState(Value.ValueType.äºŒåˆ€æµ) ? 2 : 1;
 
-        for (var i = 0; i < time; i++) //Èç¹ûÓĞË«µ¶Ôò¶Ô¿¨ÅÆĞ§¹û½áËã2´Î
+        for (var i = 0; i < time; i++) //å¦‚æœæœ‰åŒåˆ€åˆ™å¯¹å¡ç‰Œæ•ˆæœç»“ç®—2æ¬¡
         {
-            if (card.valueDic.ContainsKey(Value.ValueType.ÉËº¦)) //ÉËº¦½áËã
+            if (card.valueDic.ContainsKey(Value.ValueType.ä¼¤å®³)) //ä¼¤å®³ç»“ç®—
                 for (var t = 0; t < card.cardData.times; t++)
                     foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
-                        enemy.TakeDamage(card.valueDic[Value.ValueType.ÉËº¦]);
-            //²ĞĞÄ¼ì²â
+                        enemy.TakeDamage(card.valueDic[Value.ValueType.ä¼¤å®³]);
+            //æ®‹å¿ƒæ£€æµ‹
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
                 card.canXin = true;
@@ -144,8 +144,8 @@ public class CardEffectManager : MonoBehaviour
                 foreach (var canXin in card.cardData.canXinList)
                     switch (canXin.CanXinValue.type)
                     {
-                        case Value.ValueType.ÉËº¦:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.ä¼¤å®³:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                                     enemy.TakeDamage(canXin.CanXinValue.value);
@@ -165,8 +165,8 @@ public class CardEffectManager : MonoBehaviour
                                         enemy.TakeDamage(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»¤¼×:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.æŠ¤ç”²:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetShield(canXin.CanXinValue.value);
 
@@ -184,8 +184,8 @@ public class CardEffectManager : MonoBehaviour
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»Ø·Ñ:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.å›è´¹:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetEnergy(canXin.CanXinValue.value);
 
@@ -205,8 +205,8 @@ public class CardEffectManager : MonoBehaviour
                                 });
 
                             break;
-                        case Value.ValueType.¾ªÏÅ:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.æƒŠå“:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                                     StateManager.AddStateToEnemy(canXin.CanXinValue, enemy);
@@ -232,24 +232,24 @@ public class CardEffectManager : MonoBehaviour
                     }
             }
 
-            //Á¬Õ¶¼ì²â
+            //è¿æ–©æ£€æµ‹
             if (card.cardData.comboList.Count > 0)
                 foreach (var combo in card.cardData.comboList)
                     if (BattleManager.Instance.cardCombo >= combo.comboNum)
                     {
-                        var comboTimes = Player.Instance.CheckState(Value.ValueType.ÆğÊÆ) ? 2 : 1;
+                        var comboTimes = Player.Instance.CheckState(Value.ValueType.èµ·åŠ¿) ? 2 : 1;
 
                         for (var j = 0; j < comboTimes; j++)
                             switch (combo.comboValue.type)
                             {
-                                case Value.ValueType.ÉËº¦:
+                                case Value.ValueType.ä¼¤å®³:
                                     foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                                         enemy.TakeDamage(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»¤¼×:
+                                case Value.ValueType.æŠ¤ç”²:
                                     Player.Instance.GetShield(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»Ø·Ñ:
+                                case Value.ValueType.å›è´¹:
                                     Player.Instance.GetEnergy(combo.comboValue.value);
 
                                     break;
@@ -259,37 +259,37 @@ public class CardEffectManager : MonoBehaviour
 
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
-        if (card.GetComponent<Card>().cardData.type == Card.CardType.ÌåÊõ) BattleManager.Instance.tiShuCardCombo++;
+        if (card.GetComponent<Card>().cardData.type == Card.CardType.ä½“æœ¯) BattleManager.Instance.tiShuCardCombo++;
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
     }
 
-    private void SingleAttack(Card card, int times) //µ¥Ìå¹¥»÷µÄÍ¨ÓÃ·½·¨
+    private void SingleAttack(Card card, int times) //å•ä½“æ”»å‡»çš„é€šç”¨æ–¹æ³•
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //Èç¹û·ÑÓÃ²»¹»ÔòÊ¹ÓÃÊ§°Ü
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //å¦‚æœè´¹ç”¨ä¸å¤Ÿåˆ™ä½¿ç”¨å¤±è´¥
             return;
-        if (targetEnemy == null) //Èç¹ûÄ¿±êµĞÈËÎª¿ÕÔòÌø¹ı
+        if (targetEnemy == null) //å¦‚æœç›®æ ‡æ•Œäººä¸ºç©ºåˆ™è·³è¿‡
             return;
         var attackedEnemy = targetEnemy;
-        Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-        var time = Player.Instance.CheckState(Value.ValueType.¶şµ¶Á÷) ? 2 : 1;
+        Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+        var time = Player.Instance.CheckState(Value.ValueType.äºŒåˆ€æµ) ? 2 : 1;
 
 
-        for (var i = 0; i < time; i++) //Èç¹ûÓĞË«µ¶Ôò¶Ô¿¨ÅÆĞ§¹û½áËã2´Î
+        for (var i = 0; i < time; i++) //å¦‚æœæœ‰åŒåˆ€åˆ™å¯¹å¡ç‰Œæ•ˆæœç»“ç®—2æ¬¡
         {
-            if (card.valueDic.ContainsKey(Value.ValueType.ÉËº¦)) //ÉËº¦½áËã
+            if (card.valueDic.ContainsKey(Value.ValueType.ä¼¤å®³)) //ä¼¤å®³ç»“ç®—
                 for (var t = 0; t < card.cardData.times; t++)
                 {
-                    if (card.cardData.cardID == "0013") //¾ÓºÏ
+                    if (card.cardData.cardID == "0013") //å±…åˆ
                         if (BattleManager.Instance.tiShuCardCombo > 0)
                             break;
-                    targetEnemy.TakeDamage(card.valueDic[Value.ValueType.ÉËº¦]);
+                    targetEnemy.TakeDamage(card.valueDic[Value.ValueType.ä¼¤å®³]);
                 }
 
-            if (card.valueDic.ContainsKey(Value.ValueType.»÷É±»Ø·Ñ))
+            if (card.valueDic.ContainsKey(Value.ValueType.å‡»æ€å›è´¹))
                 if (targetEnemy.hp <= 0)
-                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.»÷É±»Ø·Ñ]);
-            //²ĞĞÄ¼ì²â
+                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.å‡»æ€å›è´¹]);
+            //æ®‹å¿ƒæ£€æµ‹
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
                 card.canXin = true;
@@ -297,8 +297,8 @@ public class CardEffectManager : MonoBehaviour
                 foreach (var canXin in card.cardData.canXinList)
                     switch (canXin.CanXinValue.type)
                     {
-                        case Value.ValueType.ÉËº¦:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.ä¼¤å®³:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 targetEnemy.TakeDamage(canXin.CanXinValue.value);
                                 break;
@@ -315,8 +315,8 @@ public class CardEffectManager : MonoBehaviour
                                     attackedEnemy.TakeDamage(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»¤¼×:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.æŠ¤ç”²:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetShield(canXin.CanXinValue.value);
 
@@ -334,8 +334,8 @@ public class CardEffectManager : MonoBehaviour
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»Ø·Ñ:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.å›è´¹:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetEnergy(canXin.CanXinValue.value);
                                 break;
@@ -356,23 +356,23 @@ public class CardEffectManager : MonoBehaviour
                     }
             }
 
-            //Á¬Õ¶¼ì²â
+            //è¿æ–©æ£€æµ‹
             if (card.cardData.comboList.Count > 0)
                 foreach (var combo in card.cardData.comboList)
                     if (BattleManager.Instance.cardCombo >= combo.comboNum)
                     {
-                        var comboTimes = Player.Instance.CheckState(Value.ValueType.ÆğÊÆ) ? 2 : 1;
+                        var comboTimes = Player.Instance.CheckState(Value.ValueType.èµ·åŠ¿) ? 2 : 1;
 
                         for (var j = 0; j < comboTimes; j++)
                             switch (combo.comboValue.type)
                             {
-                                case Value.ValueType.ÉËº¦:
+                                case Value.ValueType.ä¼¤å®³:
                                     targetEnemy.TakeDamage(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»¤¼×:
+                                case Value.ValueType.æŠ¤ç”²:
                                     Player.Instance.GetShield(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»Ø·Ñ:
+                                case Value.ValueType.å›è´¹:
                                     Player.Instance.GetEnergy(combo.comboValue.value);
 
                                     break;
@@ -382,32 +382,32 @@ public class CardEffectManager : MonoBehaviour
 
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
-        if (card.GetComponent<Card>().cardData.type == Card.CardType.ÌåÊõ) BattleManager.Instance.tiShuCardCombo++;
+        if (card.GetComponent<Card>().cardData.type == Card.CardType.ä½“æœ¯) BattleManager.Instance.tiShuCardCombo++;
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
     }
 
-    private void RandomAttack(Card card, int times) //Ëæ»ú¹¥»÷µÄÍ¨ÓÃ·½·¨
+    private void RandomAttack(Card card, int times) //éšæœºæ”»å‡»çš„é€šç”¨æ–¹æ³•
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //Èç¹û·ÑÓÃ²»¹»ÔòÊ¹ÓÃÊ§°Ü
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //å¦‚æœè´¹ç”¨ä¸å¤Ÿåˆ™ä½¿ç”¨å¤±è´¥
             return;
 
-        Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-        var time = Player.Instance.CheckState(Value.ValueType.¶şµ¶Á÷) ? 2 : 1;
+        Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+        var time = Player.Instance.CheckState(Value.ValueType.äºŒåˆ€æµ) ? 2 : 1;
 
-        for (var i = 0; i < time; i++) //Èç¹ûÓĞË«µ¶Ôò¶Ô¿¨ÅÆĞ§¹û½áËã2´Î
+        for (var i = 0; i < time; i++) //å¦‚æœæœ‰åŒåˆ€åˆ™å¯¹å¡ç‰Œæ•ˆæœç»“ç®—2æ¬¡
         {
-            if (card.valueDic.ContainsKey(Value.ValueType.ÉËº¦)) //ÉËº¦½áËã
+            if (card.valueDic.ContainsKey(Value.ValueType.ä¼¤å®³)) //ä¼¤å®³ç»“ç®—
                 for (var t = 0; t < card.cardData.times; t++)
                 {
                     var n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
-                    EnemyManager.Instance.InGameEnemyList[n].TakeDamage(card.valueDic[Value.ValueType.ÉËº¦]);
+                    EnemyManager.Instance.InGameEnemyList[n].TakeDamage(card.valueDic[Value.ValueType.ä¼¤å®³]);
                 }
 
-            if (card.valueDic.ContainsKey(Value.ValueType.»÷É±»Ø·Ñ))
+            if (card.valueDic.ContainsKey(Value.ValueType.å‡»æ€å›è´¹))
                 if (targetEnemy.hp <= 0)
-                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.»÷É±»Ø·Ñ]);
-            //²ĞĞÄ¼ì²â
+                    Player.Instance.GetEnergy(card.valueDic[Value.ValueType.å‡»æ€å›è´¹]);
+            //æ®‹å¿ƒæ£€æµ‹
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
                 card.canXin = true;
@@ -416,8 +416,8 @@ public class CardEffectManager : MonoBehaviour
                 foreach (var canXin in card.cardData.canXinList)
                     switch (canXin.CanXinValue.type)
                     {
-                        case Value.ValueType.ÉËº¦:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.ä¼¤å®³:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 targetEnemy.TakeDamage(canXin.CanXinValue.value);
                                 break;
@@ -434,8 +434,8 @@ public class CardEffectManager : MonoBehaviour
                                     targetEnemy.TakeDamage(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»¤¼×:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.æŠ¤ç”²:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetShield(canXin.CanXinValue.value);
 
@@ -453,8 +453,8 @@ public class CardEffectManager : MonoBehaviour
                                     Player.Instance.GetShield(canXin.CanXinValue.value);
                                 });
                             break;
-                        case Value.ValueType.»Ø·Ñ:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.å›è´¹:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.GetEnergy(canXin.CanXinValue.value);
                                 break;
@@ -472,8 +472,8 @@ public class CardEffectManager : MonoBehaviour
                                 });
 
                             break;
-                        case Value.ValueType.»ØÑª:
-                            if (Player.Instance.CheckState(Value.ValueType.Á÷×ª))
+                        case Value.ValueType.å›è¡€:
+                            if (Player.Instance.CheckState(Value.ValueType.æµè½¬))
                             {
                                 Player.Instance.Recover(canXin.CanXinValue.value);
                                 break;
@@ -493,23 +493,23 @@ public class CardEffectManager : MonoBehaviour
                     }
             }
 
-            //Á¬Õ¶¼ì²â
+            //è¿æ–©æ£€æµ‹
             if (card.cardData.comboList.Count > 0)
                 foreach (var combo in card.cardData.comboList)
                     if (BattleManager.Instance.cardCombo >= combo.comboNum)
                     {
-                        var comboTimes = Player.Instance.CheckState(Value.ValueType.ÆğÊÆ) ? 2 : 1;
+                        var comboTimes = Player.Instance.CheckState(Value.ValueType.èµ·åŠ¿) ? 2 : 1;
 
                         for (var j = 0; j < comboTimes; j++)
                             switch (combo.comboValue.type)
                             {
-                                case Value.ValueType.ÉËº¦:
+                                case Value.ValueType.ä¼¤å®³:
                                     targetEnemy.TakeDamage(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»¤¼×:
+                                case Value.ValueType.æŠ¤ç”²:
                                     Player.Instance.GetShield(combo.comboValue.value);
                                     break;
-                                case Value.ValueType.»Ø·Ñ:
+                                case Value.ValueType.å›è´¹:
                                     Player.Instance.GetEnergy(combo.comboValue.value);
 
                                     break;
@@ -519,15 +519,15 @@ public class CardEffectManager : MonoBehaviour
 
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
-        if (card.GetComponent<Card>().cardData.type == Card.CardType.ÌåÊõ) BattleManager.Instance.tiShuCardCombo++;
+        if (card.GetComponent<Card>().cardData.type == Card.CardType.ä½“æœ¯) BattleManager.Instance.tiShuCardCombo++;
         Player.Instance.energy -= card.cardData.cost;
         CardManager.Instance.Discard(card);
     }
 
 
-    private void Buff(Card card, int times) //×´Ì¬¿¨µÄÍ¨ÓÃ·½·¨
+    private void Buff(Card card, int times) //çŠ¶æ€å¡çš„é€šç”¨æ–¹æ³•
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //Èç¹û·ÑÓÃ²»¹»ÔòÊ¹ÓÃÊ§°Ü
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //å¦‚æœè´¹ç”¨ä¸å¤Ÿåˆ™ä½¿ç”¨å¤±è´¥
             return;
 
 
@@ -538,59 +538,59 @@ public class CardEffectManager : MonoBehaviour
             newValue.value = value.Value;
             switch (value.Key)
             {
-                case Value.ValueType.¶şµ¶Á÷:
+                case Value.ValueType.äºŒåˆ€æµ:
                     StateManager.AddStateToPlayer(newValue);
                     break;
-                case Value.ValueType.Á÷×ª:
+                case Value.ValueType.æµè½¬:
                     StateManager.AddStateToPlayer(newValue);
                     break;
-                case Value.ValueType.¶îÍâ»ØºÏ:
+                case Value.ValueType.é¢å¤–å›åˆ:
                     StateManager.AddStateToPlayer(newValue);
-                    if (card.valueDic.ContainsKey(Value.ValueType.ÌåÊõÏŞÖÆ))
+                    if (card.valueDic.ContainsKey(Value.ValueType.ä½“æœ¯é™åˆ¶))
                         BattleManager.Instance.actionsTurnStart.Add(() =>
                         {
                             StateManager.AddStateToPlayer(new Value()
-                                {type = Value.ValueType.ÌåÊõÏŞÖÆ, value = card.valueDic[Value.ValueType.ÌåÊõÏŞÖÆ]});
+                                {type = Value.ValueType.ä½“æœ¯é™åˆ¶, value = card.valueDic[Value.ValueType.ä½“æœ¯é™åˆ¶]});
                         });
                     break;
-                case Value.ValueType.³éÅÆ:
+                case Value.ValueType.æŠ½ç‰Œ:
                     for (var i = 0; i < value.Value; i++) CardManager.Instance.DrawCard();
                     break;
-                case Value.ValueType.»Ø·Ñ:
+                case Value.ValueType.å›è´¹:
                     Player.Instance.GetEnergy(value.Value);
                     break;
-                case Value.ValueType.±³Ë®Ò»Õ½:
+                case Value.ValueType.èƒŒæ°´ä¸€æˆ˜:
                     StateManager.AddStateToPlayer(newValue);
                     break;
-                case Value.ValueType.ÆğÊÆ:
+                case Value.ValueType.èµ·åŠ¿:
                     StateManager.AddStateToPlayer(newValue);
                     break;
-                case Value.ValueType.±£ÁôÊÖÅÆ:
+                case Value.ValueType.ä¿ç•™æ‰‹ç‰Œ:
                     StateManager.AddStateToPlayer(newValue);
                     break;
             }
         }
 
-        Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-        CardManager.Instance.UseCard(); //Ê¹ÓÃ¿¨ÅÆ
+        Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+        CardManager.Instance.UseCard(); //ä½¿ç”¨å¡ç‰Œ
         BattleManager.Instance.cardCombo++;
-        if (card.GetComponent<Card>().cardData.type == Card.CardType.ÌåÊõ) BattleManager.Instance.tiShuCardCombo++;
-        Player.Instance.energy -= card.cardData.cost; //ÏûºÄ·ÑÓÃ
-        CardManager.Instance.Discard(card); //ÆúÅÆ
+        if (card.GetComponent<Card>().cardData.type == Card.CardType.ä½“æœ¯) BattleManager.Instance.tiShuCardCombo++;
+        Player.Instance.energy -= card.cardData.cost; //æ¶ˆè€—è´¹ç”¨
+        CardManager.Instance.Discard(card); //å¼ƒç‰Œ
     }
 
-    private void Defend(Card card, int times) //·ÀÓù¿¨µÄÍ¨ÓÃ·½·¨
+    private void Defend(Card card, int times) //é˜²å¾¡å¡çš„é€šç”¨æ–¹æ³•
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //Èç¹û·ÑÓÃ²»¹»ÔòÊ¹ÓÃÊ§°Ü
+        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //å¦‚æœè´¹ç”¨ä¸å¤Ÿåˆ™ä½¿ç”¨å¤±è´¥
             return;
 
-        Player.Instance.PlayAttackAnim(); //²¥·Å¹¥»÷¶¯»­
-        for (var i = 0; i < card.cardData.times; i++) //»ñµÃ»¤¶Ütimes´Î
-            Player.Instance.GetShield(card.valueDic[Value.ValueType.»¤¼×]);
+        Player.Instance.PlayAttackAnim(); //æ’­æ”¾æ”»å‡»åŠ¨ç”»
+        for (var i = 0; i < card.cardData.times; i++) //è·å¾—æŠ¤ç›¾timesæ¬¡
+            Player.Instance.GetShield(card.valueDic[Value.ValueType.æŠ¤ç”²]);
         BattleManager.Instance.cardCombo++;
-        if (card.GetComponent<Card>().cardData.type == Card.CardType.ÌåÊõ) BattleManager.Instance.tiShuCardCombo++;
-        CardManager.Instance.UseCard(); //Ê¹ÓÃ¿¨ÅÆ
-        Player.Instance.energy -= card.cardData.cost; //ÏûºÄ·ÑÓÃ
-        CardManager.Instance.Discard(card); //ÆúÅÆ
+        if (card.GetComponent<Card>().cardData.type == Card.CardType.ä½“æœ¯) BattleManager.Instance.tiShuCardCombo++;
+        CardManager.Instance.UseCard(); //ä½¿ç”¨å¡ç‰Œ
+        Player.Instance.energy -= card.cardData.cost; //æ¶ˆè€—è´¹ç”¨
+        CardManager.Instance.Discard(card); //å¼ƒç‰Œ
     }
 }

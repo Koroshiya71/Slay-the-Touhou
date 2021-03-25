@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager Instance;//单例
-    public List<EnemyData> enemyDataList=new List<EnemyData>();//敌人数据列表
-    public List<Enemy> InGameEnemyList = new List<Enemy>();//战斗中的敌人列表
+    public static EnemyManager Instance;//鍗曚緥
+    public List<EnemyData> enemyDataList=new List<EnemyData>();//鏁屼汉鏁版嵁鍒楄〃
+    public List<Enemy> InGameEnemyList = new List<Enemy>();//鎴樻枟涓殑鏁屼汉鍒楄〃
     private void Awake()
     {
         Instance = this;
