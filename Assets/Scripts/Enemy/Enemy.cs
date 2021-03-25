@@ -117,7 +117,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        InitEnemy(EnemyManager.Instance.enemyDataList[0]);
     }
     public void TakeAction()
     {

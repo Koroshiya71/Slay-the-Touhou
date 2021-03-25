@@ -40,7 +40,6 @@ public class ActionController : MonoBehaviour
                 Player.Instance.TakeDamage(thisEnemy.actualValue);
                 break;
         }
-
         if (a.data.Type==ActionType.Attack)
         {
             thisEnemy.animController.SetTrigger("Attack");//播放攻击动画

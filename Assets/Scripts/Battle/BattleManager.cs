@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
     public bool extraTurn;//该回合是否是额外回合
     public int tiShuCardCombo;//本回合使用的体术牌数量
     public GameObject enemyPrefab;//敌人预制体
+    
     public List<BattleData> battleDataList = new List<BattleData>();//保存所有战斗场景数据的列表
     public void TurnEnd()
     {
@@ -103,22 +104,36 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        
+        SceneManager.Instance.battleSceneCanvas.enabled=false;
     }
 
     public void BattleStart(BattleData data)//战斗开始
     {
+        SceneManager.Instance.battleSceneCanvas.enabled=true;
+        SceneManager.Instance.mapSceneCanvas.enabled=false;
         CardManager.Instance.InitDrawCardList();
-        CreateEnemies(data.enemyDataList);
+        CreateEnemies(data.enemyIdList);
         TurnStart();
     }
 
-    public void CreateEnemies(List<EnemyData> enemyDataList) //创建敌人
+    public void CreateEnemies(List<int> enemyIdList) //创建敌人
     {
-        foreach (var enemyData in enemyDataList)
+        foreach (var enemyID in enemyIdList)
         {
-            Enemy newNEnemy = Instantiate(enemyPrefab,enemyData.position,Quaternion.identity).GetComponent<Enemy>();
-            newNEnemy.InitEnemy(enemyData);
+            foreach (var enemy in EnemyManager.Instance.enemyDataList)
+            {
+                if (enemy.ID==enemyID)
+                {
+                    Enemy newEnemy = Instantiate(enemyPrefab, enemy.position, Quaternion.identity).GetComponent<Enemy>();
+                    newEnemy.InitEnemy(enemy);
+                    Transform transform1;
+                    (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
+                    transform1.localScale = new Vector3(1, 1, 1);
+
+                    break;
+                }
+            }
+            
         }
     }
     void Update() 

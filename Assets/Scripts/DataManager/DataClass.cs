@@ -13,7 +13,7 @@ public class EnemyData
     public int initHp;//初始生命值
     public int initShield;//初始护盾值
     public List<string> ActionIdList = new List<string>();//该Enemy所有行为的ID
-    public Vector2 position;//敌人的生成位置
+    public Vector3 position;//敌人的生成位置
 
     public static EnemyData Clone(EnemyData data)
     {
@@ -144,8 +144,7 @@ public class Combo//连斩
 [Serializable]
 public class BattleData
 {
-    public List<EnemyData> enemyDataList;
-
+    public List<int> enemyIdList;//敌人的ID列表
 }
 
 [Serializable]

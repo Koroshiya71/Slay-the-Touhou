@@ -1,9 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    public static SceneManager Instance;
+    public Canvas battleSceneCanvas;//战斗场景画布
+    public Canvas mapSceneCanvas;//地图场景画布
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public enum SceneType//场景类型
     {
         NormalCombat,//普通战斗
@@ -15,10 +24,12 @@ public class SceneManager : MonoBehaviour
     public List<SceneData> sceneDataList = new List<SceneData>();//保存所有场景类型数据的列表
     void Start()
     {
-        
+        battleSceneCanvas.enabled = false;
+        mapSceneCanvas.enabled = true; 
+
     }
 
-    void Update()
+void Update()
     {
         
     }
