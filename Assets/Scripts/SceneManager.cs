@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    public List<GameScene> inGameSceneList=new List<GameScene>();//游戏中的场景列表
     public static SceneManager Instance;
     public Canvas battleSceneCanvas;//战斗场景画布
     public Canvas mapSceneCanvas;//地图场景画布
@@ -29,7 +30,27 @@ public class SceneManager : MonoBehaviour
 
     }
 
-void Update()
+    public void UpdateSceneState()
+    {
+
+
+
+        foreach (var gs in inGameSceneList)
+        {
+            int index = inGameSceneList.IndexOf(gs);
+            Debug.Log(index);
+            if (index < 7)
+                continue;
+
+            if (inGameSceneList[index - 7].isFinished || inGameSceneList[index - 6].isFinished ||
+                (index >= 8 && inGameSceneList[index - 8].isFinished))
+            {
+                gs.isOptional = true;
+            }
+        }
+
+    }
+    void Update()
     {
         
     }
