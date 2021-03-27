@@ -36,7 +36,10 @@ public class SceneManager : MonoBehaviour
         {
             int index = inGameSceneList.IndexOf(gs);
             if (index < 7)
+            {
+                gs.isFinished = true;
                 continue;
+            }
 
             if (inGameSceneList[index - 7].isFinished || inGameSceneList[index - 6].isFinished ||
                 (index >= 8 && inGameSceneList[index - 8].isFinished))

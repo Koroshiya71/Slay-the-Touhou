@@ -11,7 +11,7 @@ public class GameScene : MonoBehaviour
     public Text typeText;//用于显示事件类型的文本
     public void OnPointerDown()
     {
-        if (!isOptional)
+        if (!isOptional||isFinished)
             return;
         switch (sceneData.type)
         {
@@ -36,6 +36,11 @@ public class GameScene : MonoBehaviour
         if (index < 7)
             isOptional = true;
         sceneData = SceneManager.Instance.sceneDataList[Random.Range(0, SceneManager.Instance.sceneDataList.Count)];
+        if (sceneData.type==SceneManager.SceneType.NormalCombat)
+        {
+            GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
+            return ;
+        }
         typeText.text = sceneData.type.ToString();
     }
 
