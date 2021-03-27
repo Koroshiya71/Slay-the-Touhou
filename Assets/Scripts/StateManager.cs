@@ -5,6 +5,19 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
+    public static StateManager Instance;
+    public List<StateImgData> imgList;
+    public Dictionary<Value.ValueType, Sprite> stateImgDic=new Dictionary<Value.ValueType, Sprite>();//
+
+    private void Awake()
+    {
+        Instance = this;
+        foreach (var i in imgList)
+        {
+            stateImgDic.Add(i.type,i.sprite);
+        }
+    }
+
     public static void AddStateToPlayer(Value state)//给玩家添加对应类型，层数的状态
     {
         foreach (var s in Player.Instance.stateList)//查找玩家现有的状态列表

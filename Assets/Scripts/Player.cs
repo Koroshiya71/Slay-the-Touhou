@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region UI引用
-
+    public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
     public Animator effectAnimator;//动效控制器
     public Text hpText;//血条数值文本
     public Slider hpSlider;//血条图片滑动条
@@ -77,9 +77,24 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-
+    
     void UpdateUIState()//更新UI组件状态
     {
+        for (int i = 0; i < stateList.Count; i++)
+        {
+            stateImageList[i].enabled = true;
+            if (StateManager.Instance.stateImgDic.ContainsKey(stateList[i].type))
+            {
+                stateImageList[i].sprite = StateManager.Instance.stateImgDic[stateList[i].type];
+
+            }
+        }
+
+        for (int i = stateList.Count; i < stateImageList.Count; i++)
+        {
+            stateImageList[i].enabled = false;
+
+        }
         if (shield>0)
         {
             shieldImg.SetActive(true); 
@@ -129,11 +144,18 @@ public class Player : MonoBehaviour
         shieldImg.SetActive(false);
     }
 
+    void InitState() //初始化状态
+    {
+        foreach (var img in stateImageList)
+        {
+            img.enabled = false;
+        }
+    }
     
     void Start()
     {
         InitEnergy(); //初始化能量
-
+        InitState();
     }
 
     void Update()

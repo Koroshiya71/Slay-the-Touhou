@@ -153,3 +153,10 @@ public class SceneData
     public SceneManager.SceneType type;//场景类型
     public BattleData battleData;//当前场景的战斗数据
 }
+
+[Serializable]
+public struct StateImgData //状态类型预计对应的图片
+{
+    public Value.ValueType type;
+    public Sprite sprite;
+}
