@@ -1259,7 +1259,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412782853}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
@@ -5296,6 +5296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78e2fb69fb318d43bdcf295a65602c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1294010616 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6127521040771539870, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+  m_PrefabInstance: {fileID: 6075252584905431143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1305960446
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,7 +9135,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989820019}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
@@ -9802,6 +9807,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 412782857}
     m_Modifications:
+    - target: {fileID: 1978842682, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: m_Name
+      value: Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978842683, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978842683, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978842684, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978842684, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6075252585072341934, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9902,6 +9927,10 @@ PrefabInstance:
       propertyPath: energyText
       value: 
       objectReference: {fileID: 1984593336}
+    - target: {fileID: 6846625277815732927, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
+      propertyPath: effectAnimator
+      value: 
+      objectReference: {fileID: 1294010616}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
 --- !u!114 &6162507678194663998
@@ -10162,12 +10191,12 @@ GameObject:
   - component: {fileID: 303445237}
   - component: {fileID: 4789041951218759046}
   m_Layer: 5
-  m_Name: Card
+  m_Name: DisplayCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7144945437637994367
 RectTransform:
   m_ObjectHideFlags: 0

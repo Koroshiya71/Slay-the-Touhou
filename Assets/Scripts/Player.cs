@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region UI引用
+
+    public Animator effectAnimator;//动效控制器
     public Text hpText;//血条数值文本
     public Slider hpSlider;//血条图片滑动条
     public GameObject shieldImg;//护盾图片

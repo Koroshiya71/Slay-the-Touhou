@@ -32,13 +32,9 @@ public class SceneManager : MonoBehaviour
 
     public void UpdateSceneState()
     {
-
-
-
         foreach (var gs in inGameSceneList)
         {
             int index = inGameSceneList.IndexOf(gs);
-            Debug.Log(index);
             if (index < 7)
                 continue;
 

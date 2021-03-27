@@ -138,6 +138,8 @@ public class CardEffectManager : MonoBehaviour
             //残心检测
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
+                Player.Instance.effectAnimator.Play("CanXin");
+
                 card.canXin = true;
                 BattleManager.Instance.actionsTurnStart.Add(() => { BattleManager.Instance.hasCanXin = true; });
 
@@ -292,6 +294,8 @@ public class CardEffectManager : MonoBehaviour
             //残心检测
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
+                Player.Instance.effectAnimator.Play("CanXin");
+
                 card.canXin = true;
                 BattleManager.Instance.actionsTurnStart.Add(() => { BattleManager.Instance.hasCanXin = true; });
                 foreach (var canXin in card.cardData.canXinList)
@@ -411,8 +415,9 @@ public class CardEffectManager : MonoBehaviour
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
                 card.canXin = true;
+                
                 BattleManager.Instance.actionsTurnStart.Add(() => { BattleManager.Instance.hasCanXin = true; });
-
+                Player.Instance.effectAnimator.Play("CanXin");
                 foreach (var canXin in card.cardData.canXinList)
                     switch (canXin.CanXinValue.type)
                     {
