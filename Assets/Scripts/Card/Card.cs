@@ -20,7 +20,8 @@ public class Card : MonoBehaviour
     public Transform outLook;//外观的位置
     #region 基本属性
     //展示用卡牌的游戏物体
-    private GameObject showGo;
+    private GameObject showCardGo;
+    private GameObject showSpellCardGo;
     //是否已经满足残心条件
     public bool canXin;
     //是否已经使用过了
@@ -33,6 +34,7 @@ public class Card : MonoBehaviour
     public Dictionary<Value.ValueType, int> valueDic = new Dictionary<Value.ValueType, int>();
     public float posY;
     public List<Sprite> cardBackGroundSprites = new List<Sprite>();
+    public List<Sprite> spellCardBackGroundSprites = new List<Sprite>();
     #endregion
     #region UI引用
     //卡名文本
@@ -63,6 +65,12 @@ public class Card : MonoBehaviour
 
         if (isShowCard)//如果是展示用的卡牌则不进行检测
             return;
+        if (MenuEventManager.Instance.isPreviewing&&cardData.type==CardType.符卡)//如果是从额外卡组选择符卡
+        {
+            CardManager.Instance.GetSpellCard(cardData.cardID);
+            MenuEventManager.Instance.ExitDisplayButtonDown();
+            return;
+        }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
@@ -87,7 +95,7 @@ public class Card : MonoBehaviour
         }
 
         
-        showGo.SetActive(false);//取消卡牌展示
+        showCardGo.SetActive(false);//取消卡牌展示
         CardManager.Instance.hasShow = false;
  
         CardManager.Instance.selectedCard = this;
@@ -108,14 +116,28 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        showGo.SetActive(true);//展示卡牌
-        showGo.GetComponent<Card>().InitCard(cardData);
-        CardManager.Instance.hasShow = true;
 
-        var localPosition = outLook.localPosition;
-        posY = localPosition.y;
-        localPosition = new Vector3(localPosition.x, posY+15);
-        outLook.localPosition = localPosition;
+        if (cardData.type!=CardType.符卡)
+        {
+            CardManager.Instance.hasShow = true;
+            showCardGo.SetActive(true);//展示卡牌
+            showCardGo.GetComponent<Card>().InitCard(cardData);
+            var localPosition = outLook.localPosition;
+            posY = localPosition.y;
+            localPosition = new Vector3(localPosition.x, posY + 15);
+            outLook.localPosition = localPosition;
+        }
+        else
+        {
+            CardManager.Instance.hasShow = true;
+            showSpellCardGo.SetActive(true);//展示卡牌
+            showSpellCardGo.GetComponent<Card>().InitCard(cardData);
+            var localPosition = outLook.localPosition;
+            posY = localPosition.y;
+            localPosition = new Vector3(localPosition.x, posY + 15);
+            outLook.localPosition = localPosition;
+        }
+        
     }
 
     public void OnPointerExit()
@@ -131,12 +153,22 @@ public class Card : MonoBehaviour
         }
 
 
-        showGo.SetActive(false);
-        CardManager.Instance.hasShow = false;
-        var localPosition = outLook.localPosition;
-        localPosition = new Vector3(localPosition.x, posY);
-        outLook.localPosition = localPosition;
-
+        if (cardData.type!=CardType.符卡)
+        {
+            showCardGo.SetActive(false);
+            CardManager.Instance.hasShow = false;
+            var localPosition = outLook.localPosition;
+            localPosition = new Vector3(localPosition.x, posY);
+            outLook.localPosition = localPosition;
+        }
+        else
+        {
+            showSpellCardGo.SetActive(false);
+            CardManager.Instance.hasShow = false;
+            var localPosition = outLook.localPosition;
+            localPosition = new Vector3(localPosition.x, posY);
+            outLook.localPosition = localPosition;
+        }
     }
 
     public  void OnPointerUp()
@@ -171,20 +203,34 @@ public class Card : MonoBehaviour
 
     public void InitCard(CardData data)//根据CardData初始化卡牌
     {
-        if (!cardData.keepChangeInBattle) //如果对卡牌的修改不是可持续的
-            foreach (var originalData in CardManager.Instance.CardDataList)
-                if (cardData.cardID == originalData.cardID)
-                    cardData=CardData.Clone(originalData);
-        cardData = CardData.Clone(data);
-        valueDic = new Dictionary<Value.ValueType, int>();
-        canXin = false;
-        hasUsed = false;
-        cardData.keepChangeInBattle = false;
-        costText.text = ""+cardData.cost;
-        nameText.text = cardData.name;
-        typeText.text = "妖梦·" + cardData.type;
-        img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-        backGround.sprite = cardBackGroundSprites[(int) cardData.rare];
+        if (data.type!=CardType.符卡)
+        {
+            if (!cardData.keepChangeInBattle) //如果对卡牌的修改不是可持续的
+                foreach (var originalData in CardManager.Instance.CardDataList)
+                    if (cardData.cardID == originalData.cardID)
+                        cardData=CardData.Clone(originalData);
+            cardData = CardData.Clone(data);
+            valueDic = new Dictionary<Value.ValueType, int>();
+            canXin = false;
+            hasUsed = false;
+            cardData.keepChangeInBattle = false;
+            costText.text = ""+cardData.cost;
+            nameText.text = cardData.name;
+            typeText.text = "妖梦·" + cardData.type;
+            img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
+            backGround.sprite = cardBackGroundSprites[(int) cardData.rare];
+        }
+        else
+        {
+            cardData = CardData.Clone(data);
+            valueDic = new Dictionary<Value.ValueType, int>();
+            canXin = false;
+            hasUsed = false;
+            cardData.keepChangeInBattle = false;
+            nameText.text = cardData.name;
+            img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
+            backGround.sprite = spellCardBackGroundSprites[cardData.cost-1];
+        }
         foreach (var v in cardData.valueList) //初始化卡牌效果字典
         {
             valueDic.Add(v.type, v.value);
@@ -410,8 +456,10 @@ public class Card : MonoBehaviour
     }
     private void Start()
     {
-        showGo = CardManager.Instance.showCard;
+        showCardGo = CardManager.Instance.showCard;
+        showSpellCardGo = CardManager.Instance.showSpellCard;
+
     }
 
-    
+
 }

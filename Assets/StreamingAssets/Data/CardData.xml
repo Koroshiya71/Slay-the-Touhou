@@ -50,11 +50,10 @@
                 <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
-        <Card CardID="0009" Type="符卡" Name="狱界剑「二百由旬之一闪」" Cost="2" SpriteID="8" TargetType="自身" Rare="Epic" Times="1">
+        <Card CardID="0009" Type="符卡" Name="狱界剑﹃二百由旬之一闪﹄" Cost="3" SpriteID="8" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="额外回合" Value="1"></Value>
                 <Value Type="体术限制" Value="1"></Value>
-                <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
         <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Rare="Rare" Times="1">
@@ -62,7 +61,7 @@
                 <Value Type="抽牌" Value="3"></Value>
             </Values>
         </Card>
-        <Card CardID="0011" Type="符卡" Name="断命剑「冥想斩」" Cost="3" SpriteID="10" TargetType="单体敌人" Rare="Epic" Times="1">
+        <Card CardID="0011" Type="符卡" Name="断命剑﹃冥想斩﹄" Cost="2" SpriteID="10" TargetType="单体敌人" Rare="Epic" Times="1">
             <Values>
                 <Value Type="伤害" Value="28"></Value>
                 <Value Type="击杀回费" Value="2"></Value>

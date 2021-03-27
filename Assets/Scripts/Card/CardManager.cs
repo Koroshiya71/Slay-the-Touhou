@@ -12,14 +12,17 @@ public class CardManager : MonoBehaviour
     public static CardManager Instance;
     public Card selectedCard; //选中的卡牌
     public GameObject cardPrefab; //手牌预制体
-    public GameObject showCard; //用来展示的卡牌
+    public GameObject spellCardPrefab; //符卡预制体
 
+    public GameObject showCard; //用来展示的卡牌
+    public GameObject showSpellCard;
     #region 各种牌库
 
     public List<CardData> discardList = new List<CardData>(); //弃牌堆
     public List<CardData> drawCardList = new List<CardData>(); //抽牌堆
     public List<string> cardDeskList = new List<string>(); //牌库
     public List<GameObject> handCardList = new List<GameObject>(); //手牌列表
+    public List<CardData> spellCardList = new List<CardData>(); //符卡堆
 
     #endregion
 
@@ -34,10 +37,18 @@ public class CardManager : MonoBehaviour
     public List<Card> chosenCardList = new List<Card>(); //被选中的卡牌列表
     public List<CardData> optionalCardList = new List<CardData>(); //可选卡牌列表
     public bool hasInit;//是否已经从牌库初始化过抽牌堆了
+    public Transform battleCards;//战斗场景的卡牌集合
     private void Start()
     {
         showCard.SetActive(false);
         CardDataList = DataManager.Instance.LoadCardData();
+        foreach (var data in CardDataList)
+        {
+            if (data.type==Card.CardType.符卡)
+            {
+                spellCardList.Add(data);
+            }
+        }
     }
 
     public void InitDrawCardList()
@@ -131,15 +142,24 @@ public class CardManager : MonoBehaviour
     public void DrawCard() //从抽牌堆抽卡
     {
         //TODO 后续优化对象池
-        //克隆预设
-        var handCardGo = Instantiate(cardPrefab) as GameObject;
-        var newCard = handCardGo.GetComponent<Card>();
+        Debug.Log(1);
 
         if (drawCardList.Count == 0) //如果无牌可抽，则初始化抽牌堆
             InitDrawCardList();
+        //克隆预设
+        var handCardGo = Instantiate(cardPrefab);
+        var newCard = handCardGo.GetComponent<Card>();
         if (drawCardList.Count == 0 && Player.Instance.CheckState(Value.ValueType.六根清净))//如果有六根清净状态
         {
-            CardData newData = CardData.Clone(CardDataList[Random.Range(0, CardDataList.Count)]);
+            CardData newData = new CardData();
+            while (true) 
+            {
+                newData= CardData.Clone(CardDataList[Random.Range(0, CardDataList.Count)]);
+                if (newData.type!=Card.CardType.符卡)
+                {
+                    break;
+                }
+            }
             bool isHad = false;
             foreach (var value in newData.valueList)
             {
@@ -156,7 +176,7 @@ public class CardManager : MonoBehaviour
             }
             newCard.InitCard(newData);
             handCardGo.transform.position = BeginPos.transform.position;
-            handCardGo.transform.SetParent(transform);
+            handCardGo.transform.SetParent(battleCards);
 
             //将新手牌添加到手牌列表
             handCardList.Add(handCardGo);
@@ -174,7 +194,8 @@ public class CardManager : MonoBehaviour
         drawCardList.Remove(drawCardList[0]); //将卡牌移除抽牌堆
 
         handCardGo.transform.position = BeginPos.transform.position;
-        handCardGo.transform.SetParent(transform);
+        handCardGo.transform.SetParent(battleCards);
+
 
         //将新手牌添加到手牌列表
         handCardList.Add(handCardGo);
@@ -185,20 +206,28 @@ public class CardManager : MonoBehaviour
         AddCardAnimations();
     }
 
-    public void GetCards(int cardNo) //根据卡牌的序号获取指定卡牌
+    public void GetSpellCard(string cardID) //根据卡牌的序号获取指定卡牌
     {
         //克隆预设
-        var handCardGo = Instantiate(cardPrefab) as GameObject;
+        var handCardGo = Instantiate(spellCardPrefab) as GameObject;
         var newCard = handCardGo.GetComponent<Card>();
-        newCard.InitCard(CardDataList[cardNo]);
+        foreach (var data in CardDataList)
+        {
+            if (data.cardID==cardID)
+            {
+                newCard.InitCard(data);
+                break;
+            }
+        }
 
         handCardGo.transform.position = BeginPos.transform.position;
-        handCardGo.transform.SetParent(transform);
-
+        handCardGo.transform.SetParent(battleCards);
         //将新手牌添加到手牌列表
         handCardList.Add(handCardGo);
         //计算动画需要旋转的角度
         RotateAngel();
+        AddCardAnimations();
+
     }
 
     public void UpdateUIState() //更新UI组件状态
@@ -275,7 +304,7 @@ public class CardManager : MonoBehaviour
 
     public void Discard(Card card) //弃牌
     {
-        if (card.valueDic.ContainsKey(Value.ValueType.无何有) && card.hasUsed) return;
+        if ((card.valueDic.ContainsKey(Value.ValueType.无何有) && card.hasUsed)||card.cardData.type==Card.CardType.符卡) return;
         
         discardList.Add(card.cardData);
     }

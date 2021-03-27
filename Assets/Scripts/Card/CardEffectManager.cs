@@ -115,7 +115,10 @@ public class CardEffectManager : MonoBehaviour
                 StateManager.AddStateToPlayer(new Value() {type = Value.ValueType.六根清净, value = 1});
                 Player.Instance.PlayAttackAnim(); //播放攻击动画
                 CardManager.Instance.UseCard(card.gameObject); //使用卡牌
-                Player.Instance.energy -= card.cardData.cost; //消耗费用
+                if (card.cardData.type != Card.CardType.符卡)
+                {
+                    Player.Instance.energy -= card.cardData.cost; //消耗费用
+                }
                 CardManager.Instance.Discard(card);
 
                 break;
@@ -124,7 +127,7 @@ public class CardEffectManager : MonoBehaviour
 
     private void AttackAll(Card card, int times) //群体攻击的通用方法
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
         var time = Player.Instance.CheckState(Value.ValueType.二刀流) ? 2 : 1;
@@ -262,13 +265,16 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
-        Player.Instance.energy -= card.cardData.cost;
+        if (card.cardData.type != Card.CardType.符卡)
+        {
+            Player.Instance.energy -= card.cardData.cost; //消耗费用
+        }
         CardManager.Instance.Discard(card);
     }
 
     private void SingleAttack(Card card, int times) //单体攻击的通用方法
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost&&card.cardData.type!=Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         if (targetEnemy == null) //如果目标敌人为空则跳过
             return;
@@ -387,13 +393,16 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
-        Player.Instance.energy -= card.cardData.cost;
+        if (card.cardData.type != Card.CardType.符卡)
+        {
+            Player.Instance.energy -= card.cardData.cost; //消耗费用
+        }
         CardManager.Instance.Discard(card);
     }
 
     private void RandomAttack(Card card, int times) //随机攻击的通用方法
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
 
         Player.Instance.PlayAttackAnim(); //播放攻击动画
@@ -525,14 +534,17 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.UseCard();
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
-        Player.Instance.energy -= card.cardData.cost;
+        if (card.cardData.type != Card.CardType.符卡)
+        {
+            Player.Instance.energy -= card.cardData.cost; //消耗费用
+        }
         CardManager.Instance.Discard(card);
     }
 
 
     private void Buff(Card card, int times) //状态卡的通用方法
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
 
 
@@ -580,13 +592,16 @@ public class CardEffectManager : MonoBehaviour
         CardManager.Instance.UseCard(); //使用卡牌
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
-        Player.Instance.energy -= card.cardData.cost; //消耗费用
+        if (card.cardData.type != Card.CardType.符卡)
+        {
+            Player.Instance.energy -= card.cardData.cost; //消耗费用
+        }
         CardManager.Instance.Discard(card); //弃牌
     }
 
     private void Defend(Card card, int times) //防御卡的通用方法
     {
-        if (Player.Instance.energy < card.cardData.cost || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
 
         Player.Instance.PlayAttackAnim(); //播放攻击动画
@@ -595,7 +610,10 @@ public class CardEffectManager : MonoBehaviour
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
         CardManager.Instance.UseCard(); //使用卡牌
-        Player.Instance.energy -= card.cardData.cost; //消耗费用
+        if (card.cardData.type!=Card.CardType.符卡)
+        {
+            Player.Instance.energy -= card.cardData.cost; //消耗费用
+        }
         CardManager.Instance.Discard(card); //弃牌
     }
 }

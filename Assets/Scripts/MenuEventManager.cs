@@ -6,10 +6,15 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 {
     public static MenuEventManager Instance;
     public List<Card> showCardList;//用于显示的卡牌列表
-    public GameObject cardDisplayCanvas;//用来预览牌堆情况的画布
-    public RectTransform displayContent;//滑动菜单的内容范围
-    public bool isPreviewing;//是否正在显示卡牌
+    public List<Card> showSpellCardList;//用于显示符卡的卡牌列表
 
+    public GameObject cardDisplayView;//用来预览牌堆情况的视窗
+    public GameObject spellCardDisplayView;//用来预览符卡堆情况的视窗
+
+    public RectTransform displayContent;//滑动菜单的内容范围
+    public RectTransform spellCardContent;//滑动菜单的内容范围
+    public Canvas cardPreviewCanvas;//用于展示卡牌的画布
+    public bool isPreviewing;//是否正在显示卡牌
     private void Awake()
     {
         Instance = this;
@@ -21,8 +26,11 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
     void InitShowCardCanvas() //对卡牌预览界面进行初始化
     {
-        cardDisplayCanvas.SetActive(false);//取消显示
-        Card[] showCards = cardDisplayCanvas.GetComponentsInChildren<Card>();
+        //取消显示
+        cardDisplayView.SetActive(false);
+        spellCardDisplayView.SetActive(false);
+        cardPreviewCanvas.enabled = false;
+        Card[] showCards = cardDisplayView.GetComponentsInChildren<Card>();
         foreach (var card in showCards)
         {
             showCardList.Add(card);//将所有预制卡牌加入管理列表
@@ -34,7 +42,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public void ChooseCardFromDesk()//从手牌外的范围进行卡牌选择
     {
         CardManager.Instance.isChoosingFromHand = true;
-        cardDisplayCanvas.SetActive(true);
+        cardDisplayView.SetActive(true);
         List<CardData> optionalList= CardManager.Instance.optionalCardList;
         for (int i = 0; i < optionalList.Count; i++)
         {
@@ -48,15 +56,17 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     }
     public void ExitDisplayButtonDown() //取消预览卡牌按钮的回调事件
     {
+        cardPreviewCanvas.enabled = false;
         isPreviewing = false;
-        cardDisplayCanvas.SetActive(false);
+        cardDisplayView.SetActive(false);
+        spellCardDisplayView.SetActive(false);
     }
     public void ShowDeskButtonDown() //查看牌库按钮按下的回调事件
     {
         isPreviewing = true;
-
+        cardPreviewCanvas.enabled = true;
         List<string> deskList = CardManager.Instance.cardDeskList;
-        cardDisplayCanvas.SetActive(true);
+        cardDisplayView.SetActive(true);
         displayContent.sizeDelta = new Vector2(1835, 939 + (deskList.Count / 5 - 1) * 420);
         for (int i = 0; i < deskList.Count; i++)
         {
@@ -80,10 +90,11 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public void ShowDrawCardButtonDown() //查看抽牌堆按钮按下的回调事件
     {
         isPreviewing = true;
+        cardPreviewCanvas.enabled = true;
 
         List<CardData> drawCardList = CardManager.Instance.RandomSortList(CardManager.Instance.drawCardList);
-        cardDisplayCanvas.SetActive(true);
-        displayContent.sizeDelta = new Vector2(1835, 939 + (drawCardList.Count / 5 - 2) * 420);
+        cardDisplayView.SetActive(true);
+        displayContent.sizeDelta = new Vector2(1835, 939 + (drawCardList.Count / 5 - 1) * 420);
         for (int i = 0; i < drawCardList.Count; i++)
         {
             showCardList[i].gameObject.SetActive(true);//将等同于抽牌堆数量的展示卡牌初始化并显示出来
@@ -99,9 +110,10 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public void ShowDiscardButtonDown() //查看弃牌堆堆按钮按下的回调事件
     {
         isPreviewing = true;
+        cardPreviewCanvas.enabled = true;
 
         List<CardData> discardList = CardManager.Instance.discardList;
-        cardDisplayCanvas.SetActive(true);
+        cardDisplayView.SetActive(true);
         displayContent.sizeDelta=new Vector2(1835, 939 + (discardList.Count / 5 - 2) * 420);
        
         for (int i = 0; i < discardList.Count; i++)
@@ -117,10 +129,27 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
     }
 
-    public void NotShowButtonDown() //取消卡牌预览按钮按下的回调事件
+    public void ShowSpellCardDeskButtonDown() //查看符卡列表按下的回调事件
     {
+        isPreviewing = true;
+        cardPreviewCanvas.enabled = true;
+        spellCardDisplayView.SetActive(true);
+
+        List<CardData> spellCardList = CardManager.Instance.spellCardList;
+        spellCardContent.sizeDelta = new Vector2(1835+ (spellCardList.Count-3)*600, 939);
+        for (int i = 0; i < spellCardList.Count; i++)
+        {
+            showSpellCardList[i].gameObject.SetActive(true);//将等同于弃牌堆数量的展示卡牌初始化并显示出来
+            showSpellCardList[i].InitCard(spellCardList[i]);
+        }
+
+        for (int i = spellCardList.Count; i < showSpellCardList.Count; i++)//将其他卡牌隐藏显示
+        {
+            showSpellCardList[i].gameObject.SetActive(false);
+        }
 
     }
+
 
     void Update()
     {

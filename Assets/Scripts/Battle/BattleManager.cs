@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     public bool extraTurn;//该回合是否是额外回合
     public int tiShuCardCombo;//本回合使用的体术牌数量
     public GameObject enemyPrefab;//敌人预制体
-    
+    public bool isInBattle;//是否正在战斗中
     public List<BattleData> battleDataList = new List<BattleData>();//保存所有战斗场景数据的列表
     public void TurnEnd()
     {
@@ -114,6 +114,7 @@ public class BattleManager : MonoBehaviour
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.enemyIdList);
         TurnStart();
+        isInBattle = true;
     }
 
     public void CreateEnemies(List<int> enemyIdList) //创建敌人
