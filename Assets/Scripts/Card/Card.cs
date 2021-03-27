@@ -268,7 +268,7 @@ public class Card : MonoBehaviour
                 cardData.des = "本场对战中，你获得「流转」状态（你的残心效果改为立即触发，而不是回合结束时触发）\n无何有";
                 return;
             case "0009"://狱界剑「二百由旬之一闪」
-                cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。\n无何有";
+                cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。";
                 return;
             case "0010"://冥想
                 cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有";
@@ -277,7 +277,7 @@ public class Card : MonoBehaviour
                 cardData.des += "如果该牌为本回合使用的第一张体术牌，造成"+valueDic[Value.ValueType.伤害]+"点伤害";
                 cardData.des += "\n残心：造成"+cardData.canXinList[0].CanXinValue.value+"点伤害";
                 return;
-            case "0018"://
+            case "0018"://六根清净
                 cardData.des = "你的所有牌获得无何有，当你的抽牌堆为空时，抽牌改为随机获得一张妖梦牌\n无何有";
 
                 return;

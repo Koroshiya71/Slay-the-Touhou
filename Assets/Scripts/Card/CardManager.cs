@@ -142,7 +142,6 @@ public class CardManager : MonoBehaviour
     public void DrawCard() //从抽牌堆抽卡
     {
         //TODO 后续优化对象池
-        Debug.Log(1);
 
         if (drawCardList.Count == 0) //如果无牌可抽，则初始化抽牌堆
             InitDrawCardList();
