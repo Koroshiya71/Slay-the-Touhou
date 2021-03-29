@@ -549,6 +549,9 @@ MonoBehaviour:
   actionSpriteList:
   - {fileID: 21300000, guid: cabad65308474144dacdc7ebd28366c0, type: 3}
   - {fileID: 21300000, guid: 81baf15c496ae7c4088c2322b2a87676, type: 3}
+  - {fileID: 21300000, guid: 027082c97119d1a4fb54d26043ede5c8, type: 3}
+  - {fileID: 21300000, guid: 4bea59a63892cc249b6c4251da926145, type: 3}
+  - {fileID: 21300000, guid: 756c9ba0fb35b23408522bd4328f2eb8, type: 3}
   stateList: []
   actualValue: 0
   enemyData:
@@ -558,7 +561,6 @@ MonoBehaviour:
     initHp: 0
     initShield: 0
     ActionIdList: []
-    position: {x: 0, y: 0, z: 0}
   animController: {fileID: 6505259454671140496}
   hpText: {fileID: 6505259453067535326}
   hpSlider: {fileID: 6505259454223040256}

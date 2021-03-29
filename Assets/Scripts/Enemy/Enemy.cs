@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
     public int actualValue;
     public EnemyData enemyData;//敌人数据
     #endregion
-
+    
     public Animator animController;//动画控制器
     #region UI引用
     public Text hpText;//血条数值文本
@@ -29,6 +30,11 @@ public class Enemy : MonoBehaviour
     public GameObject actionImg;//行动类型图示
     public Text actionValueText;//行动数值
     #endregion
+
+    public void GetShield(int value)
+    {
+        shield += value;
+    }
     public bool CheckState(Value.ValueType stateType) //状态检测
     {
         foreach (var state in stateList)
@@ -43,7 +49,6 @@ public class Enemy : MonoBehaviour
     //初始化敌人
     public void InitEnemy(EnemyData data)
     {
-        actionNo = 0;
         maxHp = data.maxHp;
         hp = data.initHp;
         shield = data.initShield;
@@ -78,7 +83,6 @@ public class Enemy : MonoBehaviour
         }
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
-        currentEnemyAction = actionList[actionNo];
 
         if (currentEnemyAction!=null)
         {
@@ -94,11 +98,18 @@ public class Enemy : MonoBehaviour
                     actionValueText.text = "" + actualValue;
                     break;
                 case ActionController.ActionType.Defend:
-
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Defend];
                     actualValue = currentEnemyAction.valueDic[Value.ValueType.护甲];
                     actionValueText.text = "" + actualValue;
+                    break;
+                case ActionController.ActionType.Buff:
+                    actionValueText.enabled = false;
+                    actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Buff];
+                    break;
+                case ActionController.ActionType.Special:
+                    actionValueText.enabled = false;
+                    actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Special];
                     break;
             }
             
@@ -121,11 +132,6 @@ public class Enemy : MonoBehaviour
     public void TakeAction()
     {
         ActionController.Instance.TakeAction(currentEnemyAction,this);
-        actionNo++;
-        if (actionNo==actionList.Count)
-        {
-            actionNo = 0;
-        }
 
     }
     public void TakeDamage(int damage)//结算受到的伤害
@@ -139,6 +145,11 @@ public class Enemy : MonoBehaviour
             hp -= damage - shield;
             shield = 0;
         }
+    }
+
+    public void UpdateCurrentAction()
+    {
+        currentEnemyAction = actionList[Random.Range(0, actionList.Count)];
     }
     void Update()
     {

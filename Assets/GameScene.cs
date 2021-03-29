@@ -16,6 +16,7 @@ public class GameScene : MonoBehaviour
         switch (sceneData.type)
         {
             case SceneManager.SceneType.NormalCombat:
+
                 BattleManager.Instance.BattleStart(sceneData.battleData);
                 break;
         }
@@ -38,6 +39,7 @@ public class GameScene : MonoBehaviour
         sceneData = SceneManager.Instance.sceneDataList[Random.Range(0, SceneManager.Instance.sceneDataList.Count)];
         if (sceneData.type==SceneManager.SceneType.NormalCombat)
         {
+            sceneData.battleData = BattleManager.Instance.battleDataList[0];
             GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
             return ;
         }

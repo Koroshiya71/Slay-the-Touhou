@@ -12,7 +12,10 @@ public class ActionController : MonoBehaviour
     public enum ActionType
     {
         Attack,
-        Defend
+        Defend,
+        Buff,
+        DeBuff,
+        Special
     }
 
     private void Awake()
@@ -30,19 +33,36 @@ public class ActionController : MonoBehaviour
     {
         switch (a.data.ActID)
         {
-            case "0001": //sakuya攻击1
-                Player.Instance.TakeDamage(thisEnemy.actualValue);
+            case "0001": //小幽灵攻击
+            case "0002": //中幽灵攻击
+                Attack(thisEnemy);
                 break;
-            case "0002": //sakuya格挡1
-                thisEnemy.shield += a.valueDic[Value.ValueType.护甲];
+            case "0003"://灵体
+            case "0004"://魂体
+                Buff(thisEnemy,a);
                 break;
-            case "0003": //sakuya攻击2
-                Player.Instance.TakeDamage(thisEnemy.actualValue);
-                break;
+            
         }
-        if (a.data.Type==ActionType.Attack)
+        
+    }
+
+    public void Attack(Enemy enemy) //怪物攻击的通用方法
+    {
+        Player.Instance.TakeDamage(enemy.actualValue);
+        enemy.animController.SetTrigger("Attack");//播放攻击动画
+
+    }
+    public void Defend(Enemy enemy) //怪物攻击的通用方法
+    {
+        enemy.GetShield(enemy.actualValue);
+
+    }
+
+    public void Buff(Enemy enemy, EnemyAction action)
+    {
+        foreach (var type in action.valueDic.Keys)
         {
-            thisEnemy.animController.SetTrigger("Attack");//播放攻击动画
+            StateManager.AddStateToEnemy(new Value(){type = type,value = action.valueDic[type]},enemy);
         }
     }
 }

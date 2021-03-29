@@ -819,16 +819,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDataList:
   - ID: 0
-    Name: Sakuya
-    maxHp: 50
-    initHp: 50
-    initShield: 10
+    Name: "\u5C0F\u5E7D\u7075"
+    maxHp: 18
+    initHp: 18
+    initShield: 0
     ActionIdList:
     - 0001
-    - 0001
+  - ID: 1
+    Name: "\u4E2D\u5E7D\u7075"
+    maxHp: 30
+    initHp: 30
+    initShield: 0
+    ActionIdList:
     - 0002
     - 0003
-    position: {x: 4.5, y: -0.5, z: 90}
   InGameEnemyList: []
 --- !u!4 &229394176
 Transform:
@@ -6471,7 +6475,12 @@ MonoBehaviour:
   tiShuCardCombo: 0
   enemyPrefab: {fileID: 6505259454138462036, guid: 68516ca82c79b444bb8f034e7d4d78e2, type: 3}
   isInBattle: 0
-  battleDataList: []
+  battleDataList:
+  - EnemyList:
+    - ID: 0
+      Pos: {x: 4.5, y: -0.5, z: 0}
+    - ID: 1
+      Pos: {x: 2.5, y: -0.5, z: 0}
 --- !u!114 &1172924531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7420602135232297704, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
@@ -6946,16 +6955,16 @@ MonoBehaviour:
   sceneDataList:
   - type: 0
     battleData:
-      enemyIdList: 00000000
+      EnemyList: []
   - type: 1
     battleData:
-      enemyIdList: 00000000
+      EnemyList: []
   - type: 2
     battleData:
-      enemyIdList: 00000000
+      EnemyList: []
   - type: 3
     battleData:
-      enemyIdList: 00000000
+      EnemyList: []
 --- !u!1001 &1370637516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9149,23 +9158,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionDataList:
   - Type: 0
-    Name: "\u54B2\u591C\u653B\u51FB1"
+    Name: "\u5C0F\u5E7D\u7075\u653B\u51FB"
     ActID: 0001
     valueList:
     - type: 0
-      value: 10
-  - Type: 1
-    Name: "\u54B2\u591C\u9632\u5FA11"
+      value: 3
+  - Type: 0
+    Name: "\u4E2D\u5E7D\u7075\u653B\u51FB"
     ActID: 0002
     valueList:
-    - type: 1
-      value: 10
-  - Type: 0
-    Name: "\u54B2\u591C\u653B\u51FB2"
+    - type: 0
+      value: 6
+  - Type: 2
+    Name: "\u7075\u4F53"
     ActID: 0003
     valueList:
-    - type: 0
-      value: 15
+    - type: 16
+      value: 2
+  - Type: 2
+    Name: "\u9B42\u4F53"
+    ActID: 0004
+    valueList:
+    - type: 17
+      value: 2
+  - Type: 4
+    Name: "\u660F\u8FF7"
+    ActID: 0000
+    valueList:
+    - type: 18
+      value: 1
 --- !u!1001 &1610063724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12560,7 +12581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4.61, y: -27.64}
+  m_AnchoredPosition: {x: 4.6100006, y: -27.64}
   m_SizeDelta: {x: 53.99, y: 552.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3781588654706738543

@@ -66,6 +66,13 @@ public class BattleManager : MonoBehaviour
 
     public void TurnStart()
     {
+        if (!extraTurn)
+        {
+            foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+            {
+                enemy.UpdateCurrentAction();
+            }
+        }
         StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
         StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
         turnHasEnd = false;
@@ -74,7 +81,6 @@ public class BattleManager : MonoBehaviour
         {
             Player.Instance.shield = 0;
         }
-
         extraTurn = false;
         for (int i = 0; i < Player.Instance.drawCardNum; i++)
         {
@@ -112,21 +118,23 @@ public class BattleManager : MonoBehaviour
         SceneManager.Instance.battleSceneCanvas.enabled=true;
         SceneManager.Instance.mapSceneCanvas.enabled=false;
         CardManager.Instance.InitDrawCardList();
-        CreateEnemies(data.enemyIdList);
+        CreateEnemies(data.EnemyList);
         TurnStart();
         isInBattle = true;
     }
 
-    public void CreateEnemies(List<int> enemyIdList) //创建敌人
+    public void CreateEnemies(List<BattleData.SceneEnemy> enemyList) //创建敌人
     {
-        foreach (var enemyID in enemyIdList)
+
+        foreach (var enemyS in enemyList)
         {
             foreach (var enemy in EnemyManager.Instance.enemyDataList)
             {
-                if (enemy.ID==enemyID)
+                if (enemy.ID==enemyS.ID)
                 {
-                    Enemy newEnemy = Instantiate(enemyPrefab, enemy.position, Quaternion.identity).GetComponent<Enemy>();
+                    Enemy newEnemy = Instantiate(enemyPrefab,enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
                     newEnemy.InitEnemy(enemy);
+                    Debug.Log(1);
                     Transform transform1;
                     (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
                     transform1.localScale = new Vector3(1, 1, 1);

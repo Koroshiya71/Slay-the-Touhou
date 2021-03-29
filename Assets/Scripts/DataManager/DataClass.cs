@@ -13,7 +13,6 @@ public class EnemyData
     public int initHp;//初始生命值
     public int initShield;//初始护盾值
     public List<string> ActionIdList = new List<string>();//该Enemy所有行为的ID
-    public Vector3 position;//敌人的生成位置
 
     public static EnemyData Clone(EnemyData data)
     {
@@ -24,7 +23,6 @@ public class EnemyData
         newData.initHp = data.maxHp;
         newData.initShield = data.initShield;
         newData.ActionIdList = new List<string>();
-        newData.position = data.position;
         foreach (var action in data.ActionIdList)
         {
          newData.ActionIdList.Add(action);   
@@ -121,7 +119,10 @@ public class Value
         背水一战,
         起势,
         保留手牌,
-        六根清净
+        六根清净,
+        灵体,
+        魂体,
+        休眠
     }
     public ValueType type;
     public int value;
@@ -144,7 +145,14 @@ public class Combo//连斩
 [Serializable]
 public class BattleData
 {
-    public List<int> enemyIdList;//敌人的ID列表
+    [Serializable]
+    public struct SceneEnemy
+    {
+        public int ID; //敌人ID
+        public Vector3 Pos; //敌人位置
+    }
+    
+    public List<SceneEnemy> EnemyList=new List<SceneEnemy>();
 }
 
 [Serializable]
