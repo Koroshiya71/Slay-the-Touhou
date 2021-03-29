@@ -33,6 +33,8 @@ public class ActionController : MonoBehaviour
     {
         switch (a.data.ActID)
         {
+            case "0000"://休眠
+                break;
             case "0001": //小幽灵攻击
             case "0002": //中幽灵攻击
                 Attack(thisEnemy);

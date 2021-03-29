@@ -149,6 +149,11 @@ public class Enemy : MonoBehaviour
 
     public void UpdateCurrentAction()
     {
+        if (enemyData.ID==2&&hp>=maxHp/2)//懒惰妖精
+        {
+            currentEnemyAction = actionList[0];
+            return;
+        }
         currentEnemyAction = actionList[Random.Range(0, actionList.Count)];
     }
     void Update()

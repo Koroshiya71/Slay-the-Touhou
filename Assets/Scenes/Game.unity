@@ -833,6 +833,15 @@ MonoBehaviour:
     ActionIdList:
     - 0002
     - 0003
+  - ID: 2
+    Name: "\u61D2\u60F0\u5E7D\u7075"
+    maxHp: 32
+    initHp: 32
+    initShield: 0
+    ActionIdList:
+    - 0000
+    - 0005
+    - 0004
   InGameEnemyList: []
 --- !u!4 &229394176
 Transform:
@@ -6481,6 +6490,8 @@ MonoBehaviour:
       Pos: {x: 4.5, y: -0.5, z: 0}
     - ID: 1
       Pos: {x: 2.5, y: -0.5, z: 0}
+    - ID: 2
+      Pos: {x: 6.5, y: -0.5, z: 0}
 --- !u!114 &1172924531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7420602135232297704, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
@@ -9187,6 +9198,12 @@ MonoBehaviour:
     valueList:
     - type: 18
       value: 1
+  - Type: 0
+    Name: "\u61D2\u60F0\u5E7D\u7075\u653B\u51FB"
+    ActID: 0005
+    valueList:
+    - type: 0
+      value: 10
 --- !u!1001 &1610063724
 PrefabInstance:
   m_ObjectHideFlags: 0
