@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour
     public List<Value> stateList = new List<Value>();
     public int actualValue;
     public EnemyData enemyData;//敌人数据
+ 
     #endregion
-    
+
     public Animator animController;//动画控制器
     #region UI引用
     public Text hpText;//血条数值文本
@@ -49,18 +50,23 @@ public class Enemy : MonoBehaviour
     //初始化敌人
     public void InitEnemy(EnemyData data)
     {
+        enemyData = data;
         maxHp = data.maxHp;
         hp = data.initHp;
         shield = data.initShield;
         Name = data.Name;
         foreach (var id in data.ActionIdList)
         {
-            foreach (var a in ActionController.Instance.actionDataList)
+            foreach (var aData in ActionController.Instance.actionDataList)
             {
-                if (id==a.ActID)
+                if (id==aData.ActID)
                 {
-                    EnemyAction newEnemyAction = shieldImg.AddComponent<EnemyAction>();
-                    newEnemyAction.InitAction(a);
+                    EnemyAction newEnemyAction = new EnemyAction();
+                    newEnemyAction.data = aData;
+                    foreach (var val in aData.valueList)
+                    {
+                        newEnemyAction.valueDic.Add(val.type,val.value);
+                    }
                     actionList.Add(newEnemyAction);
                     break;
                 }
@@ -158,7 +164,18 @@ public class Enemy : MonoBehaviour
             currentEnemyAction = actionList[0];
             return;
         }
-        currentEnemyAction = actionList[Random.Range(0, actionList.Count)];
+
+        int n = Random.Range(1, 101);//在1到100取值
+        int temp = 0;
+        for (int i = 0; i < actionList.Count; i++)
+        {
+            temp += actionList[i].data.actProbability;
+            if (n<=temp)
+            {
+                currentEnemyAction = actionList[i];
+                break;
+            }
+        }
     }
     void Update()
     {

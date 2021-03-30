@@ -10,11 +10,13 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     //卡牌数据文件路径
     public string cardDataPath;
+    public string actionDataPath;
 
     private void Awake()
     {
         Instance = this;
         cardDataPath = Application.dataPath+"/StreamingAssets/Data/CardData.xml";
+        actionDataPath = Application.dataPath + "/StreamingAssets/Data/ActionData.xml";
     }   
 
     public  List<CardData> LoadCardData()//从xml数据文件中读取卡牌数据列表
@@ -224,7 +226,101 @@ public class DataManager : MonoBehaviour
     public List<ActionData> LoadActionData() //从xml数据文件中读取敌人行为数据列表
     {
         List<ActionData> actionDataList = new List<ActionData>();
+        var xmlDoc = new XmlDocument();
+        xmlDoc.Load(actionDataPath);//读取数据文件
 
+        var actionListNode = xmlDoc.FirstChild.FirstChild;
+        foreach (XmlNode actionNode in actionListNode)
+        {
+            ActionData newData = new ActionData();
+            newData.valueList = new List<Value>();
+            XmlAttributeCollection actionAttributes = actionNode.Attributes;
+            newData.ActID = actionAttributes["ActID"].InnerText;
+            newData.Name = actionAttributes["Name"].InnerText;
+            newData.actProbability = Int32.Parse(actionAttributes["Probability"].InnerText);
+            switch (actionAttributes["Type"].InnerText)
+            {
+                case "Attack":
+                    newData.Type = ActionController.ActionType.Attack;
+                    break;
+                case "Defend":
+                    newData.Type = ActionController.ActionType.Defend;
+                    break;
+                case "Buff":
+                    newData.Type = ActionController.ActionType.Buff;
+                    break;
+                case "Special":
+                    newData.Type = ActionController.ActionType.Special;
+                    break;
+                case "DeBuff":
+                    newData.Type = ActionController.ActionType.DeBuff;
+                    break;
+            }
+            XmlNode ValuesNode = actionNode.FirstChild;
+            foreach (XmlNode valueNode in ValuesNode)
+            {
+                Value newValue = new Value();
+                var valueAttributes = valueNode.Attributes;
+                switch (valueAttributes["Type"].InnerText)
+                {
+                    case "伤害":
+                        newValue.type = Value.ValueType.伤害;
+                        break;
+                    case "护甲":
+                        newValue.type = Value.ValueType.护甲;
+                        break;
+                    case "二刀流":
+                        newValue.type = Value.ValueType.二刀流;
+                        break;
+                    case "回费":
+                        newValue.type = Value.ValueType.回费;
+                        break;
+                    case "流转":
+                        newValue.type = Value.ValueType.流转;
+                        break;
+                    case "额外回合":
+                        newValue.type = Value.ValueType.额外回合;
+                        break;
+                    case "无何有":
+                        newValue.type = Value.ValueType.无何有;
+                        break;
+                    case "体术限制":
+                        newValue.type = Value.ValueType.体术限制;
+                        break;
+                    case "抽牌":
+                        newValue.type = Value.ValueType.抽牌;
+                        break;
+                    case "击杀回费":
+                        newValue.type = Value.ValueType.击杀回费;
+                        break;
+                    case "回血":
+                        newValue.type = Value.ValueType.回血;
+                        break;
+                    case "惊吓":
+                        newValue.type = Value.ValueType.惊吓;
+                        break;
+                    case "背水一战":
+                        newValue.type = Value.ValueType.背水一战;
+                        break;
+                    case "起势":
+                        newValue.type = Value.ValueType.起势;
+                        break;
+                    case "保留手牌":
+                        newValue.type = Value.ValueType.保留手牌;
+                        break;
+                    case "六根清净":
+                        newValue.type = Value.ValueType.六根清净;
+                        break;
+                    case "休眠":
+                        newValue.type = Value.ValueType.休眠;
+                        break;
+                }
+
+                newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);
+                newData.valueList.Add(newValue);
+            }
+            actionDataList.Add(newData);
+        }
         return actionDataList;
     }
     void Start()

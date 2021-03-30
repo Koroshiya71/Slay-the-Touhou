@@ -98,7 +98,7 @@ public class ActionData
     public string Name;
     public string ActID;
     public List<Value> valueList;//数值列表
-    public int 
+    public int actProbability;//执行该行动的概率
 }
 [Serializable]
 public class Value

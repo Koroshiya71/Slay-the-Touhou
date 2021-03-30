@@ -21,6 +21,7 @@ public class ActionController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        actionDataList = DataManager.Instance.LoadActionData();
     }
 
 

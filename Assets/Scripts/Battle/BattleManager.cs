@@ -134,7 +134,6 @@ public class BattleManager : MonoBehaviour
                 {
                     Enemy newEnemy = Instantiate(enemyPrefab,enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
                     newEnemy.InitEnemy(enemy);
-                    Debug.Log(1);
                     Transform transform1;
                     (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
                     transform1.localScale = new Vector3(1, 1, 1);
