@@ -1,0 +1,34 @@
+<ActionData>
+    <ActionList>
+        <Action ActID="0000" Type="Special" Name="昏迷">
+            <Values>
+                <Value Type="休眠" Value="1"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0001" Type="Attack" Name="小幽灵攻击">
+            <Values>
+                <Value Type="伤害" Value="3"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0002" Type="Attack" Name="中幽灵攻击">
+            <Values>
+                <Value Type="伤害" Value="6"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0003" Type="Buff" Name="灵体">
+            <Values>
+                <Value Type="灵体" Value="2"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0004" Type="Defend" Name="懒惰幽灵防御">
+            <Values>
+                <Value Type="护甲" Value="10"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0005" Type="Attack" Name="懒惰幽灵攻击">
+            <Values>
+                <Value Type="伤害" Value="10"></Value>
+            </Values>
+        </Action>
+    </ActionList>
+</ActionData>

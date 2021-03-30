@@ -220,6 +220,13 @@ public class DataManager : MonoBehaviour
         }
         return cardDataList;
     }
+
+    public List<ActionData> LoadActionData() //从xml数据文件中读取敌人行为数据列表
+    {
+        List<ActionData> actionDataList = new List<ActionData>();
+
+        return actionDataList;
+    }
     void Start()
     {
     }

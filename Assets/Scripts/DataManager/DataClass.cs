@@ -98,6 +98,7 @@ public class ActionData
     public string Name;
     public string ActID;
     public List<Value> valueList;//数值列表
+    public int 
 }
 [Serializable]
 public class Value

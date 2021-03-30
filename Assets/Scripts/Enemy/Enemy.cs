@@ -67,7 +67,11 @@ public class Enemy : MonoBehaviour
             
             }
         }
-        
+
+        if (enemyData.ID==2)
+        {
+            StateManager.AddStateToEnemy(new Value(){type=Value.ValueType.魂体,value = 1},this);
+        }
         EnemyManager.Instance.InGameEnemyList.Add(this);
     }
     void UpdateUIState()//更新UI组件状态

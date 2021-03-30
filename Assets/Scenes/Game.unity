@@ -9204,6 +9204,12 @@ MonoBehaviour:
     valueList:
     - type: 0
       value: 10
+  - Type: 0
+    Name: "\u61D2\u60F0\u5E7D\u7075\u653B\u51FB"
+    ActID: 0005
+    valueList:
+    - type: 0
+      value: 10
 --- !u!1001 &1610063724
 PrefabInstance:
   m_ObjectHideFlags: 0
