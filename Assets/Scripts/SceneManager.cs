@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour
             int index = inGameSceneList.IndexOf(gs);
             if (index < 7)
             {
-                gs.isFinished = true;
+                gs.isOptional = false;
                 continue;
             }
 

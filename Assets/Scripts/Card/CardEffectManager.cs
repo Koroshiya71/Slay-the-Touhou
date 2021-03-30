@@ -459,9 +459,11 @@ public class CardEffectManager : MonoBehaviour
         var n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
         for (var i = 0; i < time; i++) //如果有双刀则对卡牌效果结算2次
         {
+            n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
             if (card.valueDic.ContainsKey(Value.ValueType.伤害)) //伤害结算
                 for (var t = 0; t < card.cardData.times; t++)
                 {
+                    n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
                     if ((EnemyManager.Instance.InGameEnemyList[n].CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                         (EnemyManager.Instance.InGameEnemyList[n].CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                     {

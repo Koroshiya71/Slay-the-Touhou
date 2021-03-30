@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameScene : MonoBehaviour
 {
     public bool isOptional;//是否可选
+    public bool isStarted;//是否是开局
     public bool isFinished;//是否已完成
     public SceneData sceneData;
     public Text typeText;//用于显示事件类型的文本
@@ -16,7 +17,6 @@ public class GameScene : MonoBehaviour
         switch (sceneData.type)
         {
             case SceneManager.SceneType.NormalCombat:
-
                 BattleManager.Instance.BattleStart(sceneData.battleData);
                 break;
         }

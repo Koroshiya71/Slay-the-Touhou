@@ -117,12 +117,18 @@ public class BattleManager : MonoBehaviour
     {
         SceneManager.Instance.battleSceneCanvas.enabled=true;
         SceneManager.Instance.mapSceneCanvas.enabled=false;
+        CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.EnemyList);
         TurnStart();
         isInBattle = true;
     }
 
+    public void BattleEnd()
+    {
+        SceneManager.Instance.battleSceneCanvas.enabled = false;
+        SceneManager.Instance.mapSceneCanvas.enabled = true;
+    }
     public void CreateEnemies(List<BattleData.SceneEnemy> enemyList) //创建敌人
     {
 
@@ -146,6 +152,9 @@ public class BattleManager : MonoBehaviour
     }
     void Update() 
     {
-        
+        if (EnemyManager.Instance.InGameEnemyList.Count==0)
+        {
+            BattleEnd();
+        }
     }
 }

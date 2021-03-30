@@ -93,7 +93,10 @@ public class Enemy : MonoBehaviour
         }
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
-
+        if (hp<=0)
+        {
+            EnemyDie();
+        }
         if (currentEnemyAction!=null)
         {
 
@@ -176,6 +179,12 @@ public class Enemy : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void EnemyDie() //敌人生命值归零时触发的方法
+    {
+        EnemyManager.Instance.InGameEnemyList.Remove(this);
+        Destroy(gameObject);
     }
     void Update()
     {

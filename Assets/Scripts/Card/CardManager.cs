@@ -51,6 +51,18 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    public void InitAllCardList()
+    {
+        foreach (var card in handCardList)
+        {
+            Destroy(card);
+        }
+
+        handCardList = new List<GameObject>();
+        drawCardList = new List<CardData>();
+        discardList = new List<CardData>();
+        hasInit = false;
+    }
     public void InitDrawCardList()
     {
         if (discardList.Count > 0) //如果是在弃牌堆有卡牌的情况下初始化抽牌堆，则将所有弃牌堆的卡牌加入抽牌堆
