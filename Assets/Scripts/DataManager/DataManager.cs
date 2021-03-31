@@ -316,6 +316,9 @@ public class DataManager : MonoBehaviour
                     case "休眠":
                         newValue.type = Value.ValueType.休眠;
                         break;
+                    case "抽牌减1":
+                        newValue.type = Value.ValueType.抽牌减1;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

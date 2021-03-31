@@ -86,7 +86,10 @@ public class BattleManager : MonoBehaviour
             Player.Instance.shield = 0;
         }
         extraTurn = false;
-        for (int i = 0; i < Player.Instance.drawCardNum; i++)
+        int drawCardNum = Player.Instance.CheckState(Value.ValueType.抽牌减1)
+            ? Player.Instance.drawCardNum - 1
+            : Player.Instance.drawCardNum;
+        for (int i = 0; i < drawCardNum; i++)
         {
             CardManager.Instance.DrawCard();
         }

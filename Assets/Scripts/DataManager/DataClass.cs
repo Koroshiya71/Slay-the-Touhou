@@ -124,7 +124,8 @@ public class Value
         灵体,
         魂体,
         休眠,
-        重伤
+        重伤,
+        抽牌减1
     }
     public ValueType type;
     public int value;

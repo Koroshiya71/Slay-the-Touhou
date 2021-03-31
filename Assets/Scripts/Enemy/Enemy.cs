@@ -140,6 +140,10 @@ public class Enemy : MonoBehaviour
                     actionValueText.enabled = false;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Special];
                     break;
+                case ActionController.ActionType.DeBuff:
+                    actionValueText.enabled = false;
+                    actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.DeBuff];
+                    break;
             }
             
         }

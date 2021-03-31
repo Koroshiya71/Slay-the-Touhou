@@ -32,5 +32,18 @@
                 <Action ID="0010"></Action>
             </ActionIDList>
         </Enemy>
+        <Enemy EnemyID="5" Name="小妖精" MaxHp="46">
+            <ActionIDList>
+                <Action ID="0011"></Action>
+                <Action ID="0012"></Action>
+                <Action ID="0013"></Action>
+            </ActionIDList>
+        </Enemy>
+        <Enemy EnemyID="6" Name="大妖精" MaxHp="54">
+            <ActionIDList>
+                <Action ID="0014"></Action>
+                <Action ID="0015"></Action>
+            </ActionIDList>
+        </Enemy>
     </EnemyList>
 </EnemyData>

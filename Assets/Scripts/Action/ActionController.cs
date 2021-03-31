@@ -43,6 +43,8 @@ public class ActionController : MonoBehaviour
             case "0007": //暴躁妖精攻击2
             case "0008": //大幽灵攻击1
             case "0009": //大幽灵攻击2
+            case "0011": //小妖精攻击
+            case "0014": //大妖精攻击
                 Attack(thisEnemy);
                 break;
             case "0003"://灵体
@@ -50,7 +52,12 @@ public class ActionController : MonoBehaviour
                 break;
             case "0004"://懒惰幽灵防御
             case "0010": //大幽灵防御
+            case "0013": //小妖精防御
+            case "0015": //大妖精防御
                 Defend(thisEnemy);
+                break;
+            case "0012"://小妖精抽牌减少
+                DeBuff(thisEnemy,a);
                 break;
         }
 
@@ -64,7 +71,15 @@ public class ActionController : MonoBehaviour
     }
     public void Defend(Enemy enemy) //怪物攻击的通用方法
     {
-        enemy.GetShield(enemy.actualValue);
+        if (enemy.enemyData.ID==6)//大妖精防御
+        {
+            foreach (var e in EnemyManager.Instance.InGameEnemyList)
+            {
+                e.GetShield(enemy.actualValue);
+            }
+        }
+        else
+            enemy.GetShield(enemy.actualValue);
     }
 
     public void Buff(Enemy enemy, EnemyAction action)
@@ -72,6 +87,14 @@ public class ActionController : MonoBehaviour
         foreach (var type in action.valueDic.Keys)
         {
             StateManager.AddStateToEnemy(new Value(){type = type,value = action.valueDic[type]},enemy);
+        }
+    }
+
+    public void DeBuff(Enemy enemy, EnemyAction action)
+    {
+        foreach (var type in action.valueDic.Keys)
+        {
+            StateManager.AddStateToPlayer(new Value() { type = type, value = action.valueDic[type] });
         }
     }
 }

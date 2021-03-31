@@ -55,5 +55,30 @@
                 <Value Type="护甲" Value="12"></Value>
             </Values>
         </Action>
+        <Action ActID="0011" Type="Attack" Name="小妖精攻击" Probability="45">
+            <Values>
+                <Value Type="伤害" Value="10"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0012" Type="DeBuff" Name="小妖精减少抽牌" Probability="20">
+            <Values>
+                <Value Type="抽牌减1" Value="2"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0013" Type="Defend" Name="小妖精防御" Probability="35">
+            <Values>
+                <Value Type="护甲" Value="10"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0014" Type="Attack" Name="大妖精攻击" Probability="75">
+            <Values>
+                <Value Type="伤害" Value="16"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0015" Type="Defend" Name="大妖精防御" Probability="25">
+            <Values>
+                <Value Type="护甲" Value="7"></Value>
+            </Values>
+        </Action>
     </ActionList>
 </ActionData>
