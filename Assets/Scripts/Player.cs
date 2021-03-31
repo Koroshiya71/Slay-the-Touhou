@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     public GameObject shieldImg;//护盾图片
     public Text shieldText;//护盾值文本
     public Text energyText;//能量值文本
-    public GameObject doubleBladeText;//二刀文本
     #endregion
     #region 动画相关
     public Animator animController;//动画控制器
@@ -103,16 +102,6 @@ public class Player : MonoBehaviour
         else
         {
             shieldImg.SetActive(false);
-        }
-
-        if (CheckState(Value.ValueType.二刀流))
-        {
-            doubleBladeText.SetActive(true);
-        }
-        else
-        {
-            doubleBladeText.SetActive(false);
-
         }
 
         hpText.text = hp + "/" + maxHp;

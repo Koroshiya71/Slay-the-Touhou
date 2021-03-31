@@ -19,6 +19,10 @@ public class BattleManager : MonoBehaviour
     public List<BattleData> battleDataList = new List<BattleData>();//保存所有战斗场景数据的列表
     public void TurnEnd()
     {
+        if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
+        {
+            return;
+        }
         if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
         {
             return;
@@ -117,6 +121,7 @@ public class BattleManager : MonoBehaviour
     {
         SceneManager.Instance.battleSceneCanvas.enabled=true;
         SceneManager.Instance.mapSceneCanvas.enabled=false;
+        StateManager.Instance.InitPlayerState();
         CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.EnemyList);

@@ -18,6 +18,10 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    public void InitPlayerState() //初始化玩家状态
+    {
+        Player.Instance.stateList = new List<Value>();
+    }
     public static void AddStateToPlayer(Value state)//给玩家添加对应类型，层数的状态
     {
         foreach (var s in Player.Instance.stateList)//查找玩家现有的状态列表
