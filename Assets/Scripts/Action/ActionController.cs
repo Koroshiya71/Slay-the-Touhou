@@ -58,7 +58,6 @@ public class ActionController : MonoBehaviour
     public void Defend(Enemy enemy) //怪物攻击的通用方法
     {
         enemy.GetShield(enemy.actualValue);
-
     }
 
     public void Buff(Enemy enemy, EnemyAction action)

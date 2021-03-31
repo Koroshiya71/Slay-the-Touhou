@@ -19,7 +19,9 @@ public class Enemy : MonoBehaviour
     public List<Value> stateList = new List<Value>();
     public int actualValue;
     public EnemyData enemyData;//敌人数据
- 
+
+    public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
+
     #endregion
 
     public Animator animController;//动画控制器
@@ -82,6 +84,20 @@ public class Enemy : MonoBehaviour
     }
     void UpdateUIState()//更新UI组件状态
     {
+        for (int i = 0; i < stateList.Count; i++)
+        {
+            stateImageList[i].enabled = true;
+            if (StateManager.Instance.stateImgDic.ContainsKey(stateList[i].type))
+            {
+                stateImageList[i].sprite = StateManager.Instance.stateImgDic[stateList[i].type];
+            }
+        }
+
+        for (int i = stateList.Count; i < stateImageList.Count; i++)
+        {
+            stateImageList[i].enabled = false;
+
+        }
         if (shield > 0)
         {
             shieldImg.SetActive(true);
