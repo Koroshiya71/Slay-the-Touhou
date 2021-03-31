@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     public void GetShield(int value)
     {
-        shield += value;
+        shield +=CheckState(Value.ValueType.重伤)? (int)(0.7*value):value;
     }
     public bool CheckState(Value.ValueType stateType) //状态检测
     {
@@ -199,6 +199,10 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDie() //敌人生命值归零时触发的方法
     {
+        if (this.enemyData.ID==3)//暴躁妖精亡语
+        {
+            StateManager.AddStateToPlayer(new Value(){type = Value.ValueType.重伤,value = 2});
+        }
         EnemyManager.Instance.InGameEnemyList.Remove(this);
         Destroy(gameObject);
     }

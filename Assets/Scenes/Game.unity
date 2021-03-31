@@ -1547,8 +1547,8 @@ RectTransform:
   - {fileID: 894082472}
   - {fileID: 1916872748}
   - {fileID: 7144945437637994367}
-  - {fileID: 656628799}
   - {fileID: 3781588656137340935}
+  - {fileID: 656628799}
   - {fileID: 1300604220}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2009,6 +2009,8 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: f7dbddc9bcb0cc74d8c6f4ac7c8b7c50, type: 3}
   - type: 17
     sprite: {fileID: 21300000, guid: fc6601b85292c404ab2a8ada70ee111e, type: 3}
+  - type: 19
+    sprite: {fileID: 21300000, guid: 3e69f55db56469f49871c90138350632, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6460,6 +6462,11 @@ MonoBehaviour:
       Pos: {x: 2.5, y: -0.5, z: 0}
     - ID: 2
       Pos: {x: 6.5, y: -0.5, z: 0}
+  - EnemyList:
+    - ID: 3
+      Pos: {x: 4.5, y: -0.5, z: 0}
+    - ID: 4
+      Pos: {x: 2.5, y: -0.5, z: 0}
 --- !u!1001 &1187401675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12658,7 +12665,7 @@ RectTransform:
   m_Children:
   - {fileID: 727694914037254428}
   m_Father: {fileID: 412782857}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

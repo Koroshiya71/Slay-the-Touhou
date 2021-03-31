@@ -34,19 +34,26 @@ public class ActionController : MonoBehaviour
     {
         switch (a.data.ActID)
         {
-            case "0000"://休眠
+            case "0000"://昏迷
                 break;
             case "0001": //小幽灵攻击
             case "0002": //中幽灵攻击
+            case "0005": //懒惰幽灵攻击
+            case "0006": //暴躁妖精攻击1
+            case "0007": //暴躁妖精攻击2
+            case "0008": //大幽灵攻击1
+            case "0009": //大幽灵攻击2
                 Attack(thisEnemy);
                 break;
             case "0003"://灵体
-            case "0004"://魂体
                 Buff(thisEnemy,a);
                 break;
-            
+            case "0004"://懒惰幽灵防御
+            case "0010": //大幽灵防御
+                Defend(thisEnemy);
+                break;
         }
-        
+
     }
 
     public void Attack(Enemy enemy) //怪物攻击的通用方法

@@ -39,7 +39,7 @@ public class GameScene : MonoBehaviour
         sceneData = SceneManager.Instance.sceneDataList[Random.Range(0, SceneManager.Instance.sceneDataList.Count)];
         if (sceneData.type==SceneManager.SceneType.NormalCombat)
         {
-            sceneData.battleData = BattleManager.Instance.battleDataList[0];
+            sceneData.battleData = BattleManager.Instance.battleDataList[Random.Range(0,BattleManager.Instance.battleDataList.Count)];
             GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
             return ;
         }

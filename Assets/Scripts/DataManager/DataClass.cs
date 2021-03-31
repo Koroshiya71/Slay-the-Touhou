@@ -123,7 +123,8 @@ public class Value
         六根清净,
         灵体,
         魂体,
-        休眠
+        休眠,
+        重伤
     }
     public ValueType type;
     public int value;

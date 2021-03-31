@@ -40,7 +40,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        this.shield += shield;
+        this.shield += CheckState(Value.ValueType.重伤) ? (int)(0.7 * shield) : shield;
+
     }
 
     public void GetEnergy(int value)//获得能量

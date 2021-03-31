@@ -30,5 +30,30 @@
                 <Value Type="伤害" Value="10"></Value>
             </Values>
         </Action>
+        <Action ActID="0006" Type="Attack" Name="暴躁妖精攻击1" Probability="30">
+            <Values>
+                <Value Type="伤害" Value="12"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0007" Type="Attack" Name="暴躁妖精攻击2" Probability="70">
+            <Values>
+                <Value Type="伤害" Value="7"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0008" Type="Attack" Name="大幽灵攻击1" Probability="45">
+            <Values>
+                <Value Type="伤害" Value="8"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0009" Type="Attack" Name="大幽灵攻击2" Probability="20">
+            <Values>
+                <Value Type="伤害" Value="5"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0010" Type="Defend" Name="大幽灵防御" Probability="35">
+            <Values>
+                <Value Type="护甲" Value="12"></Value>
+            </Values>
+        </Action>
     </ActionList>
 </ActionData>
