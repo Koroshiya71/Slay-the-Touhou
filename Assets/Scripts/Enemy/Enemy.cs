@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     {
         enemyData = data;
         maxHp = data.maxHp;
-        hp = data.initHp;
+        hp = maxHp;
         shield = data.initShield;
         Name = data.Name;
         foreach (var id in data.ActionIdList)

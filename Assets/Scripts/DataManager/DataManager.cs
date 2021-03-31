@@ -11,13 +11,15 @@ public class DataManager : MonoBehaviour
     //卡牌数据文件路径
     public string cardDataPath;
     public string actionDataPath;
-
+    public string enemyDataPath;
     private void Awake()
     {
         Instance = this;
         cardDataPath = Application.dataPath+"/StreamingAssets/Data/CardData.xml";
         actionDataPath = Application.dataPath + "/StreamingAssets/Data/ActionData.xml";
-    }   
+        enemyDataPath = Application.dataPath + "/StreamingAssets/Data/EnemyData.xml";
+
+    }
 
     public  List<CardData> LoadCardData()//从xml数据文件中读取卡牌数据列表
     {
@@ -322,6 +324,35 @@ public class DataManager : MonoBehaviour
             actionDataList.Add(newData);
         }
         return actionDataList;
+    }
+
+    public List<EnemyData> LoadEnemyData()//从xml数据文件中读取敌人行为数据列表
+    {
+        List<EnemyData> enemyDataList = new List<EnemyData>();
+        var cardDataList = new List<CardData>();
+
+        var xmlDoc = new XmlDocument();
+        xmlDoc.Load(enemyDataPath);//读取数据文件
+
+        var enemyListNode = xmlDoc.FirstChild.FirstChild;
+
+        foreach (XmlNode enemyNode in enemyListNode)
+        {
+            EnemyData newData = new EnemyData();
+            newData.ActionIdList = new List<string>();
+            XmlAttributeCollection enemyAttributes = enemyNode.Attributes;
+            newData.ID = Int32.Parse(enemyAttributes["EnemyID"].InnerText);
+            newData.Name = enemyAttributes["Name"].InnerText;
+            newData.maxHp = Int32.Parse(enemyAttributes["MaxHp"].InnerText);
+            XmlNode actionListNode = enemyNode.FirstChild;
+            foreach (XmlNode actionIDNode in actionListNode)
+            {
+                string actionID = actionIDNode.Attributes["ID"].InnerText;
+                newData.ActionIdList.Add(actionID);
+            }
+            enemyDataList.Add(newData);
+        }
+        return enemyDataList;
     }
     void Start()
     {

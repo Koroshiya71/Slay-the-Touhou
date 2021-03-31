@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        enemyDataList = DataManager.Instance.LoadEnemyData();
     }
 
     void Start()

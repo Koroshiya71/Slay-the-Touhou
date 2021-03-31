@@ -1,0 +1,23 @@
+<EnemyData>
+    <EnemyList>
+        <Enemy EnemyID="0" Name="小幽灵" MaxHp="18">
+            <ActionIDList>
+                <Action ID="0001"></Action>
+            </ActionIDList>
+        </Enemy>
+        <Enemy EnemyID="1" Name="中幽灵" MaxHp="30">
+            <ActionIDList>
+                <Action ID="0002"></Action>
+                <Action ID="0003"></Action>
+
+            </ActionIDList>
+        </Enemy>
+        <Enemy EnemyID="2" Name="懒惰幽灵" MaxHp="32">
+            <ActionIDList>
+                <Action ID="0000"></Action>
+                <Action ID="0004"></Action>
+                <Action ID="0005"></Action>
+            </ActionIDList>
+        </Enemy>
+    </EnemyList>
+</EnemyData>

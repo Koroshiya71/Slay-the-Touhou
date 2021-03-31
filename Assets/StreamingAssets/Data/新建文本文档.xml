@@ -1,0 +1,16 @@
+<SkillInfo>
+    <SkillList>
+        <Skill SkillID="20002" SkillEngName="Smash" TriggerType="1" ImageFile="data/gfx/image/gui_icon_skill_000.dds" AvailableRace="7">
+            <Name>重击</Name>
+        </Skill>
+        <Skill SkillID="20003" SkillEngName="Hide" TriggerType="2" ImageFile="data/gfx/image/gui_icon_skill_001.dds" AvailableRace="1">
+            <Name>隐身</Name>
+        </Skill>
+        <Skill SkillID="20004" SkillEngName="Ikari" TriggerType="3" ImageFile="data/gfx/image/gui_icon_skill_002.dds" AvailableRace="1">
+            <Name>怒之翼</Name>
+        </Skill>
+        <Skill SkillID="20005" SkillEngName="Revenge" TriggerType="5" ImageFile="data/gfx/image/gui_icon_skill_003.dds" AvailableRace="2">
+            <Name>光之复仇</Name>
+        </Skill>
+    </SkillList>
+</SkillInfo>
