@@ -49,14 +49,12 @@ public class BattleManager : MonoBehaviour
             TurnStart();
             return;
         }
-       
-        foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
-        {
-            enemy.shield = 0;
-            enemy.TakeAction();
-        }
-        
 
+        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
+        {
+            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
+            EnemyManager.Instance.InGameEnemyList[i].TakeAction();
+        }
         Invoke(nameof(TurnStart), 1);
         if (!Player.Instance.CheckState(Value.ValueType.保留手牌))
         {

@@ -47,8 +47,9 @@
         </Enemy>
         <Enemy EnemyID="7" Name="大妖精" MaxHp="54">
             <ActionIDList>
-                <Action ID="0014"></Action>
-                <Action ID="0015"></Action>
+                <Action ID="0016"></Action>
+                <Action ID="0017"></Action>
+                <Action ID="0018"></Action>
             </ActionIDList>
         </Enemy>
     </EnemyList>

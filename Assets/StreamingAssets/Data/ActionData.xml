@@ -90,7 +90,7 @@
                 <Value Type="逃离战斗" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0018" Type="Special" Name="迷路妖精晕眩" Probability="5">
+        <Action ActID="0018" Type="Special" Name="迷路妖精晕眩" Probability="50">
             <Values>
                 <Value Type="晕眩" Value="2"></Value>
             </Values>

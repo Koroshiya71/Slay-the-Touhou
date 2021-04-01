@@ -62,7 +62,8 @@ public class ActionController : MonoBehaviour
                 DeBuff(thisEnemy,a);
                 break;
             case "0017"://迷路妖精逃跑
-                DeBuff(thisEnemy, a);
+            case "0018"://迷路妖精晕眩
+                Special(thisEnemy, a);
                 break;
         }
 
@@ -74,10 +75,16 @@ public class ActionController : MonoBehaviour
         {
             for (int i = 0; i < a.valueDic[Value.ValueType.晕眩]; i++)
             {
-                CardManager.Instance.GetCard("3001");
+                foreach (var data in CardManager.Instance.CardDataList)
+                {
+                    if (data.cardID=="3001")
+                    {
+                        CardData newData = data;
+                        CardManager.Instance.discardList.Add(newData);
+                    }
+                }
             }
         }
-
         if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗))
         {
             enemy.EnemyDie();

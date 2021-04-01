@@ -6472,6 +6472,9 @@ MonoBehaviour:
       Pos: {x: 4.5, y: -0.5, z: 0}
     - ID: 6
       Pos: {x: 2.5, y: -0.5, z: 0}
+  - EnemyList:
+    - ID: 7
+      Pos: {x: 4.5, y: -0.5, z: 0}
 --- !u!1001 &1187401675
 PrefabInstance:
   m_ObjectHideFlags: 0

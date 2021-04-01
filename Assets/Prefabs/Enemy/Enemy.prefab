@@ -1354,6 +1354,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: edd258e2e2d808d4b90198a25b1a6c29, type: 3}
   - {fileID: 21300000, guid: 81833d622ad506c409db6fd02249bdea, type: 3}
   - {fileID: 21300000, guid: 81833d622ad506c409db6fd02249bdea, type: 3}
+  - {fileID: 21300000, guid: 00c98a905c012594b8f624b0d47721c6, type: 3}
   stateList: []
   actualValue: 0
   enemyData:

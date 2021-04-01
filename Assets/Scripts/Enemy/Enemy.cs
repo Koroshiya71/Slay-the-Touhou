@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
         }
         if (currentEnemyAction!=null)
         {
-
+           
             switch (currentEnemyAction.data.Type)
             {
                 case ActionController.ActionType.Attack:
