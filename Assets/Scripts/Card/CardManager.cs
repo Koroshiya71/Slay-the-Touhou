@@ -166,7 +166,7 @@ public class CardManager : MonoBehaviour
             while (true) 
             {
                 newData= CardData.Clone(CardDataList[Random.Range(0, CardDataList.Count)]);
-                if (newData.type!=Card.CardType.符卡)
+                if (newData.type!=Card.CardType.符卡&&Int32.Parse(newCard.cardData.cardID)<=1000)
                 {
                     break;
                 }
@@ -240,7 +240,29 @@ public class CardManager : MonoBehaviour
         AddCardAnimations();
 
     }
+    public void GetCard(string cardID) //根据卡牌的序号获取指定卡牌
+    {
+        //克隆预设
+        var handCardGo = Instantiate(cardPrefab) as GameObject;
+        var newCard = handCardGo.GetComponent<Card>();
+        foreach (var data in CardDataList)
+        {
+            if (data.cardID == cardID)
+            {
+                newCard.InitCard(data);
+                break;
+            }
+        }
 
+        handCardGo.transform.position = BeginPos.transform.position;
+        handCardGo.transform.SetParent(battleCards);
+        //将新手牌添加到手牌列表
+        handCardList.Add(handCardGo);
+        //计算动画需要旋转的角度
+        RotateAngel();
+        AddCardAnimations();
+
+    }
     public void UpdateUIState() //更新UI组件状态
     {
         drawCardNumText.text = drawCardList.Count + "";
@@ -315,6 +337,10 @@ public class CardManager : MonoBehaviour
 
     public void Discard(Card card) //弃牌
     {
+        if (card.valueDic.ContainsKey(Value.ValueType.空无))//如果拥有空无则直接消耗
+        {
+            return;
+        }
         if ((card.valueDic.ContainsKey(Value.ValueType.无何有) && card.hasUsed)||card.cardData.type==Card.CardType.符卡) return;
         
         discardList.Add(card.cardData);

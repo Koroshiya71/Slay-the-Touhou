@@ -80,5 +80,20 @@
                 <Value Type="护甲" Value="7"></Value>
             </Values>
         </Action>
+        <Action ActID="0016" Type="Attack" Name="迷路妖精攻击" Probability="45">
+            <Values>
+                <Value Type="伤害" Value="14"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0017" Type="Special" Name="迷路妖精逃跑" Probability="5">
+            <Values>
+                <Value Type="逃离战斗" Value="1"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0018" Type="Special" Name="迷路妖精晕眩" Probability="5">
+            <Values>
+                <Value Type="晕眩" Value="2"></Value>
+            </Values>
+        </Action>
     </ActionList>
 </ActionData>

@@ -14,7 +14,8 @@ public class Card : MonoBehaviour
         技能,//技能
         法术,//法术
         防御,//防御
-        符卡//符卡
+        符卡,//符卡
+        状态//状态
     }
 
     public Transform outLook;//外观的位置

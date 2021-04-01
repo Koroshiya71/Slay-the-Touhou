@@ -71,6 +71,9 @@ public class DataManager : MonoBehaviour
                 case "符卡":
                     data.type = Card.CardType.符卡;
                     break;
+                case "状态":
+                    data.type = Card.CardType.状态;
+                    break;
             }
 
             data.name = cardAttributes["Name"].InnerText;
@@ -149,6 +152,12 @@ public class DataManager : MonoBehaviour
                         break;
                     case "六根清净":
                         newValue.type = Value.ValueType.六根清净;
+                        break;
+                    case "无法使用":
+                        newValue.type = Value.ValueType.无法使用;
+                        break;
+                    case "空无":
+                        newValue.type = Value.ValueType.空无;
                         break;
                 }
 
@@ -318,6 +327,12 @@ public class DataManager : MonoBehaviour
                         break;
                     case "抽牌减1":
                         newValue.type = Value.ValueType.抽牌减1;
+                        break;
+                    case "逃离战斗":
+                        newValue.type = Value.ValueType.逃离战斗;
+                        break;
+                    case "晕眩":
+                        newValue.type = Value.ValueType.晕眩;
                         break;
                 }
 

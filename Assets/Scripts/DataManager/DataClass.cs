@@ -125,7 +125,11 @@ public class Value
         ªÍÃÂ,
         –›√ﬂ,
         ÷ÿ…À,
-        ≥È≈∆ºı1
+        ≥È≈∆ºı1,
+        ø’Œﬁ,
+        Œﬁ∑® π”√,
+        Ã”¿Î’Ω∂∑,
+        ‘Œ—£
     }
     public ValueType type;
     public int value;

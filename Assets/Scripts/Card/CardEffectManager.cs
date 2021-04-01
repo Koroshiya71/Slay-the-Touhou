@@ -20,6 +20,11 @@ public class CardEffectManager : MonoBehaviour
     {
         //如果有体术限制状态，而该卡不是体术，则跳过检测
         if (Player.Instance.CheckState(Value.ValueType.体术限制) && card.cardData.type != Card.CardType.体术) yield break;
+        //如果卡牌拥有无法使用属性，则跳过检测
+        if (card.valueDic.ContainsKey(Value.ValueType.无法使用))
+        {
+            yield break;
+        }
         switch (card.cardData.cardID)
         {
             case "0001": //斩击

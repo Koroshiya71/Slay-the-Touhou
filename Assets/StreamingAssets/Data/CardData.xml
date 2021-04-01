@@ -117,5 +117,11 @@
                 <Value Type="无何有" Value="1"></Value>
             </Values>
         </Card>
+        <Card CardID="3001" Type="状态" Name="晕眩" Cost="0" SpriteID="19" TargetType="自身" Rare="Normal" Times="1">
+            <Values>
+                <Value Type="无法使用" Value="1"></Value>
+                <Value Type="空无" Value="1"></Value>
+            </Values>
+        </Card>
     </CardList>
 </CardData>

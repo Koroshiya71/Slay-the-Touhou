@@ -15,7 +15,8 @@ public class ActionController : MonoBehaviour
         Defend,
         Buff,
         DeBuff,
-        Special
+        Special,
+        Unknown
     }
 
     private void Awake()
@@ -45,6 +46,7 @@ public class ActionController : MonoBehaviour
             case "0009": //大幽灵攻击2
             case "0011": //小妖精攻击
             case "0014": //大妖精攻击
+            case "0016": //迷路妖精攻击
                 Attack(thisEnemy);
                 break;
             case "0003"://灵体
@@ -59,10 +61,28 @@ public class ActionController : MonoBehaviour
             case "0012"://小妖精抽牌减少
                 DeBuff(thisEnemy,a);
                 break;
+            case "0017"://迷路妖精逃跑
+                DeBuff(thisEnemy, a);
+                break;
         }
 
     }
 
+    public void Special(Enemy enemy,EnemyAction a)
+    {
+        if (a.valueDic.ContainsKey(Value.ValueType.晕眩))
+        {
+            for (int i = 0; i < a.valueDic[Value.ValueType.晕眩]; i++)
+            {
+                CardManager.Instance.GetCard("3001");
+            }
+        }
+
+        if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗))
+        {
+            enemy.EnemyDie();
+        }
+    }
     public void Attack(Enemy enemy) //怪物攻击的通用方法
     {
         Player.Instance.TakeDamage(enemy.actualValue);
