@@ -298,6 +298,21 @@ public class DataManager : MonoBehaviour
                     case "体术限制":
                         newValue.type = Value.ValueType.体术限制;
                         break;
+                    case "法术限制":
+                        newValue.type = Value.ValueType.法术限制;
+                        break;
+                    case "技能限制":
+                        newValue.type = Value.ValueType.技能限制;
+                        break;
+                    case "弹幕限制":
+                        newValue.type = Value.ValueType.弹幕限制;
+                        break;
+                    case "防御限制":
+                        newValue.type = Value.ValueType.防御限制;
+                        break;
+                    case "随机限制":
+                        newValue.type = Value.ValueType.防御限制;
+                        break;
                     case "抽牌":
                         newValue.type = Value.ValueType.抽牌;
                         break;

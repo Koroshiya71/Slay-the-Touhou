@@ -90,7 +90,28 @@
                 <Value Type="逃离战斗" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0018" Type="Special" Name="迷路妖精晕眩" Probability="50">
+        <Action ActID="0018" Type="Attack" Name="大蝴蝶攻击1" Probability="40">
+            <Values>
+                <Value Type="伤害" Value="15"></Value>
+                <Value Type="惊吓" Value="1"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0019" Type="DeBuff" Name="大蝴蝶随机限制" Probability="50">
+            <Values>
+                <Value Type="随机限制" Value="1"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0020" Type="Special" Name="大蝴蝶盾击" Probability="50">
+            <Values>
+                <Value Type="晕眩" Value="2"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0021" Type="Defend" Name="大蝴蝶防御" Probability="50">
+            <Values>
+                <Value Type="晕眩" Value="2"></Value>
+            </Values>
+        </Action>
+        <Action ActID="0022" Type="Special" Name="大蝴蝶观察" Probability="50">
             <Values>
                 <Value Type="晕眩" Value="2"></Value>
             </Values>

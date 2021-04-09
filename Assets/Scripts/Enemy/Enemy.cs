@@ -115,12 +115,20 @@ public class Enemy : MonoBehaviour
         }
         if (currentEnemyAction!=null)
         {
-           
+            if (enemyData.ID==7)
+            {
+                
+            }
             switch (currentEnemyAction.data.Type)
             {
                 case ActionController.ActionType.Attack:
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Attack];
+                    if (enemyData.ID == 7)
+                    {
+                        actionValueText.enabled = false;
+                        actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
+                    }
                     actualValue = CheckState(Value.ValueType.惊吓)
                         ? Convert.ToInt32(currentEnemyAction.valueDic[Value.ValueType.伤害] * 0.7)
                         : currentEnemyAction.valueDic[Value.ValueType.伤害];
@@ -129,20 +137,40 @@ public class Enemy : MonoBehaviour
                 case ActionController.ActionType.Defend:
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Defend];
+                    if (enemyData.ID == 7)
+                    {
+                        actionValueText.enabled = false;
+                        actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
+                    }
                     actualValue = currentEnemyAction.valueDic[Value.ValueType.护甲];
                     actionValueText.text = "" + actualValue;
                     break;
                 case ActionController.ActionType.Buff:
                     actionValueText.enabled = false;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Buff];
+                    if (enemyData.ID == 7)
+                    {
+                        actionValueText.enabled = false;
+                        actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
+                    }
                     break;
                 case ActionController.ActionType.Special:
                     actionValueText.enabled = false;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Special];
+                    if (enemyData.ID == 7)
+                    {
+                        actionValueText.enabled = false;
+                        actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
+                    }
                     break;
                 case ActionController.ActionType.DeBuff:
                     actionValueText.enabled = false;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.DeBuff];
+                    if (enemyData.ID == 7)
+                    {
+                        actionValueText.enabled = false;
+                        actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
+                    }
                     break;
             }
             

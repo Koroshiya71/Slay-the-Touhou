@@ -45,11 +45,25 @@
                 <Action ID="0015"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="7" Name="大妖精" MaxHp="54">
+        <Enemy EnemyID="7" Name="迷路妖精" MaxHp="54">
             <ActionIDList>
                 <Action ID="0016"></Action>
                 <Action ID="0017"></Action>
                 <Action ID="0018"></Action>
+            </ActionIDList>
+        </Enemy>
+        <Enemy EnemyID="7" Name="迷路妖精" MaxHp="54">
+            <ActionIDList>
+                <Action ID="0016"></Action>
+                <Action ID="0017"></Action>
+                <Action ID="0018"></Action>
+            </ActionIDList>
+        </Enemy>
+        <Enemy EnemyID="8" Name="大蝴蝶" MaxHp="74">
+            <ActionIDList>
+                <Action ID="0019"></Action>
+                <Action ID="0020"></Action>
+                <Action ID="0021"></Action>
             </ActionIDList>
         </Enemy>
     </EnemyList>
