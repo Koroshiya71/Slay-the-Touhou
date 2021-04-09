@@ -38,6 +38,7 @@ public class ActionController : MonoBehaviour
         switch (a.data.ActID)
         {
             case "0000": //昏迷
+            case "0023": //观察
                 break;
             case "0001": //小幽灵攻击
             case "0002": //中幽灵攻击
@@ -49,7 +50,9 @@ public class ActionController : MonoBehaviour
             case "0011": //小妖精攻击
             case "0014": //大妖精攻击
             case "0016": //迷路妖精攻击
-                Attack(thisEnemy);
+            case "0019": //大蝴蝶攻击
+
+                Attack(thisEnemy,a);
                 break;
             case "0003": //灵体
                 Buff(thisEnemy, a);
@@ -58,13 +61,17 @@ public class ActionController : MonoBehaviour
             case "0010": //大幽灵防御
             case "0013": //小妖精防御
             case "0015": //大妖精防御
+            case "0022": //大蝴蝶防御
                 Defend(thisEnemy);
                 break;
             case "0012": //小妖精抽牌减少
+            case "0020": //大蝴蝶随机限制
                 DeBuff(thisEnemy, a);
                 break;
             case "0017": //迷路妖精逃跑
             case "0018": //迷路妖精晕眩
+            case "0021": //大蝴蝶盾击
+
                 Special(thisEnemy, a);
                 break;
         }
@@ -82,11 +89,25 @@ public class ActionController : MonoBehaviour
                     }
 
         if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗)) enemy.EnemyDie();
+
+        if (a.valueDic.ContainsKey(Value.ValueType.护甲)) enemy.GetShield(a.valueDic[Value.ValueType.护甲]);
+
+        if (a.valueDic.ContainsKey(Value.ValueType.盾击)) Player.Instance.TakeDamage
+            (enemy.CheckState(Value.ValueType.惊吓)?
+            (int)0.7f*enemy.shield:enemy.shield);
+
     }
 
-    public void Attack(Enemy enemy) //怪物攻击的通用方法
+    public void Attack(Enemy enemy,EnemyAction a) //怪物攻击的通用方法
     {
         Player.Instance.TakeDamage(enemy.actualValue);
+        if (a.valueDic.ContainsKey(Value.ValueType.惊吓))
+            StateManager.AddStateToPlayer(new Value()
+            {
+                type = Value.ValueType.惊吓,
+                value = a.valueDic[Value.ValueType.惊吓]
+            });
+
         enemy.animController.SetTrigger("Attack"); //播放攻击动画
     }
 

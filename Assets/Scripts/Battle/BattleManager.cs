@@ -16,7 +16,9 @@ public class BattleManager : MonoBehaviour
     public int tiShuCardCombo;//本回合使用的体术牌数量
     public GameObject enemyPrefab;//敌人预制体
     public bool isInBattle;//是否正在战斗中
-    public List<BattleData> battleDataList = new List<BattleData>();//保存所有战斗场景数据的列表
+    public List<BattleData> normalBattleDataList = new List<BattleData>();//保存所有普通战斗场景数据的列表
+    public List<BattleData> eliteBattleDataList = new List<BattleData>();//保存所有精英战斗场景数据的列表
+
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
@@ -31,7 +33,8 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
-        
+        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
+        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
         hasCanXin = false;
 
         if (actionsEndTurn != null)
@@ -52,7 +55,6 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
-            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
         }
         Invoke(nameof(TurnStart), 1);
@@ -75,10 +77,14 @@ public class BattleManager : MonoBehaviour
                 enemy.UpdateCurrentAction();
             }
         }
-        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
-        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
+        
         turnHasEnd = false;
         Player.Instance.InitEnergy();
+        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
+        {
+            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
+        }
+
         if (!extraTurn)//如果是额外回合，则不清除护甲并保留手牌
         {
             Player.Instance.shield = 0;
@@ -134,6 +140,7 @@ public class BattleManager : MonoBehaviour
     {
         SceneManager.Instance.battleSceneCanvas.enabled = false;
         SceneManager.Instance.mapSceneCanvas.enabled = true;
+
     }
     public void CreateEnemies(List<BattleData.SceneEnemy> enemyList) //创建敌人
     {

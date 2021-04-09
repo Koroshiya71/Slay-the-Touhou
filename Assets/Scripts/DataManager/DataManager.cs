@@ -126,8 +126,8 @@ public class DataManager : MonoBehaviour
                     case "无何有":
                         newValue.type = Value.ValueType.无何有;
                         break;
-                    case "体术限制":
-                        newValue.type = Value.ValueType.体术限制;
+                    case "体术以外禁止":
+                        newValue.type = Value.ValueType.体术以外禁止;
                         break;
                     case "抽牌":
                         newValue.type = Value.ValueType.抽牌;
@@ -295,8 +295,8 @@ public class DataManager : MonoBehaviour
                     case "无何有":
                         newValue.type = Value.ValueType.无何有;
                         break;
-                    case "体术限制":
-                        newValue.type = Value.ValueType.体术限制;
+                    case "体术以外禁止":
+                        newValue.type = Value.ValueType.体术以外禁止;
                         break;
                     case "法术限制":
                         newValue.type = Value.ValueType.法术限制;
@@ -311,7 +311,7 @@ public class DataManager : MonoBehaviour
                         newValue.type = Value.ValueType.防御限制;
                         break;
                     case "随机限制":
-                        newValue.type = Value.ValueType.防御限制;
+                        newValue.type = Value.ValueType.随机限制;
                         break;
                     case "抽牌":
                         newValue.type = Value.ValueType.抽牌;
@@ -348,6 +348,9 @@ public class DataManager : MonoBehaviour
                         break;
                     case "晕眩":
                         newValue.type = Value.ValueType.晕眩;
+                        break;
+                    case "盾击":
+                        newValue.type = Value.ValueType.盾击;
                         break;
                 }
 

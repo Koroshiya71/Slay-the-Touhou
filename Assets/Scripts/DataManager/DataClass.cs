@@ -111,6 +111,7 @@ public class Value
         回费,
         流转,
         额外回合,
+        体术以外禁止,
         体术限制,
         弹幕限制,
         法术限制,
@@ -134,7 +135,8 @@ public class Value
         空无,
         无法使用,
         逃离战斗,
-        晕眩
+        晕眩,
+        盾击
     }
     public ValueType type;
     public int value;

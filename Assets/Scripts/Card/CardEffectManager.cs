@@ -19,11 +19,12 @@ public class CardEffectManager : MonoBehaviour
     public IEnumerator UseThisCard(Card card) //触发卡牌效果
     {
         //如果有体术限制状态，而该卡不是体术，则跳过检测
-        if (Player.Instance.CheckState(Value.ValueType.体术限制) && card.cardData.type != Card.CardType.体术) yield break;
-        if (Player.Instance.CheckState(Value.ValueType.法术限制) && card.cardData.type != Card.CardType.法术) yield break;
-        if (Player.Instance.CheckState(Value.ValueType.防御限制) && card.cardData.type != Card.CardType.防御) yield break;
-        if (Player.Instance.CheckState(Value.ValueType.技能限制) && card.cardData.type != Card.CardType.技能) yield break;
-        if (Player.Instance.CheckState(Value.ValueType.弹幕限制) && card.cardData.type != Card.CardType.弹幕) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.体术以外禁止) && card.cardData.type != Card.CardType.体术) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.体术限制) && card.cardData.type == Card.CardType.体术) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.法术限制) && card.cardData.type == Card.CardType.法术) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.防御限制) && card.cardData.type == Card.CardType.防御) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.技能限制) && card.cardData.type == Card.CardType.技能) yield break;
+        if (Player.Instance.CheckState(Value.ValueType.弹幕限制) && card.cardData.type == Card.CardType.弹幕) yield break;
 
 
         //如果卡牌拥有无法使用属性，则跳过检测
@@ -630,11 +631,11 @@ public class CardEffectManager : MonoBehaviour
                     break;
                 case Value.ValueType.额外回合:
                     StateManager.AddStateToPlayer(newValue);
-                    if (card.valueDic.ContainsKey(Value.ValueType.体术限制))
+                    if (card.valueDic.ContainsKey(Value.ValueType.体术以外禁止))
                         BattleManager.Instance.actionsTurnStart.Add(() =>
                         {
                             StateManager.AddStateToPlayer(new Value()
-                                {type = Value.ValueType.体术限制, value = card.valueDic[Value.ValueType.体术限制]});
+                                {type = Value.ValueType.体术以外禁止, value = card.valueDic[Value.ValueType.体术以外禁止]});
                         });
                     break;
                 case Value.ValueType.抽牌:

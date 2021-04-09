@@ -53,7 +53,7 @@
         <Card CardID="0009" Type="符卡" Name="狱界剑﹃二百由旬之一闪﹄" Cost="3" SpriteID="8" TargetType="自身" Rare="Epic" Times="1">
             <Values>
                 <Value Type="额外回合" Value="1"></Value>
-                <Value Type="体术限制" Value="1"></Value>
+                <Value Type="体术以外禁止" Value="1"></Value>
             </Values>
         </Card>
         <Card CardID="0010" Type="法术" Name="冥想" Cost="1" SpriteID="9" TargetType="自身" Rare="Rare" Times="1">

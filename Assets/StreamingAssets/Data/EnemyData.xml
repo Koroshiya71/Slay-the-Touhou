@@ -64,6 +64,8 @@
                 <Action ID="0019"></Action>
                 <Action ID="0020"></Action>
                 <Action ID="0021"></Action>
+                <Action ID="0022"></Action>
+                <Action ID="0023"></Action>
             </ActionIDList>
         </Enemy>
     </EnemyList>

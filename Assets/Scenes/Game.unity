@@ -6454,27 +6454,30 @@ MonoBehaviour:
   tiShuCardCombo: 0
   enemyPrefab: {fileID: 6505259454138462036, guid: 68516ca82c79b444bb8f034e7d4d78e2, type: 3}
   isInBattle: 0
-  battleDataList:
+  normalBattleDataList:
   - EnemyList:
     - ID: 0
-      Pos: {x: 4.5, y: -0.5, z: 0}
+      Pos: {x: 2.5, y: 0, z: 0}
     - ID: 1
-      Pos: {x: 2.5, y: -0.5, z: 0}
+      Pos: {x: 4.5, y: 0, z: 0}
     - ID: 2
-      Pos: {x: 6.5, y: -0.5, z: 0}
+      Pos: {x: 6.5, y: 0, z: 0}
   - EnemyList:
     - ID: 3
-      Pos: {x: 4.5, y: -0.5, z: 0}
+      Pos: {x: 4.5, y: 0, z: 0}
     - ID: 4
-      Pos: {x: 2.5, y: -0.5, z: 0}
-  - EnemyList:
+      Pos: {x: 2.5, y: 0, z: 0}
     - ID: 5
-      Pos: {x: 4.5, y: -0.5, z: 0}
-    - ID: 6
-      Pos: {x: 2.5, y: -0.5, z: 0}
+      Pos: {x: 6.5, y: 0, z: 0}
   - EnemyList:
+    - ID: 6
+      Pos: {x: 4.5, y: 0, z: 0}
     - ID: 7
-      Pos: {x: 4.5, y: -0.5, z: 0}
+      Pos: {x: 2.5, y: 0, z: 0}
+  eliteBattleDataList:
+  - EnemyList:
+    - ID: 8
+      Pos: {x: 4.5, y: 0, z: 0}
 --- !u!1001 &1187401675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6924,6 +6927,7 @@ MonoBehaviour:
   mapSceneCanvas: {fileID: 1989820022}
   sceneSpriteList:
   - {fileID: 21300000, guid: 318b92a6bd5736446998a26461c617cd, type: 3}
+  - {fileID: 21300000, guid: ae6d1492eec71d5459243716ab3f8438, type: 3}
   sceneDataList:
   - type: 0
     battleData:
