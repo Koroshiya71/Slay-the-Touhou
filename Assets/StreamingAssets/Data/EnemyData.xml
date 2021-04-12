@@ -68,5 +68,14 @@
                 <Action ID="0023"></Action>
             </ActionIDList>
         </Enemy>
+        <Enemy EnemyID="9" Name="" MaxHp="74">
+            <ActionIDList>
+                <Action ID="0024"></Action>
+                <Action ID="0025"></Action>
+                <Action ID="0026"></Action>
+                <Action ID="0027"></Action>
+                <Action ID="0028"></Action>
+            </ActionIDList>
+        </Enemy>
     </EnemyList>
 </EnemyData>

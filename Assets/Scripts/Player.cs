@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public int energy;//当前能量值
     public int maxEnergy;//能量值上限
     public List<Value> stateList=new List<Value>();//状态列表
+    public List<Value> newStateList = new List<Value>();//刚添加的状态列表
+
     #endregion
 
     #region UI引用
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     #region 动画相关
     public Animator animController;//动画控制器
     #endregion
+    
     public void GetShield(int shield)//获得护盾
     {
         //如果拥有背水一战状态，则无法获得护甲

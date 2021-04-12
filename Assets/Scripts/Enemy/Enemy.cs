@@ -16,7 +16,9 @@ public class Enemy : MonoBehaviour
     private int actionNo=0;
     public EnemyAction currentEnemyAction;
     public List<Sprite> actionSpriteList = new List<Sprite>();
-    public List<Value> stateList = new List<Value>();
+    public List<Value> stateList = new List<Value>();//状态列表
+    public List<Value> newStateList = new List<Value>();//刚添加的状态列表
+
     public int actualValue;
     public EnemyData enemyData;//敌人数据
 

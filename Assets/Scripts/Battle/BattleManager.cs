@@ -33,8 +33,7 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
-        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
-        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
+        
         hasCanXin = false;
 
         if (actionsEndTurn != null)
@@ -53,11 +52,14 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        Player.Instance.newStateList = new List<Value>();
+        
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
         }
         Invoke(nameof(TurnStart), 1);
+
         if (!Player.Instance.CheckState(Value.ValueType.保留手牌))
         {
             CardManager.Instance.DropAllCard();
@@ -80,6 +82,8 @@ public class BattleManager : MonoBehaviour
         
         turnHasEnd = false;
         Player.Instance.InitEnergy();
+        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
+        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
             EnemyManager.Instance.InGameEnemyList[i].shield = 0;
@@ -156,7 +160,6 @@ public class BattleManager : MonoBehaviour
                     Transform transform1;
                     (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
                     transform1.localScale = new Vector3(1, 1, 1);
-
                     break;
                 }
             }
