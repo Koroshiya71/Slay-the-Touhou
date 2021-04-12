@@ -352,6 +352,12 @@ public class DataManager : MonoBehaviour
                     case "盾击":
                         newValue.type = Value.ValueType.盾击;
                         break;
+                    case "增幅":
+                        newValue.type = Value.ValueType.增幅;
+                        break;
+                    case "保留护甲":
+                        newValue.type = Value.ValueType.保留护甲;
+                        break;
                 }
 
                 newValue.value = Int32.Parse(valueAttributes["Value"].InnerText);

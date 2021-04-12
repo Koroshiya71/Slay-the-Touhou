@@ -131,9 +131,19 @@ public class Enemy : MonoBehaviour
                         actionValueText.enabled = false;
                         actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Unknown];
                     }
-                    actualValue = CheckState(Value.ValueType.惊吓)
-                        ? Convert.ToInt32(currentEnemyAction.valueDic[Value.ValueType.伤害] * 0.7)
-                        : currentEnemyAction.valueDic[Value.ValueType.伤害];
+                    switch (currentEnemyAction.data.ActID)
+                    {
+                        case "0021"://大蝴蝶盾击
+                            actualValue = CheckState(Value.ValueType.惊吓)
+                                ? (int)(shield * 0.7f)
+                                : shield;
+                            break;
+                        default:
+                            actualValue = CheckState(Value.ValueType.惊吓)
+                                ? Convert.ToInt32(currentEnemyAction.valueDic[Value.ValueType.伤害] * 0.7)
+                                : currentEnemyAction.valueDic[Value.ValueType.伤害];
+                            break;
+                    }
                     actionValueText.text = "" + actualValue;
                     break;
                 case ActionController.ActionType.Defend:

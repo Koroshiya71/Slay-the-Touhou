@@ -63,7 +63,10 @@ public class StateManager : MonoBehaviour
         List<Value> emptyList = new List<Value>();
         foreach (var state in Player.Instance.stateList)
         {
-
+            if (Player.Instance.newStateList.Contains(state))//如果这个状态是新添加的状态，则先不清除
+            {
+                continue;
+            }
             switch (state.type)
             {
                 case Value.ValueType.二刀流:
@@ -102,6 +105,10 @@ public class StateManager : MonoBehaviour
             List<Value> emptyList = new List<Value>();
             foreach (var state in enemy.stateList)
             {
+                if (enemy.newStateList.Contains(state))//如果这个状态是新添加的状态，则先不清除
+                {
+                    continue;
+                }
                 switch (state.type)
                 {
                     case Value.ValueType.二刀流:

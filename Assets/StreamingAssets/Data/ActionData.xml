@@ -106,7 +106,7 @@
                 <Value Type="随机限制" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0021" Type="Special" Name="大蝴蝶盾击" Probability="20">
+        <Action ActID="0021" Type="Attack" Name="大蝴蝶盾击" Probability="20">
             <Values>
                 <Value Type="护甲" Value="5"></Value>
                 <Value Type="盾击" Value="1"></Value>
@@ -115,6 +115,7 @@
         <Action ActID="0022" Type="Defend" Name="大蝴蝶防御" Probability="20">
             <Values>
                 <Value Type="护甲" Value="20"></Value>
+                <Value Type="保留护甲" Value="2"></Value>
             </Values>
         </Action>
         <Action ActID="0023" Type="Special" Name="大蝴蝶观察" Probability="10">

@@ -90,12 +90,6 @@ public class ActionController : MonoBehaviour
 
         if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗)) enemy.EnemyDie();
 
-        if (a.valueDic.ContainsKey(Value.ValueType.护甲)) enemy.GetShield(a.valueDic[Value.ValueType.护甲]);
-
-        if (a.valueDic.ContainsKey(Value.ValueType.盾击)) Player.Instance.TakeDamage
-            (enemy.CheckState(Value.ValueType.惊吓)?
-            (int)0.7f*enemy.shield:enemy.shield);
-
     }
 
     public void Attack(Enemy enemy,EnemyAction a) //怪物攻击的通用方法
@@ -107,6 +101,7 @@ public class ActionController : MonoBehaviour
                 type = Value.ValueType.惊吓,
                 value = a.valueDic[Value.ValueType.惊吓]
             });
+        if (a.valueDic.ContainsKey(Value.ValueType.护甲)) enemy.GetShield(a.valueDic[Value.ValueType.护甲]);
 
         enemy.animController.SetTrigger("Attack"); //播放攻击动画
     }

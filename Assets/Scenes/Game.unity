@@ -1999,17 +1999,17 @@ MonoBehaviour:
   imgList:
   - type: 4
     sprite: {fileID: 21300000, guid: 24f58d63d9249c64f9c18b0499519c1a, type: 3}
-  - type: 11
+  - type: 17
     sprite: {fileID: 21300000, guid: ae6d1492eec71d5459243716ab3f8438, type: 3}
-  - type: 15
+  - type: 21
     sprite: {fileID: 21300000, guid: 9b70bac27e5273949a16ffbe8c784a7b, type: 3}
   - type: 2
     sprite: {fileID: 21300000, guid: 27c9f995d74429440b733125e2e21e21, type: 3}
-  - type: 16
+  - type: 22
     sprite: {fileID: 21300000, guid: f7dbddc9bcb0cc74d8c6f4ac7c8b7c50, type: 3}
-  - type: 17
+  - type: 23
     sprite: {fileID: 21300000, guid: fc6601b85292c404ab2a8ada70ee111e, type: 3}
-  - type: 19
+  - type: 25
     sprite: {fileID: 21300000, guid: 3e69f55db56469f49871c90138350632, type: 3}
 --- !u!1 &519420028
 GameObject:

@@ -51,13 +51,23 @@ public class BattleManager : MonoBehaviour
             TurnStart();
             return;
         }
+        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
+        {
+            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
+        }
 
+        //在执行行动前清空全新状态列表
         Player.Instance.newStateList = new List<Value>();
-        
+
+        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
+        {
+            EnemyManager.Instance.InGameEnemyList[i].newStateList=new List<Value>();
+        }
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
         }
+        
         Invoke(nameof(TurnStart), 1);
 
         if (!Player.Instance.CheckState(Value.ValueType.保留手牌))
@@ -84,11 +94,7 @@ public class BattleManager : MonoBehaviour
         Player.Instance.InitEnergy();
         StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
         StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
-        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
-        {
-            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
-        }
-
+        
         if (!extraTurn)//如果是额外回合，则不清除护甲并保留手牌
         {
             Player.Instance.shield = 0;

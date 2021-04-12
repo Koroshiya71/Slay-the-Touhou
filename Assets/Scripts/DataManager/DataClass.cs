@@ -136,7 +136,9 @@ public class Value
         无法使用,
         逃离战斗,
         晕眩,
-        盾击
+        盾击,
+        保留护甲,
+        增幅
     }
     public ValueType type;
     public int value;
