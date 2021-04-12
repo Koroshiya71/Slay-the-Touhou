@@ -116,6 +116,8 @@ public class StateManager : MonoBehaviour
                     case Value.ValueType.体术以外禁止:
                     case Value.ValueType.惊吓:
                     case Value.ValueType.灵体:
+                    case Value.ValueType.保留护甲:
+                    case Value.ValueType.增幅:
                         state.value--;
                         break;
 

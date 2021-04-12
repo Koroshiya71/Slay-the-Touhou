@@ -53,7 +53,11 @@ public class BattleManager : MonoBehaviour
         }
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
-            EnemyManager.Instance.InGameEnemyList[i].shield = 0;
+            if (!EnemyManager.Instance.InGameEnemyList[i].CheckState(Value.ValueType.保留护甲))
+            {
+                EnemyManager.Instance.InGameEnemyList[i].shield = 0;
+
+            }
         }
 
         //在执行行动前清空全新状态列表

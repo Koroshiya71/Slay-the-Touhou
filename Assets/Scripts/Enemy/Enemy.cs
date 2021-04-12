@@ -124,6 +124,8 @@ public class Enemy : MonoBehaviour
             switch (currentEnemyAction.data.Type)
             {
                 case ActionController.ActionType.Attack:
+                    float rate = 1.0f;
+
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Attack];
                     if (enemyData.ID == 7)
@@ -134,14 +136,31 @@ public class Enemy : MonoBehaviour
                     switch (currentEnemyAction.data.ActID)
                     {
                         case "0021"://大蝴蝶盾击
-                            actualValue = CheckState(Value.ValueType.惊吓)
-                                ? (int)(shield * 0.7f)
-                                : shield;
+                            if (CheckState(Value.ValueType.惊吓))
+                            {
+                                rate -= 0.3f;
+                            }
+
+                            if (CheckState(Value.ValueType.增幅))
+                            {
+                                rate += 0.3f;
+
+                            }
+                            actualValue = (int)(shield*rate);
                             break;
                         default:
-                            actualValue = CheckState(Value.ValueType.惊吓)
-                                ? Convert.ToInt32(currentEnemyAction.valueDic[Value.ValueType.伤害] * 0.7)
-                                : currentEnemyAction.valueDic[Value.ValueType.伤害];
+                            if (CheckState(Value.ValueType.惊吓))
+                            {
+                                rate -= 0.3f;
+                            }
+
+                            if (CheckState(Value.ValueType.增幅))
+                            {
+                                rate += 0.3f;
+
+                            }
+                            actualValue = (int)(currentEnemyAction.valueDic[Value.ValueType.伤害] * rate);
+
                             break;
                     }
                     actionValueText.text = "" + actualValue;

@@ -113,6 +113,10 @@ public class ActionController : MonoBehaviour
                 e.GetShield(enemy.actualValue);
         else
             enemy.GetShield(enemy.actualValue);
+        if (enemy.currentEnemyAction.valueDic.ContainsKey(Value.ValueType.保留护甲))
+        {
+            StateManager.AddStateToEnemy(new Value() { type = Value.ValueType.保留护甲, value = enemy.currentEnemyAction.valueDic[Value.ValueType.保留护甲] }, enemy);
+        }
     }
 
     public void Buff(Enemy enemy, EnemyAction action)
