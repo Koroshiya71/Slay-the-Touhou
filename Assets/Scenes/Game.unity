@@ -827,6 +827,8 @@ MonoBehaviour:
     initShield: 0
     ActionIdList:
     - 0001
+    exp: 0
+    gold: 0
   - ID: 1
     Name: "\u4E2D\u5E7D\u7075"
     maxHp: 30
@@ -835,6 +837,8 @@ MonoBehaviour:
     ActionIdList:
     - 0002
     - 0003
+    exp: 0
+    gold: 0
   - ID: 2
     Name: "\u61D2\u60F0\u5E7D\u7075"
     maxHp: 32
@@ -844,6 +848,8 @@ MonoBehaviour:
     - 0000
     - 0005
     - 0004
+    exp: 0
+    gold: 0
   InGameEnemyList: []
 --- !u!4 &229394176
 Transform:
@@ -6478,6 +6484,11 @@ MonoBehaviour:
   - EnemyList:
     - ID: 8
       Pos: {x: 4.5, y: 0, z: 0}
+  - EnemyList:
+    - ID: 9
+      Pos: {x: 4.5, y: 0, z: 0}
+  battleExp: 0
+  battleGold: 0
 --- !u!1001 &1187401675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6927,7 +6938,9 @@ MonoBehaviour:
   mapSceneCanvas: {fileID: 1989820022}
   sceneSpriteList:
   - {fileID: 21300000, guid: 318b92a6bd5736446998a26461c617cd, type: 3}
-  - {fileID: 21300000, guid: ae6d1492eec71d5459243716ab3f8438, type: 3}
+  - {fileID: 21300000, guid: 7a7a77b7a5e66b44db17e13790e3ce95, type: 3}
+  - {fileID: 21300000, guid: 38e813ac3a637ce46a558d122b178afe, type: 3}
+  - {fileID: 21300000, guid: 4a8e5b46666a0d944b2a24c8b670c550, type: 3}
   sceneDataList:
   - type: 0
     battleData:

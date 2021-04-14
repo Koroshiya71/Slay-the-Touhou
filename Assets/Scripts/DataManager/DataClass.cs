@@ -180,6 +180,7 @@ public class SceneData
 {
     public SceneManager.SceneType type;//场景类型
     public BattleData battleData;//当前场景的战斗数据
+     
 }
 
 [Serializable]

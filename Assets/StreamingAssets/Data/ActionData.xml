@@ -123,11 +123,11 @@
                 <Value Type="休眠" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0024" Type="Attack" Name="双灵生命半数攻击" Probability="10">
+        <Action ActID="0024" Type="Attack" Name="双灵生命半数攻击" Probability="25">
             <Values>
             </Values>
         </Action>
-        <Action ActID="0025" Type="Attack" Name="双灵攻击" Probability="10">
+        <Action ActID="0025" Type="Attack" Name="双灵攻击" Probability="35">
             <Values>
                 <Value Type="伤害" Value="15"></Value>
             </Values>
@@ -136,7 +136,7 @@
             <Values>
             </Values>
         </Action>
-        <Action ActID="0027" Type="Buff" Name="双灵增幅" Probability="10">
+        <Action ActID="0027" Type="Buff" Name="双灵增幅" Probability="20">
             <Values>
                 <Value Type="增幅" Value="1"></Value>
             </Values>

@@ -152,9 +152,7 @@ public class Enemy : MonoBehaviour
                             actualValue = (int) (hp / 2.0f * rate);
                             break;
                         default:
-                            
                             actualValue = (int)(currentEnemyAction.valueDic[Value.ValueType.伤害] * rate);
-
                             break;
                     }
                     actionValueText.text = "" + actualValue;

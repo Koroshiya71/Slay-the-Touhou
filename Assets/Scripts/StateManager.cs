@@ -72,6 +72,8 @@ public class StateManager : MonoBehaviour
                 case Value.ValueType.二刀流:
                 case Value.ValueType.额外回合:
                 case Value.ValueType.体术以外禁止:
+                case Value.ValueType.体术限制:
+
                 case Value.ValueType.技能限制:
                 case Value.ValueType.法术限制:
                 case Value.ValueType.防御限制:

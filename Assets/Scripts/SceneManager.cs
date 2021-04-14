@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SceneManager : MonoBehaviour
 {
@@ -26,10 +28,50 @@ public class SceneManager : MonoBehaviour
     void Start()
     {
         battleSceneCanvas.enabled = false;
-        mapSceneCanvas.enabled = true; 
-
+        mapSceneCanvas.enabled = true;
+        InitScenes();
     }
 
+    public void InitScenes()
+    {
+        foreach (var scene in inGameSceneList)
+        {
+            int a = Random.Range(0, BattleManager.Instance.normalBattleDataList.Count);
+            int b = Random.Range(0, BattleManager.Instance.eliteBattleDataList.Count);
+            int index = inGameSceneList.IndexOf(scene);
+            if (index < 7)
+                scene.isOptional = true;
+            scene.sceneData = new SceneData();
+            scene.sceneData.battleData = new BattleData();
+            scene.sceneData.type = sceneDataList[Random.Range(0, SceneManager.Instance.sceneDataList.Count)].type;
+            if (scene.sceneData.type == SceneManager.SceneType.NormalCombat)
+            {
+                scene.sceneData.battleData = new BattleData();
+                scene.sceneData.battleData.EnemyList = new List<BattleData.SceneEnemy>();
+                foreach (var enemy in BattleManager.Instance.normalBattleDataList[a].EnemyList)
+                {
+                    scene.sceneData.battleData.EnemyList.Add(enemy);
+                }
+                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
+                
+            }
+            if (scene.sceneData.type == SceneManager.SceneType.EliteCombat)
+            {
+
+                scene.sceneData.battleData = new BattleData();
+                scene.sceneData.battleData.EnemyList = new List<BattleData.SceneEnemy>();
+                foreach (var enemy in BattleManager.Instance.eliteBattleDataList[b].EnemyList)
+                {
+                    scene.sceneData.battleData.EnemyList.Add(enemy);
+                }
+                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
+                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[1];
+
+            }
+            
+        }
+        
+    }
     public void UpdateSceneState()
     {
         foreach (var gs in inGameSceneList)

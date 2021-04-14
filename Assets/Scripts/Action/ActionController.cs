@@ -59,6 +59,7 @@ public class ActionController : MonoBehaviour
                 Attack(thisEnemy, a);
                 break;
             case "0003": //灵体
+            case "0027"://双灵增幅
                 Buff(thisEnemy, a);
                 break;
             case "0004": //懒惰幽灵防御
@@ -74,12 +75,15 @@ public class ActionController : MonoBehaviour
                 break;
             case "0017": //迷路妖精逃跑
             case "0018": //迷路妖精晕眩
+            case "0028"://双灵净化
+
                 Special(thisEnemy, a);
                 break;
 
             //特殊逻辑
             case "0026"://双灵召唤小幽灵
-                
+                BattleManager.Instance.CreateEnemy(0,new Vector2(2.5f,0));
+                BattleManager.Instance.CreateEnemy(0, new Vector2(6.5f, 0));
                 break;
         }
     }

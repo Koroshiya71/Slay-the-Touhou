@@ -177,6 +177,22 @@ public class BattleManager : MonoBehaviour
             
         }
     }
+
+    public void CreateEnemy(int enemyID,Vector2 pos)
+    {
+        foreach (var enemy in EnemyManager.Instance.enemyDataList)
+        {
+            if (enemy.ID==enemyID)
+            {
+                Enemy newEnemy = Instantiate(enemyPrefab, pos, Quaternion.identity).GetComponent<Enemy>();
+                newEnemy.InitEnemy(enemy);
+                Transform transform1;
+                (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
+                transform1.localScale = new Vector3(1, 1, 1);
+                break;
+            }
+        }
+    }
     void Update() 
     {
         if (EnemyManager.Instance.InGameEnemyList.Count==0)
