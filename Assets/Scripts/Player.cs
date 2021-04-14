@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 
     #region 基本属性
 
+    public int Level = 1;
+    public List<int> levelExpList = new List<int>();
+    public int currentExp;
     public int maxHp;//最大生命值
     public int hp ;//当前生命值
     public int shield;//护盾值
@@ -35,7 +38,17 @@ public class Player : MonoBehaviour
     #region 动画相关
     public Animator animController;//动画控制器
     #endregion
-    
+
+    public void InitLevel()
+    {
+        Level = 1;
+        int n = 20;
+        for (int i = 1; i <= 50; i++)
+        {
+            levelExpList.Add(n);
+            n += 20 + i / 5 * 10;
+        }
+    }
     public void GetShield(int shield)//获得护盾
     {
         //如果拥有背水一战状态，则无法获得护甲
@@ -149,6 +162,7 @@ public class Player : MonoBehaviour
     {
         InitEnergy(); //初始化能量
         InitState();
+        InitLevel();
     }
 
     void Update()

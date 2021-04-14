@@ -155,6 +155,8 @@ public class BattleManager : MonoBehaviour
     }
     public void BattleStart(BattleData data)//战斗开始
     {
+        battleExp = 0;
+        battleGold = 0;
         SceneManager.Instance.battleSceneCanvas.enabled=true;
         SceneManager.Instance.mapSceneCanvas.enabled=false;
         StateManager.Instance.InitPlayerState();

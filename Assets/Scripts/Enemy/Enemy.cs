@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     public bool isEscape;//是否逃跑，如果逃跑则无法获得经验、金币
     public bool isSummon;//是否是被召唤出来的，如果是则无法获得经验金币
     public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
-
+    public int resurrectionTimes = 0;//复活次数
     #endregion
 
     public Animator animController;//动画控制器
@@ -60,6 +60,10 @@ public class Enemy : MonoBehaviour
         hp = maxHp;
         shield = data.initShield;
         Name = data.Name;
+        if (enemyData.ID==9)//双灵
+        {
+            resurrectionTimes = 3;
+        }
         foreach (var id in data.ActionIdList)
         {
             foreach (var aData in ActionController.Instance.actionDataList)
@@ -262,6 +266,20 @@ public class Enemy : MonoBehaviour
         if (this.enemyData.ID==3)//暴躁妖精亡语
         {
             StateManager.AddStateToPlayer(new Value(){type = Value.ValueType.重伤,value = 2});
+        }
+
+        if (resurrectionTimes>0)
+        {
+            resurrectionTimes--;
+            maxHp *= 2;
+            hp = maxHp;
+            return;
+        }
+
+        if (!isSummon&&!isEscape)
+        {
+            BattleManager.Instance.battleExp += enemyData.exp;
+            BattleManager.Instance.battleGold += enemyData.gold;
         }
         EnemyManager.Instance.InGameEnemyList.Remove(this);
         Destroy(gameObject);
