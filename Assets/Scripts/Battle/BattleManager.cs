@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
     public List<BattleData> eliteBattleDataList = new List<BattleData>();//保存所有精英战斗场景数据的列表
     public int battleExp;//本场战斗累积的经验值
     public int battleGold;//本场战斗累积的金币
+    public List<Vector2> enemyPositionList = new List<Vector2>();
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
@@ -137,8 +138,21 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         SceneManager.Instance.battleSceneCanvas.enabled=false;
+        InitEnemyPosList();
     }
 
+    void InitEnemyPosList()
+    {
+        enemyPositionList.Add((new Vector2(4.5f,0 )));
+        enemyPositionList.Add((new Vector2(2.5f, 0)));
+        enemyPositionList.Add((new Vector2(6.5f, 0)));
+        enemyPositionList.Add((new Vector2(4.5f, 3)));
+        enemyPositionList.Add((new Vector2(4.5f, -3)));
+        enemyPositionList.Add((new Vector2(2.5f, 3)));
+        enemyPositionList.Add((new Vector2(2.5f, -3)));
+        enemyPositionList.Add((new Vector2(6.5f, 3)));
+        enemyPositionList.Add((new Vector2(6.5f, -3)));
+    }
     public void BattleStart(BattleData data)//战斗开始
     {
         SceneManager.Instance.battleSceneCanvas.enabled=true;

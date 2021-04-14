@@ -82,8 +82,8 @@ public class ActionController : MonoBehaviour
 
             //特殊逻辑
             case "0026"://双灵召唤小幽灵
-                BattleManager.Instance.CreateEnemy(0,new Vector2(2.5f,0));
-                BattleManager.Instance.CreateEnemy(0, new Vector2(6.5f, 0));
+                BattleManager.Instance.CreateEnemy(0,BattleManager.Instance.enemyPositionList[EnemyManager.Instance.InGameEnemyList.Count]);
+                BattleManager.Instance.CreateEnemy(0, BattleManager.Instance.enemyPositionList[EnemyManager.Instance.InGameEnemyList.Count]);
                 break;
         }
     }

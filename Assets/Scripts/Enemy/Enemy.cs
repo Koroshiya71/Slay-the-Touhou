@@ -21,7 +21,8 @@ public class Enemy : MonoBehaviour
 
     public int actualValue;
     public EnemyData enemyData;//敌人数据
-
+    public bool isEscape;//是否逃跑，如果逃跑则无法获得经验、金币
+    public bool isSummon;//是否是被召唤出来的，如果是则无法获得经验金币
     public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
 
     #endregion
@@ -152,6 +153,10 @@ public class Enemy : MonoBehaviour
                             actualValue = (int) (hp / 2.0f * rate);
                             break;
                         default:
+                            if (!currentEnemyAction.valueDic.ContainsKey(Value.ValueType.伤害))
+                            {
+                                break;
+                            }
                             actualValue = (int)(currentEnemyAction.valueDic[Value.ValueType.伤害] * rate);
                             break;
                     }
