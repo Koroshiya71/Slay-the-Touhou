@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
         }
         EnemyManager.Instance.InGameEnemyList.Add(this);
     }
-    void UpdateUIState()//更新UI组件状态
+    public void UpdateUIState()//更新UI组件状态
     {
         for (int i = 0; i < stateList.Count; i++)
         {

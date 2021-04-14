@@ -13,7 +13,8 @@ public class EnemyData
     public int initHp;//初始生命值
     public int initShield;//初始护盾值
     public List<string> ActionIdList = new List<string>();//该Enemy所有行为的ID
-
+    public int exp;//给予的经验值
+    public int gold;//给予的金币
     public static EnemyData Clone(EnemyData data)
     {
         EnemyData newData = new EnemyData();
@@ -23,6 +24,8 @@ public class EnemyData
         newData.initHp = data.maxHp;
         newData.initShield = data.initShield;
         newData.ActionIdList = new List<string>();
+        newData.gold = data.gold;
+        newData.exp = data.exp;
         foreach (var action in data.ActionIdList)
         {
          newData.ActionIdList.Add(action);   

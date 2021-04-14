@@ -18,7 +18,8 @@ public class BattleManager : MonoBehaviour
     public bool isInBattle;//是否正在战斗中
     public List<BattleData> normalBattleDataList = new List<BattleData>();//保存所有普通战斗场景数据的列表
     public List<BattleData> eliteBattleDataList = new List<BattleData>();//保存所有精英战斗场景数据的列表
-
+    public int battleExp;//本场战斗累积的经验值
+    public int battleGold;//本场战斗累积的金币
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测

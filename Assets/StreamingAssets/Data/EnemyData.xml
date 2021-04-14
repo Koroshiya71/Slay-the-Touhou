@@ -1,65 +1,58 @@
 <EnemyData>
     <EnemyList>
-        <Enemy EnemyID="0" Name="小幽灵" MaxHp="18">
+        <Enemy EnemyID="0" Name="小幽灵" MaxHp="18" Exp="10" Gold="6">
             <ActionIDList>
                 <Action ID="0001"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="1" Name="中幽灵" MaxHp="30">
+        <Enemy EnemyID="1" Name="中幽灵" MaxHp="30" Exp="25" Gold="20">
             <ActionIDList>
                 <Action ID="0002"></Action>
                 <Action ID="0003"></Action>
 
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="2" Name="懒惰幽灵" MaxHp="32">
+        <Enemy EnemyID="2" Name="懒惰幽灵" MaxHp="32" Exp="30" Gold="24">
             <ActionIDList>
                 <Action ID="0000"></Action>
                 <Action ID="0004"></Action>
                 <Action ID="0005"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="3" Name="暴躁妖精" MaxHp="32">
+        <Enemy EnemyID="3" Name="暴躁妖精" MaxHp="32" Exp="35" Gold="28">
             <ActionIDList>
                 <Action ID="0006"></Action>
                 <Action ID="0007"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="4" Name="大幽灵" MaxHp="44">
+        <Enemy EnemyID="4" Name="大幽灵" MaxHp="44" Exp="55" Gold="33">
             <ActionIDList>
                 <Action ID="0008"></Action>
                 <Action ID="0009"></Action>
                 <Action ID="0010"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="5" Name="小妖精" MaxHp="46">
+        <Enemy EnemyID="5" Name="小妖精" MaxHp="46" Exp="50" Gold="35">
             <ActionIDList>
                 <Action ID="0011"></Action>
                 <Action ID="0012"></Action>
                 <Action ID="0013"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="6" Name="大妖精" MaxHp="54">
+        <Enemy EnemyID="6" Name="大妖精" MaxHp="54" Exp="45" Gold="33">
             <ActionIDList>
                 <Action ID="0014"></Action>
                 <Action ID="0015"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="7" Name="迷路妖精" MaxHp="54">
+        <Enemy EnemyID="7" Name="迷路妖精" MaxHp="54" Exp="50" Gold="36">
             <ActionIDList>
                 <Action ID="0016"></Action>
                 <Action ID="0017"></Action>
                 <Action ID="0018"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="7" Name="迷路妖精" MaxHp="54">
-            <ActionIDList>
-                <Action ID="0016"></Action>
-                <Action ID="0017"></Action>
-                <Action ID="0018"></Action>
-            </ActionIDList>
-        </Enemy>
-        <Enemy EnemyID="8" Name="大蝴蝶" MaxHp="74">
+        <Enemy EnemyID="8" Name="大蝴蝶" MaxHp="74" Exp="150" Gold="150">
             <ActionIDList>
                 <Action ID="0019"></Action>
                 <Action ID="0020"></Action>
@@ -68,7 +61,7 @@
                 <Action ID="0023"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="9" Name="" MaxHp="74">
+        <Enemy EnemyID="9" Name="" MaxHp="74" Exp="150" Gold="150">
             <ActionIDList>
                 <Action ID="0024"></Action>
                 <Action ID="0025"></Action>

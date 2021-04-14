@@ -386,6 +386,9 @@ public class DataManager : MonoBehaviour
             newData.ID = Int32.Parse(enemyAttributes["EnemyID"].InnerText);
             newData.Name = enemyAttributes["Name"].InnerText;
             newData.maxHp = Int32.Parse(enemyAttributes["MaxHp"].InnerText);
+            newData.exp = Int32.Parse(enemyAttributes["Exp"].InnerText);
+            newData.gold = Int32.Parse(enemyAttributes["Gold"].InnerText);
+
             XmlNode actionListNode = enemyNode.FirstChild;
             foreach (XmlNode actionIDNode in actionListNode)
             {

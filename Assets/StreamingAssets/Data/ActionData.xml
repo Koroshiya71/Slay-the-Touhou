@@ -123,23 +123,27 @@
                 <Value Type="休眠" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0023" Type="Attack" Name="双灵生命半数攻击" Probability="10">
+        <Action ActID="0024" Type="Attack" Name="双灵生命半数攻击" Probability="10">
             <Values>
             </Values>
         </Action>
-        <Action ActID="0024" Type="Attack" Name="双灵攻击" Probability="10">
+        <Action ActID="0025" Type="Attack" Name="双灵攻击" Probability="10">
             <Values>
                 <Value Type="伤害" Value="15"></Value>
             </Values>
         </Action>
-        <Action ActID="0025" Type="Special" Name="召唤小幽灵" Probability="10">
+        <Action ActID="0026" Type="Special" Name="召唤小幽灵" Probability="10">
             <Values>
             </Values>
         </Action>
-        <Action ActID="0026" Type="Buff" Name="双灵增幅" Probability="10">
+        <Action ActID="0027" Type="Buff" Name="双灵增幅" Probability="10">
             <Values>
                 <Value Type="增幅" Value="1"></Value>
-
+            </Values>
+        </Action>
+        <Action ActID="0028" Type="Buff" Name="双灵净化" Probability="10">
+            <Values>
+                <Value Type="净化" Value="1"></Value>
             </Values>
         </Action>
     </ActionList>
