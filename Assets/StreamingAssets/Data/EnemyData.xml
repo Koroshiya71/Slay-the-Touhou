@@ -61,7 +61,7 @@
                 <Action ID="0023"></Action>
             </ActionIDList>
         </Enemy>
-        <Enemy EnemyID="9" Name="" MaxHp="74" Exp="150" Gold="150">
+        <Enemy EnemyID="9" Name="双灵" MaxHp="74" Exp="150" Gold="150">
             <ActionIDList>
                 <Action ID="0024"></Action>
                 <Action ID="0025"></Action>

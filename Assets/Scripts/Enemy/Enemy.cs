@@ -125,7 +125,17 @@ public class Enemy : MonoBehaviour
             {
                 case ActionController.ActionType.Attack:
                     float rate = 1.0f;
+                    //检测惊吓、增幅等状态造成的伤害影响
+                    if (CheckState(Value.ValueType.惊吓))
+                    {
+                        rate -= 0.3f;
+                    }
 
+                    if (CheckState(Value.ValueType.增幅))
+                    {
+                        rate += 0.3f;
+
+                    }
                     actionValueText.enabled = true;
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Attack];
                     if (enemyData.ID == 7)
@@ -136,29 +146,13 @@ public class Enemy : MonoBehaviour
                     switch (currentEnemyAction.data.ActID)
                     {
                         case "0021"://大蝴蝶盾击
-                            if (CheckState(Value.ValueType.惊吓))
-                            {
-                                rate -= 0.3f;
-                            }
-
-                            if (CheckState(Value.ValueType.增幅))
-                            {
-                                rate += 0.3f;
-
-                            }
                             actualValue = (int)(shield*rate);
                             break;
+                        case "0024"://双灵生命半数攻击
+                            actualValue = (int) (hp / 2.0f * rate);
+                            break;
                         default:
-                            if (CheckState(Value.ValueType.惊吓))
-                            {
-                                rate -= 0.3f;
-                            }
-
-                            if (CheckState(Value.ValueType.增幅))
-                            {
-                                rate += 0.3f;
-
-                            }
+                            
                             actualValue = (int)(currentEnemyAction.valueDic[Value.ValueType.伤害] * rate);
 
                             break;

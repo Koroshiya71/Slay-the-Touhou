@@ -37,6 +37,8 @@ public class ActionController : MonoBehaviour
     {
         switch (a.data.ActID)
         {
+            //通用逻辑
+
             case "0000": //昏迷
             case "0023": //观察
                 break;
@@ -52,7 +54,9 @@ public class ActionController : MonoBehaviour
             case "0016": //迷路妖精攻击
             case "0019": //大蝴蝶攻击
             case "0021": //大蝴蝶盾击
-                Attack(thisEnemy,a);
+            case "0024": //双灵生命半数攻击
+            case "0025": //双灵攻击
+                Attack(thisEnemy, a);
                 break;
             case "0003": //灵体
                 Buff(thisEnemy, a);
@@ -72,6 +76,11 @@ public class ActionController : MonoBehaviour
             case "0018": //迷路妖精晕眩
                 Special(thisEnemy, a);
                 break;
+
+            //特殊逻辑
+            case "0026"://双灵召唤小幽灵
+                
+                break;
         }
     }
 
@@ -86,11 +95,19 @@ public class ActionController : MonoBehaviour
                         CardManager.Instance.discardList.Add(newData);
                     }
 
-        if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗)) enemy.EnemyDie();
+        if (a.valueDic.ContainsKey(Value.ValueType.净化))
+            for (var i = 0; i < a.valueDic[Value.ValueType.净化]; i++)
+            {
+                if (enemy.stateList.Count>0)
+                {
+                    enemy.stateList.Remove(enemy.stateList[i]);
+                }
+            }
 
+        if (a.valueDic.ContainsKey(Value.ValueType.逃离战斗)) enemy.EnemyDie();
     }
 
-    public void Attack(Enemy enemy,EnemyAction a) //怪物攻击的通用方法
+    public void Attack(Enemy enemy, EnemyAction a) //怪物攻击的通用方法
     {
         if (a.valueDic.ContainsKey(Value.ValueType.护甲)) enemy.GetShield(a.valueDic[Value.ValueType.护甲]);
         enemy.UpdateUIState();
@@ -113,9 +130,11 @@ public class ActionController : MonoBehaviour
         else
             enemy.GetShield(enemy.actualValue);
         if (enemy.currentEnemyAction.valueDic.ContainsKey(Value.ValueType.保留护甲))
-        {
-            StateManager.AddStateToEnemy(new Value() { type = Value.ValueType.保留护甲, value = enemy.currentEnemyAction.valueDic[Value.ValueType.保留护甲] }, enemy);
-        }
+            StateManager.AddStateToEnemy(
+                new Value()
+                {
+                    type = Value.ValueType.保留护甲, value = enemy.currentEnemyAction.valueDic[Value.ValueType.保留护甲]
+                }, enemy);
     }
 
     public void Buff(Enemy enemy, EnemyAction action)
@@ -135,7 +154,7 @@ public class ActionController : MonoBehaviour
                     case 0:
                         StateManager.AddStateToPlayer(new Value()
                         {
-                            type = Value.ValueType.体术限制, 
+                            type = Value.ValueType.体术限制,
                             value = action.valueDic[Value.ValueType.随机限制]
                         });
                         continue;
@@ -170,9 +189,9 @@ public class ActionController : MonoBehaviour
                             value = action.valueDic[Value.ValueType.随机限制]
                         });
                         continue;
-
                 }
-                StateManager.AddStateToPlayer(new Value() { type = type, value = action.valueDic[type] });
+
+                StateManager.AddStateToPlayer(new Value() {type = type, value = action.valueDic[type]});
             }
     }
 }

@@ -141,7 +141,8 @@ public class Value
         晕眩,
         盾击,
         保留护甲,
-        增幅
+        增幅,
+        净化
     }
     public ValueType type;
     public int value;

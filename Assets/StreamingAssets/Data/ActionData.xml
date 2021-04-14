@@ -141,9 +141,9 @@
                 <Value Type="增幅" Value="1"></Value>
             </Values>
         </Action>
-        <Action ActID="0028" Type="Buff" Name="双灵净化" Probability="10">
+        <Action ActID="0028" Type="Special" Name="双灵净化" Probability="10">
             <Values>
-                <Value Type="净化" Value="1"></Value>
+                <Value Type="净化" Value="10"></Value>
             </Values>
         </Action>
     </ActionList>
