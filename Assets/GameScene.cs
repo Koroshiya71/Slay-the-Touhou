@@ -18,7 +18,6 @@ public class GameScene : MonoBehaviour
         {
             case SceneManager.SceneType.NormalCombat:
             case SceneManager.SceneType.EliteCombat:
-
                 BattleManager.Instance.BattleStart(sceneData.battleData);
                 break;
         }
