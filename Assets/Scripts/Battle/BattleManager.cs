@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class BattleManager : MonoBehaviour
     public int battleExp;//本场战斗累积的经验值
     public int battleGold;//本场战斗累积的金币
     public List<Vector2> enemyPositionList = new List<Vector2>();
+    public GameObject statisticImage;//结算面板
+
+    public Text getExpText;//获取经验文本
+    public Text getGoldText;//获取金币文本
+    
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
@@ -139,6 +145,7 @@ public class BattleManager : MonoBehaviour
     {
         SceneManager.Instance.battleSceneCanvas.enabled=false;
         InitEnemyPosList();
+        statisticImage.SetActive(false);
     }
 
     void InitEnemyPosList()
@@ -169,10 +176,15 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd()
     {
-        SceneManager.Instance.battleSceneCanvas.enabled = false;
-        SceneManager.Instance.mapSceneCanvas.enabled = true;
+        statisticImage.SetActive(true);
+        getExpText.text = "获得经验   " + battleExp;
+        getGoldText.text = "获得金币   " + battleGold;
+        Player.Instance.GetExp(battleExp);
+        Player.Instance.GetGold(battleGold);
 
     }
+
+
     public void CreateEnemies(List<BattleData.SceneEnemy> enemyList) //创建敌人
     {
 
@@ -211,9 +223,6 @@ public class BattleManager : MonoBehaviour
     }
     void Update() 
     {
-        if (EnemyManager.Instance.InGameEnemyList.Count==0)
-        {
-            BattleEnd();
-        }
+        
     }
 }

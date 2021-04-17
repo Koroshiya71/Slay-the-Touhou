@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     #region 基本属性
 
+    public int gold = 0;
     public int Level = 1;
     public List<int> levelExpList = new List<int>();
     public int currentExp;
@@ -34,11 +35,29 @@ public class Player : MonoBehaviour
     public GameObject shieldImg;//护盾图片
     public Text shieldText;//护盾值文本
     public Text energyText;//能量值文本
+    public Text goldText;//金币文本
+    public Text levelText;//等级文本
+    public Text expText;//经验文本
+
     #endregion
     #region 动画相关
     public Animator animController;//动画控制器
     #endregion
 
+    public void GetExp(int exp)//获得经验并进行升级结算
+    {
+        currentExp += exp;
+        while (currentExp>=levelExpList[Level-1])
+        {
+            currentExp -= levelExpList[Level - 1];
+            Level++;
+        }
+    }
+
+    public void GetGold(int value)
+    {
+        gold += value;
+    }
     public void InitLevel()
     {
         Level = 1;
@@ -124,6 +143,9 @@ public class Player : MonoBehaviour
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
         energyText.text = energy + "/" + maxEnergy;
+        levelText.text = "Level:" + Level;
+        goldText.text = "金币:" + gold;
+        expText.text = currentExp + "/" + levelExpList[Level - 1];
     }
 
     public void PlayAttackAnim()//播放攻击动画

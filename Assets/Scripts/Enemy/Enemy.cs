@@ -283,6 +283,10 @@ public class Enemy : MonoBehaviour
         }
         EnemyManager.Instance.InGameEnemyList.Remove(this);
         Destroy(gameObject);
+        if (EnemyManager.Instance.InGameEnemyList.Count==0)
+        {
+            BattleManager.Instance.BattleEnd();
+        }
     }
     void Update()
     {

@@ -150,7 +150,12 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
     }
 
-
+    public void ReturnToMapButtonDown() //返回按钮回调事件
+    {
+        SceneManager.Instance.battleSceneCanvas.enabled = false;
+        SceneManager.Instance.mapSceneCanvas.enabled = true;
+        BattleManager.Instance.statisticImage.SetActive(false);
+    }
     void Update()
     {
         
