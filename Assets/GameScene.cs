@@ -20,6 +20,9 @@ public class GameScene : MonoBehaviour
             case SceneManager.SceneType.EliteCombat:
                 BattleManager.Instance.BattleStart(sceneData.battleData);
                 break;
+            case SceneManager.SceneType.Event:
+                EventManager.Instance.StartEvent(sceneData.eventID);
+                break;
         }
 
         isFinished = true;
@@ -30,14 +33,7 @@ public class GameScene : MonoBehaviour
 
     }
 
-    public void InitScene()
-    {
-        
-        List<GameScene> gameScenes = SceneManager.Instance.inGameSceneList;
-        
-    }
 
-    
     void Update()
     {
 

@@ -180,7 +180,7 @@ public class SceneData
 {
     public SceneManager.SceneType type;//场景类型
     public BattleData battleData;//当前场景的战斗数据
-     
+    public int eventID;//事件ID
 }
 
 [Serializable]
@@ -195,4 +195,5 @@ public class GameEvent //游戏内的事件
     public int eventID;
     public List<string> descriptionList=new List<string>();//事件的描述列表
     public List<string> choiceList = new List<string>();//选择的描述列表
+    public List<int> choiceNumList=new List<int>();//事件的每个阶段有几个选择
 }

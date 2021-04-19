@@ -54,7 +54,7 @@ public class SceneManager : MonoBehaviour
                 }
                 scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
                 
-            }
+            }//普通战斗
             if (scene.sceneData.type == SceneManager.SceneType.EliteCombat)
             {
 
@@ -67,10 +67,17 @@ public class SceneManager : MonoBehaviour
                 scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
                 scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[1];
 
-            }
-            
+            }//精英战斗
+
+            if (scene.sceneData.type == SceneManager.SceneType.Event)//事件
+            {
+                
+                scene.sceneData.eventID = 0;
+
+            }//精英战斗
+
         }
-        
+
     }
     public void UpdateSceneState()
     {
