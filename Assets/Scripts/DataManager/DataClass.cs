@@ -189,3 +189,10 @@ public struct StateImgData //状态类型预计对应的图片
     public Value.ValueType type;
     public Sprite sprite;
 }
+[Serializable]
+public class GameEvent //游戏内的事件
+{
+    public int eventID;
+    public List<string> descriptionList=new List<string>();//事件的描述列表
+    public List<string> choiceList = new List<string>();//选择的描述列表
+}
