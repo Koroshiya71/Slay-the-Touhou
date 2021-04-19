@@ -69,17 +69,50 @@ public class EventManager : MonoBehaviour
                 switch (choiceIndex)
                 {
                     case 1:
-                        Player.Instance.Recover(15);//回15滴血
-                        desText.text = evt.descriptionList[3];
+                        //TODO:获得遗物，减少力量
+
+                        desText.text = evt.descriptionList[1];
                         break;
                     case 2:
-                        desText.text = evt.descriptionList[4];
+                        desText.text = evt.descriptionList[2];
 
                         break;
                     case 3:
                         //TODO:增加两点属性点
-                        desText.text = evt.descriptionList[5];
+                        desText.text = evt.descriptionList[3];
 
+                        break;
+                }
+                foreach (var btn in choiceButtonList)
+                {
+                    btn.SetActive(false);
+                }
+                returnButton.SetActive(true);
+                yield break;
+            case 1:
+                desText.text = evt.descriptionList[0];
+                for (int i = 0; i < 3; i++)
+                {
+                    choiceButtonList[i].SetActive(true);
+                    choiceButtonList[i].GetComponentInChildren<Text>().text = evt.choiceList[i];
+                }
+                while (choiceIndex <= 0)
+                {
+                    yield return 0;
+                }
+                switch (choiceIndex)
+                {
+                    case 1:
+                        desText.text = evt.descriptionList[1];
+                        break;
+                    case 2:
+                        desText.text = evt.descriptionList[2];
+                        //TODO:稀有选牌机会
+
+                        break;
+                    case 3:
+                        desText.text = evt.descriptionList[3];
+                        Player.Instance.Recover(22);
                         break;
                 }
                 foreach (var btn in choiceButtonList)

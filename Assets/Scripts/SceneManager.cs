@@ -72,7 +72,7 @@ public class SceneManager : MonoBehaviour
             if (scene.sceneData.type == SceneManager.SceneType.Event)//事件
             {
                 
-                scene.sceneData.eventID = 0;
+                scene.sceneData.eventID = Random.Range(0,EventManager.Instance.eventList.Count);
 
             }//精英战斗
 
