@@ -13,7 +13,7 @@ public class CardManager : MonoBehaviour
     public Card selectedCard; //选中的卡牌
     public GameObject cardPrefab; //手牌预制体
     public GameObject spellCardPrefab; //符卡预制体
-
+    
     public GameObject showCard; //用来展示的卡牌
     public GameObject showSpellCard;
     #region 各种牌库
@@ -38,6 +38,8 @@ public class CardManager : MonoBehaviour
     public List<CardData> optionalCardList = new List<CardData>(); //可选卡牌列表
     public bool hasInit;//是否已经从牌库初始化过抽牌堆了
     public Transform battleCards;//战斗场景的卡牌集合
+    public bool isAddingCard;//是否正在添加卡牌到牌库
+    
     private void Start()
     {
         showCard.SetActive(false);
@@ -351,8 +353,35 @@ public class CardManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddCardToDesk(List<CardData> choiceList) //根据这个列表进行选牌
+    public IEnumerator AddCardToDesk(List<CardData> choiceList,int chooseNum) //根据这个列表进行选牌
     {
+        MenuEventManager.Instance.cardPreviewCanvas.enabled = true;
+
+        isAddingCard = true;
+        MenuEventManager.Instance.cardChooseView.SetActive(true);
+        chosenCardList = new List<Card>();
+        foreach (var card in MenuEventManager.Instance.chooseCardList)
+        {
+            card.gameObject.SetActive(false);
+        }
+        for (int i=0;i<choiceList.Count;i++)//初始化选卡显示
+        { 
+            MenuEventManager.Instance.chooseCardList[i].gameObject.SetActive(true);
+            MenuEventManager.Instance.chooseCardList[i].InitCard(choiceList[i]);
+        }
+        
+        while (chosenCardList.Count<chooseNum)
+        {
+            yield return 0;
+        }
+
+        foreach (var card in chosenCardList)
+        {
+            cardDeskList.Add(card.cardData.cardID);
+        }
+        isAddingCard = false;
+        MenuEventManager.Instance.cardChooseView.SetActive(false);
+        MenuEventManager.Instance.cardPreviewCanvas.enabled = false;
 
     }
 }

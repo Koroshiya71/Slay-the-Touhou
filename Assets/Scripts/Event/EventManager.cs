@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class EventManager : MonoBehaviour
 {
@@ -116,7 +117,20 @@ public class EventManager : MonoBehaviour
                     case 2:
                         desText.text = evt.descriptionList[2];
                         //TODO:稀有选牌机会
+                        List<CardData> choiceList=new List<CardData>();
+                        while (choiceList.Count<3)
+                        {
+                            CardData newData =
+                                CardManager.Instance.CardDataList[
+                                    Random.Range(0, CardManager.Instance.CardDataList.Count)];
+                            if (newData.rare==CardData.CardRare.Epic&&!choiceList.Contains(newData)&&newData.type!=Card.CardType.符卡)
+                            {
+                                choiceList.Add(newData);
 
+                            }
+
+                        }
+                        StartCoroutine(CardManager.Instance.AddCardToDesk(choiceList, 1));
                         break;
                     case 3:
                         desText.text = evt.descriptionList[3];

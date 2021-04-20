@@ -7,10 +7,10 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public static MenuEventManager Instance;
     public List<Card> showCardList;//用于显示的卡牌列表
     public List<Card> showSpellCardList;//用于显示符卡的卡牌列表
-
+    public List<Card> chooseCardList;//用于选卡的卡牌列表
     public GameObject cardDisplayView;//用来预览牌堆情况的视窗
     public GameObject spellCardDisplayView;//用来预览符卡堆情况的视窗
-
+    public GameObject cardChooseView;//用来选卡的视窗
     public RectTransform displayContent;//滑动菜单的内容范围
     public RectTransform spellCardContent;//滑动菜单的内容范围
     public Canvas cardPreviewCanvas;//用于展示卡牌的画布
@@ -30,6 +30,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         cardDisplayView.SetActive(false);
         spellCardDisplayView.SetActive(false);
         cardPreviewCanvas.enabled = false;
+        cardChooseView.SetActive(false);
         Card[] showCards = cardDisplayView.GetComponentsInChildren<Card>();
         foreach (var card in showCards)
         {

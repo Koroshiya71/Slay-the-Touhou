@@ -189,7 +189,7 @@ public class Enemy : MonoBehaviour
                     actionValueText.text = "" + actualValue;
                     break;
                 case ActionController.ActionType.Buff:
-                    actionValueText.enabled = false;
+                    actionValueText.enabled = false;    
                     actionImg.GetComponent<Image>().sprite = actionSpriteList[(int)ActionController.ActionType.Buff];
                     if (enemyData.ID == 7)
                     {

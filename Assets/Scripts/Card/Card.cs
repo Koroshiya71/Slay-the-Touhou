@@ -95,6 +95,16 @@ public class Card : MonoBehaviour
             outLook.localPosition = localPosition;
         }
 
+        if (CardManager.Instance.isAddingCard)//如果正在添加卡牌到牌库
+        {
+            if (CardManager.Instance.chosenCardList.Contains(this))
+            {
+                CardManager.Instance.chosenCardList.Remove(this);
+                return;
+
+            }
+            CardManager.Instance.chosenCardList.Add(this);
+        }
         
         showCardGo.SetActive(false);//取消卡牌展示
         CardManager.Instance.hasShow = false;
@@ -106,6 +116,10 @@ public class Card : MonoBehaviour
     {
 
         if (CardManager.Instance.isChoosingFromHand)//如果正在选择卡牌则不进行检测
+        {
+            return;
+        }
+        if (CardManager.Instance.isAddingCard)//如果正在选择卡牌则不进行检测
         {
             return;
         }
@@ -148,6 +162,10 @@ public class Card : MonoBehaviour
         {
             return;
         }
+        if (CardManager.Instance.isAddingCard)//如果正在选择卡牌则不进行检测
+        {
+            return;
+        }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
@@ -185,6 +203,10 @@ public class Card : MonoBehaviour
             return;
         }
 
+        if (CardManager.Instance.isAddingCard)//如果正在选择卡牌则不进行检测
+        {
+            return;
+        }
         if (CardManager.Instance.isChoosingFromHand)
         {
             return;
