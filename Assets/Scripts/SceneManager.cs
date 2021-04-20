@@ -39,11 +39,16 @@ public class SceneManager : MonoBehaviour
             int a = Random.Range(0, BattleManager.Instance.normalBattleDataList.Count);
             int b = Random.Range(0, BattleManager.Instance.eliteBattleDataList.Count);
             int index = inGameSceneList.IndexOf(scene);
-            if (index < 7)
-                scene.isOptional = true;
             scene.sceneData = new SceneData();
-            scene.sceneData.battleData = new BattleData();
             scene.sceneData.type = sceneDataList[Random.Range(0, SceneManager.Instance.sceneDataList.Count)].type;
+
+            if (index < 7)
+            {
+                scene.isOptional = true;
+                scene.sceneData.type = SceneType.NormalCombat;
+            }
+
+            scene.sceneData.battleData = new BattleData();
             if (scene.sceneData.type == SceneManager.SceneType.NormalCombat)
             {
                 scene.sceneData.battleData = new BattleData();
