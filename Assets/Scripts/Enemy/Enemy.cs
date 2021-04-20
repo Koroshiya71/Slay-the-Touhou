@@ -39,7 +39,18 @@ public class Enemy : MonoBehaviour
 
     public void GetShield(int value)
     {
-        shield +=CheckState(Value.ValueType.重伤)? (int)(0.7*value):value;
+        float rate = 1.0f;
+        if (CheckState(Value.ValueType.重伤))
+        {
+            rate -= 0.3f;
+        }
+
+        if (CheckState(Value.ValueType.焕发))
+        {
+            rate += 0.3f;
+        }
+
+        shield += (int)(value * rate);
     }
     public bool CheckState(Value.ValueType stateType) //状态检测
     {

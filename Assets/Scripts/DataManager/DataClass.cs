@@ -142,7 +142,8 @@ public class Value
         盾击,
         保留护甲,
         增幅,
-        净化
+        净化,
+        焕发
     }
     public ValueType type;
     public int value;

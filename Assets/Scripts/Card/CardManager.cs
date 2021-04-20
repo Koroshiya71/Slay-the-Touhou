@@ -350,4 +350,9 @@ public class CardManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void AddCardToDesk(List<CardData> choiceList) //根据这个列表进行选牌
+    {
+
+    }
 }

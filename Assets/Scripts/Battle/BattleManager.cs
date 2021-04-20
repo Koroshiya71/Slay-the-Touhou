@@ -23,7 +23,6 @@ public class BattleManager : MonoBehaviour
     public int battleGold;//本场战斗累积的金币
     public List<Vector2> enemyPositionList = new List<Vector2>();
     public GameObject statisticImage;//结算面板
-
     public Text getExpText;//获取经验文本
     public Text getGoldText;//获取金币文本
     
@@ -181,7 +180,8 @@ public class BattleManager : MonoBehaviour
         getGoldText.text = "获得金币   " + battleGold;
         Player.Instance.GetExp(battleExp);
         Player.Instance.GetGold(battleGold);
-
+        actionsEndTurn = new List<Action>();
+        actionsTurnStart = new List<Action>();
     }
 
 
