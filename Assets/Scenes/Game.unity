@@ -1190,6 +1190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1285,6 +1289,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -1431,6 +1439,85 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1625244114738200733, guid: 71e92753b058b814d9ed8fd94f0afeb3, type: 3}
   m_PrefabInstance: {fileID: 192214473}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &204672088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204672089}
+  - component: {fileID: 204672091}
+  - component: {fileID: 204672090}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &204672089
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204672088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412782857}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 347, y: 267}
+  m_SizeDelta: {x: 302.26, y: 196.34}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &204672090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204672088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &204672091
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204672088}
+  m_CullTransparentMesh: 1
 --- !u!1 &216528917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,6 +2407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2415,6 +2506,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -3467,7 +3562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &412782854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3550,6 +3645,7 @@ RectTransform:
   - {fileID: 656628799}
   - {fileID: 1300604220}
   - {fileID: 1911162420}
+  - {fileID: 204672089}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4246,6 +4342,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4341,6 +4441,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -4718,6 +4822,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4813,6 +4921,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -6587,6 +6699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6682,6 +6798,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -9988,6 +10108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10083,6 +10207,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -11937,6 +12065,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12032,6 +12164,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -15130,6 +15266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15226,6 +15366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellCard (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
 --- !u!224 &1426717946 stripped
@@ -15251,6 +15395,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15346,6 +15494,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -16369,6 +16521,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16464,6 +16620,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -17718,6 +17878,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17813,6 +17977,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -19065,6 +19233,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19160,6 +19332,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -19630,6 +19806,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19725,6 +19905,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -23147,6 +23331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -23242,6 +23430,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -23712,6 +23904,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 447000639}
     m_Modifications:
+    - target: {fileID: 7144945438295872726, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: isShowCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7144945438295872729, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -23807,6 +24003,10 @@ PrefabInstance:
     - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
       propertyPath: m_Name
       value: SpellCard (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144945438295872733, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b2c896b945f7014091298902b5b0024, type: 3}
@@ -24856,11 +25056,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6075252585072341934, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075252585072341934, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075252585362174226, guid: 345eb51bfaacbfd4d82962109e94a358, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -25311,7 +25511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7144945437637994367
 RectTransform:
   m_ObjectHideFlags: 0

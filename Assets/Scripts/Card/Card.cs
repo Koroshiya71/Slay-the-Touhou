@@ -125,6 +125,18 @@ public class Card : MonoBehaviour
         }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
+            if (isShowCard)
+            {
+                transform.localScale *= 1.5f;
+
+                if (cardData.type == CardType.符卡)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 600, 0);
+
+                }
+                else
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 400,0);
+            }
             return;
         }
         if (isShowCard)//如果是展示用的卡牌则不进行检测
@@ -152,7 +164,6 @@ public class Card : MonoBehaviour
             localPosition = new Vector3(localPosition.x, posY + 15);
             outLook.localPosition = localPosition;
         }
-        
     }
 
     public void OnPointerExit()
@@ -168,6 +179,20 @@ public class Card : MonoBehaviour
         }
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
+            if (isShowCard)
+            {
+                transform.localScale /= 1.5f;
+                if (cardData.type == CardType.符卡)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 600, 0);
+
+                }
+                else
+                {
+                  transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y +400,0);
+
+                }
+            }
             return;
         }
 

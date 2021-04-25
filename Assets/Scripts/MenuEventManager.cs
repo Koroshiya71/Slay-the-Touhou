@@ -135,7 +135,6 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         isPreviewing = true;
         cardPreviewCanvas.enabled = true;
         spellCardDisplayView.SetActive(true);
-
         List<CardData> spellCardList = CardManager.Instance.spellCardList;
         spellCardContent.sizeDelta = new Vector2(1835+ (spellCardList.Count-3)*600, 939);
         for (int i = 0; i < spellCardList.Count; i++)
@@ -143,7 +142,6 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
             showSpellCardList[i].gameObject.SetActive(true);//将等同于弃牌堆数量的展示卡牌初始化并显示出来
             showSpellCardList[i].InitCard(spellCardList[i]);
         }
-
         for (int i = spellCardList.Count; i < showSpellCardList.Count; i++)//将其他卡牌隐藏显示
         {
             showSpellCardList[i].gameObject.SetActive(false);
