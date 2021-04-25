@@ -133,6 +133,8 @@ public class Card : MonoBehaviour
                 explanationText.text = "";
                 InitExplanation();
                 transform.localScale *= 1.5f;
+                explanationText.transform.position = transform.position+new Vector3(2.7f,7.3f,0);
+
                 if (cardData.type == CardType.符卡)
                 {
                     transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 600, 0);
@@ -159,6 +161,8 @@ public class Card : MonoBehaviour
             outLook.localPosition = localPosition;
             explanationText.enabled = true;
             explanationText.text = "";
+            explanationText.transform.localPosition = transform.localPosition + new Vector3(350.0f, 200.0f, 0.0f);
+
             InitExplanation();
         }
         else
@@ -172,13 +176,14 @@ public class Card : MonoBehaviour
             outLook.localPosition = localPosition;
             explanationText.enabled = true;
             explanationText.text = "";
+            explanationText.transform.localPosition = transform.localPosition + new Vector3(350.0f, 200.0f, 0.0f);
+
             InitExplanation();
         }
     }
 
     public void InitExplanation()
     {
-        explanationText.transform.localPosition = transform.localPosition+new Vector3(350.0f,200.0f,0.0f);
         if (desText.text.Contains("残心"))
         {
             explanationText.text += "残心：如果使用这张牌后使能量变为0，则在回合结束触发该效果\n";
@@ -227,6 +232,8 @@ public class Card : MonoBehaviour
             if (isShowCard)
             {
                 transform.localScale /= 1.5f;
+                explanationText.enabled = false;
+
                 if (cardData.type == CardType.符卡)
                 {
                     transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 600, 0);
@@ -258,6 +265,8 @@ public class Card : MonoBehaviour
             var localPosition = outLook.localPosition;
             localPosition = new Vector3(localPosition.x, posY);
             outLook.localPosition = localPosition;
+            explanationText.enabled = false;
+
         }
     }
 
