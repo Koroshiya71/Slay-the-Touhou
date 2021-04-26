@@ -16,6 +16,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public Canvas cardPreviewCanvas;//用于展示卡牌的画布
     public bool isPreviewing;//是否正在显示卡牌
     public Text stateExplanationText;//状态说明文本
+    public Text actionExplanationText;//敌人的行动意图说明文本
     private void Awake()
     {
         Instance = this;

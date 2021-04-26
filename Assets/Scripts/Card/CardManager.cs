@@ -40,6 +40,8 @@ public class CardManager : MonoBehaviour
     public Transform battleCards;//战斗场景的卡牌集合
     public bool isAddingCard;//是否正在添加卡牌到牌库
     public Text explanationText;//机制说明文本
+    public Text showExplanationText;//机制说明文本
+
     private void Start()
     {
         showCard.SetActive(false);

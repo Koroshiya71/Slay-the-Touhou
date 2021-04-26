@@ -52,6 +52,7 @@ public class Card : MonoBehaviour
     public Image backGround;
     //机制解释文本
     public Text explanationText;
+    public Text showExplanationText;//手牌中的情况
     #endregion
 
     private void Update()
@@ -159,11 +160,11 @@ public class Card : MonoBehaviour
             posY = localPosition.y;
             localPosition = new Vector3(localPosition.x, posY + 15);
             outLook.localPosition = localPosition;
-            explanationText.enabled = true;
-            explanationText.text = "";
-            explanationText.transform.localPosition = transform.localPosition + new Vector3(350.0f, 200.0f, 0.0f);
+            showExplanationText.enabled = true;
+            showExplanationText.text = "";
 
-            InitExplanation();
+            showExplanationText.text = InitExplanation();
+
         }
         else
         {
@@ -174,47 +175,50 @@ public class Card : MonoBehaviour
             posY = localPosition.y;
             localPosition = new Vector3(localPosition.x, posY + 15);
             outLook.localPosition = localPosition;
-            explanationText.enabled = true;
-            explanationText.text = "";
-            explanationText.transform.localPosition = transform.localPosition + new Vector3(350.0f, 200.0f, 0.0f);
+            showExplanationText.enabled = true;
+            showExplanationText.text = "";
 
-            InitExplanation();
+
+            showExplanationText.text=InitExplanation();
         }
     }
 
-    public void InitExplanation()
+    public string InitExplanation()
     {
+        string text = "";
         if (desText.text.Contains("残心"))
         {
-            explanationText.text += "残心：如果使用这张牌后使能量变为0，则在回合结束触发该效果\n";
+            text += "残心：如果使用这张牌后使能量变为0，则在回合结束触发该效果\n";
         }
         if (desText.text.Contains("连斩"))
         {
-            explanationText.text += "连斩X：如果当前回合使用的卡牌数大于X（不计算该牌）则触发该效果\n";
+            text += "连斩X：如果当前回合使用的卡牌数大于X（不计算该牌）则触发该效果\n";
         }
 
         if (desText.text.Contains("二刀流"))
         {
-            explanationText.text += "二刀流：体术牌的伤害减半，但是触发两次\n";
+            text += "二刀流：体术牌的伤害减半，但是触发两次\n";
 
         }
         if (desText.text.Contains("流转"))
         {
-            explanationText.text += "流转：残心效果从回合结束后改为立刻触发\n";
+            text += "流转：残心效果从回合结束后改为立刻触发\n";
         }
         if (desText.text.Contains("惊吓"))
         {
-            explanationText.text += "惊吓：造成的伤害减少30%\n";
+            text += "惊吓：造成的伤害减少30%\n";
 
         }
         if (desText.text.Contains("无何有"))
         {
-            explanationText.text += "无何有：打出后移除本场战斗\n";
+            text += "无何有：打出后移除本场战斗\n";
         }
         if (desText.text.Contains("空无"))
         {
-            explanationText.text += "空无：如果此卡在手牌中且未被打出，回合结束时将会被移除战斗\n";
+            text += "空无：如果此卡在手牌中且未被打出，回合结束时将会被移除战斗\n";
         }
+
+        return text;
     }
     public void OnPointerExit()
     {
@@ -256,7 +260,7 @@ public class Card : MonoBehaviour
             var localPosition = outLook.localPosition;
             localPosition = new Vector3(localPosition.x, posY);
             outLook.localPosition = localPosition;
-            explanationText.enabled = false;
+            showExplanationText.enabled = false;
         }
         else
         {
@@ -265,7 +269,7 @@ public class Card : MonoBehaviour
             var localPosition = outLook.localPosition;
             localPosition = new Vector3(localPosition.x, posY);
             outLook.localPosition = localPosition;
-            explanationText.enabled = false;
+            showExplanationText.enabled = false;
 
         }
     }
@@ -562,6 +566,7 @@ public class Card : MonoBehaviour
         showCardGo = CardManager.Instance.showCard;
         showSpellCardGo = CardManager.Instance.showSpellCard;
         explanationText = CardManager.Instance.explanationText;
+        showExplanationText = CardManager.Instance.showExplanationText;
     }
 
 
