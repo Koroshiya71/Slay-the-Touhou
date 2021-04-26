@@ -132,9 +132,9 @@ public class Card : MonoBehaviour
             {
                 explanationText.enabled = true;
                 explanationText.text = "";
-                InitExplanation();
+                explanationText.text = InitExplanation();
                 transform.localScale *= 1.5f;
-                explanationText.transform.position = transform.position+new Vector3(2.7f,7.3f,0);
+                explanationText.transform.position = transform.position+new Vector3(2.3f,7.3f,0);
 
                 if (cardData.type == CardType.符卡)
                 {
@@ -325,7 +325,7 @@ public class Card : MonoBehaviour
             nameText.text = cardData.name;
             typeText.text = "妖梦·" + cardData.type;
             img.sprite = CardManager.Instance.spriteList[cardData.spriteID];
-            backGround.sprite = cardBackGroundSprites[(int) cardData.rare];
+            backGround.sprite = cardBackGroundSprites[(int) cardData.rare+(int)cardData.type*3];
         }
         else
         {

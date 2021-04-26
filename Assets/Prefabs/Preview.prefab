@@ -318,7 +318,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625244114738200729}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -9717.458}
   m_LocalScale: {x: 3.2391527, y: 3.2391527, z: 107.971756}
   m_Children:
@@ -363,15 +363,30 @@ MonoBehaviour:
     rare: 0
   posY: 0
   cardBackGroundSprites:
-  - {fileID: 21300000, guid: a444ba42226790b409cf87ec8073cd5d, type: 3}
-  - {fileID: 21300000, guid: 60cf98d952fa7be4d840d87875ecf4c8, type: 3}
-  - {fileID: 21300000, guid: c21a2ec4120e8cd48b010c14f8cb8f6b, type: 3}
+  - {fileID: 21300000, guid: ada04d04b0530424bae01eff0788163c, type: 3}
+  - {fileID: 21300000, guid: 3806f4f5ce66bff40b090059db853cd9, type: 3}
+  - {fileID: 21300000, guid: a7fe87a1ec9f35745b8592ced4914282, type: 3}
+  - {fileID: 21300000, guid: bcc65205d80127e41b998eac01e2b7f6, type: 3}
+  - {fileID: 21300000, guid: c7d73b6f287542840bac7656c46fc776, type: 3}
+  - {fileID: 21300000, guid: 2795d0df2eab2c74fbe97781720849a3, type: 3}
+  - {fileID: 21300000, guid: 56637afd815df2847b24e674f8f5f640, type: 3}
+  - {fileID: 21300000, guid: cf68220195f0540449617c4c715a399b, type: 3}
+  - {fileID: 21300000, guid: 83473f94f4ae8dc45937c5ec4ac0bc4b, type: 3}
+  - {fileID: 21300000, guid: 830389729ddc4eb44a9a29e42192ac26, type: 3}
+  - {fileID: 21300000, guid: de7f2e10174c14141954dc9ce15b1024, type: 3}
+  - {fileID: 21300000, guid: 4afc26047c2e4bd4eb0c1af9b67eebb1, type: 3}
+  - {fileID: 21300000, guid: beafcc7c20b6679479e29c969f529a1a, type: 3}
+  - {fileID: 21300000, guid: 6d1c937ef412ad545bbcceb8cabbd1e5, type: 3}
+  - {fileID: 21300000, guid: 6e7003dcd295e9c4f8a7d8d5b82afe12, type: 3}
+  spellCardBackGroundSprites: []
   nameText: {fileID: 1625244113349905909}
   desText: {fileID: 1625244115045261946}
   costText: {fileID: 1625244113516028940}
   typeText: {fileID: 4470248993688042495}
   img: {fileID: 1625244115470616881}
   backGround: {fileID: 1625244113723171207}
+  explanationText: {fileID: 0}
+  showExplanationText: {fileID: 0}
   selectPos: {x: 0, y: 0, z: 0}
 --- !u!95 &1274206121922550455
 Animator:
