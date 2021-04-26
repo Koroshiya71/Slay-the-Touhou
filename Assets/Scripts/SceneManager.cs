@@ -32,7 +32,7 @@ public class SceneManager : MonoBehaviour
         InitScenes();
     }
 
-    public void InitScenes()
+    public void InitScenes()//初始化场景
     {
         foreach (var scene in inGameSceneList)
         {
@@ -69,18 +69,23 @@ public class SceneManager : MonoBehaviour
                 {
                     scene.sceneData.battleData.EnemyList.Add(enemy);
                 }
-                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[0];
                 scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[1];
 
             }//精英战斗
 
             if (scene.sceneData.type == SceneManager.SceneType.Event)//事件
             {
-                
-                scene.sceneData.eventID = Random.Range(0,EventManager.Instance.eventList.Count);
+                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[3];
+                scene.sceneData.eventID = Random.Range(0, EventManager.Instance.eventList.Count);
 
             }//精英战斗
 
+            if (scene.sceneData.type == SceneManager.SceneType.Store) //商城
+            {
+                scene.GetComponent<Image>().sprite = SceneManager.Instance.sceneSpriteList[2];
+
+
+            }
         }
 
     }

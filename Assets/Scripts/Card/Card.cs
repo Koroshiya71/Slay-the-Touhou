@@ -67,14 +67,23 @@ public class Card : MonoBehaviour
     public void OnPointerDown()
     {
 
-        if (isShowCard)//如果是展示用的卡牌则不进行检测
-            return;
+        
         if (MenuEventManager.Instance.isPreviewing&&cardData.type==CardType.符卡)//如果是从额外卡组选择符卡
         {
             CardManager.Instance.GetSpellCard(cardData.cardID);
+            transform.localScale /= 1.5f;
+            explanationText.enabled = false;
+
+            if (cardData.type == CardType.符卡)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 600, 0);
+
+            }
             MenuEventManager.Instance.ExitDisplayButtonDown();
             return;
         }
+        if (isShowCard)//如果是展示用的卡牌则不进行检测
+            return;
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
