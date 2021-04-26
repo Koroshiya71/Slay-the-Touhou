@@ -159,8 +159,6 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         BattleManager.Instance.statisticImage.SetActive(false);
     }
 
-    
-
     public void InitStateExplanationText() //初始化状态描述
     {
         stateExplanationText.text = "";

@@ -25,7 +25,7 @@ public class BattleManager : MonoBehaviour
     public GameObject statisticImage;//结算面板
     public Text getExpText;//获取经验文本
     public Text getGoldText;//获取金币文本
-    
+    public Text turnStartAndEndText;//回合结束文本
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
@@ -58,6 +58,10 @@ public class BattleManager : MonoBehaviour
             TurnStart();
             return;
         }
+        turnStartAndEndText.enabled = true;
+        turnStartAndEndText.text = "敌方回合";
+        Invoke(nameof(NotShowTurnText), 0.5f);
+
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
             if (!EnemyManager.Instance.InGameEnemyList[i].CheckState(Value.ValueType.保留护甲))
@@ -78,6 +82,7 @@ public class BattleManager : MonoBehaviour
         {
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
         }
+
         
         Invoke(nameof(TurnStart), 1);
 
@@ -100,7 +105,9 @@ public class BattleManager : MonoBehaviour
                 enemy.UpdateCurrentAction();
             }
         }
-        
+        turnStartAndEndText.enabled = true;
+        turnStartAndEndText.text = "玩家回合";
+        Invoke(nameof(NotShowTurnText),0.5f);
         turnHasEnd = false;
         Player.Instance.InitEnergy();
         StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
@@ -221,6 +228,12 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    public void NotShowTurnText() //取消回合文本显示
+    {
+        turnStartAndEndText.enabled = false;
+    }
+    
     void Update() 
     {
         

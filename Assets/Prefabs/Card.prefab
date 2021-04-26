@@ -517,21 +517,21 @@ MonoBehaviour:
     rare: 0
   posY: 0
   cardBackGroundSprites:
-  - {fileID: 21300000, guid: ada04d04b0530424bae01eff0788163c, type: 3}
-  - {fileID: 21300000, guid: 3806f4f5ce66bff40b090059db853cd9, type: 3}
-  - {fileID: 21300000, guid: a7fe87a1ec9f35745b8592ced4914282, type: 3}
-  - {fileID: 21300000, guid: bcc65205d80127e41b998eac01e2b7f6, type: 3}
-  - {fileID: 21300000, guid: c7d73b6f287542840bac7656c46fc776, type: 3}
-  - {fileID: 21300000, guid: 2795d0df2eab2c74fbe97781720849a3, type: 3}
-  - {fileID: 21300000, guid: 56637afd815df2847b24e674f8f5f640, type: 3}
-  - {fileID: 21300000, guid: cf68220195f0540449617c4c715a399b, type: 3}
-  - {fileID: 21300000, guid: 83473f94f4ae8dc45937c5ec4ac0bc4b, type: 3}
-  - {fileID: 21300000, guid: 830389729ddc4eb44a9a29e42192ac26, type: 3}
-  - {fileID: 21300000, guid: de7f2e10174c14141954dc9ce15b1024, type: 3}
-  - {fileID: 21300000, guid: 4afc26047c2e4bd4eb0c1af9b67eebb1, type: 3}
-  - {fileID: 21300000, guid: beafcc7c20b6679479e29c969f529a1a, type: 3}
-  - {fileID: 21300000, guid: 6d1c937ef412ad545bbcceb8cabbd1e5, type: 3}
-  - {fileID: 21300000, guid: 6e7003dcd295e9c4f8a7d8d5b82afe12, type: 3}
+  - {fileID: 21300000, guid: 968157a6410c08840887d0e2a8b7708e, type: 3}
+  - {fileID: 21300000, guid: ad1ec9c7e9569ff4bba54a2751ab86b0, type: 3}
+  - {fileID: 21300000, guid: bb604b23b4c5c1b4b805018f9be9a233, type: 3}
+  - {fileID: 21300000, guid: b3e2b980d29cd714a9800d2be66b2b45, type: 3}
+  - {fileID: 21300000, guid: 84e5de7f487690748a9faa363578afca, type: 3}
+  - {fileID: 21300000, guid: cfd8dfd186b5e584293cc929522f5ba9, type: 3}
+  - {fileID: 21300000, guid: e91d09175dfdec54581f7f429af50705, type: 3}
+  - {fileID: 21300000, guid: 582bdb7d7fdb21744967738ec82487ab, type: 3}
+  - {fileID: 21300000, guid: 0d08e254b065c184ea0b7c8ed839c959, type: 3}
+  - {fileID: 21300000, guid: 9859620a881d23146a5079a0ddb65946, type: 3}
+  - {fileID: 21300000, guid: bb0b095c73f3fcb4bbdbf241916c0ab8, type: 3}
+  - {fileID: 21300000, guid: c84cc133946d744409456a8de731e619, type: 3}
+  - {fileID: 21300000, guid: efa9d19869996a541a7255b84112eb19, type: 3}
+  - {fileID: 21300000, guid: 660a773c4e583944aadedcea5f5b651f, type: 3}
+  - {fileID: 21300000, guid: 412d40655182ff24a9f3fb9afcb6c7bf, type: 3}
   spellCardBackGroundSprites: []
   nameText: {fileID: 7144945437419215281}
   desText: {fileID: 7144945439148521022}
