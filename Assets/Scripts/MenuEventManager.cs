@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 {
     public static MenuEventManager Instance;
@@ -15,6 +15,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     public RectTransform spellCardContent;//滑动菜单的内容范围
     public Canvas cardPreviewCanvas;//用于展示卡牌的画布
     public bool isPreviewing;//是否正在显示卡牌
+    public Text stateExplanationText;//状态说明文本
     private void Awake()
     {
         Instance = this;
@@ -22,6 +23,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     void Start()
     {
         InitShowCardCanvas();
+        stateExplanationText.enabled = false;
     }
 
     void InitShowCardCanvas() //对卡牌预览界面进行初始化
@@ -154,6 +156,17 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         SceneManager.Instance.battleSceneCanvas.enabled = false;
         SceneManager.Instance.mapSceneCanvas.enabled = true;
         BattleManager.Instance.statisticImage.SetActive(false);
+    }
+
+    
+
+    public void InitStateExplanationText() //初始化状态描述
+    {
+        stateExplanationText.text = "";
+        switch (hideFlags)
+        {
+            
+        }
     }
     void Update()
     {
