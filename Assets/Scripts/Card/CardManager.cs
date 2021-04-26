@@ -41,7 +41,7 @@ public class CardManager : MonoBehaviour
     public bool isAddingCard;//是否正在添加卡牌到牌库
     public Text explanationText;//机制说明文本
     public Text showExplanationText;//机制说明文本
-
+    public GameObject choosingCardPanel;//抽牌滤镜panel
     private void Start()
     {
         showCard.SetActive(false);
@@ -109,6 +109,7 @@ public class CardManager : MonoBehaviour
     {
         chosenCardList = new List<Card>();
         isChoosingFromHand = true;
+        choosingCardPanel.SetActive(true);
         while (true)
         {
             if (chosenCardList.Count == num)
@@ -135,6 +136,7 @@ public class CardManager : MonoBehaviour
                             UseCard(c.gameObject);
                             drawCardList.Add(c.cardData);
                             Shuffle();
+                            choosingCardPanel.SetActive(false);
                         }
 
                         break;

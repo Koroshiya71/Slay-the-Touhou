@@ -84,6 +84,8 @@ public class Card : MonoBehaviour
         {
             var localPosition = outLook.localPosition;
             posY = localPosition.y;
+            if(this.cardData.type==CardType.符卡)
+                return;
             if (CardManager.Instance.chosenCardList.Contains(this))
             {
                 CardManager.Instance.chosenCardList.Remove(this);
@@ -120,6 +122,28 @@ public class Card : MonoBehaviour
 
         if (CardManager.Instance.isChoosingFromHand)//如果正在选择卡牌则不进行检测
         {
+            if (cardData.type != CardType.符卡)
+            {
+                CardManager.Instance.hasShow = true;
+                showCardGo.SetActive(true);//展示卡牌
+                showCardGo.GetComponent<Card>().InitCard(cardData);
+                showExplanationText.enabled = true;
+                showExplanationText.text = "";
+
+                showExplanationText.text = InitExplanation();
+
+            }
+            else
+            {
+                CardManager.Instance.hasShow = true;
+                showSpellCardGo.SetActive(true);//展示卡牌
+                showSpellCardGo.GetComponent<Card>().InitCard(cardData);
+                showExplanationText.enabled = true;
+                showExplanationText.text = "";
+
+
+                showExplanationText.text = InitExplanation();
+            }
             return;
         }
         if (CardManager.Instance.isAddingCard)//如果正在选择卡牌则不进行检测
@@ -378,7 +402,7 @@ public class Card : MonoBehaviour
                 cardData.des = "获得一个额外的回合。在额外的回合，只能使用体术牌。";
                 return;
             case "0010"://冥想
-                cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有";
+                cardData.des = "抽三张牌，然后选择两张牌洗回牌库，那两张牌获得无何有(无法选择符卡)";
                 return;
             case "0013"://居合
                 cardData.des += "如果该牌为本回合使用的第一张体术牌，造成"+valueDic[Value.ValueType.伤害]+"点伤害";
