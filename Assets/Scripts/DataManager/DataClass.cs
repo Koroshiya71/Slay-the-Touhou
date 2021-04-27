@@ -210,8 +210,11 @@ public class GameEvent //游戏内的事件
     public List<string> choiceList = new List<string>();//选择的描述列表
     public List<int> choiceNumList=new List<int>();//事件的每个阶段有几个选择
 }
-
+[Serializable]
 public class RelicData //遗物的数据
 {
-    public int relicID;
+    public int relicID;//遗物的数据
+    public Relic.RelicRare relicRare;//遗物的稀有度
+    public string relicName;//遗物的名称
+    public string relicDes;//遗物的描述
 }

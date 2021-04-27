@@ -86,6 +86,15 @@ public class SceneManager : MonoBehaviour
 
 
             }
+            if (scene.isOptional)
+            {
+                scene.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+            else if(scene.isFinished||!scene.isOptional)
+            {
+                scene.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1.0f);
+
+            }
         }
 
     }
@@ -97,6 +106,7 @@ public class SceneManager : MonoBehaviour
             if (index < 7)
             {
                 gs.isOptional = false;
+                gs.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1.0f);
                 continue;
             }
 
@@ -104,6 +114,16 @@ public class SceneManager : MonoBehaviour
                 (index >= 8 && inGameSceneList[index - 8].isFinished))
             {
                 gs.isOptional = true;
+            }
+
+            if (gs.isOptional)
+            {
+                gs.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+            else if(gs.isFinished || !gs.isOptional)
+            {
+                gs.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1.0f);
+
             }
         }
 
