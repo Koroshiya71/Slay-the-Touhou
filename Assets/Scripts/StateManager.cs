@@ -37,7 +37,11 @@ public class StateManager : MonoBehaviour
         newValue.type = state.type;
         newValue.value = state.value;
         Player.Instance.stateList.Add(newValue);
-        Player.Instance.newStateList.Add(newValue);
+        if (newValue.type!=Value.ValueType.额外回合)
+        {
+            Player.Instance.newStateList.Add(newValue);
+
+        }
 
     }
     public static void AddStateToEnemy(Value state,Enemy target)//给玩家添加对应类型，层数的状态
@@ -60,6 +64,7 @@ public class StateManager : MonoBehaviour
     }
     public static void UpdatePlayerState() //清除状态列表中的无效状态
     {
+        Debug.Log(1);
         List<Value> emptyList = new List<Value>();
         foreach (var state in Player.Instance.stateList)
         {

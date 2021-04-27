@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Relic : MonoBehaviour
@@ -19,6 +20,14 @@ public class Relic : MonoBehaviour
         
     }
 
+    public void InitRelic(RelicData data) //初始化遗物
+    {
+        relicData.relicID = data.relicID;
+        relicData.relicDes = data.relicDes;
+        relicData.relicName = data.relicName;
+        relicData.relicRare = data.relicRare;
+        GetComponent<Image>().sprite = RelicManager.Instance.relicSpriteList[relicData.relicID];
+    }
     public void OnGetRelic() //获取遗物时触发的事件
     {
         switch (relicData.relicID)

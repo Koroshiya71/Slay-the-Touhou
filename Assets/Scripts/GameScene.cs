@@ -26,7 +26,9 @@ public class GameScene : MonoBehaviour
         }
 
         isFinished = true;
+        int index=SceneManager.Instance.inGameSceneList.IndexOf(this);
         SceneManager.Instance.UpdateSceneState();
+        
     }
     void Start()
     {

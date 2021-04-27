@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
     public static SceneManager Instance;
     public Canvas battleSceneCanvas;//战斗场景画布
     public Canvas mapSceneCanvas;//地图场景画布
+    public int sceneLayer = 0;//进行到第几层
     private void Awake()
     {
         Instance = this;
@@ -30,10 +31,12 @@ public class SceneManager : MonoBehaviour
         battleSceneCanvas.enabled = false;
         mapSceneCanvas.enabled = true;
         InitScenes();
+
     }
 
     public void InitScenes()//初始化场景
     {
+        sceneLayer = 0;
         foreach (var scene in inGameSceneList)
         {
             int a = Random.Range(0, BattleManager.Instance.normalBattleDataList.Count);
@@ -100,13 +103,15 @@ public class SceneManager : MonoBehaviour
     }
     public void UpdateSceneState()
     {
+        sceneLayer++;
         foreach (var gs in inGameSceneList)
         {
             int index = inGameSceneList.IndexOf(gs);
-            if (index < 7)
+            if (index < 7*sceneLayer)
             {
                 gs.isOptional = false;
-                gs.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1.0f);
+                if(!gs.isFinished)
+                    gs.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1.0f);
                 continue;
             }
 
