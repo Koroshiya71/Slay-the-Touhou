@@ -66,8 +66,9 @@ public class CardEffectManager : MonoBehaviour
                 Player.Instance.PlayAttackAnim(); //播放攻击动画
                 CardManager.Instance.UseCard(card.gameObject); //使用卡牌
                 Player.Instance.energy -= card.cardData.cost; //消耗费用
-                CardManager.Instance.Discard(card);
                 StartCoroutine(CardManager.Instance.ChooseCardFromHand(2, true, card));
+                CardManager.Instance.Discard(card);
+
                 break;
             case "0018": //六根清净
                 if (Player.Instance.energy < card.cardData.cost) break;

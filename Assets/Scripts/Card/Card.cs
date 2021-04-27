@@ -103,8 +103,6 @@ public class Card : MonoBehaviour
 
             }
             CardManager.Instance.chosenCardList.Add(this);
-
-            
             localPosition = new Vector3(localPosition.x, posY+15);
             outLook.localPosition = localPosition;
         }
@@ -393,6 +391,7 @@ public class Card : MonoBehaviour
                 {
                     cardData.cost -= 1;
                     InitCard(cardData);
+                    Debug.Log(1);
                 }
                 break;
         }

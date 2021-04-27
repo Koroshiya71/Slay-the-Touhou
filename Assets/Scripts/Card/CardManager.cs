@@ -67,6 +67,24 @@ public class CardManager : MonoBehaviour
         discardList = new List<CardData>();
         hasInit = false;
     }
+
+    public  CardData GetCardDataById(string cardID)
+    {
+        CardData newData = new CardData();
+
+        foreach (var data in CardDataList)
+        {
+            if (data.cardID == cardID)
+            {
+                newData = CardData.Clone(data);
+                break;
+
+            }
+
+        }
+
+        return newData;
+    }
     public void InitDrawCardList()
     {
         if (discardList.Count > 0) //如果是在弃牌堆有卡牌的情况下初始化抽牌堆，则将所有弃牌堆的卡牌加入抽牌堆
@@ -124,6 +142,7 @@ public class CardManager : MonoBehaviour
 
                 if (Instance.chosenCardList.Count == 2)
                 {
+                    Debug.Log(0);
                     if (reason.cardData.cardID == "0010") //冥想
                     {
                         foreach (var c in Instance.chosenCardList)
@@ -134,6 +153,7 @@ public class CardManager : MonoBehaviour
                                 c.cardData.keepChangeInBattle = true;
                             }
                             UseCard(c.gameObject);
+                            Debug.Log(1);
                             drawCardList.Add(c.cardData);
                             Shuffle();
                             choosingCardPanel.SetActive(false);
@@ -206,8 +226,10 @@ public class CardManager : MonoBehaviour
         }
         if(drawCardList.Count == 0 && !Player.Instance.CheckState(Value.ValueType.六根清净)) //如果依旧无牌可抽，且不具有六根清净状态则跳过抽牌
             return;
-        
+
         newCard.InitCard(drawCardList[0]); //根据抽牌堆的第一张卡牌数据来初始化卡牌
+        newCard.UpdateCardState();
+
         drawCardList.Remove(drawCardList[0]); //将卡牌移除抽牌堆
 
         handCardGo.transform.position = BeginPos.transform.position;
@@ -348,8 +370,10 @@ public class CardManager : MonoBehaviour
             return;
         }
         if ((card.valueDic.ContainsKey(Value.ValueType.无何有) && card.hasUsed)||card.cardData.type==Card.CardType.符卡) return;
-        
-        discardList.Add(card.cardData);
+        if (!card.cardData.keepChangeInBattle)
+            discardList.Add(GetCardDataById(card.cardData.cardID));
+        else
+            discardList.Add(card.cardData);
     }
 
     private void Awake()

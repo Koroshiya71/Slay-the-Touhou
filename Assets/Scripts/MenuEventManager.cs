@@ -118,7 +118,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
         List<CardData> discardList = CardManager.Instance.discardList;
         cardDisplayView.SetActive(true);
-        displayContent.sizeDelta=new Vector2(1835, 939 + (discardList.Count / 5 - 2) * 420);
+        displayContent.sizeDelta=new Vector2(1835, 939 + (discardList.Count / 5 - 1) * 420);
        
         for (int i = 0; i < discardList.Count; i++)
         {

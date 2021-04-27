@@ -72,24 +72,36 @@ public class CardData
         newData.des = target.des;
         newData.valueList = new List<Value>();
         newData.rare = target.rare;
-        foreach (var val in target.valueList)
+        if (target.valueList.Count>0)
         {
-            newData.valueList.Add(val);
+            foreach (var val in target.valueList)
+            {
+                newData.valueList.Add(val);
+            }
         }
+        
         newData.spriteID = target.spriteID;
         newData.targetType = target.targetType;
         newData.times = target.times;
         newData.canXinList = new List<CanXin>();
-        foreach (var val in target.canXinList)
+        if (target.canXinList.Count>0)
         {
-            newData.canXinList.Add(val);
+            foreach (var val in target.canXinList)
+            {
+                newData.canXinList.Add(val);
+            }
         }
+        
         newData.keepChangeInBattle= target.keepChangeInBattle;
         newData.comboList = new List<Combo>();
-        foreach (var val in target.comboList)
+        if (target.comboList.Count>0)
         {
-            newData.comboList.Add(val);
+            foreach (var val in target.comboList)
+            {
+                newData.comboList.Add(val);
+            }
         }
+        
         return newData;
         
     }

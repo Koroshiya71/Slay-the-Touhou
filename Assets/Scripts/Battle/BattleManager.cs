@@ -135,11 +135,7 @@ public class BattleManager : MonoBehaviour
 
             actionsTurnStart = new List<Action>();
         }
-        foreach (var cardObject in CardManager.Instance.handCardList)
-        {
-            Card card=cardObject.GetComponent<Card>();
-            card.UpdateCardState();
-        }
+        
     }
 
     private void Awake()
@@ -182,6 +178,7 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd()
     {
+        hasCanXin = false;
         statisticImage.SetActive(true);
         getExpText.text = "获得经验   " + battleExp;
         getGoldText.text = "获得金币   " + battleGold;
