@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public int resurrectionTimes = 0;//复活次数
     #endregion
 
+    public Text nameText;//名字文本
     public Animator animController;//动画控制器
     #region UI引用
     public Text hpText;//血条数值文本
@@ -99,6 +100,7 @@ public class Enemy : MonoBehaviour
             StateManager.AddStateToEnemy(new Value(){type=Value.ValueType.魂体,value = 1},this);
         }
         EnemyManager.Instance.InGameEnemyList.Add(this);
+        nameText.text = enemyData.Name;
     }
     public void UpdateUIState()//更新UI组件状态
     {

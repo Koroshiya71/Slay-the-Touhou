@@ -19,7 +19,11 @@ public class ActionImage : MonoBehaviour
         actionExplanationText.enabled = true;
         actionExplanationText.text = "";
         actionExplanationText.transform.position = transform.position - new Vector3(0f, -0.5f, 0.0f);
-
+        if (thisEnemy.enemyData.ID==7)
+        {
+            actionExplanationText.text = "该敌人的行动未知";
+            return;
+        }
         switch (thisEnemy.currentEnemyAction.data.Type)
         {
             case ActionController.ActionType.Attack:
@@ -41,9 +45,7 @@ public class ActionImage : MonoBehaviour
             case ActionController.ActionType.Special:
                 actionExplanationText.text = "该敌人将进行特殊的行动";
                 break;
-            case ActionController.ActionType.Unknown:
-                actionExplanationText.text = "该敌人的行动未知";
-                break;
+            
         }
     }
 

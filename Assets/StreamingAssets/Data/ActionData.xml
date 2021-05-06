@@ -92,7 +92,7 @@
         </Action>
         <Action ActID="0018" Type="Special" Name="迷路妖精眩晕" Probability="50">
             <Values>
-                <Value Type="眩晕" Value="2"></Value>
+                <Value Type="眩晕" Value="1"></Value>
             </Values>
         </Action>
         <Action ActID="0019" Type="Attack" Name="大蝴蝶攻击1" Probability="30">
