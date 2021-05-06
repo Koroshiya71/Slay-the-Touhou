@@ -121,11 +121,12 @@ public class BattleManager : MonoBehaviour
         int drawCardNum = Player.Instance.CheckState(Value.ValueType.抽牌减1)
             ? Player.Instance.drawCardNum - 1
             : Player.Instance.drawCardNum;
-        for (int i = 0; i < drawCardNum; i++)
+        
+        foreach (var card in CardManager.Instance.handCardList)
         {
-            CardManager.Instance.DrawCard();
-        }
+            card.GetComponent<Card>().UpdateCardState();
 
+        }
         if (actionsTurnStart!=null)
         {
             foreach (var action in actionsTurnStart)
@@ -135,7 +136,10 @@ public class BattleManager : MonoBehaviour
 
             actionsTurnStart = new List<Action>();
         }
-        
+        for (int i = 0; i < drawCardNum; i++)
+        {
+            CardManager.Instance.DrawCard();
+        }
     }
 
     private void Awake()

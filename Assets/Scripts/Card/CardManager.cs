@@ -212,6 +212,8 @@ public class CardManager : MonoBehaviour
                 newData.keepChangeInBattle = true;
             }
             newCard.InitCard(newData);
+            newCard.UpdateCardState();
+
             handCardGo.transform.position = BeginPos.transform.position;
             handCardGo.transform.SetParent(battleCards);
 

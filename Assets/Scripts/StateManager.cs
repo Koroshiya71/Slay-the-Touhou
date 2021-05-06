@@ -64,7 +64,6 @@ public class StateManager : MonoBehaviour
     }
     public static void UpdatePlayerState() //清除状态列表中的无效状态
     {
-        Debug.Log(1);
         List<Value> emptyList = new List<Value>();
         foreach (var state in Player.Instance.stateList)
         {

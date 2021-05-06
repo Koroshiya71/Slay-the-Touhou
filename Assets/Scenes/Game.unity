@@ -5199,6 +5199,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 3e69f55db56469f49871c90138350632, type: 3}
   - type: 18
     sprite: {fileID: 21300000, guid: 71955c8a5df75964ca0e03b8463fee9e, type: 3}
+  - type: 19
+    sprite: {fileID: 21300000, guid: fccb5ab1ee60162409296c84c0ea4bf6, type: 3}
+  - type: 20
+    sprite: {fileID: 21300000, guid: fec6d31ef613b6142b6489046d3d10e4, type: 3}
 --- !u!1001 &518869399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16801,7 +16805,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 318b92a6bd5736446998a26461c617cd, type: 3}
   - {fileID: 21300000, guid: 7a7a77b7a5e66b44db17e13790e3ce95, type: 3}
   - {fileID: 21300000, guid: 38e813ac3a637ce46a558d122b178afe, type: 3}
-  - {fileID: 21300000, guid: 4a8e5b46666a0d944b2a24c8b670c550, type: 3}
+  - {fileID: 21300000, guid: 1748a4156b7686940a4d2ab7c92f9287, type: 3}
   sceneDataList:
   - type: 0
     battleData:

@@ -391,7 +391,6 @@ public class Card : MonoBehaviour
                 {
                     cardData.cost -= 1;
                     InitCard(cardData);
-                    Debug.Log(1);
                 }
                 break;
         }
