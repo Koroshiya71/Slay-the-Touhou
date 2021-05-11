@@ -14,10 +14,10 @@ public class Relic : MonoBehaviour
         传说遗物
     }
 
+    public Image relicImg;
     public RelicData relicData=new RelicData();
     void Start()
     {
-        
     }
 
     public void InitRelic(RelicData data) //初始化遗物
@@ -26,7 +26,8 @@ public class Relic : MonoBehaviour
         relicData.relicDes = data.relicDes;
         relicData.relicName = data.relicName;
         relicData.relicRare = data.relicRare;
-        GetComponent<Image>().sprite = RelicManager.Instance.relicSpriteList[relicData.relicID];
+        relicImg.sprite = RelicManager.Instance.relicSpriteList[relicData.relicID];
+        relicImg.enabled = true;
     }
     public void OnGetRelic() //获取遗物时触发的事件
     {

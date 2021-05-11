@@ -118,8 +118,7 @@ public class Card : MonoBehaviour
             MenuEventManager.Instance.ExitDisplayButtonDown();
             return;
         }
-        if (isShowCard)//如果是展示用的卡牌则不进行检测
-            return;
+        
         if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
         {
             return;
