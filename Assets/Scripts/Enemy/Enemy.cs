@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public List<Sprite> actionSpriteList = new List<Sprite>();
     public List<Value> stateList = new List<Value>();//状态列表
     public List<Value> newStateList = new List<Value>();//刚添加的状态列表
+    public List<Text> stateStackTextList = new List<Text>();//用来显示状态层数的文本列表
 
     public int actualValue;
     public EnemyData enemyData;//敌人数据
@@ -110,6 +111,11 @@ public class Enemy : MonoBehaviour
             if (StateManager.Instance.stateImgDic.ContainsKey(stateList[i].type))
             {
                 stateImageList[i].sprite = StateManager.Instance.stateImgDic[stateList[i].type];
+                if (stateList[i].value > 0)
+                {
+                    stateStackTextList[i].enabled = true;
+                    stateStackTextList[i].text = stateList[i].value.ToString();
+                }
             }
         }
 

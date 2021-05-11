@@ -91,11 +91,12 @@ public class StateManager : MonoBehaviour
 
             }
         }
-        foreach (var state in Player.Instance.stateList)
+        for(int i=0;i<Player.Instance.stateList.Count;i++)
         {
-            if (state.value==0)
+            if (Player.Instance.stateList[i].value==0)
             {
-                emptyList.Add(state);
+                emptyList.Add(Player.Instance.stateList[i]);
+                Player.Instance.stateStackTextList[i].enabled = false;
             }
         }
 
@@ -129,11 +130,12 @@ public class StateManager : MonoBehaviour
 
                 }
             }
-            foreach (var state in enemy.stateList)
+            for (int i = 0; i < enemy.stateList.Count; i++)
             {
-                if (state.value == 0)
+                if (enemy.stateList[i].value == 0)
                 {
-                    emptyList.Add(state);
+                    emptyList.Add(Player.Instance.stateList[i]);
+                    enemy.stateStackTextList[i].enabled = false;
                 }
             }
 

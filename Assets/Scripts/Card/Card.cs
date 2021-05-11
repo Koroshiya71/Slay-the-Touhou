@@ -237,34 +237,34 @@ public class Card : MonoBehaviour
         string text = "";
         if (desText.text.Contains("残心"))
         {
-            text += "残心：如果使用这张牌后使能量变为0，则在回合结束触发该效果\n";
+            text += "残心：如果使用这张牌后使能量变为0，则在回合结束触发该效果\n\n";
         }
         if (desText.text.Contains("连斩"))
         {
-            text += "连斩X：如果当前回合使用的卡牌数大于X（不计算该牌）则触发该效果\n";
+            text += "连斩X：如果当前回合使用的卡牌数大于X（不计算该牌）则触发该效果\n\n";
         }
 
         if (desText.text.Contains("二刀流"))
         {
-            text += "二刀流：体术牌的伤害减半，但是触发两次\n";
+            text += "二刀流：体术牌的伤害减半，但是触发两次\n\n";
 
         }
         if (desText.text.Contains("流转"))
         {
-            text += "流转：残心效果从回合结束后改为立刻触发\n";
+            text += "流转：残心效果从回合结束后改为立刻触发\n\n";
         }
         if (desText.text.Contains("惊吓"))
         {
-            text += "惊吓：造成的伤害减少30%\n";
+            text += "惊吓：造成的伤害减少30%\n\n";
 
         }
         if (desText.text.Contains("无何有"))
         {
-            text += "无何有：打出后移除本场战斗\n";
+            text += "无何有：打出后移除本场战斗\n\n";
         }
         if (desText.text.Contains("空无"))
         {
-            text += "空无：如果此卡在手牌中且未被打出，回合结束时将会被移除战斗\n";
+            text += "空无：如果此卡在手牌中且未被打出，回合结束时将会被移除战斗\n\n";
         }
 
         return text;

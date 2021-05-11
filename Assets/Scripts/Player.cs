@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     #region UI引用
     public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
+    public List<Text> stateStackTextList = new List<Text>();//用来显示状态层数的文本列表
+
     public Animator effectAnimator;//动效控制器
     public Text hpText;//血条数值文本
     public Slider hpSlider;//血条图片滑动条
@@ -121,7 +123,11 @@ public class Player : MonoBehaviour
             if (StateManager.Instance.stateImgDic.ContainsKey(stateList[i].type))
             {
                 stateImageList[i].sprite = StateManager.Instance.stateImgDic[stateList[i].type];
-
+                if (stateList[i].value>0)
+                {
+                    stateStackTextList[i].enabled = true;
+                    stateStackTextList[i].text = stateList[i].value.ToString();
+                }
             }
         }
 
