@@ -53,4 +53,15 @@ public class Relic : MonoBehaviour
     {
         
     }
+
+    public void OnPointerEnter()//当鼠标进入遗物时触发的事件
+    {
+        RelicManager.Instance.relicInfoText.enabled = true;
+        RelicManager.Instance.relicInfoText.text =relicData.relicName+"\n"+ relicData.relicDes;
+        RelicManager.Instance.relicInfoText.transform.localPosition = transform.localPosition+new Vector3(20,-70,0);
+    }
+    public void OnPointerExit()//当鼠标进入遗物时触发的事件
+    {
+        RelicManager.Instance.relicInfoText.enabled = false;
+    }
 }

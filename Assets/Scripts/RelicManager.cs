@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RelicManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RelicManager : MonoBehaviour
     public List<Sprite> relicSpriteList = new List<Sprite>();//遗物图片列表
     public GameObject relicPrefab;//遗物的预制体
     public GameObject inGameRelics;//游戏内遗物的总父物体
+    public Text relicInfoText;//遗物信息文本
     private void Awake()
     {
         Instance = this;
@@ -32,6 +34,35 @@ public class RelicManager : MonoBehaviour
         }
         newRelic.OnGetRelic();
     }
+
+    public bool CheckRelic(int ID) //查找是否拥有该遗物
+    {
+        foreach (var relic in inGameRelicList)
+        {
+            if (relic.relicData.relicID == ID)
+                return true;
+        }
+        return false;
+    }
+
+    public void RelicEffectOnTurnStart()//在战斗开始时触发的遗物效果
+    {
+        foreach (var relic in inGameRelicList)
+        {
+            switch (relic.relicData.relicID)
+            {
+                case 1://⑨的人偶
+                    BattleManager.Instance.actionsTurnStart.Add((() =>
+                    {
+                        foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                        {
+                            enemy.TakeDamage(9);
+                        }
+                    }));
+                    break;
+            }
+        }
+    }
     void Start()
     {
         
@@ -42,6 +73,10 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             GetRelic(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GetRelic(1);
         }
     }
 }

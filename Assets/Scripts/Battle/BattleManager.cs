@@ -176,6 +176,7 @@ public class BattleManager : MonoBehaviour
         CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.EnemyList);
+        RelicManager.Instance.RelicEffectOnTurnStart();
         TurnStart();
         isInBattle = true;
     }

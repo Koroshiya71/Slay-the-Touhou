@@ -6253,6 +6253,85 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41759e120fa5ee24a8569e12b89f2dd4, type: 3}
+--- !u!1 &599814477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599814478}
+  - component: {fileID: 599814480}
+  - component: {fileID: 599814479}
+  m_Layer: 5
+  m_Name: RelicInfoText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &599814478
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599814477}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 818656253}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 798.48, y: -364.69}
+  m_SizeDelta: {x: 500.14, y: 484.31}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &599814479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599814477}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5601339cce332474799102a8a4f7a03d, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 200
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &599814480
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599814477}
+  m_CullTransparentMesh: 1
 --- !u!1001 &601722945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10074,6 +10153,7 @@ RectTransform:
   - {fileID: 2111269680}
   - {fileID: 1610359387}
   - {fileID: 224057687}
+  - {fileID: 599814478}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22292,11 +22372,17 @@ MonoBehaviour:
     relicRare: 0
     relicName: "\u795E\u793E\u7684\u8D21\u54C1"
     relicDes: "\u83B7\u5F97\u65F6\uFF0C\u83B7\u5F97\u4E00\u6B21\u7A00\u6709\u9009\u724C\u673A\u4F1A"
+  - relicID: 1
+    relicRare: 0
+    relicName: "\u2468\u7684\u4EBA\u5076"
+    relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u6210\u2468\u70B9\u4F24\u5BB3"
   inGameRelicList: []
   relicSpriteList:
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   relicPrefab: {fileID: 8153683969394160642, guid: 94859c637db284246b1d4f10d9c4bbe6, type: 3}
   inGameRelics: {fileID: 120128059}
+  relicInfoText: {fileID: 599814479}
 --- !u!224 &1751436914 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6951523120810265047, guid: 41759e120fa5ee24a8569e12b89f2dd4, type: 3}
