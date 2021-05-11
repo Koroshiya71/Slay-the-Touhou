@@ -42,6 +42,9 @@ public class CardManager : MonoBehaviour
     public Text explanationText;//机制说明文本
     public Text showExplanationText;//机制说明文本
     public GameObject choosingCardPanel;//抽牌滤镜panel
+    public Image showExplanationOutLine;//说明文本外框
+    public Image previewExplanationOutLine;//预览说明文本外框
+
     private void Start()
     {
         showCard.SetActive(false);

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Transactions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,7 @@ public class Card : MonoBehaviour
     public Image backGround;
     //机制解释文本
     public Text explanationText;
+    public Image explanationImg;
     public Text showExplanationText;//手牌中的情况
     #endregion
 
@@ -138,6 +140,10 @@ public class Card : MonoBehaviour
                 showExplanationText.text = "";
 
                 showExplanationText.text = InitExplanation();
+                if (showExplanationText.text!="")
+                {
+                    CardManager.Instance.showExplanationOutLine.enabled = true;
+                }
 
             }
             else
@@ -147,9 +153,12 @@ public class Card : MonoBehaviour
                 showSpellCardGo.GetComponent<Card>().InitCard(cardData);
                 showExplanationText.enabled = true;
                 showExplanationText.text = "";
-
-
                 showExplanationText.text = InitExplanation();
+
+                if (showExplanationText.text != "")
+                {
+                    CardManager.Instance.showExplanationOutLine.enabled = true;
+                }
             }
             return;
         }
@@ -165,8 +174,12 @@ public class Card : MonoBehaviour
                 explanationText.text = "";
                 explanationText.text = InitExplanation();
                 transform.localScale *= 1.5f;
-                explanationText.transform.position = transform.position+new Vector3(2.3f,7.3f,0);
-
+                explanationText.transform.position = transform.position+new Vector3(2.2f,7.3f,0);
+                CardManager.Instance.previewExplanationOutLine.transform.position = transform.position + new Vector3(2.3f, 7.3f, 0);
+                if (explanationText.text.Length>0)
+                {
+                    CardManager.Instance.previewExplanationOutLine.enabled = true;
+                }
                 if (cardData.type == CardType.符卡)
                 {
                     transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 600, 0);
@@ -195,7 +208,10 @@ public class Card : MonoBehaviour
             showExplanationText.text = "";
 
             showExplanationText.text = InitExplanation();
-
+            if (showExplanationText.text != "")
+            {
+                CardManager.Instance.showExplanationOutLine.enabled = true;
+            }
         }
         else
         {
@@ -208,9 +224,11 @@ public class Card : MonoBehaviour
             outLook.localPosition = localPosition;
             showExplanationText.enabled = true;
             showExplanationText.text = "";
-
-
             showExplanationText.text=InitExplanation();
+            if (showExplanationText.text != "")
+            {
+                CardManager.Instance.showExplanationOutLine.enabled = true;
+            }
         }
     }
 
@@ -268,6 +286,7 @@ public class Card : MonoBehaviour
             {
                 transform.localScale /= 1.5f;
                 explanationText.enabled = false;
+                CardManager.Instance.previewExplanationOutLine.enabled = false;
 
                 if (cardData.type == CardType.符卡)
                 {
@@ -292,6 +311,8 @@ public class Card : MonoBehaviour
             localPosition = new Vector3(localPosition.x, posY);
             outLook.localPosition = localPosition;
             showExplanationText.enabled = false;
+            CardManager.Instance.showExplanationOutLine.enabled = false;
+
         }
         else
         {
@@ -301,6 +322,7 @@ public class Card : MonoBehaviour
             localPosition = new Vector3(localPosition.x, posY);
             outLook.localPosition = localPosition;
             showExplanationText.enabled = false;
+            CardManager.Instance.showExplanationOutLine.enabled = false;
 
         }
     }
