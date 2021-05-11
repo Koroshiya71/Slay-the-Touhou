@@ -27402,6 +27402,7 @@ MonoBehaviour:
   explanationText: {fileID: 0}
   explanationImg: {fileID: 0}
   showExplanationText: {fileID: 0}
+  triggerImg: {fileID: 0}
   selectPos: {x: 0, y: 0, z: 0}
 --- !u!114 &3781588656366840544
 MonoBehaviour:
@@ -28267,7 +28268,7 @@ MonoBehaviour:
   outLook: {fileID: 6720600408908097124}
   canXin: 0
   hasUsed: 0
-  isShowCard: 0
+  isShowCard: 1
   cardData:
     type: 0
     name: 
@@ -28309,6 +28310,7 @@ MonoBehaviour:
   explanationText: {fileID: 0}
   explanationImg: {fileID: 0}
   showExplanationText: {fileID: 0}
+  triggerImg: {fileID: 0}
   selectPos: {x: 0, y: 0, z: 0}
 --- !u!1 &7144945437637994363
 GameObject:

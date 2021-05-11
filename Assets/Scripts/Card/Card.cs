@@ -55,6 +55,8 @@ public class Card : MonoBehaviour
     public Text explanationText;
     public Image explanationImg;
     public Text showExplanationText;//手牌中的情况
+    //提示特效
+    public Image triggerImg;
     #endregion
 
     private void Update()
@@ -63,8 +65,40 @@ public class Card : MonoBehaviour
         {
             CardManager.Instance.selectedCard=null;
         }
+        CheckTrigger();
     }
 
+    private void CheckTrigger() //各种特效的触发检测
+    {
+        if (isShowCard)
+        {
+            return;
+        }
+
+        if (cardData.canXinList.Count > 0)
+        {
+            if (Player.Instance.energy == cardData.cost)
+            {
+                triggerImg.enabled = true;
+                return;
+            }
+        }
+
+        if (cardData.comboList.Count > 0)
+        {
+            foreach (var combo in cardData.comboList)
+            {
+                if (BattleManager.Instance.cardCombo>=combo.comboNum)
+                {
+                    
+                        triggerImg.enabled = true;
+                        return;
+                    
+                }
+            }
+        }
+        triggerImg.enabled = false;
+    }
     public Vector3 selectPos;
     public void OnPointerDown()
     {

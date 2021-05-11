@@ -134,7 +134,7 @@ public class StateManager : MonoBehaviour
             {
                 if (enemy.stateList[i].value == 0)
                 {
-                    emptyList.Add(Player.Instance.stateList[i]);
+                    emptyList.Add(enemy.stateList[i]);
                     enemy.stateStackTextList[i].enabled = false;
                 }
             }
