@@ -4099,6 +4099,7 @@ RectTransform:
   - {fileID: 1300604220}
   - {fileID: 1911162420}
   - {fileID: 584716784}
+  - {fileID: 627996809}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7074,6 +7075,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78e2fb69fb318d43bdcf295a65602c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &627996808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627996809}
+  m_Layer: 5
+  m_Name: InGameAllies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &627996809
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627996808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412782857}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &634209034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9951,6 +9987,7 @@ Transform:
   - {fileID: 1054356226}
   - {fileID: 699780923}
   - {fileID: 1745982831}
+  - {fileID: 1324224885}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15625,6 +15662,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78e2fb69fb318d43bdcf295a65602c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1324224884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1324224885}
+  - component: {fileID: 1324224886}
+  m_Layer: 0
+  m_Name: AllyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1324224885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324224884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 807095143}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1324224886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324224884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5439fe654c528214a93479dd1a6c0eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allyDataList:
+  - allyID: 0
+    allyName: "\u4E0A\u6D77\u4EBA\u5F62"
+    allyActionDes: "\u56DE\u5408\u7ED3\u675F\u65F6\u5BF9\u53D7\u4F24\u6700\u4E25\u91CD\u7684\u654C\u4EBA\u9020\u62105\u70B9\u4F24\u5BB3"
+    allyHp: 10
+  allySpriteList:
+  - {fileID: 21300000, guid: 7541b4cf81db5984aaf8a476efb43bda, type: 3}
+  allyPrefab: {fileID: 2472485234474644032, guid: 901bca18ffaec5a4d805d6a4ee9763f8, type: 3}
+  inGameAllies: {fileID: 627996808}
 --- !u!1001 &1324292865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22376,6 +22465,10 @@ MonoBehaviour:
     relicRare: 0
     relicName: "\u2468\u7684\u4EBA\u5076"
     relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u6210\u2468\u70B9\u4F24\u5BB3"
+  - relicID: 2
+    relicRare: 0
+    relicName: "\u4E0A\u6D77\u4EBA\u5F62"
+    relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u751F\u6210\u4E00\u4E2A\u53CB\u65B9\u53EC\u5524\u7269\uFF0C\u5177\u670910hp\u3002\u884C\u52A8\u4E3A\u5BF9\u53D7\u4F24\u6700\u4E25\u91CD\u7684\u654C\u4EBA\u9020\u62105\u70B9\u4F24\u5BB3"
   inGameRelicList: []
   relicSpriteList:
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}

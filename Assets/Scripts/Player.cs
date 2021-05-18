@@ -88,15 +88,48 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(int damage)//结算受到的伤害
     {
-        if (shield >= damage)
+        List<Ally> cleanAllies = new List<Ally>();//计算伤害后应该清除的友方单位
+        if (damage<=shield)
         {
             shield -= damage;
+            damage = 0;
+            
         }
         else
         {
-            hp -= damage - shield;
             shield = 0;
+            damage -= shield;
+            if (AllyManager.Instance.inGameAlliesList.Count > 0)
+            {
+                for (int i = 0; i < AllyManager.Instance.inGameAlliesList.Count; i++)
+                {
+                    Ally thisAlly = AllyManager.Instance.inGameAlliesList[i];
+                    if (damage <thisAlly.currentHp)
+                    {
+                        thisAlly.currentHp -= damage;
+                        damage = 0;
+                        break;
+                    }
+                    else
+                    {
+                        damage -= thisAlly.currentHp;
+                        cleanAllies.Add(thisAlly);
+                    }
+                }
+            }
         }
+
+        foreach (var ally in cleanAllies)
+        {
+            AllyManager.Instance.inGameAlliesList.Remove(ally);
+            Destroy(ally.gameObject);
+        }
+
+        if (damage<=0)
+        {
+            return;
+        }
+        hp -= damage;
     }
 
     public bool CheckState(Value.ValueType stateType) //状态检测

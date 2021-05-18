@@ -218,3 +218,11 @@ public class RelicData //遗物的数据
     public string relicName;//遗物的名称
     public string relicDes;//遗物的描述
 }
+[Serializable]
+public class AllyData //友方单位的数据
+{
+    public int allyID;//友方单位的ID
+    public string allyName;//友方单位的名称
+    public string allyActionDes;//友方单位行为的描述
+    public int allyHp;//友方单位的血量
+}
