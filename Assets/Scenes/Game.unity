@@ -22469,9 +22469,16 @@ MonoBehaviour:
   - relicID: 2
     relicRare: 0
     relicName: "\u4E0A\u6D77\u4EBA\u5F62"
-    relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u751F\u6210\u4E00\u4E2A\u53CB\u65B9\u53EC\u5524\u7269\uFF0C\u5177\u670910hp\u3002\u884C\u52A8\u4E3A\u5BF9\u53D7\u4F24\u6700\u4E25\u91CD\u7684\u654C\u4EBA\u9020\u62105\u70B9\u4F24\u5BB3"
+    relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u751F\u6210\u4E00\u4E2A\u4E0A\u6D77\u4EBA\u5F62\uFF0C\u5177\u670910hp\uFF0C\u56DE\u5408\u7ED3\u675F\u65F6\u5BF9\u8840\u91CF\u6700\u5C11\u7684\u654C\u4EBA\u9020\u62105\u70B9\u4F24\u5BB3"
+  - relicID: 3
+    relicRare: 0
+    relicName: "\u5077\u6765\u7684\u4E66"
+    relicDes: "\u5982\u679C\u4F60\u5728\u56DE\u5408\u4E2D\u6CA1\u6709\u7528\u5B8C\u80FD\u91CF\uFF0C\u5728\u4E0B\u4E2A\u56DE\u5408\u83B7\u5F971\u70B9\u989D\u5916\u7684\u80FD\u91CF"
   inGameRelicList: []
   relicSpriteList:
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}

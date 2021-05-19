@@ -57,6 +57,7 @@ public class BattleManager : MonoBehaviour
         {
             ally.OnTurnEnd();
         }
+        RelicManager.Instance.RelicEffectOnTurnEnd();
         if (Player.Instance.CheckState(Value.ValueType.额外回合))//如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
         {
             extraTurn = true;

@@ -66,6 +66,25 @@ public class RelicManager : MonoBehaviour
             }
         }
     }
+    public void RelicEffectOnTurnEnd()//在回合结束时触发的遗物效果
+    {
+        foreach (var relic in inGameRelicList)
+        {
+            switch (relic.relicData.relicID)
+            {
+                case 3://偷来的书
+                    if (Player.Instance.energy>0)
+                    {
+                        BattleManager.Instance.actionsTurnStart.Add((() =>
+                        {
+                            Player.Instance.GetEnergy(1);
+                        }));
+                    }
+                    
+                    break;
+            }
+        }
+    }
 
     void Start()
     {
@@ -85,6 +104,18 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             GetRelic(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GetRelic(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            GetRelic(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            GetRelic(5);
         }
     }
 }
