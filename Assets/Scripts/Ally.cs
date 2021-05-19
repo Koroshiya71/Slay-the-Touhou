@@ -35,14 +35,15 @@ public class Ally : MonoBehaviour
                     for (int i = 1; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
                     {
 
-                        if (minHp < EnemyManager.Instance.InGameEnemyList[i].hp)
+                        if (minHp >= EnemyManager.Instance.InGameEnemyList[i].hp)
                         {
+                            minHp = EnemyManager.Instance.InGameEnemyList[i].hp;
                             index = i;
                         }
                     }
                     EnemyManager.Instance.InGameEnemyList[index].TakeDamage(5);
+                    Debug.Log(minHp);
                 }
-                
                 break;
         }
     }

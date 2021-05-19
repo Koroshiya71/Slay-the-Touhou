@@ -52,6 +52,11 @@ public class BattleManager : MonoBehaviour
 
             actionsEndTurn = new List<Action>();
         }
+
+        foreach (var ally in AllyManager.Instance.inGameAlliesList)
+        {
+            ally.OnTurnEnd();
+        }
         if (Player.Instance.CheckState(Value.ValueType.额外回合))//如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
         {
             extraTurn = true;
@@ -176,7 +181,7 @@ public class BattleManager : MonoBehaviour
         CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.EnemyList);
-        RelicManager.Instance.RelicEffectOnTurnStart();
+        RelicManager.Instance.RelicEffectOnBattleStart();
         TurnStart();
         isInBattle = true;
     }

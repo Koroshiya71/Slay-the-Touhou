@@ -135,10 +135,7 @@ public class Enemy : MonoBehaviour
         }
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
-        if (hp<=0)
-        {
-            EnemyDie();
-        }
+        
         if (currentEnemyAction!=null)
         {
             if (enemyData.ID==7)
@@ -256,6 +253,10 @@ public class Enemy : MonoBehaviour
         {
             hp -= damage - shield;
             shield = 0;
+        }
+        if (hp <= 0)
+        {
+            EnemyDie();
         }
     }
 

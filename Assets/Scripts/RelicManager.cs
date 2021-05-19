@@ -45,7 +45,7 @@ public class RelicManager : MonoBehaviour
         return false;
     }
 
-    public void RelicEffectOnTurnStart()//在战斗开始时触发的遗物效果
+    public void RelicEffectOnBattleStart()//在战斗开始时触发的遗物效果
     {
         foreach (var relic in inGameRelicList)
         {
@@ -60,9 +60,13 @@ public class RelicManager : MonoBehaviour
                         }
                     }));
                     break;
+                case 2://上海人形
+                    AllyManager.Instance.CreateAlly(0);
+                    break;
             }
         }
     }
+
     void Start()
     {
         
@@ -77,6 +81,10 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             GetRelic(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GetRelic(2);
         }
     }
 }
