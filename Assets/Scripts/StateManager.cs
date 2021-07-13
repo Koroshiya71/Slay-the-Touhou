@@ -77,7 +77,6 @@ public class StateManager : MonoBehaviour
                 case Value.ValueType.额外回合:
                 case Value.ValueType.体术以外禁止:
                 case Value.ValueType.体术限制:
-
                 case Value.ValueType.技能限制:
                 case Value.ValueType.法术限制:
                 case Value.ValueType.防御限制:
@@ -88,6 +87,7 @@ public class StateManager : MonoBehaviour
                 case Value.ValueType.抽牌减1:
                 case Value.ValueType.灵体:
                 case Value.ValueType.魂体:
+                case Value.ValueType.神隐:
 
                     state.value--;
                     break;

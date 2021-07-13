@@ -83,6 +83,17 @@ public class StateImg : MonoBehaviour
                 case Value.ValueType.重伤:
                     stateExplanationText.text += "获取的护甲减少30%";
                     break;
+
+                case Value.ValueType.灵体:
+                    stateExplanationText.text += "受到的体术伤害减少30%";
+                    break;
+                case Value.ValueType.魂体:
+                    stateExplanationText.text += "受到的弹幕伤害减少30%";
+                    break;
+
+                case Value.ValueType.神隐:
+                    stateExplanationText.text += "本回合受到的伤害变为0";
+                    break;
             }
         else
             switch (thisEnemy.stateList[index].type)

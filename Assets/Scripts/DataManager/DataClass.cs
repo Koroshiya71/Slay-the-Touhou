@@ -155,7 +155,8 @@ public class Value
         保留护甲,
         增幅,
         净化,
-        焕发
+        焕发,
+        神隐
     }
     public ValueType type;
     public int value;

@@ -170,8 +170,10 @@ public class CardEffectManager : MonoBehaviour
         {
             if (card.valueDic.ContainsKey(Value.ValueType.伤害)) //伤害结算
                 for (var t = 0; t < card.cardData.times; t++)
-                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                {
+                    for (var j = 0; j < EnemyManager.Instance.InGameEnemyList.Count; j++)
                     {
+                        var enemy = EnemyManager.Instance.InGameEnemyList[j];
                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                         {
@@ -180,6 +182,8 @@ public class CardEffectManager : MonoBehaviour
                         else
                             enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
                     }
+                      
+                }
 
             //残心检测
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)

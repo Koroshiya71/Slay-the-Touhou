@@ -13,6 +13,7 @@ public class RelicManager : MonoBehaviour
     public GameObject relicPrefab;//遗物的预制体
     public GameObject inGameRelics;//游戏内遗物的总父物体
     public Text relicInfoText;//遗物信息文本
+    public bool isWuShu = false;//武术姿态是否触发
     private void Awake()
     {
         Instance = this;
@@ -105,43 +106,44 @@ public class RelicManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+
+        if (Input.GetKeyDown(KeyCode.A))
         {
             GetRelic(0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             GetRelic(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             GetRelic(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             GetRelic(3);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GetRelic(4);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             GetRelic(5);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             GetRelic(6);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             GetRelic(7);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             GetRelic(8);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             GetRelic(9);
         }

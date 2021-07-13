@@ -52,6 +52,11 @@ public class Relic : MonoBehaviour
                 //回复75%生命值
                 Player.Instance.Recover((int)(0.75 * Player.Instance.maxHp));
                 break;
+
+            case 8://紫的阳伞
+                //将回合数置0
+                BattleManager.Instance.yokariPrasolCount = 0;
+                break;
         }
     }
     void Update()

@@ -8,147 +8,122 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public bool turnHasEnd;
-    public List<Action> actionsEndTurn = new List<Action>();//回合结束时触发的效果
-    public List<Action> actionsTurnStart = new List<Action>();//回合开始时触发的效果
-    public bool hasCanXin;//上回合是否触发过残心
-    public int effectTimes;//卡牌效果触发的次数
-    public int cardCombo;//本回合使用的卡牌数量
-    public bool extraTurn;//该回合是否是额外回合
-    public int tiShuCardCombo;//本回合使用的体术牌数量
+    public List<Action> actionsEndTurn = new List<Action>(); //回合结束时触发的效果
+    public List<Action> actionsTurnStart = new List<Action>(); //回合开始时触发的效果
+    public bool hasCanXin; //上回合是否触发过残心
+    public int effectTimes; //卡牌效果触发的次数
+    public int cardCombo; //本回合使用的卡牌数量
+    public bool extraTurn; //该回合是否是额外回合
+    public int tiShuCardCombo; //本回合使用的体术牌数量
+    public int yokariPrasolCount;//回合数
+    public int danmakuCardCombo; //本回合使用的体术牌数量
 
-    public int danmakuCardCombo;//本回合使用的体术牌数量
-
-    public GameObject enemyPrefab;//敌人预制体
-    public bool isInBattle;//是否正在战斗中
-    public List<BattleData> normalBattleDataList = new List<BattleData>();//保存所有普通战斗场景数据的列表
-    public List<BattleData> eliteBattleDataList = new List<BattleData>();//保存所有精英战斗场景数据的列表
-    public int battleExp;//本场战斗累积的经验值
-    public int battleGold;//本场战斗累积的金币
+    public GameObject enemyPrefab; //敌人预制体
+    public bool isInBattle; //是否正在战斗中
+    public List<BattleData> normalBattleDataList = new List<BattleData>(); //保存所有普通战斗场景数据的列表
+    public List<BattleData> eliteBattleDataList = new List<BattleData>(); //保存所有精英战斗场景数据的列表
+    public int battleExp; //本场战斗累积的经验值
+    public int battleGold; //本场战斗累积的金币
     public List<Vector2> enemyPositionList = new List<Vector2>();
-    public GameObject statisticImage;//结算面板
-    public Text getExpText;//获取经验文本
-    public Text getGoldText;//获取金币文本
-    public Text turnStartAndEndText;//回合结束文本
+    public GameObject statisticImage; //结算面板
+    public Text getExpText; //获取经验文本
+    public Text getGoldText; //获取金币文本
+    public Text turnStartAndEndText; //回合结束文本
+
     public void TurnEnd()
     {
-        if (CardManager.Instance.isChoosingFromHand)//如果正在进行选牌，则跳过检测
-        {
+        if (CardManager.Instance.isChoosingFromHand) //如果正在进行选牌，则跳过检测
             return;
-        }
-        if (turnHasEnd)//如果回合已结束在进行运行其他方法时跳过检测
-        {
+        if (turnHasEnd) //如果回合已结束在进行运行其他方法时跳过检测
             return;
-        }
-        if (MenuEventManager.Instance.isPreviewing)//如果正在进行卡牌预览则不进行检测
-        {
+        if (MenuEventManager.Instance.isPreviewing) //如果正在进行卡牌预览则不进行检测
             return;
-        }
 
         hasCanXin = false;
 
         if (actionsEndTurn != null)
         {
-            foreach (var action in actionsEndTurn)
-            {
-                action();
-            }
+            foreach (var action in actionsEndTurn) action();
 
             actionsEndTurn = new List<Action>();
         }
 
-        foreach (var ally in AllyManager.Instance.inGameAlliesList)
-        {
-            ally.OnTurnEnd();
-        }
+        foreach (var ally in AllyManager.Instance.inGameAlliesList) ally.OnTurnEnd();
         RelicManager.Instance.RelicEffectOnTurnEnd();
-        if (Player.Instance.CheckState(Value.ValueType.额外回合))//如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
+        if (Player.Instance.CheckState(Value.ValueType.额外回合)) //如果玩家拥有额外回合跳过敌人行动直接开始新的玩家回合
         {
             extraTurn = true;
             TurnStart();
             return;
         }
+
         turnStartAndEndText.enabled = true;
         turnStartAndEndText.text = "敌方回合";
         Invoke(nameof(NotShowTurnText), 0.5f);
 
-        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
-        {
+        for (var i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
             if (!EnemyManager.Instance.InGameEnemyList[i].CheckState(Value.ValueType.保留护甲))
-            {
                 EnemyManager.Instance.InGameEnemyList[i].shield = 0;
-
-            }
-        }
 
         //在执行行动前清空全新状态列表
         Player.Instance.newStateList = new List<Value>();
 
-        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
-        {
+        for (var i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
             EnemyManager.Instance.InGameEnemyList[i].newStateList = new List<Value>();
-        }
-        for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
-        {
+        for (var i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
-        }
 
 
         Invoke(nameof(TurnStart), 1);
 
-        if (!Player.Instance.CheckState(Value.ValueType.保留手牌))
-        {
-            CardManager.Instance.DropAllCard();
-
-        }
+        if (!Player.Instance.CheckState(Value.ValueType.保留手牌)) CardManager.Instance.DropAllCard();
         turnHasEnd = true;
         cardCombo = 0;
         tiShuCardCombo = 0;
     }
-
+    //回合开始
     public void TurnStart()
     {
-        if (!extraTurn)
+        yokariPrasolCount++;
+        //如果紫的阳伞计数可以整除7，且拥有遗物紫的阳伞，则获得一层神隐
+        if (yokariPrasolCount % 7 == 0 && RelicManager.Instance.CheckRelic(8))
         {
-            foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+            StateManager.AddStateToPlayer(new Value()
             {
-                enemy.UpdateCurrentAction();
-            }
+                type=Value.ValueType.神隐,
+                value=1
+                
+            });
+            yokariPrasolCount = 0;
+            Debug.Log("神隐触发");
         }
+        if (!extraTurn)
+            foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                enemy.UpdateCurrentAction();
         turnStartAndEndText.enabled = true;
         turnStartAndEndText.text = "玩家回合";
         Invoke(nameof(NotShowTurnText), 0.5f);
         turnHasEnd = false;
         Player.Instance.InitEnergy();
-        StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
-        StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
+        StateManager.UpdatePlayerState(); //对玩家身上的状态进行更新
+        StateManager.UpdateEnemiesState(); //对敌人身上的状态进行更新
 
-        if (!extraTurn)//如果是额外回合，则不清除护甲并保留手牌
-        {
+        if (!extraTurn) //如果是额外回合，则不清除护甲并保留手牌
             Player.Instance.shield = 0;
-        }
         extraTurn = false;
-        int drawCardNum = Player.Instance.CheckState(Value.ValueType.抽牌减1)
+        var drawCardNum = Player.Instance.CheckState(Value.ValueType.抽牌减1)
             ? Player.Instance.drawCardNum - 1
             : Player.Instance.drawCardNum;
 
-        foreach (var card in CardManager.Instance.handCardList)
-        {
-            card.GetComponent<Card>().UpdateCardState();
-
-        }
+        foreach (var card in CardManager.Instance.handCardList) card.GetComponent<Card>().UpdateCardState();
         if (actionsTurnStart != null)
         {
-            foreach (var action in actionsTurnStart)
-            {
-                action();
-            }
+            foreach (var action in actionsTurnStart) action();
 
             actionsTurnStart = new List<Action>();
         }
-        for (int i = 0; i < drawCardNum; i++)
-        {
-            CardManager.Instance.DrawCard();
-        }
+
+        for (var i = 0; i < drawCardNum; i++) CardManager.Instance.DrawCard();
     }
 
     private void Awake()
@@ -156,35 +131,43 @@ public class BattleManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         SceneManager.Instance.battleSceneCanvas.enabled = false;
         InitEnemyPosList();
         statisticImage.SetActive(false);
     }
 
-    void InitEnemyPosList()
+    private void InitEnemyPosList()
     {
-        enemyPositionList.Add((new Vector2(4.5f, 0)));
-        enemyPositionList.Add((new Vector2(2.5f, 0)));
-        enemyPositionList.Add((new Vector2(6.5f, 0)));
-        enemyPositionList.Add((new Vector2(4.5f, 3)));
-        enemyPositionList.Add((new Vector2(4.5f, -3)));
-        enemyPositionList.Add((new Vector2(2.5f, 3)));
-        enemyPositionList.Add((new Vector2(2.5f, -3)));
-        enemyPositionList.Add((new Vector2(6.5f, 3)));
-        enemyPositionList.Add((new Vector2(6.5f, -3)));
+        enemyPositionList.Add(new Vector2(4.5f, 0));
+        enemyPositionList.Add(new Vector2(2.5f, 0));
+        enemyPositionList.Add(new Vector2(6.5f, 0));
+        enemyPositionList.Add(new Vector2(4.5f, 3));
+        enemyPositionList.Add(new Vector2(4.5f, -3));
+        enemyPositionList.Add(new Vector2(2.5f, 3));
+        enemyPositionList.Add(new Vector2(2.5f, -3));
+        enemyPositionList.Add(new Vector2(6.5f, 3));
+        enemyPositionList.Add(new Vector2(6.5f, -3));
     }
-    public void BattleStart(BattleData data)//战斗开始
+
+    public void BattleStart(BattleData data) //战斗开始
     {
         battleExp = 0;
         battleGold = 0;
+        RelicManager.Instance.isWuShu = false;
         SceneManager.Instance.battleSceneCanvas.enabled = true;
         SceneManager.Instance.mapSceneCanvas.enabled = false;
         StateManager.Instance.InitPlayerState();
         CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
         CreateEnemies(data.EnemyList);
+        if (data.EnemyList.Count >= 3 && RelicManager.Instance.CheckRelic(7))
+        {
+            RelicManager.Instance.isWuShu = true;
+
+        }
+
         RelicManager.Instance.RelicEffectOnBattleStart();
         TurnStart();
         isInBattle = true;
@@ -205,39 +188,31 @@ public class BattleManager : MonoBehaviour
 
     public void CreateEnemies(List<BattleData.SceneEnemy> enemyList) //创建敌人
     {
-
         foreach (var enemyS in enemyList)
-        {
-            foreach (var enemy in EnemyManager.Instance.enemyDataList)
-            {
-                if (enemy.ID == enemyS.ID)
-                {
-                    Enemy newEnemy = Instantiate(enemyPrefab, enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
-                    newEnemy.InitEnemy(enemy);
-                    Transform transform1;
-                    (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
-                    transform1.localScale = new Vector3(1, 1, 1);
-                    break;
-                }
-            }
-
-        }
-    }
-
-    public void CreateEnemy(int enemyID, Vector2 pos)
-    {
         foreach (var enemy in EnemyManager.Instance.enemyDataList)
-        {
-            if (enemy.ID == enemyID)
+            if (enemy.ID == enemyS.ID)
             {
-                Enemy newEnemy = Instantiate(enemyPrefab, pos, Quaternion.identity).GetComponent<Enemy>();
+                var newEnemy = Instantiate(enemyPrefab, enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
                 newEnemy.InitEnemy(enemy);
                 Transform transform1;
                 (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
                 transform1.localScale = new Vector3(1, 1, 1);
                 break;
             }
-        }
+    }
+
+    public void CreateEnemy(int enemyID, Vector2 pos)
+    {
+        foreach (var enemy in EnemyManager.Instance.enemyDataList)
+            if (enemy.ID == enemyID)
+            {
+                var newEnemy = Instantiate(enemyPrefab, pos, Quaternion.identity).GetComponent<Enemy>();
+                newEnemy.InitEnemy(enemy);
+                Transform transform1;
+                (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
+                transform1.localScale = new Vector3(1, 1, 1);
+                break;
+            }
     }
 
     public void NotShowTurnText() //取消回合文本显示
@@ -245,8 +220,7 @@ public class BattleManager : MonoBehaviour
         turnStartAndEndText.enabled = false;
     }
 
-    void Update()
+    private void Update()
     {
-
     }
 }
