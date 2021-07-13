@@ -177,10 +177,13 @@ public class CardEffectManager : MonoBehaviour
                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                         {
-                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f
+                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                         }
                         else
-                            enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害]
+                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                        
                     }
                       
                 }
@@ -199,15 +202,19 @@ public class CardEffectManager : MonoBehaviour
                         case Value.ValueType.伤害:
                             if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
-                                foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                for (var j = 0; j < EnemyManager.Instance.InGameEnemyList.Count; j++)
                                 {
+                                    var enemy = EnemyManager.Instance.InGameEnemyList[j];
                                     if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                                         (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                     {
-                                        enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                                        enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                     }
                                     else
-                                        enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                                        enemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                               * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+
                                 }
 
                                 break;
@@ -222,26 +229,32 @@ public class CardEffectManager : MonoBehaviour
                                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
-                                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                                            enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                         }
                                         else
-                                            enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                                            enemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+
                                     }
 
                                 });
                             else
                                 BattleManager.Instance.actionsTurnStart.Add(() =>
                                 {
-                                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                    for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
                                     {
-
+                                        var enemy = EnemyManager.Instance.InGameEnemyList[i];
                                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
-                                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                                            enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                         }
                                         else
-                                            enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                                            enemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+
                                     }
                                 });
                             break;
@@ -323,15 +336,19 @@ public class CardEffectManager : MonoBehaviour
                             switch (combo.comboValue.type)
                             {
                                 case Value.ValueType.伤害:
-                                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                    for (int k = 0; k < EnemyManager.Instance.InGameEnemyList.Count; k++)
                                     {
+                                        var enemy = EnemyManager.Instance.InGameEnemyList[k];
                                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
-                                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                                            enemy.TakeDamage((int)(combo.comboValue.value * 0.7f
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                         }
                                         else
-                                            enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                                            enemy.TakeDamage((int)(combo.comboValue.value
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+
                                     }
                                     break;
                                 case Value.ValueType.护甲:
@@ -377,10 +394,12 @@ public class CardEffectManager : MonoBehaviour
                     if ((targetEnemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                         (targetEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                     {
-                        targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                        targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f
+                            *(RelicManager.Instance.CheckRelic(11)?1.5f:1.0f)));
                     }
                     else
-                        targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                        targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害]
+                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                 }
 
             if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))
@@ -397,21 +416,48 @@ public class CardEffectManager : MonoBehaviour
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
+                            if (attackedEnemy == null)
+                                break;
                             if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
-                                targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                                if ((attackedEnemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
+                                    (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
+                                {
+                                    attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                        * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                }
+                                else
+                                    attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+
                                 break;
                             }
 
                             if (canXin.IsTurnEnd)
                                 BattleManager.Instance.actionsEndTurn.Add(() =>
                                 {
-                                    attackedEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    if ((attackedEnemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
+                                        (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
+                                    {
+                                        attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                    }
+                                    else
+                                        attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                 });
                             else
                                 BattleManager.Instance.actionsTurnStart.Add(() =>
                                 {
-                                    attackedEnemy.TakeDamage(canXin.CanXinValue.value);
+                                    if ((attackedEnemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
+                                        (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
+                                    {
+                                        attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                    }
+                                    else
+                                        attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                 });
                             break;
                         case Value.ValueType.护甲:
@@ -466,7 +512,15 @@ public class CardEffectManager : MonoBehaviour
                             switch (combo.comboValue.type)
                             {
                                 case Value.ValueType.伤害:
-                                    targetEnemy.TakeDamage(combo.comboValue.value);
+                                    if ((attackedEnemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
+                                        (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
+                                    {
+                                        attackedEnemy.TakeDamage((int)(combo.comboValue.value * 0.7f
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                    }
+                                    else
+                                        attackedEnemy.TakeDamage((int)(combo.comboValue.value
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
                                     break;
                                 case Value.ValueType.护甲:
                                     Player.Instance.GetShield(combo.comboValue.value);
@@ -527,23 +581,24 @@ public class CardEffectManager : MonoBehaviour
                     switch (canXin.CanXinValue.type)
                     {
                         case Value.ValueType.伤害:
-                            if (Player.Instance.CheckState(Value.ValueType.流转))
-                            {
-                                targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                break;
-                            }
+                            //if (Player.Instance.CheckState(Value.ValueType.流转))
+                            //{
+                            //    targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                            //    break;
+                            //}
 
-                            if (canXin.IsTurnEnd)
-                                BattleManager.Instance.actionsEndTurn.Add(() =>
-                                {
-                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                });
-                            else
-                                BattleManager.Instance.actionsTurnStart.Add(() =>
-                                {
-                                    targetEnemy.TakeDamage(canXin.CanXinValue.value);
-                                });
+                            //if (canXin.IsTurnEnd)
+                            //    BattleManager.Instance.actionsEndTurn.Add(() =>
+                            //    {
+                            //        targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                            //    });
+                            //else
+                            //    BattleManager.Instance.actionsTurnStart.Add(() =>
+                            //    {
+                            //        targetEnemy.TakeDamage(canXin.CanXinValue.value);
+                            //    });
                             break;
+
                         case Value.ValueType.护甲:
                             if (Player.Instance.CheckState(Value.ValueType.流转))
                             {
@@ -614,7 +669,7 @@ public class CardEffectManager : MonoBehaviour
                             switch (combo.comboValue.type)
                             {
                                 case Value.ValueType.伤害:
-                                    targetEnemy.TakeDamage(combo.comboValue.value);
+                                    //targetEnemy.TakeDamage(combo.comboValue.value);
                                     break;
                                 case Value.ValueType.护甲:
                                     Player.Instance.GetShield(combo.comboValue.value);

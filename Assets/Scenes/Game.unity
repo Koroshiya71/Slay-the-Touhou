@@ -14488,7 +14488,7 @@ MonoBehaviour:
   cardCombo: 0
   extraTurn: 0
   tiShuCardCombo: 0
-  turnNum: 0
+  yokariPrasolCount: 0
   danmakuCardCombo: 0
   enemyPrefab: {fileID: 6505259454138462036, guid: 68516ca82c79b444bb8f034e7d4d78e2, type: 3}
   isInBattle: 0
@@ -22496,8 +22496,35 @@ MonoBehaviour:
     relicRare: 1
     relicName: "\u7D2B\u7684\u9633\u4F1E"
     relicDes: "\u6BCF\u8FC77\u4E2A\u56DE\u5408\uFF0C\u4F60\u83B7\u5F97\u4E00\u56DE\u5408\u7684\u3010\u795E\u9690\u3011"
+  - relicID: 9
+    relicRare: 1
+    relicName: "\u5C71\u7AE5\u7684\u94B1\u5305"
+    relicDes: "\u6218\u6597\u83B7\u5F97\u91D1\u94B1\u589E\u52A020%"
+  - relicID: 10
+    relicRare: 1
+    relicName: "\u56E2\u5B50"
+    relicDes: "\u6218\u6597\u83B7\u5F97\u7684\u7ECF\u9A8C\u589E\u52A020%"
+  - relicID: 11
+    relicRare: 2
+    relicName: "\u5F31\u8089\u5F3A\u98DF\u4E4B\u8BC1"
+    relicDes: "\u4F60\u9020\u6210\u7684\u4F24\u5BB3\u4E3A1.5\u500D\u3002\u76F8\u5BF9\u7684\uFF0C\u4F60\u53D7\u5230\u7684\u4F24\u5BB3\u4E3A2\u500D"
+  - relicID: 10
+    relicRare: 1
+    relicName: "\u56E2\u5B50"
+    relicDes: "\u6218\u6597\u83B7\u5F97\u7684\u7ECF\u9A8C\u589E\u52A020%"
   inGameRelicList: []
   relicSpriteList:
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}

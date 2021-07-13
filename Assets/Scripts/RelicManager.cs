@@ -101,51 +101,64 @@ public class RelicManager : MonoBehaviour
 
     void Start()
     {
-
+        TestGetRelic();
     }
+    //测试用遗物获取方法
 
-    void Update()
+    void TestGetRelic()
     {
-
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))//神社的贡品
         {
             GetRelic(0);
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B))//⑨的人偶
         {
             GetRelic(1);
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))//上海人形
         {
             GetRelic(2);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))//偷来的书
         {
             GetRelic(3);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))//植轮人偶
         {
             GetRelic(4);
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))//御守
         {
             GetRelic(5);
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))//小阴阳玉
         {
             GetRelic(6);
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H))//武术心得
         {
             GetRelic(7);
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))//紫的阳伞
         {
             GetRelic(8);
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))//山童的钱包
         {
             GetRelic(9);
         }
+        if (Input.GetKeyDown(KeyCode.K))//团子
+        {
+            GetRelic(10);
+        }
+        if (Input.GetKeyDown(KeyCode.L))//弱肉强食之证
+        {
+            GetRelic(11);
+        }
+    }
+    void Update()
+    {
+        TestGetRelic();
+       
     }
 }

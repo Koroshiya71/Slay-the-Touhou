@@ -177,6 +177,15 @@ public class BattleManager : MonoBehaviour
     {
         hasCanXin = false;
         statisticImage.SetActive(true);
+        if (RelicManager.Instance.CheckRelic(9))
+        {
+            battleGold = (int) (battleGold * 1.2);
+        }
+
+        if (RelicManager.Instance.CheckRelic(10))
+        {
+            battleExp = (int) (battleExp * 1.2);
+        }
         getExpText.text = "获得经验   " + battleExp;
         getGoldText.text = "获得金币   " + battleGold;
         Player.Instance.GetExp(battleExp);

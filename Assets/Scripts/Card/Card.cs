@@ -75,6 +75,8 @@ public class Card : MonoBehaviour
             return;
         }
 
+        if (triggerImg == null)
+            return;
         if (cardData.canXinList.Count > 0)
         {
             if (Player.Instance.energy == cardData.cost)

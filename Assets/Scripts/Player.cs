@@ -104,6 +104,11 @@ public class Player : MonoBehaviour
         {
             damage = 0;
         }
+        //如果有弱肉强食之证，则受到的伤害翻倍
+        if (RelicManager.Instance.CheckRelic(11))
+        {
+            damage *= 2;
+        }
         if (CheckState(Value.ValueType.灵体) && CheckState(Value.ValueType.魂体)) damage = (int) (0.7f * damage);
         if (damage <= shield)
         {
