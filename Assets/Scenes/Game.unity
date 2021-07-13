@@ -14488,6 +14488,7 @@ MonoBehaviour:
   cardCombo: 0
   extraTurn: 0
   tiShuCardCombo: 0
+  danmakuCardCombo: 0
   enemyPrefab: {fileID: 6505259454138462036, guid: 68516ca82c79b444bb8f034e7d4d78e2, type: 3}
   isInBattle: 0
   normalBattleDataList:
@@ -22474,8 +22475,23 @@ MonoBehaviour:
     relicRare: 0
     relicName: "\u5077\u6765\u7684\u4E66"
     relicDes: "\u5982\u679C\u4F60\u5728\u56DE\u5408\u4E2D\u6CA1\u6709\u7528\u5B8C\u80FD\u91CF\uFF0C\u5728\u4E0B\u4E2A\u56DE\u5408\u83B7\u5F971\u70B9\u989D\u5916\u7684\u80FD\u91CF"
+  - relicID: 4
+    relicRare: 0
+    relicName: "\u690D\u8F6E\u4EBA\u5076"
+    relicDes: "\u6218\u6597\u5F00\u59CB\u65F6\uFF0C\u83B7\u5F97\u4E8C\u56DE\u5408\u7684\u7075\u4F53\u548C\u9B42\u4F53"
+  - relicID: 5
+    relicRare: 0
+    relicName: "\u5FA1\u5B88"
+    relicDes: "\u83B7\u5F97\u65F6\uFF0C\u6062\u590D\u7B49\u540C\u4E8E75%\u6700\u5927\u751F\u547D\u503C\u7684\u751F\u547D\u503C"
+  - relicID: 6
+    relicRare: 0
+    relicName: "\u5C0F\u9634\u9633\u7389"
+    relicDes: "\u6BCF\u5F53\u4F60\u6253\u51FA\u4E24\u5F20\u5F39\u5E55\u724C\uFF0C\u5BF9\u968F\u673A\u4E00\u4E2A\u654C\u4EBA\u9020\u62102\u70B9\u5F39\u5E55\u4F24\u5BB3"
   inGameRelicList: []
   relicSpriteList:
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
+  - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}

@@ -86,6 +86,9 @@ public class StateManager : MonoBehaviour
                 case Value.ValueType.保留手牌:
                 case Value.ValueType.重伤:
                 case Value.ValueType.抽牌减1:
+                case Value.ValueType.灵体:
+                case Value.ValueType.魂体:
+
                     state.value--;
                     break;
 

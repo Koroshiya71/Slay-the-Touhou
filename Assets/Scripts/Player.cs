@@ -17,18 +17,18 @@ public class Player : MonoBehaviour
     public List<int> levelExpList = new List<int>();
     public int currentExp;
     public int maxHp;//最大生命值
-    public int hp ;//当前生命值
+    public int hp;//当前生命值
     public int shield;//护盾值
     public int drawCardNum;//每回合抽牌数
     public int energy;//当前能量值
     public int maxEnergy;//能量值上限
-    public List<Value> stateList=new List<Value>();//状态列表
+    public List<Value> stateList = new List<Value>();//状态列表
     public List<Value> newStateList = new List<Value>();//刚添加的状态列表
 
     #endregion
 
     #region UI引用
-    public List<Image> stateImageList=new List<Image>();//用来显示状态的图片列表
+    public List<Image> stateImageList = new List<Image>();//用来显示状态的图片列表
     public List<Text> stateStackTextList = new List<Text>();//用来显示状态层数的文本列表
 
     public Animator effectAnimator;//动效控制器
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     public void GetExp(int exp)//获得经验并进行升级结算
     {
         currentExp += exp;
-        while (currentExp>=levelExpList[Level-1])
+        while (currentExp >= levelExpList[Level - 1])
         {
             currentExp -= levelExpList[Level - 1];
             Level++;
@@ -83,17 +83,20 @@ public class Player : MonoBehaviour
 
     public void GetEnergy(int value)//获得能量
     {
-        
+
         energy += value;
     }
     public void TakeDamage(int damage)//结算受到的伤害
     {
         List<Ally> cleanAllies = new List<Ally>();//计算伤害后应该清除的友方单位
-        if (damage<=shield)
+        if (CheckState(Value.ValueType.灵体) && CheckState(Value.ValueType.魂体))
+        {
+            damage = (int)(0.7f * damage);
+        }
+        if (damage <= shield)
         {
             shield -= damage;
             damage = 0;
-            
         }
         else
         {
@@ -104,7 +107,7 @@ public class Player : MonoBehaviour
                 for (int i = 0; i < AllyManager.Instance.inGameAlliesList.Count; i++)
                 {
                     Ally thisAlly = AllyManager.Instance.inGameAlliesList[i];
-                    if (damage <thisAlly.currentHp)
+                    if (damage < thisAlly.currentHp)
                     {
                         thisAlly.currentHp -= damage;
                         damage = 0;
@@ -125,7 +128,7 @@ public class Player : MonoBehaviour
             Destroy(ally.gameObject);
         }
 
-        if (damage<=0)
+        if (damage <= 0)
         {
             return;
         }
@@ -136,9 +139,9 @@ public class Player : MonoBehaviour
     {
         foreach (var state in stateList)
         {
-            if (state.type==stateType&&state.value>0)
+            if (state.type == stateType && state.value > 0)
             {
-                if (state.type==Value.ValueType.起势)
+                if (state.type == Value.ValueType.起势)
                 {
                     state.value--;
                 }
@@ -147,7 +150,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-    
+
     void UpdateUIState()//更新UI组件状态
     {
         for (int i = 0; i < stateList.Count; i++)
@@ -156,7 +159,7 @@ public class Player : MonoBehaviour
             if (StateManager.Instance.stateImgDic.ContainsKey(stateList[i].type))
             {
                 stateImageList[i].sprite = StateManager.Instance.stateImgDic[stateList[i].type];
-                if (stateList[i].value>0)
+                if (stateList[i].value > 0)
                 {
                     stateStackTextList[i].enabled = true;
                     stateStackTextList[i].text = stateList[i].value.ToString();
@@ -169,9 +172,9 @@ public class Player : MonoBehaviour
             stateImageList[i].enabled = false;
 
         }
-        if (shield>0)
+        if (shield > 0)
         {
-            shieldImg.SetActive(true); 
+            shieldImg.SetActive(true);
             shieldText.text = "" + shield;
         }
         else
@@ -190,7 +193,7 @@ public class Player : MonoBehaviour
     public void PlayAttackAnim()//播放攻击动画
     {
         animController.SetTrigger("Attack");
-        
+
     }
     public void InitEnergy()//初始化能量
     {
@@ -200,7 +203,7 @@ public class Player : MonoBehaviour
     public void Recover(int value) //回血
     {
         hp += value;
-        if (hp>maxHp)
+        if (hp > maxHp)
         {
             hp = maxHp;
         }
@@ -218,7 +221,7 @@ public class Player : MonoBehaviour
             img.enabled = false;
         }
     }
-    
+
     void Start()
     {
         InitEnergy(); //初始化能量

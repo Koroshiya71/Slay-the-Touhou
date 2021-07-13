@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StateImg : MonoBehaviour
 {
-    private int index; //ÔÚÍ¼±êÁĞ±íµÄÏÂ±ê
+    private int index; //åœ¨å›¾æ ‡åˆ—è¡¨çš„ä¸‹æ ‡
     private Text stateExplanationText;
-    public bool isEnemy; //ÊÇ·ñÊÇµĞÈËµÄ×´Ì¬
-    private Enemy thisEnemy;//¹ÜÀíÕâ¸ö×´Ì¬Í¼±êµÄµĞÈË¶ÔÏó
+    public bool isEnemy; //æ˜¯å¦æ˜¯æ•Œäººçš„çŠ¶æ€
+    private Enemy thisEnemy;//ç®¡ç†è¿™ä¸ªçŠ¶æ€å›¾æ ‡çš„æ•Œäººå¯¹è±¡
     private void Start()
     {
         if (!isEnemy)
@@ -27,7 +27,7 @@ public class StateImg : MonoBehaviour
     {
     }
 
-    public void OnStateImgPointerEnter() //µ±Êó±ê·Åµ½×´Ì¬Í¼±êÉÏµÄ»Øµ÷·½·¨
+    public void OnStateImgPointerEnter() //å½“é¼ æ ‡æ”¾åˆ°çŠ¶æ€å›¾æ ‡ä¸Šçš„å›è°ƒæ–¹æ³•
     {
         stateExplanationText.enabled = true;
         stateExplanationText.text = "";
@@ -35,72 +35,72 @@ public class StateImg : MonoBehaviour
         if (!isEnemy)
             switch (Player.Instance.stateList[index].type)
             {
-                case Value.ValueType.¶şµ¶Á÷:
-                    stateExplanationText.text += "ÌåÊõÅÆµÄÉËº¦¼õ°ëµ«½«ÊÍ·ÅÁ½´Î";
+                case Value.ValueType.äºŒåˆ€æµ:
+                    stateExplanationText.text += "ä½“æœ¯ç‰Œçš„ä¼¤å®³å‡åŠä½†å°†é‡Šæ”¾ä¸¤æ¬¡";
                     break;
-                case Value.ValueType.Á÷×ª:
-                    stateExplanationText.text += "²ĞĞÄµÄĞ§¹ûÁ¢¿Ì´¥·¢";
+                case Value.ValueType.æµè½¬:
+                    stateExplanationText.text += "æ®‹å¿ƒçš„æ•ˆæœç«‹åˆ»è§¦å‘";
                     break;
-                case Value.ValueType.¶îÍâ»ØºÏ:
-                    stateExplanationText.text += "»ØºÏ½áÊøºó±£ÁôÄãµÄÊÖÅÆºÍ»¤¼×£¬¿ªÊ¼Ò»¸öĞÂµÄ»ØºÏ";
+                case Value.ValueType.é¢å¤–å›åˆ:
+                    stateExplanationText.text += "å›åˆç»“æŸåä¿ç•™ä½ çš„æ‰‹ç‰Œå’ŒæŠ¤ç”²ï¼Œå¼€å§‹ä¸€ä¸ªæ–°çš„å›åˆ";
                     break;
-                case Value.ValueType.ÌåÊõÒÔÍâ½ûÖ¹:
-                    stateExplanationText.text += "Ö»ÄÜÊ¹ÓÃÌåÊõÅÆ";
+                case Value.ValueType.ä½“æœ¯ä»¥å¤–ç¦æ­¢:
+                    stateExplanationText.text += "åªèƒ½ä½¿ç”¨ä½“æœ¯ç‰Œ";
                     break;
-                case Value.ValueType.ÌåÊõÏŞÖÆ:
-                    stateExplanationText.text += "ÎŞ·¨Ê¹ÓÃÌåÊõÅÆ";
+                case Value.ValueType.ä½“æœ¯é™åˆ¶:
+                    stateExplanationText.text += "æ— æ³•ä½¿ç”¨ä½“æœ¯ç‰Œ";
                     break;
-                case Value.ValueType.µ¯Ä»ÏŞÖÆ:
-                    stateExplanationText.text += "ÎŞ·¨Ê¹ÓÃµ¯Ä»ÅÆ";
+                case Value.ValueType.å¼¹å¹•é™åˆ¶:
+                    stateExplanationText.text += "æ— æ³•ä½¿ç”¨å¼¹å¹•ç‰Œ";
                     break;
-                case Value.ValueType.¼¼ÄÜÏŞÖÆ:
-                    stateExplanationText.text += "ÎŞ·¨Ê¹ÓÃ¼¼ÄÜÅÆ";
+                case Value.ValueType.æŠ€èƒ½é™åˆ¶:
+                    stateExplanationText.text += "æ— æ³•ä½¿ç”¨æŠ€èƒ½ç‰Œ";
                     break;
-                case Value.ValueType.·¨ÊõÏŞÖÆ:
-                    stateExplanationText.text += "ÎŞ·¨Ê¹ÓÃ·¨ÊõÅÆ";
+                case Value.ValueType.æ³•æœ¯é™åˆ¶:
+                    stateExplanationText.text += "æ— æ³•ä½¿ç”¨æ³•æœ¯ç‰Œ";
                     break;
-                case Value.ValueType.·ÀÓùÏŞÖÆ:
-                    stateExplanationText.text += "ÎŞ·¨Ê¹ÓÃ·ÀÓùÅÆ";
+                case Value.ValueType.é˜²å¾¡é™åˆ¶:
+                    stateExplanationText.text += "æ— æ³•ä½¿ç”¨é˜²å¾¡ç‰Œ";
                     break;
-                case Value.ValueType.¾ªÏÅ:
-                    stateExplanationText.text += "Ôì³ÉµÄÉËº¦¼õÉÙ30%";
+                case Value.ValueType.æƒŠå“:
+                    stateExplanationText.text += "é€ æˆçš„ä¼¤å®³å‡å°‘30%";
                     break;
-                case Value.ValueType.±³Ë®Ò»Õ½:
-                    stateExplanationText.text += "ÎŞ·¨»ñµÃ»¤¼×";
+                case Value.ValueType.èƒŒæ°´ä¸€æˆ˜:
+                    stateExplanationText.text += "æ— æ³•è·å¾—æŠ¤ç”²";
                     break;
-                case Value.ValueType.ÆğÊÆ:
-                    stateExplanationText.text += "Á¬Õ¶Ğ§¹û´¥·¢Á½´Î";
+                case Value.ValueType.èµ·åŠ¿:
+                    stateExplanationText.text += "è¿æ–©æ•ˆæœè§¦å‘ä¸¤æ¬¡";
                     break;
-                case Value.ValueType.±£ÁôÊÖÅÆ:
-                    stateExplanationText.text += "»ØºÏ½áÊøÊ±²»¶ªÆúÊÖÅÆ";
+                case Value.ValueType.ä¿ç•™æ‰‹ç‰Œ:
+                    stateExplanationText.text += "å›åˆç»“æŸæ—¶ä¸ä¸¢å¼ƒæ‰‹ç‰Œ";
                     break;
-                case Value.ValueType.Áù¸ùÇå¾»:
-                    stateExplanationText.text += "ËùÓĞ¿¨ÅÆ»ñµÃÎŞºÎÓĞ£¬³éÅÆ¶ÑÎª0Ê±£¬³éÅÆ¸ÄÎªËæ»ú»ñµÃÒ»ÕÅÑıÃÎÅÆ";
+                case Value.ValueType.å…­æ ¹æ¸…å‡€:
+                    stateExplanationText.text += "æ‰€æœ‰å¡ç‰Œè·å¾—æ— ä½•æœ‰ï¼ŒæŠ½ç‰Œå †ä¸º0æ—¶ï¼ŒæŠ½ç‰Œæ”¹ä¸ºéšæœºè·å¾—ä¸€å¼ å¦–æ¢¦ç‰Œ";
                     break;
-                case Value.ValueType.Ôö·ù:
-                    stateExplanationText.text += "Ôì³ÉµÄÉËº¦Ôö¼Ó30%";
+                case Value.ValueType.å¢å¹…:
+                    stateExplanationText.text += "é€ æˆçš„ä¼¤å®³å¢åŠ 30%";
                     break;
-                case Value.ValueType.ÖØÉË:
-                    stateExplanationText.text += "»ñÈ¡µÄ»¤¼×¼õÉÙ30%";
+                case Value.ValueType.é‡ä¼¤:
+                    stateExplanationText.text += "è·å–çš„æŠ¤ç”²å‡å°‘30%";
                     break;
             }
         else
             switch (thisEnemy.stateList[index].type)
             {
                 
-                case Value.ValueType.¾ªÏÅ:
-                    stateExplanationText.text += "Ôì³ÉµÄÉËº¦¼õÉÙ30%";
+                case Value.ValueType.æƒŠå“:
+                    stateExplanationText.text += "é€ æˆçš„ä¼¤å®³å‡å°‘30%";
                     break;
-                case Value.ValueType.ÁéÌå:
-                    stateExplanationText.text += "ÊÜµ½µÄÌåÊõÉËº¦¼õÉÙ30%";
+                case Value.ValueType.çµä½“:
+                    stateExplanationText.text += "å—åˆ°çš„ä½“æœ¯ä¼¤å®³å‡å°‘30%";
                     break;
-                case Value.ValueType.»êÌå:
-                    stateExplanationText.text += "ÊÜµ½µÄµ¯Ä»ÉËº¦¼õÉÙ30%";
+                case Value.ValueType.é­‚ä½“:
+                    stateExplanationText.text += "å—åˆ°çš„å¼¹å¹•ä¼¤å®³å‡å°‘30%";
                     break;
             }
     }
 
-    public void OnStateImgPointerExit() //µ±Êó±êÒÆ¿ª×´Ì¬Í¼±êÉÏµÄ»Øµ÷·½·¨
+    public void OnStateImgPointerExit() //å½“é¼ æ ‡ç§»å¼€çŠ¶æ€å›¾æ ‡ä¸Šçš„å›è°ƒæ–¹æ³•
     {
         stateExplanationText.enabled = false;
     }

@@ -7,20 +7,20 @@ using Random = UnityEngine.Random;
 
 public class EventManager : MonoBehaviour
 {
-    public List<GameEvent> eventList = new List<GameEvent>(); //ÊÂ¼şÁĞ±í
-    public List<GameObject> choiceButtonList = new List<GameObject>(); //ÊÂ¼şÑ¡Ôñ°´Å¥ÁĞ±í
-    public int choiceIndex; //Ñ¡ÔñÏÂ±ê
-    public Canvas eventCanvas; //ÊÂ¼ş»­²¼
-    public Text desText; //ÊÂ¼şÃèÊöµÄÎÄ±¾
-    public Text titleText;//ÊÂ¼şÃû³ÆµÄÎÄ±¾
+    public List<GameEvent> eventList = new List<GameEvent>(); //äº‹ä»¶åˆ—è¡¨
+    public List<GameObject> choiceButtonList = new List<GameObject>(); //äº‹ä»¶é€‰æ‹©æŒ‰é’®åˆ—è¡¨
+    public int choiceIndex; //é€‰æ‹©ä¸‹æ ‡
+    public Canvas eventCanvas; //äº‹ä»¶ç”»å¸ƒ
+    public Text desText; //äº‹ä»¶æè¿°çš„æ–‡æœ¬
+    public Text titleText;//äº‹ä»¶åç§°çš„æ–‡æœ¬
     public static EventManager Instance;
-    public GameObject returnButton;//·µ»Ø°´Å¥
+    public GameObject returnButton;//è¿”å›æŒ‰é’®
     private void Awake()
     {
         Instance = this;
     }
 
-    void InitButtonCallback() //³õÊ¼»¯¸÷°´Å¥»Øµ÷
+    void InitButtonCallback() //åˆå§‹åŒ–å„æŒ‰é’®å›è°ƒ
     {
         foreach (var btn in choiceButtonList)
         {
@@ -32,7 +32,7 @@ public class EventManager : MonoBehaviour
         returnButton.GetComponent<Button>().onClick.AddListener((() =>
         {
             eventCanvas.enabled = false;
-            
+
         }));
     }
     void Start()
@@ -45,7 +45,7 @@ public class EventManager : MonoBehaviour
     {
         foreach (var evt in eventList)
         {
-            if (evt.eventID==evtID)
+            if (evt.eventID == evtID)
             {
                 StartCoroutine(GameEventStart(evt));
 
@@ -58,11 +58,11 @@ public class EventManager : MonoBehaviour
         switch (evt.eventID)
         {
             case 0:
-                titleText.text = "¹îÒìµÄÓÄÁé";
+                titleText.text = "è¯¡å¼‚çš„å¹½çµ";
                 desText.text = evt.descriptionList[0];
                 for (int i = 0; i < 3; i++)
                 {
-                    choiceButtonList[i].SetActive(true); 
+                    choiceButtonList[i].SetActive(true);
                     choiceButtonList[i].GetComponentInChildren<Text>().text = evt.choiceList[i];
                 }
                 while (choiceIndex <= 0)
@@ -71,12 +71,12 @@ public class EventManager : MonoBehaviour
                 }
                 switch (choiceIndex)
                 {
-                    case 1://»Ø¸´Ê®µÎÑª£¬ÏÂ³¡Õ½¶·¿ªÊ¼Ê±»ñµÃ5²ã»À·¢
+                    case 1://å›å¤åæ»´è¡€ï¼Œä¸‹åœºæˆ˜æ–—å¼€å§‹æ—¶è·å¾—5å±‚ç„•å‘
                         desText.text = evt.descriptionList[1];
                         Player.Instance.Recover(10);
                         BattleManager.Instance.actionsTurnStart.Add((() =>
                         {
-                            StateManager.AddStateToPlayer(new Value(){type=Value.ValueType.»À·¢,value=5});
+                            StateManager.AddStateToPlayer(new Value() { type = Value.ValueType.ç„•å‘, value = 5 });
                         }));
                         break;
                     case 2:
@@ -84,7 +84,7 @@ public class EventManager : MonoBehaviour
 
                         break;
                     case 3:
-                        //TODO:Ôö¼ÓÁ½µãÊôĞÔµã
+                        //TODO:å¢åŠ ä¸¤ç‚¹å±æ€§ç‚¹
                         desText.text = evt.descriptionList[3];
 
                         break;
@@ -96,7 +96,7 @@ public class EventManager : MonoBehaviour
                 returnButton.SetActive(true);
                 yield break;
             case 1:
-                titleText.text = "Âñ²ØµÄ¶«Î÷";
+                titleText.text = "åŸ‹è—çš„ä¸œè¥¿";
                 desText.text = evt.descriptionList[0];
                 for (int i = 0; i < 3; i++)
                 {
@@ -110,20 +110,20 @@ public class EventManager : MonoBehaviour
                 switch (choiceIndex)
                 {
                     case 1:
-                        //TODO:»ñµÃÒÅÎï£¬¼õÉÙÁ¦Á¿
+                        //TODO:è·å¾—é—ç‰©ï¼Œå‡å°‘åŠ›é‡
 
                         desText.text = evt.descriptionList[1];
                         break;
                     case 2:
                         desText.text = evt.descriptionList[2];
-                        //TODO:Ï¡ÓĞÑ¡ÅÆ»ú»á
-                        List<CardData> choiceList=new List<CardData>();
-                        while (choiceList.Count<3)
+                        //TODO:ç¨€æœ‰é€‰ç‰Œæœºä¼š
+                        List<CardData> choiceList = new List<CardData>();
+                        while (choiceList.Count < 3)
                         {
                             CardData newData =
                                 CardManager.Instance.CardDataList[
                                     Random.Range(0, CardManager.Instance.CardDataList.Count)];
-                            if (newData.rare==CardData.CardRare.Epic&&!choiceList.Contains(newData)&&newData.type!=Card.CardType.·û¿¨)
+                            if (newData.rare == CardData.CardRare.Epic && !choiceList.Contains(newData) && newData.type != Card.CardType.ç¬¦å¡)
                             {
                                 choiceList.Add(newData);
 
@@ -151,7 +151,7 @@ public class EventManager : MonoBehaviour
 
     }
 
-    public void InitEvent()//³õÊ¼»¯ÊÂ¼ş
+    public void InitEvent()//åˆå§‹åŒ–äº‹ä»¶
     {
         choiceIndex = 0;
         eventCanvas.enabled = true;

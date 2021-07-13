@@ -8,13 +8,16 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public bool turnHasEnd;
-    public List<Action> actionsEndTurn=new List<Action>();//回合结束时触发的效果
-    public List<Action> actionsTurnStart=new List<Action>();//回合开始时触发的效果
+    public List<Action> actionsEndTurn = new List<Action>();//回合结束时触发的效果
+    public List<Action> actionsTurnStart = new List<Action>();//回合开始时触发的效果
     public bool hasCanXin;//上回合是否触发过残心
     public int effectTimes;//卡牌效果触发的次数
     public int cardCombo;//本回合使用的卡牌数量
     public bool extraTurn;//该回合是否是额外回合
     public int tiShuCardCombo;//本回合使用的体术牌数量
+
+    public int danmakuCardCombo;//本回合使用的体术牌数量
+
     public GameObject enemyPrefab;//敌人预制体
     public bool isInBattle;//是否正在战斗中
     public List<BattleData> normalBattleDataList = new List<BattleData>();//保存所有普通战斗场景数据的列表
@@ -40,7 +43,7 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
-        
+
         hasCanXin = false;
 
         if (actionsEndTurn != null)
@@ -82,14 +85,14 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
-            EnemyManager.Instance.InGameEnemyList[i].newStateList=new List<Value>();
+            EnemyManager.Instance.InGameEnemyList[i].newStateList = new List<Value>();
         }
         for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
         {
             EnemyManager.Instance.InGameEnemyList[i].TakeAction();
         }
 
-        
+
         Invoke(nameof(TurnStart), 1);
 
         if (!Player.Instance.CheckState(Value.ValueType.保留手牌))
@@ -113,12 +116,12 @@ public class BattleManager : MonoBehaviour
         }
         turnStartAndEndText.enabled = true;
         turnStartAndEndText.text = "玩家回合";
-        Invoke(nameof(NotShowTurnText),0.5f);
+        Invoke(nameof(NotShowTurnText), 0.5f);
         turnHasEnd = false;
         Player.Instance.InitEnergy();
         StateManager.UpdatePlayerState();//对玩家身上的状态进行更新
         StateManager.UpdateEnemiesState();//对敌人身上的状态进行更新
-        
+
         if (!extraTurn)//如果是额外回合，则不清除护甲并保留手牌
         {
             Player.Instance.shield = 0;
@@ -127,13 +130,13 @@ public class BattleManager : MonoBehaviour
         int drawCardNum = Player.Instance.CheckState(Value.ValueType.抽牌减1)
             ? Player.Instance.drawCardNum - 1
             : Player.Instance.drawCardNum;
-        
+
         foreach (var card in CardManager.Instance.handCardList)
         {
             card.GetComponent<Card>().UpdateCardState();
 
         }
-        if (actionsTurnStart!=null)
+        if (actionsTurnStart != null)
         {
             foreach (var action in actionsTurnStart)
             {
@@ -155,14 +158,14 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.Instance.battleSceneCanvas.enabled=false;
+        SceneManager.Instance.battleSceneCanvas.enabled = false;
         InitEnemyPosList();
         statisticImage.SetActive(false);
     }
 
     void InitEnemyPosList()
     {
-        enemyPositionList.Add((new Vector2(4.5f,0 )));
+        enemyPositionList.Add((new Vector2(4.5f, 0)));
         enemyPositionList.Add((new Vector2(2.5f, 0)));
         enemyPositionList.Add((new Vector2(6.5f, 0)));
         enemyPositionList.Add((new Vector2(4.5f, 3)));
@@ -176,8 +179,8 @@ public class BattleManager : MonoBehaviour
     {
         battleExp = 0;
         battleGold = 0;
-        SceneManager.Instance.battleSceneCanvas.enabled=true;
-        SceneManager.Instance.mapSceneCanvas.enabled=false;
+        SceneManager.Instance.battleSceneCanvas.enabled = true;
+        SceneManager.Instance.mapSceneCanvas.enabled = false;
         StateManager.Instance.InitPlayerState();
         CardManager.Instance.InitAllCardList();
         CardManager.Instance.InitDrawCardList();
@@ -207,9 +210,9 @@ public class BattleManager : MonoBehaviour
         {
             foreach (var enemy in EnemyManager.Instance.enemyDataList)
             {
-                if (enemy.ID==enemyS.ID)
+                if (enemy.ID == enemyS.ID)
                 {
-                    Enemy newEnemy = Instantiate(enemyPrefab,enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
+                    Enemy newEnemy = Instantiate(enemyPrefab, enemyS.Pos, Quaternion.identity).GetComponent<Enemy>();
                     newEnemy.InitEnemy(enemy);
                     Transform transform1;
                     (transform1 = newEnemy.transform).SetParent(SceneManager.Instance.battleSceneCanvas.transform);
@@ -217,15 +220,15 @@ public class BattleManager : MonoBehaviour
                     break;
                 }
             }
-            
+
         }
     }
 
-    public void CreateEnemy(int enemyID,Vector2 pos)
+    public void CreateEnemy(int enemyID, Vector2 pos)
     {
         foreach (var enemy in EnemyManager.Instance.enemyDataList)
         {
-            if (enemy.ID==enemyID)
+            if (enemy.ID == enemyID)
             {
                 Enemy newEnemy = Instantiate(enemyPrefab, pos, Quaternion.identity).GetComponent<Enemy>();
                 newEnemy.InitEnemy(enemy);
@@ -241,9 +244,9 @@ public class BattleManager : MonoBehaviour
     {
         turnStartAndEndText.enabled = false;
     }
-    
-    void Update() 
+
+    void Update()
     {
-        
+
     }
 }

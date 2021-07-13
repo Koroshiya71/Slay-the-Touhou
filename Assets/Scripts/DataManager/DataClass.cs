@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -8,13 +8,13 @@ using UnityEngine;
 public class EnemyData
 {
     public int ID;
-    public string Name;//Ãû×Ö
-    public int maxHp;//×î´óÉúÃüÖµ
-    public int initHp;//³õÊ¼ÉúÃüÖµ
-    public int initShield;//³õÊ¼»¤¶ÜÖµ
-    public List<string> ActionIdList = new List<string>();//¸ÃEnemyËùÓĞĞĞÎªµÄID
-    public int exp;//¸øÓèµÄ¾­ÑéÖµ
-    public int gold;//¸øÓèµÄ½ğ±Ò
+    public string Name;//åå­—
+    public int maxHp;//æœ€å¤§ç”Ÿå‘½å€¼
+    public int initHp;//åˆå§‹ç”Ÿå‘½å€¼
+    public int initShield;//åˆå§‹æŠ¤ç›¾å€¼
+    public List<string> ActionIdList = new List<string>();//è¯¥Enemyæ‰€æœ‰è¡Œä¸ºçš„ID
+    public int exp;//ç»™äºˆçš„ç»éªŒå€¼
+    public int gold;//ç»™äºˆçš„é‡‘å¸
     public static EnemyData Clone(EnemyData data)
     {
         EnemyData newData = new EnemyData();
@@ -36,31 +36,31 @@ public class EnemyData
 [Serializable]
 public class CardData
 {
-    public enum TargetType//Ä¿±êÀàĞÍ
+    public enum TargetType//ç›®æ ‡ç±»å‹
     {
-        µ¥ÌåµĞÈË,
-        ×ÔÉí,
-        È«²¿µĞÈË,
-        Ëæ»úµĞÈË
+        å•ä½“æ•Œäºº,
+        è‡ªèº«,
+        å…¨éƒ¨æ•Œäºº,
+        éšæœºæ•Œäºº
     }
-    public Card.CardType type;//¿¨ÅÆÀàĞÍ
-    public string name;//¿¨ÅÆÃû³Æ
-    public string cardID;//¿¨ÅÆID
-    public int cost;//¿¨ÅÆÏûºÄ
-    public string des;//¿¨ÅÆÃèÊö
-    public List<Value> valueList;//Ğ§¹ûÁĞ±í
-    public int spriteID;//¿¨Í¼ID
-    public TargetType targetType;//Ä¿±êÀàĞÍ
-    public int times;//¿¨ÅÆĞ§¹û´¥·¢µÄ´ÎÊı
-    public List<CanXin> canXinList;//²ĞĞÄÁĞ±í
-    public bool keepChangeInBattle;//ÔÚÕ½¶·ÖĞ±£Áô¶ÔÆäµÄ¸ü¸Ä
-    public List<Combo> comboList;//Á¬Õ¶ÁĞ±í
+    public Card.CardType type;//å¡ç‰Œç±»å‹
+    public string name;//å¡ç‰Œåç§°
+    public string cardID;//å¡ç‰ŒID
+    public int cost;//å¡ç‰Œæ¶ˆè€—
+    public string des;//å¡ç‰Œæè¿°
+    public List<Value> valueList;//æ•ˆæœåˆ—è¡¨
+    public int spriteID;//å¡å›¾ID
+    public TargetType targetType;//ç›®æ ‡ç±»å‹
+    public int times;//å¡ç‰Œæ•ˆæœè§¦å‘çš„æ¬¡æ•°
+    public List<CanXin> canXinList;//æ®‹å¿ƒåˆ—è¡¨
+    public bool keepChangeInBattle;//åœ¨æˆ˜æ–—ä¸­ä¿ç•™å¯¹å…¶çš„æ›´æ”¹
+    public List<Combo> comboList;//è¿æ–©åˆ—è¡¨
     public CardRare rare;
-    public enum CardRare//Ï¡ÓĞ¶È
+    public enum CardRare//ç¨€æœ‰åº¦
     {
-        Normal,//ÆÕÍ¨
-        Rare,//Ï¡ÓĞ
-        Epic//Ê·Ê«
+        Normal,//æ™®é€š
+        Rare,//ç¨€æœ‰
+        Epic//å²è¯—
     }
     public static CardData Clone(CardData target)
     {
@@ -112,50 +112,50 @@ public class ActionData
     public ActionController.ActionType Type;
     public string Name;
     public string ActID;
-    public List<Value> valueList;//ÊıÖµÁĞ±í
-    public int actProbability;//Ö´ĞĞ¸ÃĞĞ¶¯µÄ¸ÅÂÊ
+    public List<Value> valueList;//æ•°å€¼åˆ—è¡¨
+    public int actProbability;//æ‰§è¡Œè¯¥è¡ŒåŠ¨çš„æ¦‚ç‡
 }
 [Serializable]
 public class Value
 {
-    public enum ValueType//ÊıÖµÀàĞÍµÄÃ¶¾ÙÀà
+    public enum ValueType//æ•°å€¼ç±»å‹çš„æšä¸¾ç±»
     {
-        ÉËº¦,
-        »¤¼×,
-        ¶şµ¶Á÷,
-        »Ø·Ñ,
-        Á÷×ª,
-        ¶îÍâ»ØºÏ,
-        ÌåÊõÒÔÍâ½ûÖ¹,
-        ÌåÊõÏŞÖÆ,
-        µ¯Ä»ÏŞÖÆ,
-        ·¨ÊõÏŞÖÆ,
-        ¼¼ÄÜÏŞÖÆ,
-        ·ÀÓùÏŞÖÆ,
-        Ëæ»úÏŞÖÆ,
-        ÎŞºÎÓĞ,
-        ³éÅÆ,
-        »÷É±»Ø·Ñ,
-        »ØÑª,
-        ¾ªÏÅ,
-        ±³Ë®Ò»Õ½,
-        ÆğÊÆ,
-        ±£ÁôÊÖÅÆ,
-        Áù¸ùÇå¾»,
-        ÁéÌå,
-        »êÌå,
-        ĞİÃß,
-        ÖØÉË,
-        ³éÅÆ¼õ1,
-        ¿ÕÎŞ,
-        ÎŞ·¨Ê¹ÓÃ,
-        ÌÓÀëÕ½¶·,
-        ÔÎÑ£,
-        ¶Ü»÷,
-        ±£Áô»¤¼×,
-        Ôö·ù,
-        ¾»»¯,
-        »À·¢
+        ä¼¤å®³,
+        æŠ¤ç”²,
+        äºŒåˆ€æµ,
+        å›è´¹,
+        æµè½¬,
+        é¢å¤–å›åˆ,
+        ä½“æœ¯ä»¥å¤–ç¦æ­¢,
+        ä½“æœ¯é™åˆ¶,
+        å¼¹å¹•é™åˆ¶,
+        æ³•æœ¯é™åˆ¶,
+        æŠ€èƒ½é™åˆ¶,
+        é˜²å¾¡é™åˆ¶,
+        éšæœºé™åˆ¶,
+        æ— ä½•æœ‰,
+        æŠ½ç‰Œ,
+        å‡»æ€å›è´¹,
+        å›è¡€,
+        æƒŠå“,
+        èƒŒæ°´ä¸€æˆ˜,
+        èµ·åŠ¿,
+        ä¿ç•™æ‰‹ç‰Œ,
+        å…­æ ¹æ¸…å‡€,
+        çµä½“,
+        é­‚ä½“,
+        ä¼‘çœ ,
+        é‡ä¼¤,
+        æŠ½ç‰Œå‡1,
+        ç©ºæ— ,
+        æ— æ³•ä½¿ç”¨,
+        é€ƒç¦»æˆ˜æ–—,
+        æ™•çœ©,
+        ç›¾å‡»,
+        ä¿ç•™æŠ¤ç”²,
+        å¢å¹…,
+        å‡€åŒ–,
+        ç„•å‘
     }
     public ValueType type;
     public int value;
@@ -163,16 +163,16 @@ public class Value
     
 }
 [Serializable]
-public class CanXin//²ĞĞÄ
+public class CanXin//æ®‹å¿ƒ
 {
     public Value CanXinValue;
-    public bool IsTurnEnd;//ÊÇ·ñÊÇ»ØºÏ½áÊø´¥·¢
+    public bool IsTurnEnd;//æ˜¯å¦æ˜¯å›åˆç»“æŸè§¦å‘
 }
 [Serializable]
-public class Combo//Á¬Õ¶
+public class Combo//è¿æ–©
 {
     public Value comboValue;
-    public int comboNum;//Á¬Õ¶Êı
+    public int comboNum;//è¿æ–©æ•°
 }
 
 [Serializable]
@@ -181,8 +181,8 @@ public class BattleData
     [Serializable]
     public struct SceneEnemy
     {
-        public int ID; //µĞÈËID
-        public Vector3 Pos; //µĞÈËÎ»ÖÃ
+        public int ID; //æ•ŒäººID
+        public Vector3 Pos; //æ•Œäººä½ç½®
     }
     
     public List<SceneEnemy> EnemyList=new List<SceneEnemy>();
@@ -191,38 +191,38 @@ public class BattleData
 [Serializable]
 public class SceneData
 {
-    public SceneManager.SceneType type;//³¡¾°ÀàĞÍ
-    public BattleData battleData;//µ±Ç°³¡¾°µÄÕ½¶·Êı¾İ
-    public int eventID;//ÊÂ¼şID
+    public SceneManager.SceneType type;//åœºæ™¯ç±»å‹
+    public BattleData battleData;//å½“å‰åœºæ™¯çš„æˆ˜æ–—æ•°æ®
+    public int eventID;//äº‹ä»¶ID
 }
 
 [Serializable]
-public struct StateImgData //×´Ì¬ÀàĞÍÔ¤¼Æ¶ÔÓ¦µÄÍ¼Æ¬
+public struct StateImgData //çŠ¶æ€ç±»å‹é¢„è®¡å¯¹åº”çš„å›¾ç‰‡
 {
     public Value.ValueType type;
     public Sprite sprite;
 }
 [Serializable]
-public class GameEvent //ÓÎÏ·ÄÚµÄÊÂ¼ş
+public class GameEvent //æ¸¸æˆå†…çš„äº‹ä»¶
 {
     public int eventID;
-    public List<string> descriptionList=new List<string>();//ÊÂ¼şµÄÃèÊöÁĞ±í
-    public List<string> choiceList = new List<string>();//Ñ¡ÔñµÄÃèÊöÁĞ±í
-    public List<int> choiceNumList=new List<int>();//ÊÂ¼şµÄÃ¿¸ö½×¶ÎÓĞ¼¸¸öÑ¡Ôñ
+    public List<string> descriptionList=new List<string>();//äº‹ä»¶çš„æè¿°åˆ—è¡¨
+    public List<string> choiceList = new List<string>();//é€‰æ‹©çš„æè¿°åˆ—è¡¨
+    public List<int> choiceNumList=new List<int>();//äº‹ä»¶çš„æ¯ä¸ªé˜¶æ®µæœ‰å‡ ä¸ªé€‰æ‹©
 }
 [Serializable]
-public class RelicData //ÒÅÎïµÄÊı¾İ
+public class RelicData //é—ç‰©çš„æ•°æ®
 {
-    public int relicID;//ÒÅÎïµÄÊı¾İ
-    public Relic.RelicRare relicRare;//ÒÅÎïµÄÏ¡ÓĞ¶È
-    public string relicName;//ÒÅÎïµÄÃû³Æ
-    public string relicDes;//ÒÅÎïµÄÃèÊö
+    public int relicID;//é—ç‰©çš„æ•°æ®
+    public Relic.RelicRare relicRare;//é—ç‰©çš„ç¨€æœ‰åº¦
+    public string relicName;//é—ç‰©çš„åç§°
+    public string relicDes;//é—ç‰©çš„æè¿°
 }
 [Serializable]
-public class AllyData //ÓÑ·½µ¥Î»µÄÊı¾İ
+public class AllyData //å‹æ–¹å•ä½çš„æ•°æ®
 {
-    public int allyID;//ÓÑ·½µ¥Î»µÄID
-    public string allyName;//ÓÑ·½µ¥Î»µÄÃû³Æ
-    public string allyActionDes;//ÓÑ·½µ¥Î»ĞĞÎªµÄÃèÊö
-    public int allyHp;//ÓÑ·½µ¥Î»µÄÑªÁ¿
+    public int allyID;//å‹æ–¹å•ä½çš„ID
+    public string allyName;//å‹æ–¹å•ä½çš„åç§°
+    public string allyActionDes;//å‹æ–¹å•ä½è¡Œä¸ºçš„æè¿°
+    public int allyHp;//å‹æ–¹å•ä½çš„è¡€é‡
 }

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class RelicManager : MonoBehaviour
 {
     public static RelicManager Instance;
-    public List<RelicData> relicDataList=new List<RelicData>();//´æ´¢ËùÓĞÒÅÎïÊı¾İµÄÁĞ±í
-    public List<Relic> inGameRelicList = new List<Relic>();//ÓÎÏ·ÖĞÍæ¼ÒÓµÓĞµÄÒÅÎïÁĞ±í
-    public List<Sprite> relicSpriteList = new List<Sprite>();//ÒÅÎïÍ¼Æ¬ÁĞ±í
-    public GameObject relicPrefab;//ÒÅÎïµÄÔ¤ÖÆÌå
-    public GameObject inGameRelics;//ÓÎÏ·ÄÚÒÅÎïµÄ×Ü¸¸ÎïÌå
-    public Text relicInfoText;//ÒÅÎïĞÅÏ¢ÎÄ±¾
+    public List<RelicData> relicDataList = new List<RelicData>();//å­˜å‚¨æ‰€æœ‰é—ç‰©æ•°æ®çš„åˆ—è¡¨
+    public List<Relic> inGameRelicList = new List<Relic>();//æ¸¸æˆä¸­ç©å®¶æ‹¥æœ‰çš„é—ç‰©åˆ—è¡¨
+    public List<Sprite> relicSpriteList = new List<Sprite>();//é—ç‰©å›¾ç‰‡åˆ—è¡¨
+    public GameObject relicPrefab;//é—ç‰©çš„é¢„åˆ¶ä½“
+    public GameObject inGameRelics;//æ¸¸æˆå†…é—ç‰©çš„æ€»çˆ¶ç‰©ä½“
+    public Text relicInfoText;//é—ç‰©ä¿¡æ¯æ–‡æœ¬
     private void Awake()
     {
         Instance = this;
@@ -20,13 +20,13 @@ public class RelicManager : MonoBehaviour
 
     public void GetRelic(int relicID)
     {
-        GameObject relicGo=Instantiate(relicPrefab,inGameRelics.transform );
-        relicGo.transform.localPosition = new Vector3(-900+70*inGameRelicList.Count, 410,0);
+        GameObject relicGo = Instantiate(relicPrefab, inGameRelics.transform);
+        relicGo.transform.localPosition = new Vector3(-900 + 70 * inGameRelicList.Count, 410, 0);
         Relic newRelic = relicGo.GetComponent<Relic>();
         inGameRelicList.Add(newRelic);
         foreach (var data in relicDataList)
         {
-            if (data.relicID==relicID)
+            if (data.relicID == relicID)
             {
                 newRelic.InitRelic(data);
                 break;
@@ -35,7 +35,7 @@ public class RelicManager : MonoBehaviour
         newRelic.OnGetRelic();
     }
 
-    public bool CheckRelic(int ID) //²éÕÒÊÇ·ñÓµÓĞ¸ÃÒÅÎï
+    public bool CheckRelic(int ID) //æŸ¥æ‰¾æ˜¯å¦æ‹¥æœ‰è¯¥é—ç‰©
     {
         foreach (var relic in inGameRelicList)
         {
@@ -45,13 +45,13 @@ public class RelicManager : MonoBehaviour
         return false;
     }
 
-    public void RelicEffectOnBattleStart()//ÔÚÕ½¶·¿ªÊ¼Ê±´¥·¢µÄÒÅÎïĞ§¹û
+    public void RelicEffectOnBattleStart()//åœ¨æˆ˜æ–—å¼€å§‹æ—¶è§¦å‘çš„é—ç‰©æ•ˆæœ
     {
         foreach (var relic in inGameRelicList)
         {
             switch (relic.relicData.relicID)
             {
-                case 1://¢áµÄÈËÅ¼
+                case 1://â‘¨çš„äººå¶
                     BattleManager.Instance.actionsTurnStart.Add((() =>
                     {
                         foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
@@ -60,27 +60,39 @@ public class RelicManager : MonoBehaviour
                         }
                     }));
                     break;
-                case 2://ÉÏº£ÈËĞÎ
+                case 2://ä¸Šæµ·äººå½¢
                     AllyManager.Instance.CreateAlly(0);
+                    break;
+                case 4://æ¤è½®äººå¶
+                    StateManager.AddStateToPlayer(new Value
+                    {
+                        type = Value.ValueType.é­‚ä½“,
+                        value = 2
+                    });
+                    StateManager.AddStateToPlayer(new Value
+                    {
+                        type = Value.ValueType.çµä½“,
+                        value = 2
+                    });
                     break;
             }
         }
     }
-    public void RelicEffectOnTurnEnd()//ÔÚ»ØºÏ½áÊøÊ±´¥·¢µÄÒÅÎïĞ§¹û
+    public void RelicEffectOnTurnEnd()//åœ¨å›åˆç»“æŸæ—¶è§¦å‘çš„é—ç‰©æ•ˆæœ
     {
         foreach (var relic in inGameRelicList)
         {
             switch (relic.relicData.relicID)
             {
-                case 3://ÍµÀ´µÄÊé
-                    if (Player.Instance.energy>0)
+                case 3://å·æ¥çš„ä¹¦
+                    if (Player.Instance.energy > 0)
                     {
                         BattleManager.Instance.actionsTurnStart.Add((() =>
                         {
                             Player.Instance.GetEnergy(1);
                         }));
                     }
-                    
+
                     break;
             }
         }
@@ -88,7 +100,7 @@ public class RelicManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -116,6 +128,22 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             GetRelic(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            GetRelic(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            GetRelic(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            GetRelic(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            GetRelic(9);
         }
     }
 }

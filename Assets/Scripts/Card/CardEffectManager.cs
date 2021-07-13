@@ -31,6 +31,27 @@ public class CardEffectManager : MonoBehaviour
         if (card.valueDic.ContainsKey(Value.ValueType.无法使用))
         {
             yield break;
+            
+        }
+        if (card.cardData.type == Card.CardType.弹幕)
+        {
+            BattleManager.Instance.danmakuCardCombo++;
+            if (RelicManager.Instance.CheckRelic(6))
+            {
+                if (BattleManager.Instance.danmakuCardCombo == 2)
+                {
+                    var n = Random.Range(0, EnemyManager.Instance.InGameEnemyList.Count);
+                    var enemy = EnemyManager.Instance.InGameEnemyList[n];
+                    var damage = 2;
+                    if (enemy.CheckState(Value.ValueType.魂体))
+                    {
+                        damage = (int)(damage * 0.7);
+                    }
+                    enemy.TakeDamage(damage);
+                    BattleManager.Instance.danmakuCardCombo = 0;
+                    Debug.Log("小阴阳玉触发");
+                }
+            }
         }
         switch (card.cardData.cardID)
         {
@@ -77,7 +98,7 @@ public class CardEffectManager : MonoBehaviour
                     bool isHad = false;
                     foreach (var value in c.valueList)
                     {
-                        if (value.type==Value.ValueType.无何有)
+                        if (value.type == Value.ValueType.无何有)
                         {
                             isHad = true;
                             break;
@@ -125,7 +146,7 @@ public class CardEffectManager : MonoBehaviour
                         cd.InitCard(cd.cardData);
                     }
                 }
-                StateManager.AddStateToPlayer(new Value() {type = Value.ValueType.六根清净, value = 1});
+                StateManager.AddStateToPlayer(new Value() { type = Value.ValueType.六根清净, value = 1 });
                 Player.Instance.PlayAttackAnim(); //播放攻击动画
                 CardManager.Instance.UseCard(card.gameObject); //使用卡牌
                 if (card.cardData.type != Card.CardType.符卡)
@@ -151,10 +172,10 @@ public class CardEffectManager : MonoBehaviour
                 for (var t = 0; t < card.cardData.times; t++)
                     foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
                     {
-                        if ((enemy.CheckState(Value.ValueType.灵体)&&card.cardData.type==Card.CardType.体术)||
+                        if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                         {
-                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害]*0.7f));
+                            enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
                         }
                         else
                             enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
@@ -191,8 +212,9 @@ public class CardEffectManager : MonoBehaviour
                             if (canXin.IsTurnEnd)
                                 BattleManager.Instance.actionsEndTurn.Add(() =>
                                 {
-                                    foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
+                                    for (int i = 0; i < EnemyManager.Instance.InGameEnemyList.Count; i++)
                                     {
+                                        var enemy = EnemyManager.Instance.InGameEnemyList[i];
                                         if ((enemy.CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
@@ -201,6 +223,7 @@ public class CardEffectManager : MonoBehaviour
                                         else
                                             enemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
                                     }
+
                                 });
                             else
                                 BattleManager.Instance.actionsTurnStart.Add(() =>
@@ -330,7 +353,7 @@ public class CardEffectManager : MonoBehaviour
 
     private void SingleAttack(Card card, int times) //单体攻击的通用方法
     {
-        if ((Player.Instance.energy < card.cardData.cost&&card.cardData.type!=Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
+        if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         if (targetEnemy == null) //如果目标敌人为空则跳过
             return;
@@ -352,7 +375,7 @@ public class CardEffectManager : MonoBehaviour
                     {
                         targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
                     }
-                    else 
+                    else
                         targetEnemy.TakeDamage(card.valueDic[Value.ValueType.伤害]);
                 }
 
@@ -493,7 +516,7 @@ public class CardEffectManager : MonoBehaviour
             if (card.cardData.canXinList.Count > 0 && card.cardData.cost == Player.Instance.energy || card.canXin)
             {
                 card.canXin = true;
-                
+
                 BattleManager.Instance.actionsTurnStart.Add(() => { BattleManager.Instance.hasCanXin = true; });
                 Player.Instance.effectAnimator.Play("CanXin");
                 foreach (var canXin in card.cardData.canXinList)
@@ -636,7 +659,7 @@ public class CardEffectManager : MonoBehaviour
                         BattleManager.Instance.actionsTurnStart.Add(() =>
                         {
                             StateManager.AddStateToPlayer(new Value()
-                                {type = Value.ValueType.体术以外禁止, value = card.valueDic[Value.ValueType.体术以外禁止]});
+                            { type = Value.ValueType.体术以外禁止, value = card.valueDic[Value.ValueType.体术以外禁止] });
                         });
                     break;
                 case Value.ValueType.抽牌:
@@ -679,7 +702,7 @@ public class CardEffectManager : MonoBehaviour
         BattleManager.Instance.cardCombo++;
         if (card.GetComponent<Card>().cardData.type == Card.CardType.体术) BattleManager.Instance.tiShuCardCombo++;
         CardManager.Instance.UseCard(); //使用卡牌
-        if (card.cardData.type!=Card.CardType.符卡)
+        if (card.cardData.type != Card.CardType.符卡)
         {
             Player.Instance.energy -= card.cardData.cost; //消耗费用
         }

@@ -7,20 +7,20 @@ using Random = UnityEngine.Random;
 
 public class Relic : MonoBehaviour
 {
-    public enum RelicRare//ÒÅÎïµÄÏ¡ÓĞ¶È
+    public enum RelicRare//é—ç‰©çš„ç¨€æœ‰åº¦
     {
-        ÈõĞ¡µÄÒÅÎï,
-        Ò»°ãÒÅÎï,
-        ´«ËµÒÅÎï
+        å¼±å°çš„é—ç‰©,
+        ä¸€èˆ¬é—ç‰©,
+        ä¼ è¯´é—ç‰©
     }
 
     public Image relicImg;
-    public RelicData relicData=new RelicData();
+    public RelicData relicData = new RelicData();
     void Start()
     {
     }
 
-    public void InitRelic(RelicData data) //³õÊ¼»¯ÒÅÎï
+    public void InitRelic(RelicData data) //åˆå§‹åŒ–é—ç‰©
     {
         relicData.relicID = data.relicID;
         relicData.relicDes = data.relicDes;
@@ -29,38 +29,43 @@ public class Relic : MonoBehaviour
         relicImg.sprite = RelicManager.Instance.relicSpriteList[relicData.relicID];
         relicImg.enabled = true;
     }
-    public void OnGetRelic() //»ñÈ¡ÒÅÎïÊ±´¥·¢µÄÊÂ¼ş
+    public void OnGetRelic() //è·å–é—ç‰©æ—¶è§¦å‘çš„äº‹ä»¶
     {
         switch (relicData.relicID)
         {
-            case 0://ÉñÉçµÄ¹±Æ·
+            case 0://ç¥ç¤¾çš„è´¡å“
                 List<CardData> choiceList = new List<CardData>();
                 while (choiceList.Count < 3)
                 {
                     CardData newData =
                         CardManager.Instance.CardDataList[
                             Random.Range(0, CardManager.Instance.CardDataList.Count)];
-                    if (newData.rare == CardData.CardRare.Epic && !choiceList.Contains(newData) && newData.type != Card.CardType.·û¿¨)
+                    if (newData.rare == CardData.CardRare.Epic && !choiceList.Contains(newData) && newData.type != Card.CardType.ç¬¦å¡)
                     {
                         choiceList.Add(newData);
                     }
                 }
                 StartCoroutine(CardManager.Instance.AddCardToDesk(choiceList, 1));
                 break;
+
+            case 5://å¾¡å®ˆ   
+                //å›å¤75%ç”Ÿå‘½å€¼
+                Player.Instance.Recover((int)(0.75 * Player.Instance.maxHp));
+                break;
         }
     }
     void Update()
     {
-        
+
     }
 
-    public void OnPointerEnter()//µ±Êó±ê½øÈëÒÅÎïÊ±´¥·¢µÄÊÂ¼ş
+    public void OnPointerEnter()//å½“é¼ æ ‡è¿›å…¥é—ç‰©æ—¶è§¦å‘çš„äº‹ä»¶
     {
         RelicManager.Instance.relicInfoText.enabled = true;
-        RelicManager.Instance.relicInfoText.text =relicData.relicName+"\n"+ relicData.relicDes;
-        RelicManager.Instance.relicInfoText.transform.localPosition = transform.localPosition+new Vector3(20,-70,0);
+        RelicManager.Instance.relicInfoText.text = relicData.relicName + "\n" + relicData.relicDes;
+        RelicManager.Instance.relicInfoText.transform.localPosition = transform.localPosition + new Vector3(20, -70, 0);
     }
-    public void OnPointerExit()//µ±Êó±ê½øÈëÒÅÎïÊ±´¥·¢µÄÊÂ¼ş
+    public void OnPointerExit()//å½“é¼ æ ‡è¿›å…¥é—ç‰©æ—¶è§¦å‘çš„äº‹ä»¶
     {
         RelicManager.Instance.relicInfoText.enabled = false;
     }
