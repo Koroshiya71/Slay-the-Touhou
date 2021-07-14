@@ -96,10 +96,20 @@ public class CardManager : MonoBehaviour
             { drawCardList.Add(dCard);}
 
             discardList = new List<CardData>(); //然后初始化弃牌堆
+            if (RelicManager.Instance.CheckRelic(13)&&!RelicManager.Instance.sakuyaClock) //如果拥有咲夜的怀表且是第一次洗牌
+            {
+                RelicManager.Instance.sakuyaClock = true;
+                StateManager.AddStateToPlayer(new Value()
+                {
+                    type=Value.ValueType.额外回合,
+                    value=1
+                });
+            }
         }
 
         if (drawCardList.Count == 0 && !hasInit) //如果此时抽牌堆依然为空，那么说明是第一次从牌库初始化抽牌堆
         {
+
             hasInit = true;
             foreach (var cardId in cardDeskList) //然后根据牌库中每张牌的ID号查找数据
             foreach (var cardData in CardDataList)
@@ -273,7 +283,7 @@ public class CardManager : MonoBehaviour
         AddCardAnimations();
 
     }
-    public void GetCard(string cardID) //根据卡牌的序号获取指定卡牌
+    public void GetCard(string cardID,bool isWanBaoChui=false) //根据卡牌的序号获取指定卡牌
     {
         //克隆预设
         var handCardGo = Instantiate(cardPrefab) as GameObject;
@@ -282,7 +292,10 @@ public class CardManager : MonoBehaviour
         {
             if (data.cardID == cardID)
             {
-                newCard.InitCard(data);
+                var newData = CardData.Clone(data);
+                if (isWanBaoChui)
+                    newData.cost = 0;
+                newCard.InitCard(newData);
                 break;
             }
         }

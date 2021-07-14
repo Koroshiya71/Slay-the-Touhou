@@ -55,7 +55,7 @@ public class Relic : MonoBehaviour
 
             case 8://紫的阳伞
                 //将回合数置0
-                BattleManager.Instance.yokariPrasolCount = 0;
+                RelicManager.Instance.yokariPrasolCount = 0;
                 break;
         }
     }

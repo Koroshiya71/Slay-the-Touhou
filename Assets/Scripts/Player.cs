@@ -66,7 +66,14 @@ public class Player : MonoBehaviour
     {
         gold += value;
     }
-
+    //玩家死亡方法
+    private void PlayerDie()
+    {
+        //TODO:播放死亡动画
+        BattleManager.Instance.gameIsOver = true;
+        //TODO:取消战斗相关检测并显示游戏结束界面
+        
+    }
     public void InitLevel()
     {
         Level = 1;
@@ -144,6 +151,16 @@ public class Player : MonoBehaviour
         }
 
         if (damage <= 0) return;
+        if (hp <= damage)
+        {
+            if (RelicManager.Instance.CheckRelic(12) && !RelicManager.Instance.hasUseDiZang)
+            {
+                RelicManager.Instance.hasUseDiZang = true;
+                damage = 0;
+                hp += (int) (maxHp * 0.5);
+                return;
+            }
+        }
         hp -= damage;
     }
 

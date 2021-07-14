@@ -14,6 +14,11 @@ public class RelicManager : MonoBehaviour
     public GameObject inGameRelics;//游戏内遗物的总父物体
     public Text relicInfoText;//遗物信息文本
     public bool isWuShu = false;//武术姿态是否触发
+    public bool hasUseDiZang = false;//是否触发了地藏的雕塑复活效果
+    public bool sakuyaClock = false;//咲夜的怀表是否已经触发
+    public int wanBaoChuiCount = 0;//万宝槌的回合计数
+    public int yokariPrasolCount;//紫的阳伞回合计数
+
     private void Awake()
     {
         Instance = this;
@@ -154,6 +159,18 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))//弱肉强食之证
         {
             GetRelic(11);
+        }
+        if (Input.GetKeyDown(KeyCode.M))//地藏的雕塑
+        {
+            GetRelic(12);
+        }
+        if (Input.GetKeyDown(KeyCode.N))//地藏的雕塑
+        {
+            GetRelic(13);
+        }
+        if (Input.GetKeyDown(KeyCode.O))//地藏的雕塑
+        {
+            GetRelic(14);
         }
     }
     void Update()

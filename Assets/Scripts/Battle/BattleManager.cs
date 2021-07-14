@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class BattleManager : MonoBehaviour
     public int cardCombo; //本回合使用的卡牌数量
     public bool extraTurn; //该回合是否是额外回合
     public int tiShuCardCombo; //本回合使用的体术牌数量
-    public int yokariPrasolCount;//回合数
     public int danmakuCardCombo; //本回合使用的体术牌数量
 
     public GameObject enemyPrefab; //敌人预制体
@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
     public Text getGoldText; //获取金币文本
     public Text turnStartAndEndText; //回合结束文本
 
+    public bool gameIsOver = false;
     public void TurnEnd()
     {
         if (CardManager.Instance.isChoosingFromHand) //如果正在进行选牌，则跳过检测
@@ -84,9 +85,11 @@ public class BattleManager : MonoBehaviour
     //回合开始
     public void TurnStart()
     {
-        yokariPrasolCount++;
+        //如果拥有紫的阳伞则统计计数
+        if(RelicManager.Instance.CheckRelic(8))
+            RelicManager.Instance.yokariPrasolCount++;
         //如果紫的阳伞计数可以整除7，且拥有遗物紫的阳伞，则获得一层神隐
-        if (yokariPrasolCount % 7 == 0 && RelicManager.Instance.CheckRelic(8))
+        if (RelicManager.Instance.yokariPrasolCount  == 7 )
         {
             StateManager.AddStateToPlayer(new Value()
             {
@@ -94,8 +97,27 @@ public class BattleManager : MonoBehaviour
                 value=1
                 
             });
-            yokariPrasolCount = 0;
-            Debug.Log("神隐触发");
+            RelicManager.Instance.yokariPrasolCount = 0;
+
+        }
+
+        //如果拥有万宝槌则统计计数
+        if (RelicManager.Instance.CheckRelic(14))
+            RelicManager.Instance.wanBaoChuiCount++;
+        if (RelicManager.Instance.wanBaoChuiCount == 2)
+        {
+            while (true)
+            {
+                var cardNo = Random.Range(0, CardManager.Instance.CardDataList.Count);
+                var card = CardManager.Instance.CardDataList[cardNo];
+                if (card.type==Card.CardType.体术)
+                {
+                    CardManager.Instance.GetCard(card.cardID,true);
+                    break;
+                }
+            }
+
+            RelicManager.Instance.wanBaoChuiCount = 0;
         }
         if (!extraTurn)
             foreach (var enemy in EnemyManager.Instance.InGameEnemyList)
@@ -167,7 +189,8 @@ public class BattleManager : MonoBehaviour
             RelicManager.Instance.isWuShu = true;
 
         }
-
+        //每场战斗重置咲夜的怀表状态
+        RelicManager.Instance.sakuyaClock = false;
         RelicManager.Instance.RelicEffectOnBattleStart();
         TurnStart();
         isInBattle = true;
