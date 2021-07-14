@@ -243,8 +243,25 @@ public class Enemy : MonoBehaviour
         ActionController.Instance.TakeAction(currentEnemyAction,this);
 
     }
-    public void TakeDamage(int damage)//结算受到的伤害
+    public void TakeDamage(int damage,DamageType type=DamageType.TiShu)//结算受到的伤害
     {
+        switch (type)
+        {
+            case DamageType.TiShu:
+                Player.Instance.spellCardRecharge += damage;
+                break;
+            case DamageType.Danmaku:
+                Player.Instance.spellCardRecharge += (int)(3.5*damage);
+                break;
+            
+        }
+
+        if (Player.Instance.spellCardRecharge >= 57)
+        {
+            Player.Instance.spellCardCost++;
+            Player.Instance.spellCardRecharge -= 57;
+            Debug.Log(Player.Instance.spellCardCost);
+        }
         if (shield >= damage)
         {
             shield -= damage;

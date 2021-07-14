@@ -26,14 +26,15 @@ public class Player : MonoBehaviour
     public int maxEnergy; //能量值上限
     public List<Value> stateList = new List<Value>(); //状态列表
     public List<Value> newStateList = new List<Value>(); //刚添加的状态列表
-
+    public int spellCardCost = 0;//当前的符卡槽数
+    public int spellCardRecharge = 0;//符卡槽充能数
     #endregion
 
     #region UI引用
 
     public List<Image> stateImageList = new List<Image>(); //用来显示状态的图片列表
     public List<Text> stateStackTextList = new List<Text>(); //用来显示状态层数的文本列表
-
+    public Text spellCardCostText;
     public Animator effectAnimator; //动效控制器
     public Text hpText; //血条数值文本
     public Slider hpSlider; //血条图片滑动条
@@ -209,6 +210,7 @@ public class Player : MonoBehaviour
         levelText.text = "Level:" + Level;
         goldText.text = "金币:" + gold;
         expText.text = currentExp + "/" + levelExpList[Level - 1];
+        spellCardCostText.text = "当前符卡槽：" + spellCardCost;
     }
 
     public void PlayAttackAnim() //播放攻击动画

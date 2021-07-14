@@ -45,9 +45,9 @@ public class CardEffectManager : MonoBehaviour
                     var damage = 2;
                     if (enemy.CheckState(Value.ValueType.魂体))
                     {
-                        damage = (int)(damage * 0.7);
+                        damage = (int)((damage * 0.7) * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f));
                     }
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(damage, DamageType.Danmaku);
                     BattleManager.Instance.danmakuCardCombo = 0;
                     Debug.Log("小阴阳玉触发");
                 }
@@ -161,6 +161,21 @@ public class CardEffectManager : MonoBehaviour
 
     private void AttackAll(Card card, int times) //群体攻击的通用方法
     {
+        DamageType damageType = DamageType.TiShu;
+        switch (card.cardData.type)
+        {
+            case Card.CardType.体术:
+                damageType = DamageType.TiShu;
+                break;
+            case Card.CardType.弹幕:
+                damageType = DamageType.Danmaku;
+                break;
+            case Card.CardType.符卡:
+                damageType = DamageType.SpellCard;
+                break;
+        }
+        
+
         if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         Player.Instance.PlayAttackAnim(); //播放攻击动画
@@ -178,11 +193,11 @@ public class CardEffectManager : MonoBehaviour
                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                         {
                             enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f
-                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)),damageType);
                         }
                         else
                             enemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害]
-                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                         
                     }
                       
@@ -209,11 +224,11 @@ public class CardEffectManager : MonoBehaviour
                                         (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                     {
                                         enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                     }
                                     else
                                         enemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                               * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                               * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
 
                                 }
 
@@ -230,11 +245,11 @@ public class CardEffectManager : MonoBehaviour
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
                                             enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                         }
                                         else
                                             enemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
 
                                     }
 
@@ -249,11 +264,11 @@ public class CardEffectManager : MonoBehaviour
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
                                             enemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                         }
                                         else
                                             enemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
 
                                     }
                                 });
@@ -343,11 +358,11 @@ public class CardEffectManager : MonoBehaviour
                                             (enemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                         {
                                             enemy.TakeDamage((int)(combo.comboValue.value * 0.7f
-                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                         }
                                         else
                                             enemy.TakeDamage((int)(combo.comboValue.value
-                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
 
                                     }
                                     break;
@@ -374,6 +389,19 @@ public class CardEffectManager : MonoBehaviour
 
     private void SingleAttack(Card card, int times) //单体攻击的通用方法
     {
+        DamageType damageType = DamageType.TiShu;
+        switch (card.cardData.type)
+        {
+            case Card.CardType.体术:
+                damageType = DamageType.TiShu;
+                break;
+            case Card.CardType.弹幕:
+                damageType = DamageType.Danmaku;
+                break;
+            case Card.CardType.符卡:
+                damageType = DamageType.SpellCard;
+                break;
+        }
         if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
         if (targetEnemy == null) //如果目标敌人为空则跳过
@@ -395,11 +423,11 @@ public class CardEffectManager : MonoBehaviour
                         (targetEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                     {
                         targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f
-                            *(RelicManager.Instance.CheckRelic(11)?1.5f:1.0f)));
+                            *(RelicManager.Instance.CheckRelic(11)?1.5f:1.0f)), damageType);
                     }
                     else
                         targetEnemy.TakeDamage((int)(card.valueDic[Value.ValueType.伤害]
-                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                 }
 
             if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))
@@ -424,11 +452,11 @@ public class CardEffectManager : MonoBehaviour
                                     (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                 {
                                     attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                        * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                        * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                 }
                                 else
                                     attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                   * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
 
                                 break;
                             }
@@ -440,11 +468,11 @@ public class CardEffectManager : MonoBehaviour
                                         (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                     {
                                         attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                     }
                                     else
                                         attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                 });
                             else
                                 BattleManager.Instance.actionsTurnStart.Add(() =>
@@ -453,11 +481,11 @@ public class CardEffectManager : MonoBehaviour
                                         (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                     {
                                         attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value * 0.7f
-                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                     }
                                     else
                                         attackedEnemy.TakeDamage((int)(canXin.CanXinValue.value
-                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                 });
                             break;
                         case Value.ValueType.护甲:
@@ -516,11 +544,11 @@ public class CardEffectManager : MonoBehaviour
                                         (attackedEnemy.CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                                     {
                                         attackedEnemy.TakeDamage((int)(combo.comboValue.value * 0.7f
-                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                     }
                                     else
                                         attackedEnemy.TakeDamage((int)(combo.comboValue.value
-                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)));
+                                                                       * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                                     break;
                                 case Value.ValueType.护甲:
                                     Player.Instance.GetShield(combo.comboValue.value);
@@ -545,6 +573,19 @@ public class CardEffectManager : MonoBehaviour
 
     private void RandomAttack(Card card, int times) //随机攻击的通用方法
     {
+        DamageType damageType = DamageType.TiShu;
+        switch (card.cardData.type)
+        {
+            case Card.CardType.体术:
+                damageType = DamageType.TiShu;
+                break;
+            case Card.CardType.弹幕:
+                damageType = DamageType.Danmaku;
+                break;
+            case Card.CardType.符卡:
+                damageType = DamageType.SpellCard;
+                break;
+        }
         if ((Player.Instance.energy < card.cardData.cost && card.cardData.type != Card.CardType.符卡) || BattleManager.Instance.turnHasEnd) //如果费用不够则使用失败
             return;
 
@@ -561,10 +602,12 @@ public class CardEffectManager : MonoBehaviour
                     if ((EnemyManager.Instance.InGameEnemyList[n].CheckState(Value.ValueType.灵体) && card.cardData.type == Card.CardType.体术) ||
                         (EnemyManager.Instance.InGameEnemyList[n].CheckState(Value.ValueType.魂体) && card.cardData.type == Card.CardType.弹幕))
                     {
-                        EnemyManager.Instance.InGameEnemyList[n].TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f));
+                        EnemyManager.Instance.InGameEnemyList[n].TakeDamage((int)(card.valueDic[Value.ValueType.伤害] * 0.7f 
+                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                     }
                     else
-                        EnemyManager.Instance.InGameEnemyList[n].TakeDamage(card.valueDic[Value.ValueType.伤害]);
+                        EnemyManager.Instance.InGameEnemyList[n].TakeDamage((int)(card.valueDic[Value.ValueType.伤害] 
+                            * (RelicManager.Instance.CheckRelic(11) ? 1.5f : 1.0f)), damageType);
                 }
 
             if (card.valueDic.ContainsKey(Value.ValueType.击杀回费))

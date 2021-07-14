@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
+
+
+public enum DamageType//伤害类型
+{
+    TiShu,
+    Danmaku,
+    SpellCard
+}
 [Serializable]
 public class EnemyData
 {
