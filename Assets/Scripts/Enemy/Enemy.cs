@@ -314,7 +314,8 @@ public class Enemy : MonoBehaviour
             BattleManager.Instance.battleGold += enemyData.gold;
         }
         EnemyManager.Instance.InGameEnemyList.Remove(this);
-        Destroy(gameObject);
+        if(gameObject!=null)
+            Destroy(gameObject);
         if (EnemyManager.Instance.InGameEnemyList.Count==0)
         {
             BattleManager.Instance.BattleEnd();

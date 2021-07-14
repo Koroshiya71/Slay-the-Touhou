@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
 
     public List<Image> stateImageList = new List<Image>(); //用来显示状态的图片列表
     public List<Text> stateStackTextList = new List<Text>(); //用来显示状态层数的文本列表
-    public Text spellCardCostText;
+    public Text spellCardCostText;//符卡槽数
+    public Slider spellCardCostSlider;//符卡槽充能条
     public Animator effectAnimator; //动效控制器
     public Text hpText; //血条数值文本
     public Slider hpSlider; //血条图片滑动条
@@ -211,13 +212,15 @@ public class Player : MonoBehaviour
             Debug.Log(spellCardCost);
         }
 
+
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
         energyText.text = energy + "/" + maxEnergy;
         levelText.text = "Level:" + Level;
         goldText.text = "金币:" + gold;
         expText.text = currentExp + "/" + levelExpList[Level - 1];
-        spellCardCostText.text = "当前符卡槽：" + spellCardCost;
+        spellCardCostText.text = "" + spellCardCost;
+        spellCardCostSlider.value = spellCardRecharge / 57.0f;
     }
 
     public void PlayAttackAnim() //播放攻击动画
