@@ -204,6 +204,13 @@ public class Player : MonoBehaviour
             shieldImg.SetActive(false);
         }
 
+        if (spellCardRecharge >= 57)
+        {
+            spellCardCost++;
+            spellCardRecharge -= 57;
+            Debug.Log(spellCardCost);
+        }
+
         hpText.text = hp + "/" + maxHp;
         hpSlider.value = 1.0f * hp / maxHp;
         energyText.text = energy + "/" + maxEnergy;

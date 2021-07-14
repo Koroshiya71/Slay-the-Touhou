@@ -108,12 +108,16 @@ public class Card : MonoBehaviour
         
         if (MenuEventManager.Instance.isPreviewing&&cardData.type==CardType.符卡)//如果是从额外卡组选择符卡
         {
+            if (Player.Instance.spellCardCost < cardData.cost)
+                return;
             CardManager.Instance.GetSpellCard(cardData.cardID);
+            Player.Instance.spellCardCost -= cardData.cost;
             transform.localScale /= 1.5f;
             explanationText.enabled = false;
 
             if (cardData.type == CardType.符卡)
             {
+
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 600, 0);
 
             }

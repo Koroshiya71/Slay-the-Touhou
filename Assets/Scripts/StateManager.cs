@@ -103,6 +103,12 @@ public class StateManager : MonoBehaviour
             }
         }
 
+        for (int i = Player.Instance.stateList.Count; i < 10; i++)
+        {
+            Player.Instance.stateStackTextList[i].enabled = false;
+
+        }
+
         foreach (var emptyState in emptyList)
         {
             Player.Instance.stateList.Remove(emptyState);

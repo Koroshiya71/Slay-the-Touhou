@@ -256,12 +256,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        if (Player.Instance.spellCardRecharge >= 57)
-        {
-            Player.Instance.spellCardCost++;
-            Player.Instance.spellCardRecharge -= 57;
-            Debug.Log(Player.Instance.spellCardCost);
-        }
+        
         if (shield >= damage)
         {
             shield -= damage;
