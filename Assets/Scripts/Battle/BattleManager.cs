@@ -81,6 +81,7 @@ public class BattleManager : MonoBehaviour
         turnHasEnd = true;
         cardCombo = 0;
         tiShuCardCombo = 0;
+
     }
     //回合开始
     public void TurnStart()
@@ -127,6 +128,7 @@ public class BattleManager : MonoBehaviour
         Invoke(nameof(NotShowTurnText), 0.5f);
         turnHasEnd = false;
         Player.Instance.InitEnergy();
+
         StateManager.UpdatePlayerState(); //对玩家身上的状态进行更新
         StateManager.UpdateEnemiesState(); //对敌人身上的状态进行更新
 

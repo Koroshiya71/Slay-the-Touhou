@@ -130,7 +130,7 @@ public class EventManager : MonoBehaviour
                             }
 
                         }
-                        StartCoroutine(CardManager.Instance.AddCardToDesk(choiceList, 1));
+                        StartCoroutine(CardManager.Instance.AddCardToDeck(choiceList, 1));
                         break;
                     case 3:
                         desText.text = evt.descriptionList[3];

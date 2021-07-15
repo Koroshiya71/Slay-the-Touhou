@@ -245,13 +245,18 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage,DamageType type=DamageType.TiShu)//结算受到的伤害
     {
+        bool shengNiGong = false;
+        if (RelicManager.Instance.CheckRelic(15))
+        {
+            shengNiGong = true;
+        }
         switch (type)
         {
             case DamageType.TiShu:
-                Player.Instance.spellCardRecharge += damage;
+                Player.Instance.spellCardRecharge += (int)(damage * (shengNiGong?1.3f:1.0f));
                 break;
             case DamageType.Danmaku:
-                Player.Instance.spellCardRecharge += (int)(3.5*damage);
+                Player.Instance.spellCardRecharge += (int) (damage * 2.5*(shengNiGong ? 1.3f : 1.0f));
                 break;
             
         }

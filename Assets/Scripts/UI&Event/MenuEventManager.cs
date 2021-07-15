@@ -43,7 +43,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
     }
 
     
-    public void ChooseCardFromDesk()//从手牌外的范围进行卡牌选择
+    public void ChooseCardFromDeck()//从手牌外的范围进行卡牌选择
     {
         CardManager.Instance.isChoosingFromHand = true;
         cardDisplayView.SetActive(true);
@@ -65,11 +65,11 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
         cardDisplayView.SetActive(false);
         spellCardDisplayView.SetActive(false);
     }
-    public void ShowDeskButtonDown() //查看牌库按钮按下的回调事件
+    public void ShowDeckButtonDown() //查看牌库按钮按下的回调事件
     {
         isPreviewing = true;
         cardPreviewCanvas.enabled = true;
-        List<string> deskList = CardManager.Instance.cardDeskList;
+        List<string> deskList = CardManager.Instance.cardDeckList;
         cardDisplayView.SetActive(true);
         displayContent.sizeDelta = new Vector2(1835, 939 + (deskList.Count / 5 - 1) * 420);
         for (int i = 0; i < deskList.Count; i++)
@@ -133,7 +133,7 @@ public class MenuEventManager : MonoBehaviour//用来管理一系列UI事件
 
     }
 
-    public void ShowSpellCardDeskButtonDown() //查看符卡列表按下的回调事件
+    public void ShowSpellCardDeckButtonDown() //查看符卡列表按下的回调事件
     {
         isPreviewing = true;
         cardPreviewCanvas.enabled = true;

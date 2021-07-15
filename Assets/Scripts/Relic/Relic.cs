@@ -45,7 +45,7 @@ public class Relic : MonoBehaviour
                         choiceList.Add(newData);
                     }
                 }
-                StartCoroutine(CardManager.Instance.AddCardToDesk(choiceList, 1));
+                StartCoroutine(CardManager.Instance.AddCardToDeck(choiceList, 1));
                 break;
 
             case 5://御守   
@@ -57,6 +57,8 @@ public class Relic : MonoBehaviour
                 //将回合数置0
                 RelicManager.Instance.yokariPrasolCount = 0;
                 break;
+
+            
         }
     }
     void Update()

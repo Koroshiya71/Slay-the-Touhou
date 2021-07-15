@@ -18,7 +18,6 @@ public class RelicManager : MonoBehaviour
     public bool sakuyaClock = false;//咲夜的怀表是否已经触发
     public int wanBaoChuiCount = 0;//万宝槌的回合计数
     public int yokariPrasolCount;//紫的阳伞回合计数
-
     private void Awake()
     {
         Instance = this;
@@ -171,6 +170,10 @@ public class RelicManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))//地藏的雕塑
         {
             GetRelic(14);
+        }
+        if (Input.GetKeyDown(KeyCode.P))//地藏的雕塑
+        {
+            GetRelic(15);
         }
     }
     void Update()

@@ -20,7 +20,7 @@ public class CardManager : MonoBehaviour
 
     public List<CardData> discardList = new List<CardData>(); //弃牌堆
     public List<CardData> drawCardList = new List<CardData>(); //抽牌堆
-    public List<string> cardDeskList = new List<string>(); //牌库
+    public List<string> cardDeckList = new List<string>(); //牌库
     public List<GameObject> handCardList = new List<GameObject>(); //手牌列表
     public List<CardData> spellCardList = new List<CardData>(); //符卡堆
 
@@ -41,7 +41,7 @@ public class CardManager : MonoBehaviour
     public bool isAddingCard;//是否正在添加卡牌到牌库
     public Text explanationText;//机制说明文本
     public Text showExplanationText;//机制说明文本
-    public GameObject choosingCardPanel;//抽牌滤镜panel
+    public GameObject choosingCardPanel;//抽牌panel
     public Image showExplanationOutLine;//说明文本外框
     public Image previewExplanationOutLine;//预览说明文本外框
 
@@ -111,7 +111,7 @@ public class CardManager : MonoBehaviour
         {
 
             hasInit = true;
-            foreach (var cardId in cardDeskList) //然后根据牌库中每张牌的ID号查找数据
+            foreach (var cardId in cardDeckList) //然后根据牌库中每张牌的ID号查找数据
             foreach (var cardData in CardDataList)
                 if (cardId == cardData.cardID) //查找对应ID的卡牌数据
                 {
@@ -184,7 +184,14 @@ public class CardManager : MonoBehaviour
             yield return 0;
         }
     }
-
+    public IEnumerator ChooseCardFromDeck(int num) //从牌库进行卡牌选择
+    {
+        chosenCardList = new List<Card>();
+        MenuEventManager.Instance.ShowDeckButtonDown();
+        isChoosingFromHand = true;
+        choosingCardPanel.SetActive(true);
+        yield return 0;
+    }
     private void Update()
     {
         UpdateUIState();
@@ -399,7 +406,7 @@ public class CardManager : MonoBehaviour
         Instance = this;
     }
 
-    public IEnumerator AddCardToDesk(List<CardData> choiceList,int chooseNum) //根据这个列表进行选牌
+    public IEnumerator AddCardToDeck(List<CardData> choiceList,int chooseNum) //根据这个列表进行选牌
     {
         MenuEventManager.Instance.cardPreviewCanvas.enabled = true;
 
@@ -423,7 +430,7 @@ public class CardManager : MonoBehaviour
 
         foreach (var card in chosenCardList)
         {
-            cardDeskList.Add(card.cardData.cardID);
+            cardDeckList.Add(card.cardData.cardID);
         }
         isAddingCard = false;
         MenuEventManager.Instance.cardChooseView.SetActive(false);

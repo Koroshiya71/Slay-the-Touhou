@@ -13099,25 +13099,21 @@ MonoBehaviour:
   showSpellCard: {fileID: 3781588656137340931}
   discardList: []
   drawCardList: []
-  cardDeskList:
-  - 0008
+  cardDeckList:
+  - 0001
   - 0001
   - 0001
   - 0002
   - 0002
-  - 0003
+  - 0002
   - 0003
   - 0004
   - 0005
-  - 0005
-  - 0006
   - 0006
   - 0007
-  - 0007
+  - 0008
   - 0010
   - 0012
-  - 0012
-  - 0013
   - 0013
   - 0014
   - 0015
@@ -13911,7 +13907,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 945618423}
         m_TargetAssemblyTypeName: MenuEventManager, Assembly-CSharp
-        m_MethodName: ShowSpellCardDeskButtonDown
+        m_MethodName: ShowSpellCardDeckButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21366,7 +21362,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 945618423}
         m_TargetAssemblyTypeName: MenuEventManager, Assembly-CSharp
-        m_MethodName: ShowDeskButtonDown
+        m_MethodName: ShowDeckButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22787,6 +22783,10 @@ MonoBehaviour:
     relicRare: 2
     relicName: "\u4E07\u5B9D\u69CC"
     relicDes: "\u6BCF\u9694\u4E00\u4E2A\u56DE\u5408\uFF0C\u968F\u673A\u5C06\u4E00\u5F20\u4F53\u672F\u724C\u7F6E\u5165\u4F60\u7684\u624B\u724C\uFF0C\u5E76\u4F7F\u5176\u8D39\u7528\u964D\u4E3A0"
+  - relicID: 15
+    relicRare: 2
+    relicName: "\u5723\u5C3C\u516C\u7684\u5377\u8F74"
+    relicDes: "\u4F60\u7684\u7B26\u5361\u5145\u80FD\u901F\u5EA6\u589E\u52A030%"
   inGameRelicList: []
   relicSpriteList:
   - {fileID: 21300000, guid: bcd1b33f749321c4d89ea59c6dcc9515, type: 3}
