@@ -126,8 +126,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            shield = 0;
             damage -= shield;
+            shield = 0;
             if (AllyManager.Instance.inGameAlliesList.Count > 0)
                 for (var i = 0; i < AllyManager.Instance.inGameAlliesList.Count; i++)
                 {
